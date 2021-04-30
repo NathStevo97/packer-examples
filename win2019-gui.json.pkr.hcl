@@ -68,27 +68,6 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 # source. Read the documentation for source blocks here:
 # https://www.packer.io/docs/from-1.5/blocks/source
 # could not parse template for following block: "template: hcl2_upgrade:14:42: executing \"hcl2_upgrade\" at <.Name>: can't evaluate field Name in type struct { HTTPIP string; HTTPPort string }"
-  
-source "virtualbox-iso" "win2019" {
-  boot_wait            = "${var.boot_wait}"
-  communicator         = "winrm"
-  disk_size            = "${var.disk_size}"
-  floppy_files         = ["scripts/bios/gui/autounattend.xml"]
-  guest_additions_mode = "disable"
-  guest_os_type        = "windows9srv-64"
-  headless             = false
-  iso_checksum         = "${var.iso_checksum}"
-  iso_url              = "${var.iso_url}"
-  shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
-  shutdown_timeout     = "30m"
-  vboxmanage           = [["modifyvm", "{{.Name}}", "--memory", "{{user `memsize`}}"], ["modifyvm", "{{.Name}}", "--cpus", "{{user `numvcpus`}}"]]
-  vm_name              = "${var.vm_name}"
-  winrm_insecure       = true
-  winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "4h"
-  winrm_use_ssl        = true
-  winrm_username       = "${var.winrm_username}"
-}
 
 source "vmware-iso" "win2019" {
   boot_wait        = "${var.boot_wait}"
@@ -122,16 +101,11 @@ source "vmware-iso" "win2019" {
 # documentation for build blocks can be found here:
 # https://www.packer.io/docs/from-1.5/blocks/build
 build {
-  sources = ["source.virtualbox-iso.win2019", "source.vmware-iso.win2019"]
+  sources = ["source.vmware-iso.win2019"]
 
   provisioner "powershell" {
     only    = ["vmware-iso"]
     scripts = ["scripts/vmware-tools.ps1"]
-  }
-    
-  provisioner "powershell" {
-    only    = ["virtualbox-iso"]
-    scripts = ["scripts/virtualbox-guest-additions.ps1"]
   }
 
   provisioner "powershell" {
