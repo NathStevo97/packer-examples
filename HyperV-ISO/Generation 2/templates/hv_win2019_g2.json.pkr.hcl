@@ -47,11 +47,6 @@ variable "upgrade_timeout" {
   default = ""
 }
 
-variable "vagrant_sysprep_unattended" {
-  type    = string
-  default = ""
-}
-
 variable "vlan_id" {
   type    = string
   default = ""
