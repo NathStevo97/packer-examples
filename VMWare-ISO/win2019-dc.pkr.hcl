@@ -30,7 +30,7 @@ variable "numvcpus" {
 
 variable "vm_name" {
   type    = string
-  default = "Win2019_Standard"
+  default = "Win2019_DC"
 }
 
 variable "winrm_password" {
@@ -46,15 +46,15 @@ variable "winrm_username" {
 # "timestamp" template function replacement
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
-source "vmware-iso" "win2019-standard" {
+source "vmware-iso" "win2019-DC" {
   boot_wait        = "${var.boot_wait}"
   communicator     = "winrm"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
-  floppy_files     = ["scripts/bios/win2019/Std/autounattend.xml"]
+  floppy_files     = ["scripts/bios/win2019/DC/autounattend.xml"]
   guest_os_type    = "windows9srv-64"
   headless         = false
-  http_directory   = "http"
+  #http_directory   = "http"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
@@ -78,7 +78,7 @@ source "vmware-iso" "win2019-standard" {
 # documentation for build blocks can be found here:
 # https://www.packer.io/docs/from-1.5/blocks/build
 build {
-  sources = ["source.vmware-iso.win2019-standard"]
+  sources = ["source.vmware-iso.win2019-DC"]
 
   provisioner "powershell" {
     only    = ["vmware-iso"]

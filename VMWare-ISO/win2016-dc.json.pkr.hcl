@@ -10,12 +10,12 @@ variable "disk_size" {
 
 variable "iso_checksum" {
   type    = string
-  default = "3022424f777b66a698047ba1c37812026b9714c5"
+  default = ""
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
+  default = "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
 }
 
 variable "memsize" {
@@ -30,7 +30,7 @@ variable "numvcpus" {
 
 variable "vm_name" {
   type    = string
-  default = "Win2019_Standard"
+  default = "Win2016_Standard"
 }
 
 variable "winrm_password" {
@@ -46,13 +46,13 @@ variable "winrm_username" {
 # "timestamp" template function replacement
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
-source "vmware-iso" "win2019-standard" {
+source "vmware-iso" "win2016" {
   boot_wait        = "${var.boot_wait}"
   communicator     = "winrm"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
-  floppy_files     = ["scripts/bios/win2019/Std/autounattend.xml"]
-  guest_os_type    = "windows9srv-64"
+  floppy_files     = ["scripts/bios/win2016/autounattend.xml"]
+  #guest_os_type    = "windows9srv-64"
   headless         = false
   http_directory   = "http"
   iso_checksum     = "${var.iso_checksum}"
@@ -78,7 +78,7 @@ source "vmware-iso" "win2019-standard" {
 # documentation for build blocks can be found here:
 # https://www.packer.io/docs/from-1.5/blocks/build
 build {
-  sources = ["source.vmware-iso.win2019-standard"]
+  sources = ["source.vmware-iso.win2016"]
 
   provisioner "powershell" {
     only    = ["vmware-iso"]

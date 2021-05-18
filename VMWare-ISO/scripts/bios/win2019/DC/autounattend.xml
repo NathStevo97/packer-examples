@@ -55,7 +55,7 @@
                     <!-- Get-WindowsImage -ImagePath D:\sources\install.wim -->
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/INDEX </Key>
-                            <Value>1</Value>
+                            <Value>4</Value>
                         </MetaData>
                     </InstallFrom>
                     <InstallTo>
@@ -159,7 +159,7 @@
                     <RequiresUserInput>true</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -Command dism /online /quiet /set-edition:ServerDatacenterCor /productkey:WMDGN-G9PQG-XVVXX-R3X43-63DFG /accepteula</CommandLine>
+                    <CommandLine>%SystemRoot%\system32\WindowsPowerShell\v1.0\powershell.exe -Command dism /online /quiet /set-edition:ServerDatacenter /productkey:WMDGN-G9PQG-XVVXX-R3X43-63DFG /accepteula</CommandLine>
                     <Order>7</Order>
                     <Description>Switch from EVAL to VL</Description>
                 </SynchronousCommand>
