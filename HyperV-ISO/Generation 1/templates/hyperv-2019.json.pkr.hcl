@@ -8,7 +8,7 @@ variable "iso_url" {
   default = "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
 }
 
-source "hyperv-iso" "win2019" {
+source "hyperv-iso" "win2019-STD" {
   communicator         = "winrm"
   floppy_files         = ["../extra/files/gen1-2019/std/Autounattend.xml", "../extra/scripts/winrm.ps1"]
   guest_additions_mode = "disable"
@@ -24,7 +24,7 @@ source "hyperv-iso" "win2019" {
 }
 
 build {
-  sources = ["source.hyperv-iso.win2019"]
+  sources = ["source.hyperv-iso.win2019-STD"]
 
    provisioner "powershell" {
     elevated_password = "vagrant"
