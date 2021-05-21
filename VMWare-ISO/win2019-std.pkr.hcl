@@ -54,7 +54,7 @@ source "vmware-iso" "win2019-standard" {
   floppy_files     = ["scripts/bios/win2019/Std/autounattend.xml"]
   guest_os_type    = "windows9srv-64"
   headless         = false
-  http_directory   = "http"
+  #http_directory   = "http"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""

@@ -54,12 +54,11 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 source "vmware-iso" "win2016-STD" {
   boot_wait        = "${var.boot_wait}"
   communicator     = "winrm"
-  disk_size        = "${var.disk_size}"
+  #disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
-  floppy_files     = ["scripts/bios/win2016/STD/autounattend.xml"]
+  floppy_files     = ["scripts/bios/win2016/Std/autounattend.xml", "scripts/winrm.ps1"]
   guest_os_type    = "windows8srv-64"
   headless         = false
-  #http_directory   = "http"
   iso_checksum     = "${var.iso_checksum_type}:${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
@@ -69,8 +68,8 @@ source "vmware-iso" "win2016-STD" {
   vmx_data = {
     memsize             = "${var.memsize}"
     numvcpus            = "${var.numvcpus}"
-    "scsi0.virtualDev"  = "lsisas1068"
-    "virtualHW.version" = "14"
+    #"scsi0.virtualDev"  = "lsisas1068"
+    #"virtualHW.version" = "14"
   }
   winrm_insecure = true
   winrm_password = "${var.winrm_password}"
@@ -79,9 +78,6 @@ source "vmware-iso" "win2016-STD" {
   winrm_username = "${var.winrm_username}"
 }
 
-# a build block invokes sources and runs provisioning steps on them. The
-# documentation for build blocks can be found here:
-# https://www.packer.io/docs/from-1.5/blocks/build
 build {
   sources = ["source.vmware-iso.win2016-STD"]
 
