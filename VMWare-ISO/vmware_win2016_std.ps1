@@ -7,7 +7,7 @@ $startDTM = (Get-Date)
 $template_file="./win2016-std.pkr.hcl"
 #$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
 $machine="Windows Server 2016 Standard"
-$packer_log=1
+$packer_log=0
 $env:PACKER_LOG_PATH="packerlog-2016-STD.txt"
 
 #Write start time so you know how long it's been

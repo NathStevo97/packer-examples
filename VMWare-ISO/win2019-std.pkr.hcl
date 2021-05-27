@@ -54,7 +54,7 @@ source "vmware-iso" "win2019-standard" {
   floppy_files     = ["scripts/bios/win2019/Std/autounattend.xml"]
   guest_os_type    = "windows9srv-64"
   headless         = false
-  #http_directory   = "http"
+  #http_directory   = "../../../ISOs/Windows Server/2019/Language Pack"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
@@ -88,10 +88,12 @@ build {
   provisioner "powershell" {
     scripts = ["scripts/setup.ps1"]
   }
-   
+  
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
+
+   
   provisioner "powershell" {
     scripts = ["scripts/win-update.ps1"]
   }
@@ -105,7 +107,7 @@ build {
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
- /*  
+  /*
   provisioner "powershell" {
     scripts = ["scripts/cleanup.ps1"]
   }

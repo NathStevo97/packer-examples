@@ -2,25 +2,14 @@ variable "boot_wait" {
   type    = string
   default = "5s"
 }
-
-variable "disk_size" {
-  type    = string
-  default = "40960"
-}
-
 variable "iso_checksum" {
   type    = string
-  default = "70721288bbcdfe3239d8f8c0fae55f1f" #MD5 Checksum
-}
-
-variable "iso_checksum_type" {
-    type = string
-    default = "md5"
+  default = "70721288bbcdfe3239d8f8c0fae55f1f"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
+  default = "../../../ISOs/Windows Server/2016/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
 }
 
 variable "memsize" {
@@ -35,7 +24,7 @@ variable "numvcpus" {
 
 variable "vm_name" {
   type    = string
-  default = "Win2016_STD"
+  default = "Win2016_Standard"
 }
 
 variable "winrm_password" {
@@ -48,52 +37,56 @@ variable "winrm_username" {
   default = "Administrator"
 }
 
+variable "disk_size" {
+  type    = string
+  default = "40960"
+}
 # "timestamp" template function replacement
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
-source "vmware-iso" "win2016-STD" {
-  boot_wait        = "${var.boot_wait}"
-  communicator     = "winrm"
-  #disk_size        = "${var.disk_size}"
-  disk_type_id     = "0"
-  floppy_files     = ["scripts/bios/win2016/Std/autounattend.xml", "scripts/winrm.ps1"]
-  guest_os_type    = "windows8srv-64"
-  headless         = false
-  iso_checksum     = "${var.iso_checksum_type}:${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
-  shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
-  shutdown_timeout = "30m"
-  skip_compaction  = false
-  vm_name          = "${var.vm_name}"
+source "vmware-iso" "win2016-standard" {
+  communicator         = "winrm"
+  floppy_files         = ["scripts/bios/win2016/Std/autounattend.xml", "scripts/winrm.ps1"]
+  iso_checksum         = "md5:${var.iso_checksum}"
+  iso_url              = "${var.iso_url}"
+  disk_size        = "${var.disk_size}"
+  shutdown_timeout     = "15m"
+  vm_name              = "2016min-standard"
+  winrm_password       = "vagrant"
+  winrm_timeout        = "12h"
+  winrm_username       = "vagrant"
   vmx_data = {
     memsize             = "${var.memsize}"
     numvcpus            = "${var.numvcpus}"
-    #"scsi0.virtualDev"  = "lsisas1068"
-    #"virtualHW.version" = "14"
+    "scsi0.virtualDev"  = "lsisas1068"
+    "virtualHW.version" = "14"
   }
-  winrm_insecure = true
-  winrm_password = "${var.winrm_password}"
-  winrm_timeout  = "4h"
-  winrm_use_ssl  = true
-  winrm_username = "${var.winrm_username}"
 }
 
 build {
-  sources = ["source.vmware-iso.win2016-STD"]
+  sources = ["source.vmware-iso.win2016-standard"]
+
 
   provisioner "powershell" {
-    only    = ["vmware-iso"]
+    elevated_password = "vagrant"
+    elevated_user     = "vagrant"
     scripts = ["scripts/vmware-tools.ps1"]
   }
 
   provisioner "powershell" {
+    elevated_password = "vagrant"
+    elevated_user     = "vagrant"
     scripts = ["scripts/setup.ps1"]
   }
-   
+  
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
+
+   
   provisioner "powershell" {
+    elevated_password = "vagrant"
+    elevated_user     = "vagrant"
     scripts = ["scripts/win-update.ps1"]
   }
   provisioner "windows-restart" {
@@ -101,14 +94,11 @@ build {
   }
   
   provisioner "powershell" {
+    elevated_password = "vagrant"
+    elevated_user     = "vagrant"
     scripts = ["scripts/win-update.ps1"]
   }
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
- /*  
-  provisioner "powershell" {
-    scripts = ["scripts/cleanup.ps1"]
-  }
-  */
 }

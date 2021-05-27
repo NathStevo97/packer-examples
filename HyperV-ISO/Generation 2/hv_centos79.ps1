@@ -4,11 +4,11 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/hv_win2019_g2.pkr.hcl"
-$var_file="./variables/variables_win2019_std.pkrvars.hcl"
-$machine="Windows Server 2019 Standard Gen-2"
-$packer_log=0
-#Write start time so you know how long it's been
+$template_file="./templates/hv_centos_7_g2.pkr.hcl"
+$var_file="./variables/variables_centos_79.pkrvars.hcl"
+$machine="CentOS 7.9 2009"
+$packer_log=1
+$env:PACKER_LOG_PATH="packerlog-centos-79.txt"
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file") -and (Test-Path -Path "$var_file")) {
   Write-Output "Template and var file found"
