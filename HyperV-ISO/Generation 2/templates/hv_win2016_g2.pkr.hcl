@@ -157,5 +157,7 @@ build {
     elevated_user     = "Administrator"
     inline            = ["Write-Host \"Pausing before next stage\";Start-Sleep -Seconds ${var.upgrade_timeout}"]
   }
-
+  provisioner "powershell" {
+    scripts = ["../../../Testing/illumio_install.ps1"]
+  }
 }

@@ -101,4 +101,7 @@ build {
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
+  provisioner "powershell" {
+    scripts = ["../../Testing/illumio_install.ps1"]
+  }
 }

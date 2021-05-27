@@ -15,7 +15,7 @@ variable "iso_checksum" {
 
 variable "iso_url" {
   type    = string
-  default = "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
+  default = "../../../ISOs/Windows Server/2019/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
 }
 
 variable "memsize" {
@@ -104,6 +104,9 @@ build {
   }
   provisioner "windows-restart" {
     restart_timeout = "30m"
+  }
+  provisioner "powershell" {
+    scripts = ["../../Testing/illumio_install.ps1"]
   }
  /*  
   provisioner "powershell" {
