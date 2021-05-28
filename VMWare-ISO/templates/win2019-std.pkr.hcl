@@ -82,11 +82,11 @@ build {
 
   provisioner "powershell" {
     only    = ["vmware-iso"]
-    scripts = ["scripts/vmware-tools.ps1"]
+    scripts = ["./scripts/vmware-tools.ps1"]
   }
 
   provisioner "powershell" {
-    scripts = ["scripts/setup.ps1"]
+    scripts = ["./scripts/setup.ps1"]
   }
   
   provisioner "windows-restart" {
@@ -95,14 +95,14 @@ build {
 
    
   provisioner "powershell" {
-    scripts = ["scripts/win-update.ps1"]
+    scripts = ["./scripts/win-update.ps1"]
   }
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
   
   provisioner "powershell" {
-    scripts = ["scripts/win-update.ps1"]
+    scripts = ["./scripts/win-update.ps1"]
   }
   provisioner "windows-restart" {
     restart_timeout = "30m"

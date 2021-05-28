@@ -4,7 +4,7 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./win2016-std.pkr.hcl"
+$template_file="./templates/win2016-std.pkr.hcl"
 #$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
 $machine="Windows Server 2016 Standard"
 $packer_log=0

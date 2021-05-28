@@ -4,7 +4,7 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./win2019-std.pkr.hcl"
+$template_file="./templates/win2019-std.pkr.hcl"
 #$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
 $machine="Windows Server 2019 Standard"
 $packer_log=1
