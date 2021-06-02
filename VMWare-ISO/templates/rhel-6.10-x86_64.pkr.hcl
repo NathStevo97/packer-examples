@@ -36,7 +36,7 @@ variable "guest_additions_url" {
 
 variable "headless" {
   type    = string
-  default = ""
+  default = "false"
 }
 
 variable "http_proxy" {
@@ -69,16 +69,6 @@ variable "memory" {
   default = "1024"
 }
 
-variable "mirror" {
-  type    = string
-  default = "http://YOU-MUST-PROVIDE-YOUR-OWN-ISO.sorry"
-}
-
-variable "mirror_directory" {
-  type    = string
-  default = "rhel"
-}
-
 variable "name" {
   type    = string
   default = "rhel-6.10"
@@ -100,23 +90,18 @@ variable "version" {
 }
 # The "legacy_isotime" function has been provided for backwards compatability, but we recommend switching to the timestamp and formatdate functions.
 
-locals {
-  build_timestamp = "${legacy_isotime("20060102150405")}"
-  http_directory  = "${path.root}/../centos/http"
-}
-
 source "vmware-iso" "rhel6" {
-  boot_command        = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.ks_path}<enter><wait>"]
+  boot_command        = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-6.cfg<enter><wait>"]
   boot_wait           = "5s"
   cpus                = "${var.cpus}"
   disk_size           = "${var.disk_size}"
   guest_os_type       = "rhel6-64"
   headless            = "${var.headless}"
-  http_directory      = "${local.http_directory}"
+  http_directory      = "../scripts/http/CentOS"
   iso_checksum        = "md5:5e131530e18bef7ff0a5d70bd2eb9c3d"
-  iso_url             = "../../../../../ISOs/RHEL/rhel-server-6.10-x86_64-dvd.iso"
+  iso_url             = "../../../../ISOs/RHEL/rhel-server-6.10-x86_64-dvd.iso"
   memory              = "${var.memory}"
-  output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
+  #output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
   ssh_password        = "vagrant"
   ssh_port            = 22
@@ -137,6 +122,11 @@ build {
     environment_vars  = ["HOME_DIR=/home/vagrant", "http_proxy=${var.http_proxy}", "https_proxy=${var.https_proxy}", "no_proxy=${var.no_proxy}"]
     execute_command   = "echo 'vagrant' | {{ .Vars }} sudo -S -E sh -eux '{{ .Path }}'"
     expect_disconnect = true
-    scripts           = ["${path.root}/../centos/scripts/networking.sh", "${path.root}/../_common/motd.sh", "${path.root}/../_common/sshd.sh", "${path.root}/../_common/vagrant.sh", "${path.root}/../_common/virtualbox.sh"]
+    scripts           = ["../scripts/RHEL/6/update.sh", 
+    "../scripts/RHEL/6/common/motd.sh", 
+    "../scripts/RHEL/6/common/sshd.sh", 
+    "../scripts/RHEL/6/networking.sh", 
+    "../scripts/RHEL/6/common/vagrant.sh", 
+    "../scripts/RHEL/6/common/virtualbox.sh"]
   }
 }
