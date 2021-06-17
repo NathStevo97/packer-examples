@@ -102,6 +102,10 @@ build {
     restart_timeout = "30m"
   }
   provisioner "powershell" {
-    scripts = ["../../Testing/illumio_install.ps1"]
+    scripts = ["../../Testing/Agent_Installations/illumio_install.ps1"]
+  } 
+  
+  provisioner "powershell" {
+    scripts = ["../../Testing/Agent_Installations/qualys_install.ps1"]
   }
 }

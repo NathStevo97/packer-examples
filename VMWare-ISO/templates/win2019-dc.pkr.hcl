@@ -54,7 +54,8 @@ source "vmware-iso" "win2019-DC" {
   floppy_files     = ["scripts/bios/win2019/DC/autounattend.xml"]
   guest_os_type    = "windows9srv-64"
   headless         = false
-  #http_directory   = "http"
+  #http_directory   = "../../Testing/Agent_Installations/http/"
+  iso_checksum     = "${var.iso_checksum}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
@@ -104,11 +105,20 @@ build {
   }
   provisioner "windows-restart" {
     restart_timeout = "30m"
-  }
+  } 
+  /*
   provisioner "powershell" {
-    scripts = ["../../Testing/illumio_install.ps1"]
+    scripts = ["../../Testing/Agent_Installations/illumio_install.ps1"]
+  } 
+  
+  provisioner "powershell" {
+    scripts = ["../../Testing/Agent_Installations/qualys_install.ps1"]
   }
- /*  
+
+  provisioner "powershell" {
+    scripts = ["../../Testing/Agent_Installations/sec_hardening_Setup.ps1"]
+  }
+ 
   provisioner "powershell" {
     scripts = ["scripts/cleanup.ps1"]
   }
