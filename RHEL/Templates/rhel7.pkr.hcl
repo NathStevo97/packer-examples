@@ -9,14 +9,14 @@ variable "numvcpus" {
 }
 
 source "vmware-iso" "rhel-7" {
-  boot_command     = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"]
+  boot_command     = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<enter><wait>"]
   boot_wait        = "10s"
   disk_size        = 81920
   guest_os_type    = "rhel7-64"
   headless         = false
-  http_directory   = "../scripts/http/RHEL"
+  http_directory   = "../http/RHEL"
   iso_checksum     = "md5:7e40e30e794ca80fcd840aa1a54876b0"
-  iso_urls         = ["../../../../ISOs/RHEL/rhel-server-7.9-x86_64-dvd.iso"]
+  iso_urls         = ["../../../ISOs/RHEL/rhel-server-7.9-x86_64-dvd.iso"]
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "vagrant"
   ssh_port         = 22
@@ -36,6 +36,6 @@ build {
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
-    script          = "../scripts/RHEL/cleanup.sh"
+    script          = "./Files/scripts/cleanup.sh"
   }
 }
