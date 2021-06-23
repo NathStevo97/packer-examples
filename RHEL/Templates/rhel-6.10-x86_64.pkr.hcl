@@ -97,9 +97,9 @@ source "vmware-iso" "rhel6" {
   disk_size           = "${var.disk_size}"
   guest_os_type       = "rhel6-64"
   headless            = "${var.headless}"
-  http_directory      = "../scripts/http/CentOS"
+  http_directory      = "../http/CentOS"
   iso_checksum        = "md5:5e131530e18bef7ff0a5d70bd2eb9c3d"
-  iso_url             = "../../../../ISOs/RHEL/rhel-server-6.10-x86_64-dvd.iso"
+  iso_url             = "../../../ISOs/RHEL/rhel-server-6.10-x86_64-dvd.iso"
   memory              = "${var.memory}"
   #output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
@@ -122,11 +122,11 @@ build {
     environment_vars  = ["HOME_DIR=/home/vagrant", "http_proxy=${var.http_proxy}", "https_proxy=${var.https_proxy}", "no_proxy=${var.no_proxy}"]
     execute_command   = "echo 'vagrant' | {{ .Vars }} sudo -S -E sh -eux '{{ .Path }}'"
     expect_disconnect = true
-    scripts           = ["../scripts/RHEL/6/update.sh", 
-    "../scripts/RHEL/6/common/motd.sh", 
-    "../scripts/RHEL/6/common/sshd.sh", 
-    "../scripts/RHEL/6/networking.sh", 
-    "../scripts/RHEL/6/common/vagrant.sh", 
-    "../scripts/RHEL/6/common/virtualbox.sh"]
+    scripts           = ["./Files/scripts/6/update.sh", 
+    "./Files/scripts/6/common/motd.sh", 
+    "./Files/scripts/6/common/sshd.sh", 
+    "./Files/scripts/6/networking.sh", 
+    "./Files/scripts/6/common/vagrant.sh", 
+    "./Files/scripts/6/common/virtualbox.sh"]
   }
 }

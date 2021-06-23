@@ -52,7 +52,7 @@ source "vmware-iso" "centos7" {
   disk_type_id     = "0"
   guest_os_type    = "centos-64"
   headless         = false
-  http_directory   = "../scripts/http/CentOS"
+  http_directory   = "../http/CentOS"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
@@ -78,12 +78,12 @@ build {
   }
 
   provisioner "ansible-local" {
-    playbook_file = "../scripts/CentOS/setup.yml"
+    playbook_file = "./Files/scripts/setup.yml"
   }
 
   provisioner "shell" {
     execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
-    scripts         = ["../scripts/CentOS/cleanup.sh"]
+    scripts         = ["./Files/scripts/cleanup.sh"]
   }
 
 }

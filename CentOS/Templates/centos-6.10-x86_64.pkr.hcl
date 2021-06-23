@@ -91,9 +91,9 @@ source "vmware-iso" "centos6" {
   disk_size           = "${var.disk_size}"
   guest_os_type       = "centos-64"
   headless            = "${var.headless}"
-  http_directory      = "../scripts/http/CentOS"
+  http_directory      = "../http/CentOS"
   iso_checksum        = "md5:8ffcc065c3110e6fa0144cb85e4bb4bc"
-  iso_url             = "../../../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso"
+  iso_url             = "../../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso"
   memory              = "${var.memory}"
   #output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
@@ -116,15 +116,17 @@ build {
     environment_vars  = ["HOME_DIR=/home/vagrant", "http_proxy=${var.http_proxy}", "https_proxy=${var.https_proxy}", "no_proxy=${var.no_proxy}"]
     execute_command   = "echo 'vagrant' | {{ .Vars }} sudo -S -E sh -eux '{{ .Path }}'"
     expect_disconnect = true
-    scripts           = ["../scripts/CentOS/6/update.sh", 
-    "../scripts/CentOS/6/common/motd.sh", 
-    "../scripts/CentOS/6/common/sshd.sh", 
-    "../scripts/CentOS/6/networking.sh", 
-    "../scripts/CentOS/6/common/vagrant.sh", 
-    "../scripts/CentOS/6/common/virtualbox.sh", 
-    "../scripts/CentOS/6/common/vmware.sh", 
-    "../scripts/CentOS/6/common/parallels.sh", 
-    "../scripts/CentOS/6/cleanup.sh", 
-    "../scripts/CentOS/6/common/minimize.sh"]
+    scripts           = [
+      #"./Files/scripts/6/update.sh", 
+    "./Files/scripts/6/common/motd.sh", 
+    "./Files/scripts/6/common/sshd.sh", 
+    "./Files/scripts/6/networking.sh", 
+    "./Files/scripts/6/common/vagrant.sh", 
+    "./Files/scripts/6/common/virtualbox.sh" 
+    #"./Files/scripts/6/common/vmware.sh", 
+    #"./Files/scripts/6/common/parallels.sh", 
+    #"./Files/scripts/6/cleanup.sh", 
+    #"./Files/scripts/6/common/minimize.sh"
+    ]
   }
 }
