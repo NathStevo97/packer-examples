@@ -46,7 +46,7 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
 source "vmware-iso" "win2016-datacenter" {
   communicator         = "winrm"
-  floppy_files         = ["scripts/bios/win2016/DC/autounattend.xml", "scripts/winrm.ps1"]
+  floppy_files         = ["./Files/bios/win2016/DC/autounattend.xml", "./Files/scripts/winrm.ps1"]
   iso_checksum         = "md5:${var.iso_checksum}"
   iso_url              = "${var.iso_url}"
   disk_size        = "${var.disk_size}"
@@ -70,13 +70,13 @@ build {
   provisioner "powershell" {
     elevated_password = "vagrant"
     elevated_user     = "vagrant"
-    scripts = ["scripts/vmware-tools.ps1"]
+    scripts = ["./Files/scripts/vmware-tools.ps1"]
   }
 
   provisioner "powershell" {
     elevated_password = "vagrant"
     elevated_user     = "vagrant"
-    scripts = ["scripts/setup.ps1"]
+    scripts = ["./Files/scripts/setup.ps1"]
   }
   
   provisioner "windows-restart" {
@@ -87,7 +87,7 @@ build {
   provisioner "powershell" {
     elevated_password = "vagrant"
     elevated_user     = "vagrant"
-    scripts = ["scripts/win-update.ps1"]
+    scripts = ["./Files/scripts/win-update.ps1"]
   }
   provisioner "windows-restart" {
     restart_timeout = "30m"
@@ -96,16 +96,17 @@ build {
   provisioner "powershell" {
     elevated_password = "vagrant"
     elevated_user     = "vagrant"
-    scripts = ["scripts/win-update.ps1"]
+    scripts = ["./Files/scripts/win-update.ps1"]
   }
-  provisioner "windows-restart" {
-    restart_timeout = "30m"
-  }
+  #provisioner "windows-restart" {
+  #  restart_timeout = "30m"
+  #}
+  /*  
   provisioner "powershell" {
     scripts = ["../../Testing/Agent_Installations/illumio_install.ps1"]
   } 
   
   provisioner "powershell" {
     scripts = ["../../Testing/Agent_Installations/qualys_install.ps1"]
-  }
+  }*/
 }
