@@ -72,7 +72,7 @@ source "hyperv-iso" "winserver2016-DC" {
   guest_additions_mode  = "disable"
   iso_checksum          = "${var.iso_checksum_type}:${var.iso_checksum}"
   iso_url               = "${var.iso_url}"
-  memory                = 4096
+  memory                = 2048
   output_directory      = "${var.output_directory}"
   secondary_iso_images  = ["${var.secondary_iso_image}"]
   shutdown_timeout      = "30m"
@@ -93,71 +93,25 @@ build {
   sources = ["source.hyperv-iso.winserver2016-DC"]
 
   provisioner "powershell" {
-    elevated_password = "password"
-    elevated_user     = "Administrator"
-    script            = "./extra/scripts/phase-1.ps1"
+    scripts = ["./Files/scripts/setup.ps1"]
   }
-
+  
   provisioner "windows-restart" {
-    restart_timeout = "1h"
+    restart_timeout = "30m"
   }
   
   provisioner "powershell" {
-    elevated_password = "password"
-    elevated_user     = "Administrator"
-    script            = "./extra/scripts/windows-updates.ps1"
+    scripts = ["./Files/scripts/win-update.ps1"]
   }
-
   provisioner "windows-restart" {
-    pause_before          = "30s"
-    restart_check_command = "powershell -command \"& {Write-Output 'restarted.'}\""
-    restart_timeout       = "2h"
-  }
-
-  provisioner "powershell" {
-    elevated_password = "password"
-    elevated_user     = "Administrator"
-    inline            = ["Write-Host \"Pausing before next stage\";Start-Sleep -Seconds ${var.upgrade_timeout}"]
-  }
-
-  provisioner "powershell" {
-    elevated_password = "password"
-    elevated_user     = "Administrator"
-    pause_before      = "30s"
-    script            = "./extra/scripts/windows-updates.ps1"
-  }
-
-  provisioner "windows-restart" {
-    pause_before          = "30s"
-    restart_check_command = "powershell -command \"& {Write-Output 'restarted.'}\""
-    restart_timeout       = "2h"
+    restart_timeout = "30m"
   }
     
   provisioner "powershell" {
-    elevated_password = "password"
-    elevated_user     = "Administrator"
-    inline            = ["Write-Host \"Pausing before next stage\";Start-Sleep -Seconds ${var.upgrade_timeout}"]
+    scripts = ["./Files/scripts/win-update.ps1"]
   }
-
-  provisioner "powershell" {
-    elevated_password = "password"
-    elevated_user     = "Administrator"
-    pause_before      = "30s"
-    script            = "./extra/scripts/windows-updates.ps1"
-  }
-
+  
   provisioner "windows-restart" {
-    pause_before          = "30s"
-    restart_check_command = "powershell -command \"& {Write-Output 'restarted.'}\""
-    restart_timeout       = "2h"
-  }
-    
-  provisioner "powershell" {
-    elevated_password = "password"
-    elevated_user     = "Administrator"
-    inline            = ["Write-Host \"Pausing before next stage\";Start-Sleep -Seconds ${var.upgrade_timeout}"]
-  }
-  provisioner "powershell" {
-    scripts = ["../../../Testing/illumio_install.ps1"]
-  }
+    restart_timeout = "30m"
+  } 
 }

@@ -5,12 +5,12 @@ variable "iso_checksum" {
 
 variable "iso_url" {
   type    = string
-  default = "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
+  default = "../../../ISOs/Windows Server/2016/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
 }
 
 source "hyperv-iso" "win2016-STD" {
   communicator         = "winrm"
-  floppy_files         = ["../extra/files/gen1-2016/std/autounattend.xml", "../extra/scripts/winrm.ps1"]
+  floppy_files         = ["./HyperV-ISO/Generation 1/extra/files/gen1-2016/std/autounattend.xml", "./HyperV-ISO/Generation 1/extra/scripts/winrm.ps1"]
   guest_additions_mode = "disable"
   iso_checksum         = "md5:${var.iso_checksum}"
   iso_url              = "${var.iso_url}"
@@ -29,13 +29,13 @@ build {
    provisioner "powershell" {
     elevated_password = "vagrant"
     elevated_user     = "vagrant"
-    script            = "../extra/scripts/windows-updates.ps1"
+    script            = "./Files/scripts/win-update.ps1"
   }
 
   provisioner "windows-restart" {
     restart_timeout = "15m"
   }
-  provisioner "powershell" {
-    scripts = ["../../../../Testing/illumio_install.ps1"]
-  }
+  #provisioner "powershell" {
+  #  scripts = ["../../../../Testing/illumio_install.ps1"]
+  #}
 }
