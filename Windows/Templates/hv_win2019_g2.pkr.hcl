@@ -73,7 +73,7 @@ source "hyperv-iso" "winserver2019" {
   #iso_checksum          = "${var.iso_checksum_type}:${var.iso_checksum}"
   iso_checksum          = "${var.iso_checksum}"
   iso_url               = "${var.iso_url}"
-  memory                = 4096
+  memory                = 2048
   output_directory      = "${var.output_directory}"
   secondary_iso_images  = ["${var.secondary_iso_image}"]
   shutdown_timeout      = "30m"

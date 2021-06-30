@@ -10,6 +10,8 @@ variable "iso_url" {
 
 source "hyperv-iso" "win2019-STD" {
   communicator         = "winrm"
+  cpus                  = 2
+  disk_size             = 40960
   floppy_files         = ["./HyperV-ISO/Generation 1/extra/files/gen1-2019/std/Autounattend.xml", "./HyperV-ISO/Generation 1/extra/scripts/winrm.ps1"]
   guest_additions_mode = "disable"
   iso_checksum         = "${var.iso_checksum}"

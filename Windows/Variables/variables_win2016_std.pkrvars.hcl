@@ -1,4 +1,4 @@
-disk_size = "80000"
+disk_size = "40960"
 
 iso_checksum = "70721288bbcdfe3239d8f8c0fae55f1f"
 

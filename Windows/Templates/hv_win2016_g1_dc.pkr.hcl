@@ -10,6 +10,8 @@ variable "iso_url" {
 
 source "hyperv-iso" "win2016-DC" {
   communicator         = "winrm"
+  cpus                  = 2
+  disk_size             = 40960
   floppy_files         = ["./HyperV-ISO/Generation 1/extra/files/gen1-2016/std/autounattend.xml", "./HyperV-ISO/Generation 1/extra/scripts/winrm.ps1"]
   guest_additions_mode = "disable"
   iso_checksum         = "md5:${var.iso_checksum}"

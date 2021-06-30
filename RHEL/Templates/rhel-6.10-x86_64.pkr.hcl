@@ -90,7 +90,7 @@ variable "version" {
 }
 # The "legacy_isotime" function has been provided for backwards compatability, but we recommend switching to the timestamp and formatdate functions.
 
-source "vmware-iso" "rhel6" {
+source "vmware-iso" "rhel6-vmware" {
   boot_command        = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-6.cfg<enter><wait>"]
   boot_wait           = "5s"
   cpus                = "${var.cpus}"
@@ -116,7 +116,7 @@ source "vmware-iso" "rhel6" {
 }
 
 build {
-  sources = ["source.vmware-iso.rhel6"]
+  sources = ["source.vmware-iso.rhel6-vmware", "source.hyperv-iso.rhel6-hv"]
 
   provisioner "shell" {
     environment_vars  = ["HOME_DIR=/home/vagrant", "http_proxy=${var.http_proxy}", "https_proxy=${var.https_proxy}", "no_proxy=${var.no_proxy}"]
