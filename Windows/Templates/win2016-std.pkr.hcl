@@ -19,7 +19,7 @@ variable "memsize" {
 
 variable "numvcpus" {
   type    = string
-  default = "2"
+  default = "1"
 }
 
 variable "vm_name" {
@@ -45,16 +45,17 @@ variable "disk_size" {
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
 source "vmware-iso" "win2016-standard" {
-  communicator         = "winrm"
-  floppy_files         = ["./Files/bios/win2016/Std/autounattend.xml", "./Files/scripts/winrm.ps1"]
-  iso_checksum         = "md5:${var.iso_checksum}"
-  iso_url              = "${var.iso_url}"
+  communicator     = "winrm"
+  floppy_files     = ["./Files/bios/win2016/Std/autounattend.xml", "./Files/scripts/winrm.ps1"]
+  guest_os_type    = "windows8srv-64"
+  iso_checksum     = "md5:${var.iso_checksum}"
+  iso_url          = "${var.iso_url}"
   disk_size        = "${var.disk_size}"
-  shutdown_timeout     = "15m"
-  vm_name              = "2016min-standard"
-  winrm_password       = "vagrant"
-  winrm_timeout        = "12h"
-  winrm_username       = "vagrant"
+  shutdown_timeout = "15m"
+  vm_name          = "2016min-standard"
+  winrm_password   = "${var.winrm_password}"
+  winrm_timeout    = "12h"
+  winrm_username   = "${var.winrm_username}"
   vmx_data = {
     memsize             = "${var.memsize}"
     numvcpus            = "${var.numvcpus}"
@@ -68,37 +69,37 @@ build {
 
 
   provisioner "powershell" {
-    elevated_password = "vagrant"
-    elevated_user     = "vagrant"
-    scripts = ["./Files/scripts/vmware-tools.ps1"]
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/vmware-tools.ps1"]
   }
 
   provisioner "powershell" {
-    elevated_password = "vagrant"
-    elevated_user     = "vagrant"
-    scripts = ["./Files/scripts/setup.ps1"]
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/setup.ps1"]
   }
-  
+
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
 
+  /* 
+  provisioner "powershell" {
+    elevated_password = "vagrant"
+    elevated_user     = "vagrant"
+    scripts = ["./Files/scripts/win-update.ps1"]
+  }
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
+  }
+  
+  provisioner "powershell" {
+    elevated_password = "vagrant"
+    elevated_user     = "vagrant"
+    scripts = ["./Files/scripts/win-update.ps1"]
+  }
    
-  provisioner "powershell" {
-    elevated_password = "vagrant"
-    elevated_user     = "vagrant"
-    scripts = ["./Files/scripts/win-update.ps1"]
-  }
-  provisioner "windows-restart" {
-    restart_timeout = "30m"
-  }
-  
-  provisioner "powershell" {
-    elevated_password = "vagrant"
-    elevated_user     = "vagrant"
-    scripts = ["./Files/scripts/win-update.ps1"]
-  }
-  /*  
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }

@@ -25,7 +25,7 @@ variable "memsize" {
 
 variable "numvcpus" {
   type    = string
-  default = "2"
+  default = "1"
 }
 
 variable "vm_name" {
@@ -47,13 +47,14 @@ variable "winrm_username" {
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
 source "vmware-iso" "win2019-standard" {
-  boot_wait        = "${var.boot_wait}"
-  communicator     = "winrm"
-  disk_size        = "${var.disk_size}"
-  disk_type_id     = "0"
-  floppy_files     = ["./Files/bios/win2019/Std/autounattend.xml"]
-  guest_os_type    = "windows9srv-64"
-  headless         = false
+  boot_wait    = "${var.boot_wait}"
+  communicator = "winrm"
+  disk_size    = "${var.disk_size}"
+  disk_type_id = "0"
+  floppy_files = ["./Files/bios/win2019/Std/autounattend.xml"]
+  #floppy_files     = ["./HyperV-ISO/Generation 1/extra/files/gen1-2019/std/Autounattend.xml", "./HyperV-ISO/Generation 1/extra/scripts/winrm.ps1"]
+  guest_os_type = "windows9srv-64"
+  headless      = false
   #http_directory   = "../../Testing/Agent_Installations/http/"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
@@ -74,12 +75,9 @@ source "vmware-iso" "win2019-standard" {
   winrm_username = "${var.winrm_username}"
 }
 
-# a build block invokes sources and runs provisioning steps on them. The
-# documentation for build blocks can be found here:
-# https://www.packer.io/docs/from-1.5/blocks/build
 build {
   sources = ["source.vmware-iso.win2019-standard"]
-    
+
   provisioner "powershell" {
     only    = ["vmware-iso"]
     scripts = ["./Files/scripts/vmware-tools.ps1"]
@@ -88,11 +86,11 @@ build {
   provisioner "powershell" {
     scripts = ["./Files/scripts/setup.ps1"]
   }
-  
+
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
-  
+  /*
   provisioner "powershell" {
     scripts = ["./Files/scripts/win-update.ps1"]
   }
@@ -107,6 +105,7 @@ build {
   provisioner "windows-restart" {
     restart_timeout = "30m"
   } 
+  */
   /*
   provisioner "powershell" {
     scripts = ["../../Testing/Agent_Installations/illumio_install.ps1"]

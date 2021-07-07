@@ -71,20 +71,20 @@ source "hyperv-iso" "winserver2019-DC" {
   generation            = 2
   guest_additions_mode  = "disable"
   #iso_checksum          = "${var.iso_checksum_type}:${var.iso_checksum}"
-  iso_checksum          = "${var.iso_checksum}"
-  iso_url               = "${var.iso_url}"
-  memory                = 2048
-  output_directory      = "${var.output_directory}"
-  secondary_iso_images  = ["${var.secondary_iso_image}"]
-  shutdown_timeout      = "30m"
-  skip_export           = true
-  switch_name           = "${var.switch_name}"
-  temp_path             = "."
-  vlan_id               = "${var.vlan_id}"
-  vm_name               = "${var.vm_name}"
-  winrm_password        = "password"
-  winrm_timeout         = "4h"
-  winrm_username        = "Administrator"
+  iso_checksum         = "${var.iso_checksum}"
+  iso_url              = "${var.iso_url}"
+  memory               = 2048
+  output_directory     = "${var.output_directory}"
+  secondary_iso_images = ["${var.secondary_iso_image}"]
+  shutdown_timeout     = "30m"
+  skip_export          = true
+  switch_name          = "${var.switch_name}"
+  temp_path            = "."
+  vlan_id              = "${var.vlan_id}"
+  vm_name              = "${var.vm_name}"
+  winrm_password       = "packer"
+  winrm_timeout        = "4h"
+  winrm_username       = "Administrator"
 }
 
 #################################################
@@ -96,23 +96,23 @@ build {
   provisioner "powershell" {
     scripts = ["./Files/scripts/setup.ps1"]
   }
-  
+
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
-  
+
   provisioner "powershell" {
     scripts = ["./Files/scripts/win-update.ps1"]
   }
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
-    
+
   provisioner "powershell" {
     scripts = ["./Files/scripts/win-update.ps1"]
   }
-  
+
   provisioner "windows-restart" {
     restart_timeout = "30m"
-  } 
+  }
 }

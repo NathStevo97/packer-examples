@@ -108,29 +108,29 @@
       <TimeZone>UTC</TimeZone>
       <UserAccounts>
         <AdministratorPassword>
-          <Value>vagrant</Value>
+          <Value>packer</Value>
           <PlainText>true</PlainText>
         </AdministratorPassword>
         <LocalAccounts>
           <LocalAccount wcm:action="add">
             <Password>
-              <Value>vagrant</Value>
+              <Value>packer</Value>
               <PlainText>true</PlainText>
             </Password>
             <Group>administrators</Group>
-            <DisplayName>Vagrant</DisplayName>
-            <Name>vagrant</Name>
-            <Description>Vagrant User</Description>
+            <DisplayName>Administrator</DisplayName>
+            <Name>Administrator</Name>
+            <Description>Administrator User</Description>
           </LocalAccount>
         </LocalAccounts>
       </UserAccounts>
             <AutoLogon>
                 <Password>
-                    <Value>vagrant</Value>
+                    <Value>packer</Value>
                     <PlainText>true</PlainText>
                 </Password>
                 <Enabled>true</Enabled>
-                <Username>vagrant</Username>
+                <Username>Administrator</Username>
             </AutoLogon>
       <FirstLogonCommands>
         <SynchronousCommand wcm:action="add">

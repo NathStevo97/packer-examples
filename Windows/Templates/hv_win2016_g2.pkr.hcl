@@ -81,7 +81,7 @@ source "hyperv-iso" "winserver2016-STD" {
   temp_path             = "."
   vlan_id               = "${var.vlan_id}"
   vm_name               = "${var.vm_name}"
-  winrm_password        = "password"
+  winrm_password        = "packer"
   winrm_timeout         = "4h"
   winrm_username        = "Administrator"
 }
@@ -92,26 +92,26 @@ source "hyperv-iso" "winserver2016-STD" {
 build {
   sources = ["source.hyperv-iso.winserver2016-STD"]
 
-   provisioner "powershell" {
+  provisioner "powershell" {
     scripts = ["./Files/scripts/setup.ps1"]
   }
-  
+
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
-  
+
   provisioner "powershell" {
     scripts = ["./Files/scripts/win-update.ps1"]
   }
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
-    
+
   provisioner "powershell" {
     scripts = ["./Files/scripts/win-update.ps1"]
   }
-  
+
   provisioner "windows-restart" {
     restart_timeout = "30m"
-  } 
+  }
 }

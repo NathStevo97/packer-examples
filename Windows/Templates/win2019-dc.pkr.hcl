@@ -25,7 +25,7 @@ variable "memsize" {
 
 variable "numvcpus" {
   type    = string
-  default = "2"
+  default = "1"
 }
 
 variable "vm_name" {
@@ -47,13 +47,13 @@ variable "winrm_username" {
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
 source "vmware-iso" "win2019-DC" {
-  boot_wait        = "${var.boot_wait}"
-  communicator     = "winrm"
-  disk_size        = "${var.disk_size}"
-  disk_type_id     = "0"
-  floppy_files     = ["./Files/bios/win2019/DC/autounattend.xml"]
-  guest_os_type    = "windows9srv-64"
-  headless         = false
+  boot_wait     = "${var.boot_wait}"
+  communicator  = "winrm"
+  disk_size     = "${var.disk_size}"
+  disk_type_id  = "0"
+  floppy_files  = ["./Files/bios/win2019/DC/autounattend.xml"]
+  guest_os_type = "windows9srv-64"
+  headless      = false
   #http_directory   = "../../Testing/Agent_Installations/http/"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
@@ -88,7 +88,7 @@ build {
   provisioner "powershell" {
     scripts = ["./Files/scripts/setup.ps1"]
   }
-   
+  /* 
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
@@ -105,7 +105,7 @@ build {
   provisioner "windows-restart" {
     restart_timeout = "30m"
   } 
-  /*
+  
   provisioner "powershell" {
     scripts = ["../../Testing/Agent_Installations/illumio_install.ps1"]
   } 

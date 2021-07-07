@@ -9,10 +9,11 @@ variable "iso_url" {
 }
 
 source "hyperv-iso" "win2019-STD" {
-  communicator         = "winrm"
-  cpus                  = 2
-  disk_size             = 40960
+  communicator = "winrm"
+  cpus         = 1
+  disk_size    = 40960
   floppy_files         = ["./HyperV-ISO/Generation 1/extra/files/gen1-2019/std/Autounattend.xml", "./HyperV-ISO/Generation 1/extra/scripts/winrm.ps1"]
+  #floppy_files         = ["./Files/bios/win2019/Std/autounattend.xml"]
   guest_additions_mode = "disable"
   iso_checksum         = "${var.iso_checksum}"
   iso_url              = "${var.iso_url}"
@@ -20,17 +21,17 @@ source "hyperv-iso" "win2019-STD" {
   shutdown_timeout     = "15m"
   switch_name          = "Default Switch"
   vm_name              = "2019min"
-  winrm_password       = "vagrant"
+  winrm_password       = "packer"
   winrm_timeout        = "12h"
-  winrm_username       = "vagrant"
+  winrm_username       = "Administrator"
 }
 
 build {
   sources = ["source.hyperv-iso.win2019-STD"]
-
+  /*  
    provisioner "powershell" {
-    elevated_password = "vagrant"
-    elevated_user     = "vagrant"
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
     script            = "./Files/scripts/win-update.ps1"
   }
 
@@ -40,4 +41,5 @@ build {
   #provisioner "powershell" {
   #  scripts = ["../../../../Testing/illumio_install.ps1"]
   #}
+  */
 }
