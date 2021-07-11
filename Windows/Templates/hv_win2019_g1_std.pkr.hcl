@@ -12,8 +12,8 @@ source "hyperv-iso" "win2019-STD" {
   communicator = "winrm"
   cpus         = 1
   disk_size    = 40960
-  floppy_files         = ["./HyperV-ISO/Generation 1/extra/files/gen1-2019/std/Autounattend.xml", "./HyperV-ISO/Generation 1/extra/scripts/winrm.ps1"]
-  #floppy_files         = ["./Files/bios/win2019/Std/autounattend.xml"]
+  #floppy_files         = ["./HyperV-ISO/Generation 1/extra/files/gen1-2019/std/Autounattend.xml", "./HyperV-ISO/Generation 1/extra/scripts/winrm.ps1"]
+  floppy_files = ["./Files/bios/win2019/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_additions_mode = "disable"
   iso_checksum         = "${var.iso_checksum}"
   iso_url              = "${var.iso_url}"
@@ -28,7 +28,7 @@ source "hyperv-iso" "win2019-STD" {
 
 build {
   sources = ["source.hyperv-iso.win2019-STD"]
-  /*  
+    
    provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
@@ -41,5 +41,5 @@ build {
   #provisioner "powershell" {
   #  scripts = ["../../../../Testing/illumio_install.ps1"]
   #}
-  */
+  
 }

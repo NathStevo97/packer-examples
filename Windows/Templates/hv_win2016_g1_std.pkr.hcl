@@ -12,7 +12,7 @@ source "hyperv-iso" "win2016-STD" {
   communicator         = "winrm"
   cpus                 = 1
   disk_size            = 40960
-  floppy_files         = ["./HyperV-ISO/Generation 1/extra/files/gen1-2016/std/autounattend.xml", "./HyperV-ISO/Generation 1/extra/scripts/winrm.ps1"]
+  floppy_files         = ["./Files/bios/win2016/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_additions_mode = "disable"
   iso_checksum         = "md5:${var.iso_checksum}"
   iso_url              = "${var.iso_url}"
@@ -27,6 +27,19 @@ source "hyperv-iso" "win2016-STD" {
 
 build {
   sources = ["source.hyperv-iso.win2016-STD"]
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/vmware-tools.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/setup.ps1"]
+  }
+  
   /*  
   provisioner "powershell" {
     elevated_password = "packer"

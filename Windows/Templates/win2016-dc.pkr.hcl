@@ -46,7 +46,7 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
 source "vmware-iso" "win2016-datacenter" {
   communicator     = "winrm"
-  floppy_files     = ["./Files/bios/win2016/DC/autounattend.xml", "./Files/scripts/winrm.ps1"]
+  floppy_files     = ["./Files/bios/win2016/DC/autounattend.xml",  "./Files/scripts/winrmConfig.ps1"]
   iso_checksum     = "md5:${var.iso_checksum}"
   guest_os_type    = "windows8srv-64"
   iso_url          = "${var.iso_url}"

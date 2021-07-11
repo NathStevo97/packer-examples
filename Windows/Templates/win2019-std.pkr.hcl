@@ -51,10 +51,7 @@ source "vmware-iso" "win2019-standard" {
   communicator = "winrm"
   disk_size    = "${var.disk_size}"
   disk_type_id = "0"
-  #vmware-specific floppys
-  #floppy_files = ["./Files/bios/win2019/Std/autounattend.xml"]
-  #hyper-v gen 1 floppys
-  floppy_files     = ["./HyperV-ISO/Generation 1/extra/files/gen1-2019/std/Autounattend.xml", "./HyperV-ISO/Generation 1/extra/scripts/winrm.ps1"]
+  floppy_files = ["./Files/bios/win2019/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_os_type = "windows9srv-64"
   headless      = false
   #http_directory   = "../../Testing/Agent_Installations/http/"

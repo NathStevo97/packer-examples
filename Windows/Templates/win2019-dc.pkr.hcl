@@ -51,7 +51,7 @@ source "vmware-iso" "win2019-DC" {
   communicator  = "winrm"
   disk_size     = "${var.disk_size}"
   disk_type_id  = "0"
-  floppy_files  = ["./Files/bios/win2019/DC/autounattend.xml"]
+  floppy_files  = ["./Files/bios/win2019/DC/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_os_type = "windows9srv-64"
   headless      = false
   #http_directory   = "../../Testing/Agent_Installations/http/"
