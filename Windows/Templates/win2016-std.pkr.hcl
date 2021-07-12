@@ -48,6 +48,7 @@ source "vmware-iso" "win2016-standard" {
   communicator     = "winrm"
   floppy_files     = ["./Files/bios/win2016/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_os_type    = "windows8srv-64"
+  http_directory   = "../http/Agent_Installations"
   iso_checksum     = "md5:${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   disk_size        = "${var.disk_size}"
@@ -84,31 +85,50 @@ build {
     restart_timeout = "30m"
   }
 
-  /* 
   provisioner "powershell" {
-    elevated_password = "vagrant"
-    elevated_user     = "vagrant"
-    scripts = ["./Files/scripts/win-update.ps1"]
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/win-update.ps1"]
   }
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
-  
+
   provisioner "powershell" {
-    elevated_password = "vagrant"
-    elevated_user     = "vagrant"
-    scripts = ["./Files/scripts/win-update.ps1"]
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/win-update.ps1"]
   }
-   
+
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
+
+
   provisioner "powershell" {
-    scripts = ["../../Testing/Agent_Installations/illumio_install.ps1"]
-  } 
-  
-  provisioner "powershell" {
-    scripts = ["../../Testing/Agent_Installations/qualys_install.ps1"]
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/illumio_install.ps1"]
   }
-  */
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/qualys_install.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/sec_hardening_setup.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/mcafee_install.ps1"]
+  }
+  #provisioner "powershell" {
+  #  scripts = ["scripts/cleanup.ps1"]
+  #}
 }

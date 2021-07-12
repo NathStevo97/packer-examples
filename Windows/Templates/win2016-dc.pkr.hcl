@@ -46,9 +46,10 @@ locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
 source "vmware-iso" "win2016-datacenter" {
   communicator     = "winrm"
-  floppy_files     = ["./Files/bios/win2016/DC/autounattend.xml",  "./Files/scripts/winrmConfig.ps1"]
+  floppy_files     = ["./Files/bios/win2016/DC/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   iso_checksum     = "md5:${var.iso_checksum}"
   guest_os_type    = "windows8srv-64"
+  http_directory   = "../http/Agent_Installations"
   iso_url          = "${var.iso_url}"
   disk_size        = "${var.disk_size}"
   shutdown_timeout = "15m"
@@ -79,35 +80,55 @@ build {
     elevated_user     = "Administrator"
     scripts           = ["./Files/scripts/setup.ps1"]
   }
-  /*
+
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
 
-   
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
-    scripts = ["./Files/scripts/win-update.ps1"]
+    scripts           = ["./Files/scripts/win-update.ps1"]
   }
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
-  
+
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
-    scripts = ["./Files/scripts/win-update.ps1"]
+    scripts           = ["./Files/scripts/win-update.ps1"]
   }
-  #provisioner "windows-restart" {
-  #  restart_timeout = "30m"
+
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
+  }
+
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/illumio_install.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/qualys_install.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/sec_hardening_setup.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/mcafee_install.ps1"]
+  }
+  #provisioner "powershell" {
+  #  scripts = ["scripts/cleanup.ps1"]
   #}
-    
-  provisioner "powershell" {
-    scripts = ["../../Testing/Agent_Installations/illumio_install.ps1"]
-  } 
-  
-  provisioner "powershell" {
-    scripts = ["../../Testing/Agent_Installations/qualys_install.ps1"]
-  }*/
 }

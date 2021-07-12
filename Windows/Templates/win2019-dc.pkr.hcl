@@ -47,14 +47,14 @@ variable "winrm_username" {
 locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
 
 source "vmware-iso" "win2019-DC" {
-  boot_wait     = "${var.boot_wait}"
-  communicator  = "winrm"
-  disk_size     = "${var.disk_size}"
-  disk_type_id  = "0"
-  floppy_files  = ["./Files/bios/win2019/DC/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
-  guest_os_type = "windows9srv-64"
-  headless      = false
-  #http_directory   = "../../Testing/Agent_Installations/http/"
+  boot_wait        = "${var.boot_wait}"
+  communicator     = "winrm"
+  disk_size        = "${var.disk_size}"
+  disk_type_id     = "0"
+  floppy_files     = ["./Files/bios/win2019/DC/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
+  guest_os_type    = "windows9srv-64"
+  headless         = false
+  http_directory   = "../http/Agent_Installations"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
@@ -81,45 +81,65 @@ build {
   sources = ["source.vmware-iso.win2019-DC"]
 
   provisioner "powershell" {
-    only    = ["vmware-iso"]
-    scripts = ["./Files/scripts/vmware-tools.ps1"]
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/vmware-tools.ps1"]
   }
 
   provisioner "powershell" {
-    scripts = ["./Files/scripts/setup.ps1"]
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/setup.ps1"]
   }
-  /* 
+
   provisioner "windows-restart" {
     restart_timeout = "30m"
-  }
-  provisioner "powershell" {
-    scripts = ["./Files/scripts/win-update.ps1"]
-  }
-  provisioner "windows-restart" {
-    restart_timeout = "30m"
-  }
-  
-  provisioner "powershell" {
-    scripts = ["./Files/scripts/win-update.ps1"]
-  }
-  provisioner "windows-restart" {
-    restart_timeout = "30m"
-  } 
-  
-  provisioner "powershell" {
-    scripts = ["../../Testing/Agent_Installations/illumio_install.ps1"]
-  } 
-  
-  provisioner "powershell" {
-    scripts = ["../../Testing/Agent_Installations/qualys_install.ps1"]
   }
 
   provisioner "powershell" {
-    scripts = ["../../Testing/Agent_Installations/sec_hardening_Setup.ps1"]
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/win-update.ps1"]
   }
- 
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
+  }
+
   provisioner "powershell" {
-    scripts = ["scripts/cleanup.ps1"]
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/win-update.ps1"]
   }
-  */
+
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
+  }
+
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/illumio_install.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/qualys_install.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/sec_hardening_setup.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/mcafee_install.ps1"]
+  }
+  #provisioner "powershell" {
+  #  scripts = ["scripts/cleanup.ps1"]
+  #}
 }
