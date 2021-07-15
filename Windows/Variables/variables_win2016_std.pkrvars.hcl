@@ -8,7 +8,9 @@ iso_url  = "../../../ISOs/Windows Server/2016/Windows_Server_2016_Datacenter_EVA
 
 output_directory = "output-windows-2016-g2-STD"
 
-secondary_iso_image = "./HyperV-ISO/Generation 2/extra/files/gen2-2016/std/secondary.iso"
+#secondary_iso_image = "./HyperV-ISO/Generation 2/extra/files/gen2-2016/std/secondary.iso"
+
+secondary_iso_image = "./Files/bios/win2016/Std/secondary.iso"
 
 switch_name = "Default Switch" #change this to whatever your switch is! Look in Hyper-V Manager to find it!
 

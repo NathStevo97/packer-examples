@@ -6,9 +6,11 @@ iso_checksum_type = "sha256"
 
 iso_url  = "../../../ISOs/Windows Server/2019/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
 
-output_directory = "output-windows-2019-g2"
+output_directory = "output-windows-2019-g2-DC"
 
-secondary_iso_image = "./HyperV-ISO/Generation 2/extra/files/gen2-2019/dc/secondary.iso"
+#secondary_iso_image = "./HyperV-ISO/Generation 2/extra/files/gen2-2019/dc/secondary.iso"
+
+secondary_iso_image = "./Files/bios/win2019/DC/secondary.iso"
 
 switch_name = "Default Switch" #change this to whatever your switch is! Look in Hyper-V Manager to find it!
 
@@ -18,4 +20,4 @@ upgrade_timeout = ""
 
 vlan_id = ""
 
-vm_name = "packer-windows2019-g2"
+vm_name = "packer-windows2019-g2-dc"

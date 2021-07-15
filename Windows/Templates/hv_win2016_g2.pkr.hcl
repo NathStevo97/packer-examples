@@ -64,7 +64,7 @@ source "hyperv-iso" "winserver2016-STD" {
   boot_command          = ["a<enter><wait>a<enter><wait>a<enter><wait>a<enter>"]
   boot_wait             = "1s"
   communicator          = "winrm"
-  cpus                  = 2
+  cpus                  = 1
   disk_size             = "${var.disk_size}"
   enable_dynamic_memory = "true"
   enable_secure_boot    = false
@@ -96,22 +96,52 @@ build {
     scripts = ["./Files/scripts/setup.ps1"]
   }
 
+  
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
 
   provisioner "powershell" {
-    scripts = ["./Files/scripts/win-update.ps1"]
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/win-update.ps1"]
   }
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
 
   provisioner "powershell" {
-    scripts = ["./Files/scripts/win-update.ps1"]
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/win-update.ps1"]
   }
 
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
+
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/illumio_install.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/qualys_install.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/sec_hardening_setup.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/mcafee_install.ps1"]
+  
 }
