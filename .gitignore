@@ -22,4 +22,4 @@ crash.log
 /Windows/Files/Scripts/mcafee_install.ps1
 /Windows/Files/Scripts/qualys_install.ps1
 /Windows/Files/Scripts/sec_hardening_setup.ps1
-
+/Windows/Files/Scripts/sccm_setup.ps1

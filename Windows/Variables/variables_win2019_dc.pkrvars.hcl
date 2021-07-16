@@ -8,13 +8,9 @@ iso_url  = "../../../ISOs/Windows Server/2019/17763.737.190906-2324.rs5_release_
 
 output_directory = "output-windows-2019-g2-DC"
 
-#secondary_iso_image = "./HyperV-ISO/Generation 2/extra/files/gen2-2019/dc/secondary.iso"
-
 secondary_iso_image = "./Files/bios/win2019/DC/secondary.iso"
 
 switch_name = "Default Switch" #change this to whatever your switch is! Look in Hyper-V Manager to find it!
-
-sysprep_unattended = ""
 
 upgrade_timeout = ""
 

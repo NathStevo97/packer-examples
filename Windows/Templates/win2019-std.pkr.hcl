@@ -76,7 +76,7 @@ source "vmware-iso" "win2019-standard" {
 
 build {
   sources = ["source.vmware-iso.win2019-standard"]
-
+    
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
@@ -128,13 +128,27 @@ build {
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
-    scripts           = ["./Files/scripts/sec_hardening_setup.ps1"]
+    scripts           = ["./Files/scripts/mcafee_install.ps1"]
+  }
+  
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
   }
 
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
-    scripts           = ["./Files/scripts/mcafee_install.ps1"]
+    scripts           = ["./Files/scripts/sccm_setup.ps1"]
+  }
+
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/sec_hardening_setup.ps1"]
   }
   #provisioner "powershell" {
   #  scripts = ["scripts/cleanup.ps1"]

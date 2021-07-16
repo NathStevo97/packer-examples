@@ -70,13 +70,14 @@ source "hyperv-iso" "winserver2019" {
   enable_secure_boot    = false
   generation            = 2
   guest_additions_mode  = "disable"
+  http_directory   = "../http/Agent_Installations"
   #iso_checksum          = "${var.iso_checksum_type}:${var.iso_checksum}"
   iso_checksum         = "${var.iso_checksum}"
   iso_url              = "${var.iso_url}"
   memory               = 2048
   output_directory     = "${var.output_directory}"
   secondary_iso_images = ["${var.secondary_iso_image}"]
-  shutdown_timeout     = "30m"
+  shutdown_timeout     = "2h"
   skip_export          = true
   switch_name          = "${var.switch_name}"
   temp_path            = "."
@@ -96,9 +97,15 @@ build {
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/vmware-tools.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
     scripts           = ["./Files/scripts/setup.ps1"]
   }
-    
+
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
@@ -138,12 +145,29 @@ build {
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
-    scripts           = ["./Files/scripts/sec_hardening_setup.ps1"]
+    scripts           = ["./Files/scripts/mcafee_install.ps1"]
+  }
+  
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
   }
 
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
-    scripts           = ["./Files/scripts/mcafee_install.ps1"]
-  
+    scripts           = ["./Files/scripts/sccm_setup.ps1"]
+  }
+
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/sec_hardening_setup.ps1"]
+  }
+  #provisioner "powershell" {
+  #  scripts = ["scripts/cleanup.ps1"]
+  #}
 }
