@@ -4,10 +4,11 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/hv_win2016_g2.pkr.hcl"
+$template_file="./templates/win2016_std.pkr.hcl"
 $var_file="./variables/variables_win2016_std.pkrvars.hcl"
 $machine="Windows Server 2016 Standard Gen-2"
 $packer_log=0
+$env:PACKER_LOG_PATH="packerlog-2016-STD-hv2.txt"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file") -and (Test-Path -Path "$var_file")) {
@@ -15,7 +16,7 @@ if ((Test-Path -Path "$template_file") -and (Test-Path -Path "$var_file")) {
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    packer validate -var-file="$var_file" "$template_file"
+    packer validate -only='hyperv-iso.hv2-win2016-standard' -var-file="$var_file" "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -24,7 +25,7 @@ if ((Test-Path -Path "$template_file") -and (Test-Path -Path "$var_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    packer build --force -var-file="$var_file" "$template_file"
+    packer build -only='hyperv-iso.hv2-win2016-standard' --force -var-file="$var_file" "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

@@ -4,11 +4,11 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/win2016-std.pkr.hcl"
+$template_file="./templates/win2016_std.pkr.hcl"
 #$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
 $machine="Windows Server 2016 Standard"
 $packer_log=1
-$env:PACKER_LOG_PATH="packerlog-2016-STD.txt"
+$env:PACKER_LOG_PATH="packerlog-2016-STD-vmware.txt"
 
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
@@ -18,7 +18,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate "$template_file"
+    packer validate -only='vmware-iso.vmware-win2016-standard' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build --force "$template_file"
+    packer build -only='vmware-iso.vmware-win2016-standard' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

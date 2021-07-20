@@ -12,8 +12,6 @@ secondary_iso_image = "./Files/bios/win2019/Std/secondary.iso"
 
 switch_name = "Default Switch" #change this to whatever your switch is! Look in Hyper-V Manager to find it!
 
-sysprep_unattended = ""
-
 upgrade_timeout = ""
 
 vlan_id = ""

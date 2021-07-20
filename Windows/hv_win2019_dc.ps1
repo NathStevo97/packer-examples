@@ -4,10 +4,10 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/hv_win2019_g1_dc.pkr.hcl"
-$var_file="./variables/variables_win2019_dc.pkrvars.hcl"
+$template_file="./templates/win2019_dc.pkr.hcl"
+#$var_file="./variables/variables_win2019_std.pkrvars.hcl"
 $machine="Windows Server 2019 Datacenter Gen-1"
-$packer_log=1
+$packer_log=0
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file")) {
@@ -16,7 +16,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate "$template_file"
+    packer validate -only='hyperv-iso.hv1-win2019-datacenter' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -26,7 +26,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build --force "$template_file"
+    packer build -only='hyperv-iso.hv1-win2019-datacenter' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."
