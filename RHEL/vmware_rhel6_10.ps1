@@ -9,7 +9,7 @@ $template_file="./templates/rhel-6.10-x86_64.pkr.hcl"
 $machine="RHEL 6.10"
 $packer_log=1
 $env:PACKER_LOG_PATH="packerlog-RHEL6.txt"
-
+packer init "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file")) {

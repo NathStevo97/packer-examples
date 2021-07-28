@@ -9,7 +9,7 @@ $template_file="./templates/win2019_dc.pkr.hcl"
 $machine="Windows Server 2019 Datacenter"
 $packer_log=1
 $env:PACKER_LOG_PATH="packerlog-2019-DC-vmware.txt"
-
+packer init "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file")) {

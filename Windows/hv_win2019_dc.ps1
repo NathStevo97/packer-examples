@@ -8,6 +8,8 @@ $template_file="./templates/win2019_dc.pkr.hcl"
 #$var_file="./variables/variables_win2019_std.pkrvars.hcl"
 $machine="Windows Server 2019 Datacenter Gen-1"
 $packer_log=0
+
+packer init "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file")) {
