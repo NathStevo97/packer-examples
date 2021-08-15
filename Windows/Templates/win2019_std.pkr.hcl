@@ -131,8 +131,9 @@ source "hyperv-iso" "hv1-win2019-standard" {
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
 source "hyperv-iso" "hv2-win2019-standard" {
-  boot_command          = ["a<enter><wait>a<enter><wait>a<enter><wait>a<enter>"]
-  boot_wait             = "1s"
+  boot_command = ["<tab><wait><enter><wait>",
+  "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
+  boot_wait             = "120s"
   communicator          = "winrm"
   cpus                  = "${var.numvcpus}"
   disk_size             = "${var.disk_size}"
@@ -144,6 +145,8 @@ source "hyperv-iso" "hv2-win2019-standard" {
   #iso_checksum          = "${var.iso_checksum_type}:${var.iso_checksum}"
   iso_checksum         = "${var.iso_checksum}"
   iso_url              = "${var.iso_url}"
+  #iso_checksum         = "md5:4d0943213b7a5f77917f7aa5baa92dcd"
+  #iso_url              = "../../../ISOs/Windows Server/2019/SW_DVD9_Win_Server_STD_CORE_2019_1809.1_64Bit_English_DC_STD_MLF_X22-02970.iso"
   memory               = "${var.memsize}"
   output_directory     = "${var.output_directory}"
   secondary_iso_images = ["${var.secondary_iso_image}"]

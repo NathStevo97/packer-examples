@@ -131,8 +131,9 @@ source "hyperv-iso" "hv1-win2016-standard" {
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
 source "hyperv-iso" "hv2-win2016-standard" {
-  boot_command          = ["a<enter><wait>a<enter><wait>a<enter><wait>a<enter>"]
-  boot_wait             = "1s"
+  boot_command = ["<tab><wait><enter><wait>",
+  "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
+  boot_wait             = "120s"
   communicator          = "winrm"
   cpus                  = "${var.numvcpus}"
   disk_size             = "${var.disk_size}"
