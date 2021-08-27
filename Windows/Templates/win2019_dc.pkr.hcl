@@ -160,11 +160,37 @@ source "hyperv-iso" "hv2-win2019-datacenter" {
 }
 
 #################################################################
+#                    Virtualbox-ISO Builder                     #
+#################################################################
+
+source "virtualbox-iso" "vbox-win2019-dc" {
+  communicator         = "winrm"
+  disk_size            = 61440
+  floppy_files         = ["./Files/bios/win2019/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
+  #guest_additions_mode = "upload"
+  #guest_additions_path = "c:/Windows/Temp/windows.iso"
+  guest_os_type        = " Windows2019_64"
+  hard_drive_interface = "sata"
+  headless             = false
+  iso_checksum         = "${var.iso_checksum}"
+  #iso_checksum_type    = "md5"
+  iso_interface        = "sata"
+  iso_url              = "${var.iso_url}"
+  shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
+  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "2048"], ["modifyvm", "{{ .Name }}", "--cpus", "1"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
+  winrm_insecure       = true
+  winrm_password       = "${var.winrm_password}"
+  winrm_timeout        = "4h"
+  winrm_username       = "${var.winrm_username}"
+}
+
+
+#################################################################
 #                           Builders                            #
 #################################################################
 
 build {
-  sources = ["source.vmware-iso.vmware-win2019-datacenter", "source.hyperv-iso.hv1-win2019-datacenter", "source.hyperv-iso.hv2-win2019-datacenter"]
+  sources = ["source.vmware-iso.vmware-win2019-datacenter", "source.hyperv-iso.hv1-win2019-datacenter", "source.hyperv-iso.hv2-win2019-datacenter", "source.virtualbox-iso.vbox-win2019-dc"]
 
   provisioner "powershell" {
     elevated_password = "packer"
