@@ -172,6 +172,7 @@ source "virtualbox-iso" "vbox-win2016-standard" {
   guest_os_type        = " Windows2016_64"
   hard_drive_interface = "sata"
   headless             = false
+  http_directory        = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
   #iso_checksum_type    = "md5"
   iso_interface        = "sata"
@@ -190,7 +191,7 @@ source "virtualbox-iso" "vbox-win2016-standard" {
 
 build {
   sources = ["source.vmware-iso.vmware-win2016-standard", "source.hyperv-iso.hv1-win2016-standard", "source.hyperv-iso.hv2-win2016-standard", "source.virtualbox-iso.vbox-win2016-standard"]
-
+  /* 
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
@@ -268,4 +269,5 @@ build {
   #provisioner "powershell" {
   #  scripts = ["scripts/cleanup.ps1"]
   #}
+   */
 }

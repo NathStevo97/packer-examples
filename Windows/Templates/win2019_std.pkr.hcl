@@ -174,6 +174,7 @@ source "virtualbox-iso" "vbox-win2019-standard" {
   guest_os_type        = " Windows2019_64"
   hard_drive_interface = "sata"
   headless             = false
+  http_directory        = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
   #iso_checksum_type    = "md5"
   iso_interface        = "sata"
