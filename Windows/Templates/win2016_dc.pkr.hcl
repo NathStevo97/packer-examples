@@ -229,7 +229,7 @@ build {
     restart_timeout = "30m"
   }
 
-
+  /*
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"

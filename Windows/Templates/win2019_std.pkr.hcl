@@ -142,23 +142,20 @@ source "hyperv-iso" "hv2-win2019-standard" {
   generation            = 2
   guest_additions_mode  = "disable"
   http_directory        = "../http/Agent_Installations"
-  #iso_checksum          = "${var.iso_checksum_type}:${var.iso_checksum}"
-  iso_checksum         = "${var.iso_checksum}"
-  iso_url              = "${var.iso_url}"
-  #iso_checksum         = "md5:4d0943213b7a5f77917f7aa5baa92dcd"
-  #iso_url              = "../../../ISOs/Windows Server/2019/SW_DVD9_Win_Server_STD_CORE_2019_1809.1_64Bit_English_DC_STD_MLF_X22-02970.iso"
-  memory               = "${var.memsize}"
-  output_directory     = "${var.output_directory}"
-  secondary_iso_images = ["${var.secondary_iso_image}"]
-  shutdown_timeout     = "2h"
-  skip_export          = true
-  switch_name          = "${var.switch_name}"
-  temp_path            = "."
-  vlan_id              = "${var.vlan_id}"
-  vm_name              = "${var.vm_name}"
-  winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "4h"
-  winrm_username       = "${var.winrm_username}"
+  iso_checksum          = "${var.iso_checksum}"
+  iso_url               = "${var.iso_url}"
+  memory                = "${var.memsize}"
+  output_directory      = "${var.output_directory}"
+  secondary_iso_images  = ["${var.secondary_iso_image}"]
+  shutdown_timeout      = "2h"
+  skip_export           = true
+  switch_name           = "${var.switch_name}"
+  temp_path             = "."
+  vlan_id               = "${var.vlan_id}"
+  vm_name               = "${var.vm_name}"
+  winrm_password        = "${var.winrm_password}"
+  winrm_timeout         = "4h"
+  winrm_username        = "${var.winrm_username}"
 }
 
 #################################################################
@@ -166,25 +163,25 @@ source "hyperv-iso" "hv2-win2019-standard" {
 #################################################################
 
 source "virtualbox-iso" "vbox-win2019-standard" {
-  communicator         = "winrm"
-  disk_size            = 61440
-  floppy_files         = ["./Files/bios/win2019/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
+  communicator = "winrm"
+  disk_size    = 61440
+  floppy_files = ["./Files/bios/win2019/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   #guest_additions_mode = "upload"
   #guest_additions_path = "c:/Windows/Temp/windows.iso"
   guest_os_type        = " Windows2019_64"
   hard_drive_interface = "sata"
   headless             = false
-  http_directory        = "../http/Agent_Installations"
+  http_directory       = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
   #iso_checksum_type    = "md5"
-  iso_interface        = "sata"
-  iso_url              = "${var.iso_url}"
-  shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
-  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "2048"], ["modifyvm", "{{ .Name }}", "--cpus", "1"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
-  winrm_insecure       = true
-  winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "4h"
-  winrm_username       = "${var.winrm_username}"
+  iso_interface    = "sata"
+  iso_url          = "${var.iso_url}"
+  shutdown_command = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
+  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "2048"], ["modifyvm", "{{ .Name }}", "--cpus", "1"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
+  winrm_insecure   = true
+  winrm_password   = "${var.winrm_password}"
+  winrm_timeout    = "4h"
+  winrm_username   = "${var.winrm_username}"
 }
 
 #################################################################
@@ -194,7 +191,7 @@ source "virtualbox-iso" "vbox-win2019-standard" {
 build {
   sources = ["source.vmware-iso.vmware-win2019-standard", "source.hyperv-iso.hv1-win2019-standard", "source.hyperv-iso.hv2-win2019-standard", "source.virtualbox-iso.vbox-win2019-standard"]
 
-/*  
+
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
@@ -231,7 +228,7 @@ build {
     restart_timeout = "30m"
   }
 
-
+  /*
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"

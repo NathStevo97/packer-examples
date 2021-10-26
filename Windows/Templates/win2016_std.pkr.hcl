@@ -18,7 +18,7 @@ variable "iso_checksum" {
 
 variable "iso_url" {
   type    = string
-  default = "../../../ISOs/Windows Server/2016/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
+  default = "../../ISOs/Windows Server/2016/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
 }
 
 variable "memsize" {
@@ -164,25 +164,25 @@ source "hyperv-iso" "hv2-win2016-standard" {
 #################################################################
 
 source "virtualbox-iso" "vbox-win2016-standard" {
-  communicator         = "winrm"
-  disk_size            = 61440
-  floppy_files         = ["./Files/bios/win2016/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
+  communicator = "winrm"
+  disk_size    = 61440
+  floppy_files = ["./Files/bios/win2016/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   #guest_additions_mode = "upload"
   #guest_additions_path = "c:/Windows/Temp/windows.iso"
   guest_os_type        = " Windows2016_64"
   hard_drive_interface = "sata"
   headless             = false
-  http_directory        = "../http/Agent_Installations"
+  http_directory       = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
   #iso_checksum_type    = "md5"
-  iso_interface        = "sata"
-  iso_url              = "${var.iso_url}"
-  shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
-  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "2048"], ["modifyvm", "{{ .Name }}", "--cpus", "1"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
-  winrm_insecure       = true
-  winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "4h"
-  winrm_username       = "${var.winrm_username}"
+  iso_interface    = "sata"
+  iso_url          = "${var.iso_url}"
+  shutdown_command = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
+  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "2048"], ["modifyvm", "{{ .Name }}", "--cpus", "1"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
+  winrm_insecure   = true
+  winrm_password   = "${var.winrm_password}"
+  winrm_timeout    = "4h"
+  winrm_username   = "${var.winrm_username}"
 }
 
 #################################################################
@@ -191,7 +191,7 @@ source "virtualbox-iso" "vbox-win2016-standard" {
 
 build {
   sources = ["source.vmware-iso.vmware-win2016-standard", "source.hyperv-iso.hv1-win2016-standard", "source.hyperv-iso.hv2-win2016-standard", "source.virtualbox-iso.vbox-win2016-standard"]
-  /* 
+
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
@@ -228,7 +228,7 @@ build {
     restart_timeout = "30m"
   }
 
-
+  /*
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
