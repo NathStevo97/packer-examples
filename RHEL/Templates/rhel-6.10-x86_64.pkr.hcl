@@ -59,6 +59,11 @@ variable "iso_name" {
   default = "rhel-server-6.10-x86_64-dvd.iso"
 }
 
+variable "iso_url" {
+  type = string
+  default = "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso"
+}
+
 variable "ks_path" {
   type    = string
   default = "6/ks.cfg"
@@ -99,7 +104,7 @@ source "vmware-iso" "rhel6-vmware" {
   headless            = "${var.headless}"
   http_directory      = "../http/CentOS"
   iso_checksum        = "md5:5e131530e18bef7ff0a5d70bd2eb9c3d"
-  iso_url             = "../../../ISOs/RHEL/rhel-server-6.10-x86_64-dvd.iso"
+  iso_url             = "../../ISOs/RHEL/rhel-server-6.10-x86_64-dvd.iso"
   memory              = "${var.memory}"
   #output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
@@ -116,7 +121,7 @@ source "vmware-iso" "rhel6-vmware" {
 }
 
 build {
-  sources = ["source.vmware-iso.rhel6-vmware", "source.hyperv-iso.rhel6-hv"]
+  sources = ["source.vmware-iso.rhel6-vmware"]
 
   provisioner "shell" {
     environment_vars  = ["HOME_DIR=/home/vagrant", "http_proxy=${var.http_proxy}", "https_proxy=${var.https_proxy}", "no_proxy=${var.no_proxy}"]

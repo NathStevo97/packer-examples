@@ -62,6 +62,7 @@ variable "memory" {
 variable "mirror" {
   type    = string
   default = "http://mirrors.kernel.org/centos"
+  # default = "http://ftp.iij.ad.jp/pub/linux/centos-vault/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-bin-DVD1.iso"
 }
 
 variable "mirror_directory" {
@@ -93,7 +94,7 @@ source "vmware-iso" "centos6" {
   headless            = "${var.headless}"
   http_directory      = "../http/CentOS"
   iso_checksum        = "md5:8ffcc065c3110e6fa0144cb85e4bb4bc"
-  iso_url             = "../../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso"
+  iso_url             = "../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso"
   memory              = "${var.memory}"
   #output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"

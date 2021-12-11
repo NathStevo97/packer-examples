@@ -71,7 +71,7 @@ source "vmware-iso" "centos7" {
 
 build {
   sources = ["source.vmware-iso.centos7"]
-
+  /*  
   provisioner "shell" {
     execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     inline          = ["yum -y install epel-release", "yum -y update", "yum -y install ansible"]
@@ -85,5 +85,5 @@ build {
     execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     scripts         = ["./Files/scripts/cleanup.sh"]
   }
-
+  */
 }

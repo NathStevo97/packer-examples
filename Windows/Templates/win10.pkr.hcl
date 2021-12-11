@@ -17,6 +17,7 @@ variable "iso_checksum" {
 variable "iso_url" {
   type    = string
   default = "../../ISOs/SW_DVD5_WIN_ENT_LTSC_2019_64-bit_English_MLF_X21-96425.ISO"
+  # default = "http://cdn.digiboy.ir/?b=dlir-s3&f=SW_DVD5_WIN_ENT_LTSC_2019_64-bit_English_MLF_X21-96425.ISO"
 }
 
 variable "memsize" {
@@ -74,20 +75,20 @@ variable "winrm_username" {
 ########################################################
 
 source "hyperv-iso" "hv1-win10" {
-  boot_wait   = "${var.boot_wait}"
-  communicator      = "winrm"
-  disk_size         = "${var.disk_size}"
-  floppy_files        = ["./Files/bios/win10/autounattend.xml", "./Files/scripts/update-windows.ps1", "./Files/scripts/configure-winrm.ps1"]
-  generation        = "1"
-  headless          = false
-  iso_checksum      = "${var.iso_checksum}"
-  iso_url           = "${var.iso_url}"
-  shutdown_command  = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
-  skip_compaction   = false
-  switch_name       = "${var.switch_name}"
-  winrm_password    = "${var.winrm_password}"
-  winrm_timeout     = "6h"
-  winrm_username    = "${var.winrm_username}"
+  boot_wait        = "${var.boot_wait}"
+  communicator     = "winrm"
+  disk_size        = "${var.disk_size}"
+  floppy_files     = ["./Files/bios/win10/autounattend.xml", "./Files/scripts/update-windows.ps1", "./Files/scripts/configure-winrm.ps1"]
+  generation       = "1"
+  headless         = false
+  iso_checksum     = "${var.iso_checksum}"
+  iso_url          = "${var.iso_url}"
+  shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
+  skip_compaction  = false
+  switch_name      = "${var.switch_name}"
+  winrm_password   = "${var.winrm_password}"
+  winrm_timeout    = "6h"
+  winrm_username   = "${var.winrm_username}"
 }
 
 ########################################################
@@ -95,15 +96,15 @@ source "hyperv-iso" "hv1-win10" {
 ########################################################
 
 source "vmware-iso" "vmware-win10" {
-  boot_wait   = "${var.boot_wait}"
-  communicator      = "winrm"
-  disk_size         = "${var.disk_size}"
-  floppy_files        = ["./Files/bios/win10/autounattend.xml", "./Files/scripts/update-windows.ps1", "./Files/scripts/configure-winrm.ps1"]
-  guest_os_type       = "windows9-64"
-  headless            = false
-  iso_checksum        = "${var.iso_checksum}"
-  iso_url             = "${var.iso_url}"
-  skip_compaction     = false
+  boot_wait       = "${var.boot_wait}"
+  communicator    = "winrm"
+  disk_size       = "${var.disk_size}"
+  floppy_files    = ["./Files/bios/win10/autounattend.xml", "./Files/scripts/update-windows.ps1", "./Files/scripts/configure-winrm.ps1"]
+  guest_os_type   = "windows9-64"
+  headless        = false
+  iso_checksum    = "${var.iso_checksum}"
+  iso_url         = "${var.iso_url}"
+  skip_compaction = false
   #tools_upload_flavor = "windows"
   #tools_upload_path   = "c:/Windows/Temp/windows.iso"
   vmx_data = {
@@ -113,10 +114,9 @@ source "vmware-iso" "vmware-win10" {
     "scsi0.virtualDev"                         = "lsisas1068"
     "virtualHW.version"                        = "10"
   }
-  winrm_password    = "${var.winrm_password}"
-  winrm_timeout     = "6h"
-  winrm_username    = "${var.winrm_username}"
-}
+  winrm_password = "${var.winrm_password}"
+  winrm_timeout  = "6h"
+  winrm_username = "${var.winrm_username}"
 }
 
 build {

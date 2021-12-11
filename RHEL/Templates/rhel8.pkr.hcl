@@ -1,3 +1,8 @@
+variable "iso_url" {
+  type = string
+  default = "https://archive.org/download/rhel-server-7.9-x86_64-dvd/rhel-server-7.9-x86_64-dvd.iso"
+}
+
 variable "memsize" {
   type    = string
   default = "2048"
@@ -16,7 +21,7 @@ source "vmware-iso" "rhel-8" {
   headless         = false
   http_directory   = "../http/RHEL"
   iso_checksum     = "md5:d04ab8a647d570708bfef8835faf37da"
-  iso_urls         = ["../../../ISOs/RHEL/rhel-8.1-x86_64-dvd.iso"]
+  iso_urls         = ["../../ISOs/RHEL/rhel-8.1-x86_64-dvd.iso"]
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "vagrant"
   ssh_port         = 22
