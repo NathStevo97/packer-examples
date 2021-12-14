@@ -14,6 +14,11 @@ variable "iso_checksum" {
   default = "b79079ad71cc3c5ceb3561fff348a1b67ee37f71f4cddfec09480d4589c191d6"
 }
 
+variable "iso_path" {
+  type    = string
+  default = "../../ISOs/CentOS/CentOS-7-x86_64-NetInstall-2009.iso"
+}
+
 variable "iso_url" {
   type    = string
   default = "http://miroir.univ-paris13.fr/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-NetInstall-2009.iso"
@@ -54,7 +59,7 @@ source "vmware-iso" "centos7" {
   headless         = false
   http_directory   = "../http/CentOS"
   iso_checksum     = "${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22

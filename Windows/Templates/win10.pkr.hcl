@@ -14,10 +14,14 @@ variable "iso_checksum" {
   default = "D5B2F95E3DD658517FE7C14DF4F36DE633CA4845"
 }
 
-variable "iso_url" {
+variable "iso_path" {
   type    = string
   default = "../../ISOs/SW_DVD5_WIN_ENT_LTSC_2019_64-bit_English_MLF_X21-96425.ISO"
-  # default = "http://cdn.digiboy.ir/?b=dlir-s3&f=SW_DVD5_WIN_ENT_LTSC_2019_64-bit_English_MLF_X21-96425.ISO"
+}
+
+variable "iso_url" {
+  type    = string
+  default = "http://cdn.digiboy.ir/?b=dlir-s3&f=SW_DVD5_WIN_ENT_LTSC_2019_64-bit_English_MLF_X21-96425.ISO"
 }
 
 variable "memsize" {
@@ -82,7 +86,7 @@ source "hyperv-iso" "hv1-win10" {
   generation       = "1"
   headless         = false
   iso_checksum     = "${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   skip_compaction  = false
   switch_name      = "${var.switch_name}"
@@ -103,7 +107,7 @@ source "vmware-iso" "vmware-win10" {
   guest_os_type   = "windows9-64"
   headless        = false
   iso_checksum    = "${var.iso_checksum}"
-  iso_url         = "${var.iso_url}"
+  iso_urls        = ["${var.iso_path}", "${var.iso_url}"]
   skip_compaction = false
   #tools_upload_flavor = "windows"
   #tools_upload_path   = "c:/Windows/Temp/windows.iso"

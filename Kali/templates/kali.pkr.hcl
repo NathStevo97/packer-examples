@@ -1,3 +1,12 @@
+variable "iso_path" {
+  type    = string
+  default = "../../ISOs/Kali/kali-linux-2021.1-installer-amd64.iso"
+}
+
+variable "iso_url" {
+  type    = string
+  default = "https://cdimage.kali.org/kali-2021.1/kali-linux-2021.1-installer-amd64.iso"
+}
 
 variable "password" {
   type    = string
@@ -16,9 +25,9 @@ source "virtualbox-iso" "kali_vbox" {
   guest_additions_path    = "VBoxGuestAdditions_{{ .Version }}.iso"
   guest_os_type           = "Debian_64"
   headless                = true
-  http_directory   = "../http"
+  http_directory          = "../http"
   iso_checksum            = "sha256:265812bc13ab11d40c610424871bdf9198b9e7cad99b06540d96fac67dd704de"
-  iso_urls                = ["../../ISOs/Kali/kali-linux-2021.1-installer-amd64.iso", "https://cdimage.kali.org/kali-2021.1/kali-linux-2021.1-installer-amd64.iso"]
+  iso_urls                = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command        = "echo 'kali'|sudo -S shutdown -P now"
   ssh_password            = "kali"
   ssh_port                = 22
@@ -37,7 +46,7 @@ source "vmware-iso" "kali_vmware" {
   headless         = false
   http_directory   = "../http"
   iso_checksum     = "sha256:265812bc13ab11d40c610424871bdf9198b9e7cad99b06540d96fac67dd704de"
-  iso_urls         = ["../../ISOs/Kali/kali-linux-2021.1-installer-amd64.iso", "https://cdimage.kali.org/kali-2021.1/kali-linux-2021.1-installer-amd64.iso"]
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   output_directory = "output-vmware-iso"
   shutdown_command = "echo 'kali'|sudo -S shutdown -P now"
   ssh_password     = "kali"

@@ -14,6 +14,11 @@ variable "iso_checksum" {
   default = "9602c69c52d93f51295c0199af395ca0edbe35e36506e32b8e749ce6c8f5b60a"
 }
 
+variable "iso_path" {
+  type    = string
+  default = "../../ISOs/CentOS/CentOS8/CentOS-8.5.2111-x86_64-boot.iso"
+}
+
 variable "iso_url" {
   type    = string
   default = "http://mirror.sov.uk.goscomb.net/centos/8.5.2111/isos/x86_64/CentOS-8.5.2111-x86_64-boot.iso"
@@ -53,7 +58,7 @@ source "virtualbox-iso" "centos8_vbox" {
   http_directory   = "../http"
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
-  iso_urls          = ["../../ISOs/CentOS/CentOS8/CentOS-8.5.2111-x86_64-boot.iso", "${var.iso_url}"]
+  iso_urls         = ["../../ISOs/CentOS/CentOS8/CentOS-8.5.2111-x86_64-boot.iso", "${var.iso_url}"]
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
@@ -72,7 +77,7 @@ source "vmware-iso" "centos8_vmware" {
   headless         = true
   http_directory   = "../http"
   iso_checksum     = "${var.iso_checksum}"
-  iso_urls          = ["../../ISOs/CentOS/CentOS8/CentOS-8.5.2111-x86_64-boot.iso", "${var.iso_url}"]
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22

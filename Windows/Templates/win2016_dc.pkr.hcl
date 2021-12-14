@@ -16,10 +16,14 @@ variable "iso_checksum" {
   default = "70721288bbcdfe3239d8f8c0fae55f1f"
 }
 
+variable "iso_path" {
+  type    = string
+  default = "../../ISOs/Windows Server/2016/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
+}
+
 variable "iso_url" {
   type    = string
-  #default = "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
-  default = "../../ISOs/Windows Server/2016/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
+  default = "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
 }
 
 variable "memsize" {
@@ -72,9 +76,7 @@ variable "winrm_username" {
   default = "Administrator"
 }
 
-#################################################################
-#                           Source Blocks                       #
-#################################################################
+
 
 #################################################################
 #                           VMware-ISO Builder                  #
@@ -89,7 +91,7 @@ source "vmware-iso" "vmware-win2016-datacenter" {
   headless         = true
   http_directory   = "../http/Agent_Installations"
   iso_checksum     = "${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout = "30m"
   skip_compaction  = false
@@ -119,7 +121,7 @@ source "hyperv-iso" "hv1-win2016-datacenter" {
   guest_additions_mode = "disable"
   http_directory       = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
-  iso_url              = "${var.iso_url}"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   memory               = "${var.memsize}"
   shutdown_timeout     = "15m"
   switch_name          = "${var.switch_name}"
@@ -147,7 +149,7 @@ source "hyperv-iso" "hv2-win2016-datacenter" {
   http_directory        = "../http/Agent_Installations"
   #iso_checksum          = "${var.iso_checksum_type}:${var.iso_checksum}"
   iso_checksum         = "${var.iso_checksum}"
-  iso_url              = "${var.iso_url}"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   memory               = "${var.memsize}"
   output_directory     = "${var.output_directory}"
   secondary_iso_images = ["${var.secondary_iso_image}"]
@@ -177,15 +179,14 @@ source "virtualbox-iso" "vbox-win2016-dc" {
   headless             = true
   http_directory       = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
-  #iso_checksum_type    = "md5"
-  iso_interface    = "sata"
-  iso_url          = "${var.iso_url}"
-  shutdown_command = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
-  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
-  winrm_insecure   = true
-  winrm_password   = "${var.winrm_password}"
-  winrm_timeout    = "4h"
-  winrm_username   = "${var.winrm_username}"
+  iso_interface        = "sata"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
+  shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
+  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
+  winrm_insecure       = true
+  winrm_password       = "${var.winrm_password}"
+  winrm_timeout        = "4h"
+  winrm_username       = "${var.winrm_username}"
 }
 
 

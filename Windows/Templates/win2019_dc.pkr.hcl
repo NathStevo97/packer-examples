@@ -16,10 +16,14 @@ variable "iso_checksum" {
   default = "3022424f777b66a698047ba1c37812026b9714c5"
 }
 
+variable "iso_path" {
+  type    = string
+  default = "../../ISOs/Windows Server/2019/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
+}
+
 variable "iso_url" {
   type    = string
-  # default = "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
-  default = "../../ISOs/Windows Server/2019/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
+  default = "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
 }
 
 variable "memsize" {
@@ -73,10 +77,6 @@ variable "winrm_username" {
 }
 
 #################################################################
-#                           Source Blocks                       #
-#################################################################
-
-#################################################################
 #                           VMware-ISO Builder                  #
 #################################################################
 source "vmware-iso" "vmware-win2019-datacenter" {
@@ -86,10 +86,10 @@ source "vmware-iso" "vmware-win2019-datacenter" {
   disk_type_id     = "0"
   floppy_files     = ["./Files/bios/win2019/DC/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_os_type    = "windows9srv-64"
-  headless             = true
+  headless         = true
   http_directory   = "../http/Agent_Installations"
   iso_checksum     = "${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout = "30m"
   skip_compaction  = false
@@ -119,7 +119,7 @@ source "hyperv-iso" "hv1-win2019-datacenter" {
   headless             = true
   http_directory       = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
-  iso_url              = "${var.iso_url}"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   memory               = "${var.memsize}"
   shutdown_timeout     = "15m"
   switch_name          = "${var.switch_name}"
@@ -145,21 +145,20 @@ source "hyperv-iso" "hv2-win2019-datacenter" {
   guest_additions_mode  = "disable"
   headless              = true
   http_directory        = "../http/Agent_Installations"
-  #iso_checksum          = "${var.iso_checksum_type}:${var.iso_checksum}"
-  iso_checksum         = "${var.iso_checksum}"
-  iso_url              = "${var.iso_url}"
-  memory               = "${var.memsize}"
-  output_directory     = "${var.output_directory}"
-  secondary_iso_images = ["${var.secondary_iso_image}"]
-  shutdown_timeout     = "2h"
-  skip_export          = true
-  switch_name          = "${var.switch_name}"
-  temp_path            = "."
-  vlan_id              = "${var.vlan_id}"
-  vm_name              = "${var.vm_name}"
-  winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "4h"
-  winrm_username       = "${var.winrm_username}"
+  iso_checksum          = "${var.iso_checksum}"
+  iso_urls              = ["${var.iso_path}", "${var.iso_url}"]
+  memory                = "${var.memsize}"
+  output_directory      = "${var.output_directory}"
+  secondary_iso_images  = ["${var.secondary_iso_image}"]
+  shutdown_timeout      = "2h"
+  skip_export           = true
+  switch_name           = "${var.switch_name}"
+  temp_path             = "."
+  vlan_id               = "${var.vlan_id}"
+  vm_name               = "${var.vm_name}"
+  winrm_password        = "${var.winrm_password}"
+  winrm_timeout         = "4h"
+  winrm_username        = "${var.winrm_username}"
 }
 
 #################################################################
@@ -167,9 +166,9 @@ source "hyperv-iso" "hv2-win2019-datacenter" {
 #################################################################
 
 source "virtualbox-iso" "vbox-win2019-dc" {
-  communicator = "winrm"
-  disk_size    = 61440
-  floppy_files = ["./Files/bios/win2019/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
+  communicator         = "winrm"
+  disk_size            = 61440
+  floppy_files         = ["./Files/bios/win2019/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_additions_mode = "disable"
   #guest_additions_path = "c:/Windows/Temp/windows.iso"
   guest_os_type        = " Windows2019_64"
@@ -177,15 +176,14 @@ source "virtualbox-iso" "vbox-win2019-dc" {
   headless             = true
   http_directory       = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
-  #iso_checksum_type    = "md5"
-  iso_interface    = "sata"
-  iso_url          = "${var.iso_url}"
-  shutdown_command = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
-  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
-  winrm_insecure   = true
-  winrm_password   = "${var.winrm_password}"
-  winrm_timeout    = "4h"
-  winrm_username   = "${var.winrm_username}"
+  iso_interface        = "sata"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
+  shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
+  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
+  winrm_insecure       = true
+  winrm_password       = "${var.winrm_password}"
+  winrm_timeout        = "4h"
+  winrm_username       = "${var.winrm_username}"
 }
 
 

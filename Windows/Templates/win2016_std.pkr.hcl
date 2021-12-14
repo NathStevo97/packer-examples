@@ -16,10 +16,14 @@ variable "iso_checksum" {
   default = "70721288bbcdfe3239d8f8c0fae55f1f"
 }
 
+variable "iso_path" {
+  type    = string
+  default = "../../ISOs/Windows Server/2016/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
+}
+
 variable "iso_url" {
   type    = string
-  #default = "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
-  default = "../../ISOs/Windows Server/2016/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
+  default = "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
 }
 
 variable "memsize" {
@@ -73,10 +77,6 @@ variable "winrm_username" {
 }
 
 #################################################################
-#                           Source Blocks                       #
-#################################################################
-
-#################################################################
 #                           VMware-ISO Builder                  #
 #################################################################
 source "vmware-iso" "vmware-win2016-standard" {
@@ -89,7 +89,7 @@ source "vmware-iso" "vmware-win2016-standard" {
   headless         = false
   http_directory   = "../http/Agent_Installations"
   iso_checksum     = "${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout = "30m"
   skip_compaction  = false
@@ -118,7 +118,7 @@ source "hyperv-iso" "hv1-win2016-standard" {
   guest_additions_mode = "disable"
   http_directory       = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
-  iso_url              = "${var.iso_url}"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   memory               = "${var.memsize}"
   shutdown_timeout     = "15m"
   switch_name          = "${var.switch_name}"
@@ -144,21 +144,20 @@ source "hyperv-iso" "hv2-win2016-standard" {
   guest_additions_mode  = "disable"
   headless              = true
   http_directory        = "../http/Agent_Installations"
-  #iso_checksum          = "${var.iso_checksum_type}:${var.iso_checksum}"
-  iso_checksum         = "${var.iso_checksum}"
-  iso_url              = "${var.iso_url}"
-  memory               = "${var.memsize}"
-  output_directory     = "${var.output_directory}"
-  secondary_iso_images = ["${var.secondary_iso_image}"]
-  shutdown_timeout     = "2h"
-  skip_export          = true
-  switch_name          = "${var.switch_name}"
-  temp_path            = "."
-  vlan_id              = "${var.vlan_id}"
-  vm_name              = "${var.vm_name}"
-  winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "4h"
-  winrm_username       = "${var.winrm_username}"
+  iso_checksum          = "${var.iso_checksum}"
+  iso_urls              = ["${var.iso_path}", "${var.iso_url}"]
+  memory                = "${var.memsize}"
+  output_directory      = "${var.output_directory}"
+  secondary_iso_images  = ["${var.secondary_iso_image}"]
+  shutdown_timeout      = "2h"
+  skip_export           = true
+  switch_name           = "${var.switch_name}"
+  temp_path             = "."
+  vlan_id               = "${var.vlan_id}"
+  vm_name               = "${var.vm_name}"
+  winrm_password        = "${var.winrm_password}"
+  winrm_timeout         = "4h"
+  winrm_username        = "${var.winrm_username}"
 }
 
 #################################################################
@@ -166,9 +165,9 @@ source "hyperv-iso" "hv2-win2016-standard" {
 #################################################################
 
 source "virtualbox-iso" "vbox-win2016-standard" {
-  communicator = "winrm"
-  disk_size    = 61440
-  floppy_files = ["./Files/bios/win2016/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
+  communicator         = "winrm"
+  disk_size            = 61440
+  floppy_files         = ["./Files/bios/win2016/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_additions_mode = "disable"
   #guest_additions_path = "c:/Windows/Temp/windows.iso"
   guest_os_type        = " Windows2016_64"
@@ -177,7 +176,7 @@ source "virtualbox-iso" "vbox-win2016-standard" {
   http_directory       = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
   iso_interface        = "sata"
-  iso_url              = "${var.iso_url}"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
   vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "2048"], ["modifyvm", "{{ .Name }}", "--cpus", "1"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
   winrm_insecure       = true

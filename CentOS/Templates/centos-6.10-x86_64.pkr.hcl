@@ -59,20 +59,14 @@ variable "memory" {
   default = "1024"
 }
 
-variable "mirror" {
+variable "iso_path" {
   type    = string
-  default = "http://mirrors.kernel.org/centos"
-  # default = "http://ftp.iij.ad.jp/pub/linux/centos-vault/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-bin-DVD1.iso"
+  default = "../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso"
 }
 
-variable "mirror_directory" {
+variable "iso_url" {
   type    = string
-  default = "6.10/isos/x86_64"
-}
-
-variable "name" {
-  type    = string
-  default = "centos-6.10"
+  default = "http://ftp.iij.ad.jp/pub/linux/centos-vault/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-bin-DVD1.iso"
 }
 
 variable "no_proxy" {
@@ -86,16 +80,16 @@ variable "template" {
 }
 
 source "vmware-iso" "centos6" {
-  boot_command        = ["<up><wait><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-6.cfg<enter><wait>"]
-  boot_wait           = "5s"
-  cpus                = "${var.cpus}"
-  disk_size           = "${var.disk_size}"
-  guest_os_type       = "centos-64"
-  headless            = "${var.headless}"
-  http_directory      = "../http/CentOS"
-  iso_checksum        = "md5:8ffcc065c3110e6fa0144cb85e4bb4bc"
-  iso_url             = "../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso"
-  memory              = "${var.memory}"
+  boot_command   = ["<up><wait><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-6.cfg<enter><wait>"]
+  boot_wait      = "5s"
+  cpus           = "${var.cpus}"
+  disk_size      = "${var.disk_size}"
+  guest_os_type  = "centos-64"
+  headless       = "${var.headless}"
+  http_directory = "../http/CentOS"
+  iso_checksum   = "md5:8ffcc065c3110e6fa0144cb85e4bb4bc"
+  iso_urls       = ["${var.iso_path}", "${var.iso_url}"]
+  memory         = "${var.memory}"
   #output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
   ssh_password        = "vagrant"
@@ -117,17 +111,17 @@ build {
     environment_vars  = ["HOME_DIR=/home/vagrant", "http_proxy=${var.http_proxy}", "https_proxy=${var.https_proxy}", "no_proxy=${var.no_proxy}"]
     execute_command   = "echo 'vagrant' | {{ .Vars }} sudo -S -E sh -eux '{{ .Path }}'"
     expect_disconnect = true
-    scripts           = [
+    scripts = [
       #"./Files/scripts/6/update.sh", 
-    "./Files/scripts/6/common/motd.sh", 
-    "./Files/scripts/6/common/sshd.sh", 
-    "./Files/scripts/6/networking.sh", 
-    "./Files/scripts/6/common/vagrant.sh", 
-    "./Files/scripts/6/common/virtualbox.sh" 
-    #"./Files/scripts/6/common/vmware.sh", 
-    #"./Files/scripts/6/common/parallels.sh", 
-    #"./Files/scripts/6/cleanup.sh", 
-    #"./Files/scripts/6/common/minimize.sh"
+      "./Files/scripts/6/common/motd.sh",
+      "./Files/scripts/6/common/sshd.sh",
+      "./Files/scripts/6/networking.sh",
+      "./Files/scripts/6/common/vagrant.sh",
+      "./Files/scripts/6/common/virtualbox.sh"
+      #"./Files/scripts/6/common/vmware.sh", 
+      #"./Files/scripts/6/common/parallels.sh", 
+      #"./Files/scripts/6/cleanup.sh", 
+      #"./Files/scripts/6/common/minimize.sh"
     ]
   }
 }

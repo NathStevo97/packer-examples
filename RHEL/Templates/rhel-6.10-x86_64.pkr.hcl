@@ -59,8 +59,13 @@ variable "iso_name" {
   default = "rhel-server-6.10-x86_64-dvd.iso"
 }
 
+variable "iso_path" {
+  type    = string
+  default = "../../ISOs/RHEL/rhel-server-6.10-x86_64-dvd.iso"
+}
+
 variable "iso_url" {
-  type = string
+  type    = string
   default = "https://archive.org/download/rhel-server-6.10-x86_64-dvd/rhel-server-6.10-x86_64-dvd.iso"
 }
 
@@ -96,16 +101,16 @@ variable "version" {
 # The "legacy_isotime" function has been provided for backwards compatability, but we recommend switching to the timestamp and formatdate functions.
 
 source "vmware-iso" "rhel6-vmware" {
-  boot_command        = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-6.cfg<enter><wait>"]
-  boot_wait           = "5s"
-  cpus                = "${var.cpus}"
-  disk_size           = "${var.disk_size}"
-  guest_os_type       = "rhel6-64"
-  headless            = "${var.headless}"
-  http_directory      = "../http/CentOS"
-  iso_checksum        = "md5:5e131530e18bef7ff0a5d70bd2eb9c3d"
-  iso_url             = "../../ISOs/RHEL/rhel-server-6.10-x86_64-dvd.iso"
-  memory              = "${var.memory}"
+  boot_command   = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-6.cfg<enter><wait>"]
+  boot_wait      = "5s"
+  cpus           = "${var.cpus}"
+  disk_size      = "${var.disk_size}"
+  guest_os_type  = "rhel6-64"
+  headless       = "${var.headless}"
+  http_directory = "../http/CentOS"
+  iso_checksum   = "md5:5e131530e18bef7ff0a5d70bd2eb9c3d"
+  iso_urls       = ["${var.iso_path}", "${var.iso_url}"]
+  memory         = "${var.memory}"
   #output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
   ssh_password        = "vagrant"
@@ -127,11 +132,11 @@ build {
     environment_vars  = ["HOME_DIR=/home/vagrant", "http_proxy=${var.http_proxy}", "https_proxy=${var.https_proxy}", "no_proxy=${var.no_proxy}"]
     execute_command   = "echo 'vagrant' | {{ .Vars }} sudo -S -E sh -eux '{{ .Path }}'"
     expect_disconnect = true
-    scripts           = ["./Files/scripts/6/update.sh", 
-    "./Files/scripts/6/common/motd.sh", 
-    "./Files/scripts/6/common/sshd.sh", 
-    "./Files/scripts/6/networking.sh", 
-    "./Files/scripts/6/common/vagrant.sh", 
+    scripts = ["./Files/scripts/6/update.sh",
+      "./Files/scripts/6/common/motd.sh",
+      "./Files/scripts/6/common/sshd.sh",
+      "./Files/scripts/6/networking.sh",
+      "./Files/scripts/6/common/vagrant.sh",
     "./Files/scripts/6/common/virtualbox.sh"]
   }
 }
