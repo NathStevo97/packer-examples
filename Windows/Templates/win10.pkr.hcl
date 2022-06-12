@@ -105,7 +105,7 @@ source "vmware-iso" "vmware-win10" {
   disk_size       = "${var.disk_size}"
   floppy_files    = ["./Files/bios/win10/autounattend.xml", "./Files/scripts/update-windows.ps1", "./Files/scripts/configure-winrm.ps1"]
   guest_os_type   = "windows9-64"
-  headless        = false
+  headless        = true
   iso_checksum    = "${var.iso_checksum}"
   iso_urls        = ["${var.iso_path}", "${var.iso_url}"]
   skip_compaction = false
