@@ -5,7 +5,7 @@ variable "iso_path" {
 
 variable "iso_url" {
   type    = string
-  default = "https://archive.org/download/rhel-server-7.9-x86_64-dvd/rhel-server-7.9-x86_64-dvd.iso"
+  default = "https://archive.org/download/rhel-8.1-x86_64-dvd/rhel-8.1-x86_64-dvd.iso"
 }
 
 variable "memsize" {
