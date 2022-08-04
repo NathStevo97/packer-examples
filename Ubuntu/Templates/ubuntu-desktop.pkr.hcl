@@ -65,25 +65,25 @@ variable "iso_url" {
 }
 
 source "vmware-iso" "ubuntu-desktop" {
-  boot_command         = ["<tab>", "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/Ubuntu/${var.preseed_file_name} ", "auto=true ", "net.ifnames=0 ", "hostname=localhost ", "<enter>"]
-  boot_wait            = "10s"
-  cpus                 = "${var.cpus}"
-  disk_size            = "${var.disk_size}"
-  guest_os_type        = "ubuntu64Guest"
-  headless             = "${var.headless}"
-  http_directory       = "../http"
-  iso_checksum         = "${var.iso_checksum}"
-  iso_urls             = ["${var.iso_url}"]
-  memory               = "${var.memory}"
-  output_directory     = "${var.name}-vmware-iso"
-  shutdown_command     = "echo 'vagrant' | sudo -S shutdown -P now"
-  ssh_password         = "${var.ssh_password}"
-  ssh_timeout          = "1h"
-  ssh_username         = "${var.ssh_username}"
-  vm_name              = "${var.name}"
+  boot_command     = ["<tab>", "url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/Ubuntu/${var.preseed_file_name} ", "auto=true ", "net.ifnames=0 ", "hostname=localhost ", "<enter>"]
+  boot_wait        = "10s"
+  cpus             = "${var.cpus}"
+  disk_size        = "${var.disk_size}"
+  guest_os_type    = "ubuntu64Guest"
+  headless         = "${var.headless}"
+  http_directory   = "../http"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_urls         = ["${var.iso_url}"]
+  memory           = "${var.memory}"
+  output_directory = "${var.name}-vmware-iso"
+  shutdown_command = "echo 'vagrant' | sudo -S shutdown -P now"
+  ssh_password     = "${var.ssh_password}"
+  ssh_timeout      = "1h"
+  ssh_username     = "${var.ssh_username}"
+  vm_name          = "${var.name}"
   vmx_data = {
-    memsize             = "${var.memory}"
-    numvcpus            = "${var.cpus}"
+    memsize  = "${var.memory}"
+    numvcpus = "${var.cpus}"
   }
 }
 
