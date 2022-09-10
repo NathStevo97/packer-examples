@@ -86,7 +86,7 @@ source "vmware-iso" "vmware-win2019-datacenter" {
   disk_type_id     = "0"
   floppy_files     = ["./Files/bios/win2019/DC/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_os_type    = "windows9srv-64"
-  headless         = true
+  headless         = false
   http_directory   = "../http/Agent_Installations"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
@@ -116,7 +116,7 @@ source "hyperv-iso" "hv1-win2019-datacenter" {
   disk_size            = "${var.disk_size}"
   floppy_files         = ["./Files/bios/win2019/DC/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_additions_mode = "disable"
-  headless             = true
+  headless             = false
   http_directory       = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
@@ -143,7 +143,7 @@ source "hyperv-iso" "hv2-win2019-datacenter" {
   enable_secure_boot    = false
   generation            = 2
   guest_additions_mode  = "disable"
-  headless              = true
+  headless              = false
   http_directory        = "../http/Agent_Installations"
   iso_checksum          = "${var.iso_checksum}"
   iso_urls              = ["${var.iso_path}", "${var.iso_url}"]

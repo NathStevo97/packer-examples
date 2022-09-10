@@ -1,8 +1,10 @@
-| OS | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2| VirtualBox |
-|----|----|----|---|----|
-|Windows 11 | | | | |
-|Windows 10 | | | | |
-|Windows 2019 Standard | | | | |
-|Windows 2019 Datacenter | | | | |
-|Windows 2016 Standard | | | | |
-|Windows 2016 Datacenter | | | | |
+| OS                      | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox |
+|-------------------------|--------------------|---------------|---------------|------------|
+| Windows 11              | Pending            | Pending       | Pending       | Pending    |
+| Windows 10              | Pending            | Pending       | Pending       | Pending    |
+| Windows 2022 Standard   | Pending            | Pending       | Pending       | Pending    |
+| Windows 2022 Datacenter | Pending            | Pending       | Pending       | Pending    |
+| Windows 2019 Standard   | Working            | Working       | Working       | Working    |
+| Windows 2019 Datacenter | Working            | Working       | Working       | Working    |
+| Windows 2016 Standard   | Working            | Working       | Working       | Working    |
+| Windows 2016 Datacenter | Working            | Working       | Working       | Working    |

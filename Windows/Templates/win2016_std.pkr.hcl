@@ -172,7 +172,7 @@ source "virtualbox-iso" "vbox-win2016-standard" {
   #guest_additions_path = "c:/Windows/Temp/windows.iso"
   guest_os_type        = " Windows2016_64"
   hard_drive_interface = "sata"
-  headless             = false
+  headless             = true
   http_directory       = "../http/Agent_Installations"
   iso_checksum         = "${var.iso_checksum}"
   iso_interface        = "sata"
