@@ -6,9 +6,9 @@ $startDTM = (Get-Date)
 # Variables
 $template_file="./templates/centos8.pkr.hcl"
 #$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
-$machine="CentOS 8"
+$machine="CentOS Stream 8"
 $packer_log=0
-$env:PACKER_LOG_PATH="packerlog-10-hv1.txt"
+$env:PACKER_LOG_PATH="packerlog-centos-stream-8.txt"
 packer init "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow

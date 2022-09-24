@@ -1,0 +1,20 @@
+2022/09/24 22:42:38 [INFO] Packer version: 1.8.3 [go1.17.11 windows amd64]
+2022/09/24 22:42:38 [TRACE] discovering plugins in C:\HashiCorp\Packer
+2022/09/24 22:42:38 [TRACE] discovering plugins in C:\Users\natst\AppData\Roaming\packer.d\plugins
+2022/09/24 22:42:38 [DEBUG] Discovered plugin: hyperv = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\hyperv\packer-plugin-hyperv_v1.0.4_x5.0_windows_amd64.exe
+2022/09/24 22:42:38 [DEBUG] Discovered plugin: virtualbox = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\virtualbox\packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe
+2022/09/24 22:42:38 [DEBUG] Discovered plugin: vmware = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe
+2022/09/24 22:42:39 [INFO] found external [iso vmcx] builders from hyperv plugin
+2022/09/24 22:42:39 [INFO] found external [iso ovf vm] builders from virtualbox plugin
+2022/09/24 22:42:40 [INFO] found external [iso vmx] builders from vmware plugin
+2022/09/24 22:42:40 [TRACE] discovering plugins in .
+2022/09/24 22:42:40 [INFO] PACKER_CONFIG env var not set; checking the default config file path
+2022/09/24 22:42:40 [INFO] PACKER_CONFIG env var set; attempting to open config file: C:\Users\natst\AppData\Roaming\packer.config
+2022/09/24 22:42:40 [WARN] Config file doesn't exist: C:\Users\natst\AppData\Roaming\packer.config
+2022/09/24 22:42:40 [INFO] Setting cache directory: C:\Users\natst\Documents\Programming\Packer-Examples\CentOS\packer_cache
+e: cannot determine if process is in background: Process background check error: not implemented yet
+2022/09/24 22:42:40 [TRACE] init: plugingetter.ListInstallationsOptions{FromFolders:[]string{"C:\\HashiCorp\\Packer\\packer.exe", ".", "C:\\Users\\natst\\AppData\\Roaming\\packer.d\\plugins"}, BinaryInstallationOptions:plugingetter.BinaryInstallationOptions{APIVersionMajor:"5", APIVersionMinor:"0", OS:"windows", ARCH:"amd64", Ext:".exe", Checksummers:[]plugingetter.Checksummer{plugingetter.Checksummer{Type:"sha256", Hash:(*sha256.digest)(0xc00007bd00)}}}}
+2022/09/24 22:42:40 [TRACE] listing potential installations for "github.com/hashicorp/vmware" that match ">= 1.0.0". plugingetter.ListInstallationsOptions{FromFolders:[]string{"C:\\HashiCorp\\Packer\\packer.exe", ".", "C:\\Users\\natst\\AppData\\Roaming\\packer.d\\plugins"}, BinaryInstallationOptions:plugingetter.BinaryInstallationOptions{APIVersionMajor:"5", APIVersionMinor:"0", OS:"windows", ARCH:"amd64", Ext:".exe", Checksummers:[]plugingetter.Checksummer{plugingetter.Checksummer{Type:"sha256", Hash:(*sha256.digest)(0xc00007bd00)}}}}
+2022/09/24 22:42:40 [TRACE] for plugin github.com/hashicorp/vmware found 1 matching installation(s)
+2022/09/24 22:42:40 [INFO] (telemetry) Finalizing.
+2022/09/24 22:42:41 waiting for all plugin processes to complete...

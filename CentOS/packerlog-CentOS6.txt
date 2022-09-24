@@ -1,0 +1,304 @@
+2022/09/24 22:36:20 [INFO] Packer version: 1.8.3 [go1.17.11 windows amd64]
+2022/09/24 22:36:20 [TRACE] discovering plugins in C:\HashiCorp\Packer
+2022/09/24 22:36:20 [TRACE] discovering plugins in C:\Users\natst\AppData\Roaming\packer.d\plugins
+2022/09/24 22:36:20 [DEBUG] Discovered plugin: hyperv = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\hyperv\packer-plugin-hyperv_v1.0.4_x5.0_windows_amd64.exe
+2022/09/24 22:36:20 [DEBUG] Discovered plugin: virtualbox = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\virtualbox\packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe
+2022/09/24 22:36:20 [DEBUG] Discovered plugin: vmware = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe
+2022/09/24 22:36:21 [INFO] found external [iso vmx] builders from vmware plugin
+2022/09/24 22:36:22 [INFO] found external [iso vmcx] builders from hyperv plugin
+2022/09/24 22:36:22 [INFO] found external [iso ovf vm] builders from virtualbox plugin
+2022/09/24 22:36:22 [TRACE] discovering plugins in .
+2022/09/24 22:36:22 [INFO] PACKER_CONFIG env var not set; checking the default config file path
+2022/09/24 22:36:22 [INFO] PACKER_CONFIG env var set; attempting to open config file: C:\Users\natst\AppData\Roaming\packer.config
+2022/09/24 22:36:22 [WARN] Config file doesn't exist: C:\Users\natst\AppData\Roaming\packer.config
+2022/09/24 22:36:22 [INFO] Setting cache directory: C:\Users\natst\Documents\Programming\Packer-Examples\CentOS\packer_cache
+e: cannot determine if process is in background: Process background check error: not implemented yet
+2022/09/24 22:36:22 [TRACE] validateValue: not active for vm_name, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for build_directory, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for numvcpus, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for http_proxy, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for iso_path, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for guest_additions_url, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for iso_url, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for ssh_password, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for disk_size, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for iso_checksum, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for iso_name, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for memsize, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for no_proxy, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for ssh_username, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for box_basename, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for git_revision, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for headless, so skipping
+2022/09/24 22:36:22 [TRACE] validateValue: not active for https_proxy, so skipping
+2022/09/24 22:36:22 [TRACE] Starting external plugin C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\virtualbox\packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe start builder iso
+2022/09/24 22:36:22 Starting plugin: C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\virtualbox\packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe []string{"C:\\Users\\natst\\AppData\\Roaming\\packer.d\\plugins\\github.com\\hashicorp\\virtualbox\\packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe", "start", "builder", "iso"}
+2022/09/24 22:36:22 Waiting for RPC address for: C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\virtualbox\packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe
+2022/09/24 22:36:22 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:22 Plugin port range: [10000,25000]
+2022/09/24 22:36:22 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:22 Plugin address: tcp 127.0.0.1:10000
+2022/09/24 22:36:22 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:22 Waiting for connection...
+2022/09/24 22:36:22 Received tcp RPC address for C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\virtualbox\packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe: addr is 127.0.0.1:10000
+2022/09/24 22:36:22 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:22 Serving a plugin connection...
+2022/09/24 22:36:22 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:22 [TRACE] starting builder iso
+2022/09/24 22:36:22 [TRACE] Starting internal plugin packer-provisioner-shell
+2022/09/24 22:36:22 Starting plugin: C:\HashiCorp\Packer\packer.exe []string{"C:\\HashiCorp\\Packer\\packer.exe", "plugin", "packer-provisioner-shell"}
+2022/09/24 22:36:22 Waiting for RPC address for: C:\HashiCorp\Packer\packer.exe
+2022/09/24 22:36:22 packer.exe plugin: [INFO] Packer version: 1.8.3 [go1.17.11 windows amd64]
+2022/09/24 22:36:22 packer.exe plugin: [INFO] PACKER_CONFIG env var not set; checking the default config file path
+2022/09/24 22:36:22 packer.exe plugin: [INFO] PACKER_CONFIG env var set; attempting to open config file: C:\Users\natst\AppData\Roaming\packer.config
+2022/09/24 22:36:22 packer.exe plugin: [WARN] Config file doesn't exist: C:\Users\natst\AppData\Roaming\packer.config
+2022/09/24 22:36:22 packer.exe plugin: [INFO] Setting cache directory: C:\Users\natst\Documents\Programming\Packer-Examples\CentOS\packer_cache
+2022/09/24 22:36:22 packer.exe plugin: args: []string{"packer-provisioner-shell"}
+2022/09/24 22:36:22 packer.exe plugin: Plugin port range: [10000,25000]
+2022/09/24 22:36:22 packer.exe plugin: Plugin address: tcp 127.0.0.1:10000
+2022/09/24 22:36:22 Received tcp RPC address for C:\HashiCorp\Packer\packer.exe: addr is 127.0.0.1:10000
+2022/09/24 22:36:22 packer.exe plugin: Waiting for connection...
+2022/09/24 22:36:22 packer.exe plugin: Serving a plugin connection...
+2022/09/24 22:36:22 ui: virtualbox-iso.centos6: output will be in this color.
+2022/09/24 22:36:22 ui: 
+2022/09/24 22:36:22 Build debug mode: false
+2022/09/24 22:36:22 Force build: true
+2022/09/24 22:36:22 On error: 
+2022/09/24 22:36:22 Waiting on builds to complete...
+2022/09/24 22:36:22 Starting build run: virtualbox-iso.centos6
+2022/09/24 22:36:22 Running builder: 
+2022/09/24 22:36:22 [INFO] (telemetry) Starting builder virtualbox-iso.centos6
+2022/09/24 22:36:22 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:22 [DEBUG] builder/virtualbox: VBOX_MSI_INSTALL_PATH = C:\Program Files\Oracle\VirtualBox\
+2022/09/24 22:36:22 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:22 VBoxManage path: C:\Program Files\Oracle\VirtualBox\VBoxManage.exe
+2022/09/24 22:36:22 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:22 VBoxManage --version output: 6.1.38r153438
+2022/09/24 22:36:22 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:22 VirtualBox version: 6.1.38
+2022/09/24 22:36:22 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:22 guest_additions_url is blank; querying driver for iso.
+2022/09/24 22:36:23 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:23 Found Default Guest Additions ISO: C:\Program Files\Oracle\VirtualBox/VBoxGuestAdditions.iso
+2022/09/24 22:36:23 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:23 Guest additions URL: C:\Program Files\Oracle\VirtualBox/VBoxGuestAdditions.iso
+2022/09/24 22:36:23 ui: ==> virtualbox-iso.centos6: Retrieving Guest additions
+2022/09/24 22:36:23 ui: ==> virtualbox-iso.centos6: Trying C:\Program Files\Oracle\VirtualBox/VBoxGuestAdditions.iso
+2022/09/24 22:36:23 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:23 Acquiring lock for: file://C:/Program%20Files/Oracle/VirtualBox/VBoxGuestAdditions.iso (C:\Users\natst\Documents\Programming\Packer-Examples\CentOS\packer_cache\afa7695602909b267b26b23c8aefe12db6ee78b2.iso.lock)
+2022/09/24 22:36:23 ui: ==> virtualbox-iso.centos6: Trying file://C:/Program%20Files/Oracle/VirtualBox/VBoxGuestAdditions.iso
+2022/09/24 22:36:23 ui: ==> virtualbox-iso.centos6: file://C:/Program%20Files/Oracle/VirtualBox/VBoxGuestAdditions.iso => C:/Program Files/Oracle/VirtualBox/VBoxGuestAdditions.iso
+2022/09/24 22:36:23 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:23 Leaving retrieve loop for Guest additions
+2022/09/24 22:36:23 ui: ==> virtualbox-iso.centos6: Retrieving ISO
+2022/09/24 22:36:23 ui: ==> virtualbox-iso.centos6: Trying ../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso
+2022/09/24 22:36:23 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:23 Acquiring lock for: ../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso?checksum=sha256%3Aa68e46970678d4d297d46086ae2efdd3e994322d6d862ff51dcce25a0759e41c (C:\Users\natst\Documents\Programming\Packer-Examples\CentOS\packer_cache\dad384ff4183743a3886b955f1b6a32712756482.iso.lock)
+2022/09/24 22:36:23 ui: ==> virtualbox-iso.centos6: Trying ../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso?checksum=sha256%3Aa68e46970678d4d297d46086ae2efdd3e994322d6d862ff51dcce25a0759e41c
+2022/09/24 22:36:35 ui: ==> virtualbox-iso.centos6: ../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso?checksum=sha256%3Aa68e46970678d4d297d46086ae2efdd3e994322d6d862ff51dcce25a0759e41c => C:/Users/natst/Documents/Programming/ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso
+2022/09/24 22:36:35 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:35 Leaving retrieve loop for ISO
+2022/09/24 22:36:35 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:35 No floppy files specified. Floppy disk will not be made.
+2022/09/24 22:36:35 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:35 No CD files specified. CD disk will not be made.
+2022/09/24 22:36:35 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:35 Found available port: 8345 on IP: 0.0.0.0
+2022/09/24 22:36:35 ui: ==> virtualbox-iso.centos6: Starting HTTP server on port 8345
+2022/09/24 22:36:35 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:35 Suppressing annoying messages in VirtualBox
+2022/09/24 22:36:35 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:35 Executing VBoxManage: []string{"setextradata", "global", "GUI/RegistrationData", "triesLeft=0"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"setextradata", "global", "GUI/SuppressMessages", "confirmInputCapture,remindAboutAutoCapture,remindAboutMouseIntegrationOff,remindAboutMouseIntegrationOn,remindAboutWrongColorDepth"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"setextradata", "global", "GUI/UpdateCheckCount", "60"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"setextradata", "global", "GUI/UpdateDate", "1 d, 2023-01-01, stable"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 ui: ==> virtualbox-iso.centos6: Creating virtual machine...
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"createvm", "--name", "centos-6.10-x86_64", "--ostype", "RedHat_64", "--register"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout: Virtual machine 'centos-6.10-x86_64' is created and registered.
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: UUID: 1517dc79-28c7-41d2-a322-f2508100c214
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: Settings file: 'C:\Users\natst\VirtualBox VMs\centos-6.10-x86_64\centos-6.10-x86_64.vbox'
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--boot1", "disk", "--boot2", "dvd", "--boot3", "none", "--boot4", "none"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--cpus", "1"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--memory", "512"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--usb", "off"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--audio", "none", "--audiocontroller", "ac97"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--chipset", "piix3"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--firmware", "bios"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--nictype1", "82540EM", "--nictype2", "82540EM", "--nictype3", "82540EM", "--nictype4", "82540EM", "--nictype5", "82540EM", "--nictype6", "82540EM", "--nictype7", "82540EM", "--nictype8", "82540EM"}
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stdout:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 stderr:
+2022/09/24 22:36:36 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:36 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--graphicscontroller", "vboxvga", "--vram", "4"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--rtcuseutc", "off"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--accelerate3d", "off"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 ui: ==> virtualbox-iso.centos6: Creating hard drive output-centos6\centos-6.10-x86_64.vdi with size 65536 MiB...
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"createhd", "--filename", "output-centos6\\centos-6.10-x86_64.vdi", "--size", "65536", "--format", "VDI", "--variant", "Standard"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout: Medium created. UUID: 13eaa7cb-bec7-4461-91ec-17f6bf835408
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr: 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"storagectl", "centos-6.10-x86_64", "--name", "IDE Controller", "--add", "ide"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 VBoxManage --version output: 6.1.38r153438
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 VirtualBox version: 6.1.38
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"storagectl", "centos-6.10-x86_64", "--name", "SATA Controller", "--add", "sata", "--portcount", "1"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"storageattach", "centos-6.10-x86_64", "--storagectl", "IDE Controller", "--port", "0", "--device", "0", "--type", "hdd", "--medium", "output-centos6\\centos-6.10-x86_64.vdi", "--nonrotational", "off", "--discard", "off"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 ui: ==> virtualbox-iso.centos6: Mounting ISOs...
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Not attaching guest additions since we're uploading.
+2022/09/24 22:36:37 ui:     virtualbox-iso.centos6: Mounting boot ISO...
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"storageattach", "centos-6.10-x86_64", "--storagectl", "SATA Controller", "--port", "13", "--device", "0", "--type", "dvddrive", "--medium", "C:\\Users\\natst\\Documents\\Programming\\ISOs\\CentOS\\CentOS-6.10-x86_64-bin-DVD1.iso"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Looking for available port between 5900 and 6000 on 127.0.0.1
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Found available port: 5947 on IP: 127.0.0.1
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--vrdeaddress", "127.0.0.1", "--vrdeauthtype", "null", "--vrde", "on", "--vrdeport", "5947"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 No floppy disk, not attaching.
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Looking for available communicator (SSH, WinRM, etc) port between 2222 and 4444
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Found available port: 3692 on IP: 127.0.0.1
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--nic1", "nat"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 ui: ==> virtualbox-iso.centos6: Creating forwarded port mapping for communicator (SSH, WinRM, etc) (host port 3692)
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--natpf1", "packercomm,tcp,127.0.0.1,3692,,22"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 ui: ==> virtualbox-iso.centos6: Executing custom VBoxManage commands...
+2022/09/24 22:36:37 ui:     virtualbox-iso.centos6: Executing: modifyvm centos-6.10-x86_64 --memory 1024
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--memory", "1024"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 ui:     virtualbox-iso.centos6: Executing: modifyvm centos-6.10-x86_64 --cpus 2
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--cpus", "2"}
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stdout:
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 stderr:
+2022/09/24 22:36:37 ui:     virtualbox-iso.centos6: Executing: modifyvm centos-6.10-x86_64 --firmware EFI
+2022/09/24 22:36:37 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:37 Executing VBoxManage: []string{"modifyvm", "centos-6.10-x86_64", "--firmware", "EFI"}
+2022/09/24 22:36:38 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:38 stdout:
+2022/09/24 22:36:38 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:38 stderr:
+2022/09/24 22:36:38 ui: ==> virtualbox-iso.centos6: Starting the virtual machine...
+2022/09/24 22:36:38 ui:     virtualbox-iso.centos6: The VM will be run headless, without a GUI. If you want to
+    virtualbox-iso.centos6: view the screen of the VM, connect via VRDP without a password to
+    virtualbox-iso.centos6: rdp://127.0.0.1:5947
+2022/09/24 22:36:38 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:38 Executing VBoxManage: []string{"startvm", "centos-6.10-x86_64", "--type", "headless"}
+2022/09/24 22:36:45 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:45 stdout: Waiting for VM "centos-6.10-x86_64" to power on...
+2022/09/24 22:36:45 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: VM "centos-6.10-x86_64" has been successfully started.
+2022/09/24 22:36:45 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:45 stderr:
+2022/09/24 22:36:45 ui: ==> virtualbox-iso.centos6: Waiting 5s for boot...
+2022/09/24 22:36:50 ui: ==> virtualbox-iso.centos6: Typing the boot command...
+2022/09/24 22:36:50 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:50 Special code 'Press' '<up>' found, replacing with: &{[e0 48] [e0 c8]}
+2022/09/24 22:36:50 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:50 Executing VBoxManage: []string{"controlvm", "centos-6.10-x86_64", "keyboardputscancode", "e0", "48", "e0", "c8"}
+2022/09/24 22:36:50 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:50 stdout:
+2022/09/24 22:36:50 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:50 stderr:
+2022/09/24 22:36:50 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:50 [INFO] Waiting 1s
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Special code 'Press' '<tab>' found, replacing with: &{[0f] [8f]}
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char ' ', code '39b9', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 't', code '1494', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 'e', code '1292', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 'x', code '2dad', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 't', code '1494', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char ' ', code '39b9', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 'k', code '25a5', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 's', code '1f9f', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '=', code '0d8d', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 'h', code '23a3', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 't', code '1494', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 't', code '1494', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 'p', code '1999', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char ':', code '2a27a7aa', shift true
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '/', code '35b5', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '/', code '35b5', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '1', code '0282', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '0', code '0b8b', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '.', code '34b4', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '0', code '0b8b', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '.', code '34b4', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '2', code '0383', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '.', code '34b4', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '2', code '0383', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char ':', code '2a27a7aa', shift true
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '8', code '0989', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '3', code '0484', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '4', code '0585', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '5', code '0686', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '/', code '35b5', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 'k', code '25a5', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 's', code '1f9f', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '-', code '0c8c', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '6', code '0787', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char '.', code '34b4', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 'c', code '2eae', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 'f', code '21a1', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Sending char 'g', code '22a2', shift false
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Special code 'Press' '<enter>' found, replacing with: &{[1c] [9c]}
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Executing VBoxManage: []string{"controlvm", "centos-6.10-x86_64", "keyboardputscancode", "0f", "8f", "39", "b9", "14", "94", "12", "92", "2d", "ad", "14", "94", "39", "b9", "25", "a5", "1f", "9f", "0d", "8d", "23", "a3", "14", "94"}
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 stdout:
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 stderr:
+2022/09/24 22:36:51 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:51 Executing VBoxManage: []string{"controlvm", "centos-6.10-x86_64", "keyboardputscancode", "14", "94", "19", "99", "2a", "27", "a7", "aa", "35", "b5", "35", "b5", "02", "82", "0b", "8b", "34", "b4", "0b", "8b", "34", "b4", "03", "83"}
+2022/09/24 22:36:52 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:52 stdout:
+2022/09/24 22:36:52 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:52 stderr:
+2022/09/24 22:36:52 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:52 Executing VBoxManage: []string{"controlvm", "centos-6.10-x86_64", "keyboardputscancode", "34", "b4", "03", "83", "2a", "27", "a7", "aa", "09", "89", "04", "84", "05", "85", "06", "86", "35", "b5", "25", "a5", "1f", "9f", "0c", "8c"}
+2022/09/24 22:36:52 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:52 stdout:
+2022/09/24 22:36:52 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:52 stderr:
+2022/09/24 22:36:52 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:52 Executing VBoxManage: []string{"controlvm", "centos-6.10-x86_64", "keyboardputscancode", "07", "87", "34", "b4", "2e", "ae", "21", "a1", "22", "a2", "1c", "9c"}
+2022/09/24 22:36:52 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:52 stdout:
+2022/09/24 22:36:52 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:52 stderr:
+2022/09/24 22:36:53 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:53 [INFO] Waiting 1s
+2022/09/24 22:36:54 ui: ==> virtualbox-iso.centos6: Using SSH communicator to connect: 127.0.0.1
+2022/09/24 22:36:54 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:54 [INFO] Waiting for SSH, up to timeout: 30m0s
+2022/09/24 22:36:54 ui: ==> virtualbox-iso.centos6: Waiting for SSH to become available...
+2022/09/24 22:36:54 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:54 [INFO] Attempting SSH connection to 127.0.0.1:3692...
+2022/09/24 22:36:54 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:54 [DEBUG] reconnecting to TCP connection for SSH
+2022/09/24 22:36:54 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:36:54 [DEBUG] handshaking with SSH
+2022/09/24 22:37:54 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:37:54 [DEBUG] SSH handshake err: Timeout during SSH handshake
+2022/09/24 22:38:01 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:38:01 [INFO] Attempting SSH connection to 127.0.0.1:3692...
+2022/09/24 22:38:01 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:38:01 [DEBUG] reconnecting to TCP connection for SSH
+2022/09/24 22:38:01 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:38:01 [DEBUG] handshaking with SSH
+2022/09/24 22:38:59 packer.exe plugin: Received interrupt signal (count: 1). Ignoring.
+2022/09/24 22:38:59 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:38:59 Received interrupt signal (count: 1). Ignoring.
+2022/09/24 22:38:59 ui error: Cancelling build after receiving interrupt
+2022/09/24 22:38:59 Cancelling builder after context cancellation context canceled
+2022/09/24 22:38:59 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:38:59 [WARN] Interrupt detected, quitting waiting for SSH.
+2022/09/24 22:38:59 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:38:59 Executing VBoxManage: []string{"controlvm", "centos-6.10-x86_64", "poweroff"}
+2022/09/24 22:38:59 packer.exe plugin: Received interrupt signal (count: 2). Ignoring.
+2022/09/24 22:38:59 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:38:59 Received interrupt signal (count: 2). Ignoring.
+2022/09/24 22:38:59 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:38:59 [DEBUG] SSH handshake err: ssh: handshake failed: read tcp 127.0.0.1:58821->127.0.0.1:3692: wsarecv: An existing connection was forcibly closed by the remote host.
+2022/09/24 22:38:59 packer.exe plugin: Received interrupt signal (count: 3). Ignoring.
+2022/09/24 22:38:59 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:38:59 Received interrupt signal (count: 3). Ignoring.
+2022/09/24 22:38:59 packer.exe plugin: Received interrupt signal (count: 4). Ignoring.
+2022/09/24 22:38:59 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:38:59 Received interrupt signal (count: 4). Ignoring.
+2022/09/24 22:39:01 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:39:01 [DEBUG] SSH wait cancelled. Exiting loop.
+2022/09/24 22:39:29 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:39:29 stdout:
+2022/09/24 22:39:29 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:39:29 stderr: 0%...10%...20%...
+2022/09/24 22:39:29 ui error: ==> virtualbox-iso.centos6: Error shutting down VM: VBoxManage error: 0%...10%...20%...
+2022/09/24 22:39:29 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:39:29 failed to unlock port lockfile: close tcp 127.0.0.1:3692: use of closed network connection
+2022/09/24 22:39:29 ui: ==> virtualbox-iso.centos6: Cleaning up floppy disk...
+2022/09/24 22:39:29 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:39:29 failed to unlock port lockfile: close tcp 127.0.0.1:5947: use of closed network connection
+2022/09/24 22:39:29 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:39:29 Executing VBoxManage: []string{"storageattach", "centos-6.10-x86_64", "--storagectl", "SATA Controller", "--port", "13", "--device", "0", "--type", "dvddrive", "--medium", "none"}
+2022/09/24 22:39:29 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:39:29 stdout:
+2022/09/24 22:39:29 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:39:29 stderr:
+2022/09/24 22:39:29 ui: ==> virtualbox-iso.centos6: Deregistering and deleting VM...
+2022/09/24 22:39:29 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:39:29 Executing VBoxManage: []string{"unregistervm", "centos-6.10-x86_64", "--delete"}
+2022/09/24 22:39:29 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:39:29 stdout:
+2022/09/24 22:39:29 packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe plugin: 2022/09/24 22:39:29 stderr: 0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%
+2022/09/24 22:39:29 ui: ==> virtualbox-iso.centos6: Deleting output directory...
+2022/09/24 22:39:29 [INFO] (telemetry) ending virtualbox-iso.centos6
+2022/09/24 22:39:29 ui error: Build 'virtualbox-iso.centos6' errored after 3 minutes 6 seconds: Build was cancelled.
+2022/09/24 22:39:29 ui: 
+==> Wait completed after 3 minutes 6 seconds
+2022/09/24 22:39:29 ui: Cleanly cancelled builds after being interrupted.
+2022/09/24 22:39:29 [INFO] (telemetry) Finalizing.
+2022/09/24 22:39:29 waiting for all plugin processes to complete...
+2022/09/24 22:39:29 C:\HashiCorp\Packer\packer.exe: plugin process exited
+2022/09/24 22:39:29 C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\virtualbox\packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe: plugin process exited

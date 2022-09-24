@@ -9,7 +9,7 @@ variable "build_directory" {
   default = "../../builds"
 }
 
-variable "cpus" {
+variable "numvcpus" {
   type    = string
   default = "2"
 }
@@ -54,7 +54,7 @@ variable "iso_name" {
   default = "CentOS-6.10-x86_64-bin-DVD1.iso"
 }
 
-variable "memory" {
+variable "memsize" {
   type    = string
   default = "1024"
 }
@@ -74,38 +74,68 @@ variable "no_proxy" {
   default = "${env("no_proxy")}"
 }
 
-variable "template" {
+variable "ssh_password" {
+  type    = string
+  default = "vagrant"
+}
+
+variable "ssh_username" {
+  type    = string
+  default = "vagrant"
+}
+
+variable "vm_name" {
   type    = string
   default = "centos-6.10-x86_64"
+}
+
+source "virtualbox-iso" "centos6" {
+  boot_command   = ["<up><wait><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-6.cfg<enter><wait>"]
+  boot_wait        = "5s"
+  disk_size        = "${var.disk_size}"
+  guest_os_type    = "RedHat_64"
+  headless         = true
+  http_directory   = "../http/CentOS"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_interface    = "sata"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
+  ssh_password     = "${var.ssh_password}"
+  ssh_port         = 22
+  ssh_timeout      = "30m"
+  ssh_username     = "${var.ssh_username}"
+  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--firmware", "EFI"]]
+  vm_name          = "${var.vm_name}"
 }
 
 source "vmware-iso" "centos6" {
   boot_command   = ["<up><wait><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-6.cfg<enter><wait>"]
   boot_wait      = "5s"
-  cpus           = "${var.cpus}"
   disk_size      = "${var.disk_size}"
   guest_os_type  = "centos-64"
   headless       = "${var.headless}"
   http_directory = "../http/CentOS"
   iso_checksum   = "md5:8ffcc065c3110e6fa0144cb85e4bb4bc"
   iso_urls       = ["${var.iso_path}", "${var.iso_url}"]
-  memory         = "${var.memory}"
   #output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
-  ssh_password        = "vagrant"
+  ssh_password        = "${var.ssh_password}"
   ssh_port            = 22
   ssh_timeout         = "10000s"
-  ssh_username        = "vagrant"
+  ssh_username        = "${var.ssh_username}"
   tools_upload_flavor = "linux"
-  vm_name             = "${var.template}"
+  vm_name          = "${var.vm_name}"
   vmx_data = {
-    "cpuid.coresPerSocket" = "1"
+    firmware            = "efi"
+    memsize             = "${var.memsize}"
+    numvcpus            = "${var.numvcpus}"
+    "virtualHW.version" = "14"
   }
   vmx_remove_ethernet_interfaces = true
 }
 
 build {
-  sources = ["source.vmware-iso.centos6"]
+  sources = ["source.vmware-iso.centos6", "source.virtualbox-iso.centos6"]
 
   provisioner "shell" {
     environment_vars  = ["HOME_DIR=/home/vagrant", "http_proxy=${var.http_proxy}", "https_proxy=${var.https_proxy}", "no_proxy=${var.no_proxy}"]

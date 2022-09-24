@@ -18,7 +18,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate -only='vmware-iso.centos7' "$template_file"
+    packer validate -only='virtualbox-iso.centos7' --force "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build -only='vmware-iso.centos7' --force "$template_file"
+    packer build --force -only='virtualbox-iso.centos7' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

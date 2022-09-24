@@ -53,12 +53,12 @@ variable "vm_name" {
 }
 
 source "virtualbox-iso" "centos8_vbox" {
-  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/CentOS/ks-8-stream.cfg<leftCtrlOn>x<leftCtrlOff>"]
+  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8-stream.cfg<leftCtrlOn>x<leftCtrlOff>"]
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "RedHat_64"
   headless         = true
-  http_directory   = "../http"
+  http_directory   = "../http/CentOS"
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
@@ -72,13 +72,13 @@ source "virtualbox-iso" "centos8_vbox" {
 }
 
 source "vmware-iso" "centos8_vmware" {
-  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/CentOS/ks-8-stream.cfg<leftCtrlOn>x<leftCtrlOff>"]
+  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8-stream.cfg<leftCtrlOn>x<leftCtrlOff>"]
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
   guest_os_type    = "centos-64"
   headless         = false
-  http_directory   = "../http"
+  http_directory   = "../http/CentOS"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
