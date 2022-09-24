@@ -11,17 +11,20 @@ variable "disk_size" {
 
 variable "iso_checksum" {
   type    = string
-  default = "9602c69c52d93f51295c0199af395ca0edbe35e36506e32b8e749ce6c8f5b60a"
+  #default = "3d09d111f1664334ab7ae080a32deb32effe6803b1ade9dcc32c1e3eead79b3a"
+  default = "ba9f15bb15d689978b10eda55c276020a4bc5b8ffc624d24a1cfc73017aff75c"
 }
 
 variable "iso_path" {
   type    = string
-  default = "../../ISOs/CentOS/CentOS8/CentOS-8.5.2111-x86_64-boot.iso"
+  #default = "../../ISOs/CentOS/CentOS-Stream-8-x86_64-latest-boot.iso"
+  default = "../../ISOs/CentOS/CentOS-Stream-8-x86_64-latest-dvd1.iso"
 }
 
 variable "iso_url" {
   type    = string
-  default = "http://mirror.sov.uk.goscomb.net/centos/8.5.2111/isos/x86_64/CentOS-8.5.2111-x86_64-boot.iso"
+  #default = "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-latest-boot.iso"
+  default = "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-latest-dvd1.iso"
 }
 
 variable "memsize" {
@@ -31,26 +34,26 @@ variable "memsize" {
 
 variable "numvcpus" {
   type    = string
-  default = "1"
+  default = "2"
 }
 
 variable "ssh_password" {
   type    = string
-  default = "packer"
+  default = "vagrant"
 }
 
 variable "ssh_username" {
   type    = string
-  default = "packer"
+  default = "vagrant"
 }
 
 variable "vm_name" {
   type    = string
-  default = "CentOS-8-x86_64-2004"
+  default = "centos-stream-8-x86_64"
 }
 
 source "virtualbox-iso" "centos8_vbox" {
-  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/CentOS/ks-8.cfg<leftCtrlOn>x<leftCtrlOff>"]
+  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/CentOS/ks-8-stream.cfg<leftCtrlOn>x<leftCtrlOff>"]
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "RedHat_64"
@@ -58,7 +61,7 @@ source "virtualbox-iso" "centos8_vbox" {
   http_directory   = "../http"
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
-  iso_urls         = ["../../ISOs/CentOS/CentOS8/CentOS-8.5.2111-x86_64-boot.iso", "${var.iso_url}"]
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
@@ -69,19 +72,19 @@ source "virtualbox-iso" "centos8_vbox" {
 }
 
 source "vmware-iso" "centos8_vmware" {
-  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/CentOS/ks-8.cfg<leftCtrlOn>x<leftCtrlOff>"]
+  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/CentOS/ks-8-stream.cfg<leftCtrlOn>x<leftCtrlOff>"]
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
   guest_os_type    = "centos-64"
-  headless         = true
+  headless         = false
   http_directory   = "../http"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
-  ssh_timeout      = "30m"
+  ssh_timeout      = "2h"
   ssh_username     = "${var.ssh_username}"
   vm_name          = "${var.vm_name}"
   vmx_data = {
