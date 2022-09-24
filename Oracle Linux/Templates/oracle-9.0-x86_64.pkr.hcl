@@ -139,7 +139,7 @@ source "virtualbox-iso" "oracle9" {
   guest_os_type           = "Oracle_64"
   hard_drive_interface    = "sata"
   headless                = "${var.headless}"
-  http_directory = "./http"
+  http_directory = "../http"
   iso_checksum            = "${var.iso_checksum}"
   iso_url                 = "${var.iso_url}"
   memory                  = "${var.memory}"
@@ -154,16 +154,14 @@ source "virtualbox-iso" "oracle9" {
 }
 
 source "vmware-iso" "oracle9" {
-  boot_command        = [ "<up><wait><tab> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-9.cfg<enter><wait>"]
-  boot_wait           = "120s"
-  cpus                = "${var.cpus}"
+  boot_command        = [ "<tab><wait2m> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-9.cfg<enter><wait>"]
+  boot_wait           = "5s"
   disk_size           = "${var.disk_size}"
   guest_os_type       = "oraclelinux-64"
   headless            = "${var.headless}"
   http_directory = "./http"
   iso_checksum        = "${var.iso_checksum}"
   iso_url             = "${var.iso_url}"
-  memory              = "${var.memory}"
   output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
   ssh_password        = "vagrant"
@@ -174,7 +172,10 @@ source "vmware-iso" "oracle9" {
   version             = 19
   vm_name             = "${var.template}"
   vmx_data = {
-    "cpuid.coresPerSocket" = "1"
+    memsize             = "${var.memory}"
+    numvcpus            = "${var.cpus}"
+    "scsi0.virtualDev"  = "lsisas1068"
+    "virtualHW.version" = "14"
   }
   vmx_remove_ethernet_interfaces = true
 }

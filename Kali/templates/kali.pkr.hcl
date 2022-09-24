@@ -26,14 +26,14 @@ source "virtualbox-iso" "kali_vbox" {
   guest_os_type           = "Debian_64"
   headless                = true
   http_directory          = "../http"
-  iso_checksum            = "sha256:265812bc13ab11d40c610424871bdf9198b9e7cad99b06540d96fac67dd704de"
+  iso_checksum            = "265812bc13ab11d40c610424871bdf9198b9e7cad99b06540d96fac67dd704de"
   iso_urls                = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command        = "echo 'kali'|sudo -S shutdown -P now"
   ssh_password            = "kali"
   ssh_port                = 22
   ssh_timeout             = "8000s"
   ssh_username            = "kali"
-  vboxmanage              = [["modifyvm", "{{ .Name }}", "--memory", "4096"], ["modifyvm", "{{ .Name }}", "--cpus", "1"]]
+  vboxmanage              = [["modifyvm", "{{ .Name }}", "--memory", "4096"], ["modifyvm", "{{ .Name }}", "--cpus", "2"]]
   virtualbox_version_file = ".vbox_version"
   vm_name                 = "packer-kali-rolling-amd64"
 }
@@ -45,7 +45,7 @@ source "vmware-iso" "kali_vmware" {
   guest_os_type    = "debian8-64"
   headless         = false
   http_directory   = "../http"
-  iso_checksum     = "sha256:265812bc13ab11d40c610424871bdf9198b9e7cad99b06540d96fac67dd704de"
+  iso_checksum     = "265812bc13ab11d40c610424871bdf9198b9e7cad99b06540d96fac67dd704de"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   output_directory = "output-vmware-iso"
   shutdown_command = "echo 'kali'|sudo -S shutdown -P now"
@@ -55,10 +55,9 @@ source "vmware-iso" "kali_vmware" {
   ssh_username     = "kali"
   vm_name          = "packer-kali-rolling-amd64"
   vmx_data = {
-    "cpuid.coresPerSocket"    = "1"
     "ethernet0.pciSlotNumber" = "32"
     memsize                   = "4096"
-    numvcpus                  = "1"
+    numvcpus                  = "2"
   }
 }
 

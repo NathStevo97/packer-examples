@@ -7,7 +7,7 @@ $startDTM = (Get-Date)
 $template_file="./templates/oracle-9.0-x86_64.pkr.hcl"
 #$var_file="./variables/variables_win2019_std.pkrvars.hcl"
 $machine="Oracle Linux 9.0"
-$packer_log=0
+$packer_log=1
 
 packer init "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been

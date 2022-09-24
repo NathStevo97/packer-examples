@@ -7,7 +7,7 @@ $startDTM = (Get-Date)
 $template_file="./templates/kali.pkr.hcl"
 #$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
 $machine="Kali Linux"
-$packer_log=0
+$packer_log=1
 $env:PACKER_LOG_PATH="packerlog-10-hv1.txt"
 packer init "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been

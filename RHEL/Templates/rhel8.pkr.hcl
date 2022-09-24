@@ -20,7 +20,7 @@ variable "numvcpus" {
 
 source "vmware-iso" "rhel-8" {
   boot_command     = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg<enter><wait>"]
-  boot_wait        = "10s"
+  boot_wait        = "45s"
   disk_size        = 81920
   guest_os_type    = "rhel8-64"
   headless         = false
