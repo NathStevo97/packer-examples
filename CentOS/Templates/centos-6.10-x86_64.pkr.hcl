@@ -109,7 +109,7 @@ source "virtualbox-iso" "centos6" {
 }
 
 source "vmware-iso" "centos6" {
-  boot_command   = ["<up><wait><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-6.cfg<enter><wait>"]
+  boot_command   = ["<up>e<wait>e<wait> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-6.cfg <esc><wait> b"]
   boot_wait      = "5s"
   disk_size      = "${var.disk_size}"
   guest_os_type  = "centos-64"

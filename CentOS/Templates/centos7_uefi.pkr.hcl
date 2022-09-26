@@ -61,8 +61,8 @@ source "virtualbox-iso" "centos7" {
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
-  shutdown_command = "echo 'packer' | sudo -S /sbin/shutdown -P now"
-  shutdown_timeout = "30m"
+  shutdown_command = "echo 'vagrant' | sudo -S /sbin/shutdown -P now"
+  shutdown_timeout = "1h"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "30m"
@@ -81,8 +81,8 @@ source "vmware-iso" "centos7" {
   http_directory   = "../http/CentOS"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
-  shutdown_command = "echo 'packer' | sudo -S /sbin/shutdown -P now"
-  shutdown_timeout = "30m"
+  shutdown_command = "echo 'vagrant' | sudo -S /sbin/shutdown -P now"
+  shutdown_timeout = "1h"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "30m"

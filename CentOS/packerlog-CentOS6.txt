@@ -1,0 +1,352 @@
+2022/09/26 23:07:08 [INFO] Packer version: 1.8.3 [go1.17.11 windows amd64]
+2022/09/26 23:07:08 [TRACE] discovering plugins in C:\HashiCorp\Packer
+2022/09/26 23:07:08 [TRACE] discovering plugins in C:\Users\natst\AppData\Roaming\packer.d\plugins
+2022/09/26 23:07:08 [DEBUG] Discovered plugin: hyperv = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\hyperv\packer-plugin-hyperv_v1.0.4_x5.0_windows_amd64.exe
+2022/09/26 23:07:08 [DEBUG] Discovered plugin: virtualbox = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\virtualbox\packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe
+2022/09/26 23:07:08 [DEBUG] Discovered plugin: vmware = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe
+2022/09/26 23:07:09 [INFO] found external [iso vmcx] builders from hyperv plugin
+2022/09/26 23:07:09 [INFO] found external [iso ovf vm] builders from virtualbox plugin
+2022/09/26 23:07:10 [INFO] found external [iso vmx] builders from vmware plugin
+2022/09/26 23:07:10 [TRACE] discovering plugins in .
+2022/09/26 23:07:10 [INFO] PACKER_CONFIG env var not set; checking the default config file path
+2022/09/26 23:07:10 [INFO] PACKER_CONFIG env var set; attempting to open config file: C:\Users\natst\AppData\Roaming\packer.config
+2022/09/26 23:07:10 [WARN] Config file doesn't exist: C:\Users\natst\AppData\Roaming\packer.config
+2022/09/26 23:07:10 [INFO] Setting cache directory: C:\Users\natst\Documents\Programming\Packer-Examples\CentOS\packer_cache
+e: cannot determine if process is in background: Process background check error: not implemented yet
+2022/09/26 23:07:10 [TRACE] validateValue: not active for numvcpus, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for git_revision, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for iso_checksum, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for iso_path, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for disk_size, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for http_proxy, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for memsize, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for iso_url, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for no_proxy, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for ssh_password, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for ssh_username, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for vm_name, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for box_basename, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for build_directory, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for guest_additions_url, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for https_proxy, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for headless, so skipping
+2022/09/26 23:07:10 [TRACE] validateValue: not active for iso_name, so skipping
+2022/09/26 23:07:10 [TRACE] Starting external plugin C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe start builder iso
+2022/09/26 23:07:10 Starting plugin: C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe []string{"C:\\Users\\natst\\AppData\\Roaming\\packer.d\\plugins\\github.com\\hashicorp\\vmware\\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe", "start", "builder", "iso"}
+2022/09/26 23:07:11 Waiting for RPC address for: C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Plugin port range: [10000,25000]
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Plugin address: tcp 127.0.0.1:10000
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Waiting for connection...
+2022/09/26 23:07:11 Received tcp RPC address for C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe: addr is 127.0.0.1:10000
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Serving a plugin connection...
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 [TRACE] starting builder iso
+2022/09/26 23:07:11 [TRACE] Starting internal plugin packer-provisioner-shell
+2022/09/26 23:07:11 Starting plugin: C:\HashiCorp\Packer\packer.exe []string{"C:\\HashiCorp\\Packer\\packer.exe", "plugin", "packer-provisioner-shell"}
+2022/09/26 23:07:11 Waiting for RPC address for: C:\HashiCorp\Packer\packer.exe
+2022/09/26 23:07:11 packer.exe plugin: [INFO] Packer version: 1.8.3 [go1.17.11 windows amd64]
+2022/09/26 23:07:11 packer.exe plugin: [INFO] PACKER_CONFIG env var not set; checking the default config file path
+2022/09/26 23:07:11 packer.exe plugin: [INFO] PACKER_CONFIG env var set; attempting to open config file: C:\Users\natst\AppData\Roaming\packer.config
+2022/09/26 23:07:11 packer.exe plugin: [WARN] Config file doesn't exist: C:\Users\natst\AppData\Roaming\packer.config
+2022/09/26 23:07:11 packer.exe plugin: [INFO] Setting cache directory: C:\Users\natst\Documents\Programming\Packer-Examples\CentOS\packer_cache
+2022/09/26 23:07:11 packer.exe plugin: args: []string{"packer-provisioner-shell"}
+2022/09/26 23:07:11 packer.exe plugin: Plugin port range: [10000,25000]
+2022/09/26 23:07:11 packer.exe plugin: Plugin address: tcp 127.0.0.1:10000
+2022/09/26 23:07:11 Received tcp RPC address for C:\HashiCorp\Packer\packer.exe: addr is 127.0.0.1:10000
+2022/09/26 23:07:11 packer.exe plugin: Waiting for connection...
+2022/09/26 23:07:11 packer.exe plugin: Serving a plugin connection...
+2022/09/26 23:07:11 ui: Warning: Your vmx data contains the following variable(s), which Packer normally sets when it generates its own default vmx template. This may cause your build to fail or behave unpredictably: numvcpus, memsize, virtualHW.version
+
+  on ./templates/centos-6.10-x86_64.pkr.hcl line 111:
+  (source code not available)
+
+2022/09/26 23:07:11 ui: vmware-iso.centos6: output will be in this color.
+2022/09/26 23:07:11 ui: 
+2022/09/26 23:07:11 Build debug mode: false
+2022/09/26 23:07:11 Force build: true
+2022/09/26 23:07:11 On error: 
+2022/09/26 23:07:11 Waiting on builds to complete...
+2022/09/26 23:07:11 Starting build run: vmware-iso.centos6
+2022/09/26 23:07:11 Running builder: 
+2022/09/26 23:07:11 [INFO] (telemetry) Starting builder vmware-iso.centos6
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Searching for file 'C:/Program Files (x86)/VMware/VMware Workstation/vmware.exe'
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Found file 'C:/Program Files (x86)/VMware/VMware Workstation/vmware.exe'
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Searching for file 'C:/Program Files (x86)/VMware/VMware Workstation/vmrun.exe'
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Found file 'C:/Program Files (x86)/VMware/VMware Workstation/vmrun.exe'
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Searching for file 'C:/Program Files (x86)/VMware/VMware Workstation/vmware-vdiskmanager.exe'
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Found file 'C:/Program Files (x86)/VMware/VMware Workstation/vmware-vdiskmanager.exe'
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 VMware app path: C:/Program Files (x86)/VMware/VMware Workstation/vmware.exe
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 vmrun path: C:/Program Files (x86)/VMware/VMware Workstation/vmrun.exe
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 vdisk-manager path: C:/Program Files (x86)/VMware/VMware Workstation/vmware-vdiskmanager.exe
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Detected VMware WS version: 16
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Testing against vmware driver *common.Workstation10Driver, Success: true
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Searching for file 'C:/Program Files (x86)/VMware/VMware Workstation/linux.iso'
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Found file 'C:/Program Files (x86)/VMware/VMware Workstation/linux.iso'
+2022/09/26 23:07:11 ui: ==> vmware-iso.centos6: Retrieving ISO
+2022/09/26 23:07:11 ui: ==> vmware-iso.centos6: Trying ../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso
+2022/09/26 23:07:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:11 Acquiring lock for: ../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso?checksum=md5%3A8ffcc065c3110e6fa0144cb85e4bb4bc (C:\Users\natst\Documents\Programming\Packer-Examples\CentOS\packer_cache\50b29683d56de73b85282a28b0689c52b49ed8a0.iso.lock)
+2022/09/26 23:07:11 ui: ==> vmware-iso.centos6: Trying ../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso?checksum=md5%3A8ffcc065c3110e6fa0144cb85e4bb4bc
+2022/09/26 23:07:16 ui: ==> vmware-iso.centos6: ../../ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso?checksum=md5%3A8ffcc065c3110e6fa0144cb85e4bb4bc => C:/Users/natst/Documents/Programming/ISOs/CentOS/CentOS-6.10-x86_64-bin-DVD1.iso
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Leaving retrieve loop for ISO
+2022/09/26 23:07:16 ui: ==> vmware-iso.centos6: Configuring output and export directories...
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 No floppy files specified. Floppy disk will not be made.
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 No CD files specified. CD disk will not be made.
+2022/09/26 23:07:16 ui: ==> vmware-iso.centos6: Creating required virtual machine disks
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 [INFO] Creating disk with Path: output-centos6\disk.vmdk and Size: 65536M
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Executing: C:/Program Files (x86)/VMware/VMware Workstation/vmware-vdiskmanager.exe -c -s 65536M -a lsilogic -t 1 output-centos6\disk.vmdk
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 stdout: Creating disk 'output-centos6\disk.vmdk'
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: Virtual disk creation successful.
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 stderr:
+2022/09/26 23:07:16 ui: ==> vmware-iso.centos6: Building and writing VMX file
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Writing VMX to: output-centos6\centos-6.10-x86_64.vmx
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Configuring VMX...
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Setting VMX: 'virtualHW.version' = '14'
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Setting VMX: 'firmware' = 'efi'
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Setting VMX: 'memsize' = '1024'
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Setting VMX: 'numvcpus' = '2'
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Writing VMX to: output-centos6\centos-6.10-x86_64.vmx
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Suppressing messages in VMX
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 HostIP discovered device matching nat: vmnet8
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Searching for file 'C:/ProgramData/VMware/vmnetdhcp.conf'
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Found file 'C:/ProgramData/VMware/vmnetdhcp.conf'
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Host IP for the VMware machine: 192.168.249.1
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Found available port: 8748 on IP: 0.0.0.0
+2022/09/26 23:07:16 ui: ==> vmware-iso.centos6: Starting HTTP server on port 8748
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Looking for available port between 5900 and 6000
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Found available port: 5983 on IP: 127.0.0.1
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Found available VNC port: 127.0.0.1:5983
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Writing VMX to: output-centos6\centos-6.10-x86_64.vmx
+2022/09/26 23:07:16 ui: ==> vmware-iso.centos6: Starting virtual machine...
+2022/09/26 23:07:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:16 Executing: C:/Program Files (x86)/VMware/VMware Workstation/vmrun.exe -T ws start output-centos6\centos-6.10-x86_64.vmx gui
+2022/09/26 23:07:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:19 stdout:
+2022/09/26 23:07:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:19 stderr:
+2022/09/26 23:07:19 ui: ==> vmware-iso.centos6: Connecting to VNC...
+2022/09/26 23:07:19 ui: ==> vmware-iso.centos6: Waiting 5s for boot...
+2022/09/26 23:07:24 ui: ==> vmware-iso.centos6: Typing the boot command over VNC...
+2022/09/26 23:07:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:24 Special code '<up>' found, replacing with: 0xFF52
+2022/09/26 23:07:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:24 Sending char 'e', code 0x65, shift false
+2022/09/26 23:07:25 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:25 [INFO] Waiting 1s
+2022/09/26 23:07:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:26 Sending char 'e', code 0x65, shift false
+2022/09/26 23:07:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:26 [INFO] Waiting 1s
+2022/09/26 23:07:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:27 Sending char ' ', code 0x20, shift false
+2022/09/26 23:07:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:27 Sending char 't', code 0x74, shift false
+2022/09/26 23:07:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:27 Sending char 'e', code 0x65, shift false
+2022/09/26 23:07:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:27 Sending char 'x', code 0x78, shift false
+2022/09/26 23:07:28 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:28 Sending char 't', code 0x74, shift false
+2022/09/26 23:07:28 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:28 Sending char ' ', code 0x20, shift false
+2022/09/26 23:07:28 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:28 Sending char 'k', code 0x6B, shift false
+2022/09/26 23:07:28 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:28 Sending char 's', code 0x73, shift false
+2022/09/26 23:07:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:29 Sending char '=', code 0x3D, shift false
+2022/09/26 23:07:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:29 Sending char 'h', code 0x68, shift false
+2022/09/26 23:07:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:29 Sending char 't', code 0x74, shift false
+2022/09/26 23:07:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:29 Sending char 't', code 0x74, shift false
+2022/09/26 23:07:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:29 Sending char 'p', code 0x70, shift false
+2022/09/26 23:07:30 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:30 Sending char ':', code 0x3A, shift true
+2022/09/26 23:07:30 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:30 Sending char '/', code 0x2F, shift false
+2022/09/26 23:07:30 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:30 Sending char '/', code 0x2F, shift false
+2022/09/26 23:07:30 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:30 Sending char '1', code 0x31, shift false
+2022/09/26 23:07:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:31 Sending char '9', code 0x39, shift false
+2022/09/26 23:07:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:31 Sending char '2', code 0x32, shift false
+2022/09/26 23:07:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:31 Sending char '.', code 0x2E, shift false
+2022/09/26 23:07:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:31 Sending char '1', code 0x31, shift false
+2022/09/26 23:07:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:32 Sending char '6', code 0x36, shift false
+2022/09/26 23:07:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:32 Sending char '8', code 0x38, shift false
+2022/09/26 23:07:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:32 Sending char '.', code 0x2E, shift false
+2022/09/26 23:07:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:32 Sending char '2', code 0x32, shift false
+2022/09/26 23:07:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:32 Sending char '4', code 0x34, shift false
+2022/09/26 23:07:33 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:33 Sending char '9', code 0x39, shift false
+2022/09/26 23:07:33 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:33 Sending char '.', code 0x2E, shift false
+2022/09/26 23:07:33 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:33 Sending char '1', code 0x31, shift false
+2022/09/26 23:07:33 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:33 Sending char ':', code 0x3A, shift true
+2022/09/26 23:07:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:34 Sending char '8', code 0x38, shift false
+2022/09/26 23:07:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:34 Sending char '7', code 0x37, shift false
+2022/09/26 23:07:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:34 Sending char '4', code 0x34, shift false
+2022/09/26 23:07:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:34 Sending char '8', code 0x38, shift false
+2022/09/26 23:07:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:35 Sending char '/', code 0x2F, shift false
+2022/09/26 23:07:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:35 Sending char 'k', code 0x6B, shift false
+2022/09/26 23:07:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:35 Sending char 's', code 0x73, shift false
+2022/09/26 23:07:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:35 Sending char '-', code 0x2D, shift false
+2022/09/26 23:07:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:35 Sending char '6', code 0x36, shift false
+2022/09/26 23:07:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:36 Sending char '.', code 0x2E, shift false
+2022/09/26 23:07:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:36 Sending char 'c', code 0x63, shift false
+2022/09/26 23:07:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:36 Sending char 'f', code 0x66, shift false
+2022/09/26 23:07:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:36 Sending char 'g', code 0x67, shift false
+2022/09/26 23:07:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:37 Sending char ' ', code 0x20, shift false
+2022/09/26 23:07:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:37 Special code '<esc>' found, replacing with: 0xFF1B
+2022/09/26 23:07:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:37 [INFO] Waiting 1s
+2022/09/26 23:07:38 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:38 Sending char ' ', code 0x20, shift false
+2022/09/26 23:07:38 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:38 Sending char 'b', code 0x62, shift false
+2022/09/26 23:07:38 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:38 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:07:38 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:38 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:07:38 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:38 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:07:38 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:38 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:07:38 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:38 Lookup up IP information...
+2022/09/26 23:07:38 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:38 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:07:38 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:38 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:07:53 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:07:53 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:08:08 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:08 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:08:08 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:08 [DEBUG] Unable to get address during connection step: Host is not up
+2022/09/26 23:08:08 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:08 [INFO] Waiting for SSH, up to timeout: 2h46m40s
+2022/09/26 23:08:08 ui: ==> vmware-iso.centos6: Waiting for SSH to become available...
+2022/09/26 23:08:08 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:08 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:08:08 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:08 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:08:08 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:08 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:08:08 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:08 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:08:08 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:08 Lookup up IP information...
+2022/09/26 23:08:08 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:08 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:08:08 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:08 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:08:23 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:23 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:08:38 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:38 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:08:38 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:38 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:08:43 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:43 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:08:43 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:43 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:08:43 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:43 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:08:43 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:43 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:08:43 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:43 Lookup up IP information...
+2022/09/26 23:08:43 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:43 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:08:43 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:43 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:08:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:08:59 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:09:14 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:14 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:09:14 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:14 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:09:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:19 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:09:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:19 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:09:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:19 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:09:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:19 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:09:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:19 Lookup up IP information...
+2022/09/26 23:09:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:19 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:09:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:19 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:09:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:34 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:09:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:49 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:09:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:49 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:09:54 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:54 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:09:54 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:54 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:09:54 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:54 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:09:54 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:54 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:09:54 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:54 Lookup up IP information...
+2022/09/26 23:09:54 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:54 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:09:54 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:09:54 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:10:09 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:09 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:10:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:24 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:10:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:24 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:10:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:29 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:10:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:29 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:10:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:29 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:10:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:29 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:10:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:29 Lookup up IP information...
+2022/09/26 23:10:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:29 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:10:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:29 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:10:44 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:44 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:10:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:59 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:10:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:10:59 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:11:04 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:04 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:11:04 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:04 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:11:04 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:04 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:11:04 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:04 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:11:04 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:04 Lookup up IP information...
+2022/09/26 23:11:04 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:04 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:11:04 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:04 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:11:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:19 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:11:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:34 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:11:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:34 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:11:39 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:39 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:11:39 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:39 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:11:39 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:39 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:11:39 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:39 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:11:39 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:39 Lookup up IP information...
+2022/09/26 23:11:39 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:39 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:11:39 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:39 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:11:54 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:11:54 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:12:09 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:09 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:12:09 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:09 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:12:14 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:14 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:12:14 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:14 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:12:14 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:14 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:12:14 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:14 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:12:14 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:14 Lookup up IP information...
+2022/09/26 23:12:14 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:14 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:12:14 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:14 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:12:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:29 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:12:44 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:44 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:12:44 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:44 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:12:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:49 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:12:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:49 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:12:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:49 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:12:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:49 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:12:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:49 Lookup up IP information...
+2022/09/26 23:12:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:49 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:12:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:12:49 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:13:04 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:04 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:13:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:19 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:13:19 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:19 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:13:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:24 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:13:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:24 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:13:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:24 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:13:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:24 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:13:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:24 Lookup up IP information...
+2022/09/26 23:13:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:24 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:13:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:24 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:13:39 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:39 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:13:54 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:54 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:13:54 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:54 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:13:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:59 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:13:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:59 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:13:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:59 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:13:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:59 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:13:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:59 Lookup up IP information...
+2022/09/26 23:13:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:59 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:13:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:13:59 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:14:14 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:14:14 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:14:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:14:29 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:14:29 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:14:29 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:14:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:14:34 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:14:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:14:34 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:14:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:14:34 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:14:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:14:34 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:14:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:14:34 Lookup up IP information...
+2022/09/26 23:14:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:14:34 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:14:34 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:14:34 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:14:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:14:49 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:15:04 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:04 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:15:04 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:04 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:15:09 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:09 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:15:09 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:09 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:15:09 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:09 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:15:09 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:09 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:15:09 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:09 Lookup up IP information...
+2022/09/26 23:15:09 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:09 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:15:09 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:09 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:15:24 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:24 Skipping lease entry #1 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:15:39 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:39 Skipping lease entry #2 due to being unable to connect to the host (192.168.249.142) with tcp port (22).
+2022/09/26 23:15:39 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:39 [DEBUG] Error getting SSH address: Host is not up
+2022/09/26 23:15:44 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:44 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:15:44 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:44 Found file 'C:/ProgramData/VMware/netmap.conf'
+2022/09/26 23:15:44 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:44 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2022/09/26 23:15:44 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:44 GuestIP discovered device matching nat: vmnet8
+2022/09/26 23:15:44 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:44 Lookup up IP information...
+2022/09/26 23:15:44 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:44 GuestAddress found MAC address in VMX: 00:0c:29:b9:b0:7c
+2022/09/26 23:15:44 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:44 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2022/09/26 23:15:56 packer.exe plugin: Received interrupt signal (count: 1). Ignoring.
+2022/09/26 23:15:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:56 Received interrupt signal (count: 1). Ignoring.
+2022/09/26 23:15:56 ui error: Cancelling build after receiving interrupt
+2022/09/26 23:15:56 Cancelling builder after context cancellation context canceled
+2022/09/26 23:15:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:56 [WARN] Interrupt detected, quitting waiting for SSH.
+2022/09/26 23:15:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:56 Executing: C:/Program Files (x86)/VMware/VMware Workstation/vmrun.exe -T ws list
+2022/09/26 23:15:56 packer.exe plugin: Received interrupt signal (count: 2). Ignoring.
+2022/09/26 23:15:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:56 Received interrupt signal (count: 2). Ignoring.
+2022/09/26 23:15:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:56 stdout:
+2022/09/26 23:15:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:56 stderr:
+2022/09/26 23:15:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:56 failed to unlock port lockfile: close tcp 127.0.0.1:5983: use of closed network connection
+2022/09/26 23:15:56 ui: ==> vmware-iso.centos6: Deleting output directory...
+2022/09/26 23:15:56 [INFO] (telemetry) ending vmware-iso.centos6
+2022/09/26 23:15:56 ui error: Build 'vmware-iso.centos6' errored after 8 minutes 45 seconds: Build was cancelled.
+2022/09/26 23:15:56 ui: 
+==> Wait completed after 8 minutes 45 seconds
+2022/09/26 23:15:56 ui: Cleanly cancelled builds after being interrupted.
+2022/09/26 23:15:56 [INFO] (telemetry) Finalizing.
+2022/09/26 23:15:56 packer.exe plugin: Received interrupt signal (count: 3). Ignoring.
+2022/09/26 23:15:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2022/09/26 23:15:56 Received interrupt signal (count: 3). Ignoring.
