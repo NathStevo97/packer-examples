@@ -11,3 +11,7 @@ autoinstall:
     - systemctl stop ssh
   ssh:
     install-server: true
+    allow-pw: true
+  user-data:
+    disable_root: false
+    timezone: UTC
