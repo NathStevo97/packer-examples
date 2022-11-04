@@ -13,17 +13,17 @@ variable "disk_size" {
 
 variable "iso_checksum" {
   type    = string
-  default = "3022424f777b66a698047ba1c37812026b9714c5"
+  default = "4f1457c4fe14ce48c9b2324924f33ca4f0470475e6da851b39ccbf98f44e7852"
 }
 
 variable "iso_path" {
   type    = string
-  default = "../../ISOs/Windows Server/2019/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
+  default = "../../ISOs/Windows Server/2022/20348.169.210806-2348.fe_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso"
+  default = "https://software-download.microsoft.com/download/sg/20348.169.210806-2348.fe_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso"
 }
 
 variable "memsize" {
@@ -63,7 +63,7 @@ variable "vlan_id" {
 
 variable "vm_name" {
   type    = string
-  default = "Win2019_Standard"
+  default = "Win2022_Standard"
 }
 
 variable "winrm_password" {
@@ -79,13 +79,13 @@ variable "winrm_username" {
 #################################################################
 #                           VMware-ISO Builder                  #
 #################################################################
-source "vmware-iso" "vmware-win2019-standard" {
+source "vmware-iso" "vmware-win2022-standard" {
   boot_wait        = "${var.boot_wait}"
   communicator     = "winrm"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
-  floppy_files     = ["./Files/bios/win2019/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
-  guest_os_type    = "windows9srv-64"
+  floppy_files     = ["./Files/bios/win2022/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
+  guest_os_type    = "windows2019srv-64"
   headless         = false
   http_directory   = "../http/Agent_Installations"
   iso_checksum     = "${var.iso_checksum}"
@@ -110,11 +110,11 @@ source "vmware-iso" "vmware-win2019-standard" {
 #################################################################
 #                        Gen-1 Hyper-V Builder                  #
 #################################################################
-source "hyperv-iso" "hv1-win2019-standard" {
+source "hyperv-iso" "hv1-win2022-standard" {
   communicator         = "winrm"
   cpus                 = "${var.numvcpus}"
   disk_size            = "${var.disk_size}"
-  floppy_files         = ["./Files/bios/win2019/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
+  floppy_files         = ["./Files/bios/win2022/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_additions_mode = "disable"
   headless             = false
   http_directory       = "../http/Agent_Installations"
@@ -132,7 +132,7 @@ source "hyperv-iso" "hv1-win2019-standard" {
 #################################################################
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
-source "hyperv-iso" "hv2-win2019-standard" {
+source "hyperv-iso" "hv2-win2022-standard" {
   boot_command = ["<tab><wait><enter><wait>",
   "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
   boot_wait             = "120s"
@@ -165,10 +165,10 @@ source "hyperv-iso" "hv2-win2019-standard" {
 #                    Virtualbox-ISO Builder                     #
 #################################################################
 
-source "virtualbox-iso" "vbox-win2019-standard" {
+source "virtualbox-iso" "vbox-win2022-standard" {
   communicator         = "winrm"
   disk_size            = 61440
-  floppy_files         = ["./Files/bios/win2019/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
+  floppy_files         = ["./Files/bios/win2022/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
   guest_additions_mode = "disable"
   #guest_additions_path = "c:/Windows/Temp/windows.iso"
   guest_os_type        = " Windows2019_64"
@@ -191,13 +191,13 @@ source "virtualbox-iso" "vbox-win2019-standard" {
 #################################################################
 
 build {
-  sources = ["source.vmware-iso.vmware-win2019-standard", "source.hyperv-iso.hv1-win2019-standard", "source.hyperv-iso.hv2-win2019-standard", "source.virtualbox-iso.vbox-win2019-standard"]
+  sources = ["source.vmware-iso.vmware-win2022-standard", "source.hyperv-iso.hv1-win2022-standard", "source.hyperv-iso.hv2-win2022-standard", "source.virtualbox-iso.vbox-win2022-standard"]
 
 
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
-    only              = ["vmware-iso.win2019-standard"] # this provisioner will only run for the vmware-iso build
+    only              = ["vmware-iso.win2022-standard"] # this provisioner will only run for the vmware-iso build
     scripts           = ["./Files/scripts/vmware-tools.ps1"]
   }
 

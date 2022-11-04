@@ -68,10 +68,10 @@ source "vmware-iso" "vmware-win11" {
   #tools_upload_flavor = "windows"
   #tools_upload_path   = "c:/Windows/Temp/windows.iso"
   vmx_data = {
-    memsize                                    = "${var.memsize}"
-    numvcpus                                   = "${var.numvcpus}"
+    memsize  = "${var.memsize}"
+    numvcpus = "${var.numvcpus}"
     #"scsi0.virtualDev"                         = "lsisas1068"
-    "virtualHW.version"                        = "11"
+    "virtualHW.version" = "11"
   }
   winrm_password = "${var.winrm_password}"
   winrm_timeout  = "6h"

@@ -16,7 +16,7 @@ variable "iso_checksum" {
 
 variable "iso_path" {
   type    = string
-  default = "../../ISOs/10240.16384.150709-1700.TH1_CLIENTENTERPRISEEVAL_OEMRET_X64FRE_EN-US.ISO"
+  default = "../../ISOs/19042.508.200927-1902.20h2_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso"
 }
 
 variable "iso_url" {
@@ -87,7 +87,7 @@ source "hyperv-iso" "hv1-win10" {
   headless         = false
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
-  memory                = "${var.memsize}"
+  memory           = "${var.memsize}"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   skip_compaction  = false
   switch_name      = "${var.switch_name}"
@@ -101,27 +101,26 @@ source "hyperv-iso" "hv1-win10" {
 ########################################################
 
 source "hyperv-iso" "hv2-win10" {
-  boot_command = ["<tab><wait><enter><wait>",
-  "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
-  boot_wait             = "120s"
-  communicator     = "winrm"
-  disk_size        = "${var.disk_size}"
-  generation       = "2"
-  headless         = false
-  iso_checksum     = "${var.iso_checksum}"
-  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
-  secondary_iso_images  = ["${var.secondary_iso_image}"]
-  memory                = "${var.memsize}"
-  shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
-  skip_compaction  = false
-  shutdown_timeout      = "2h"
-  skip_export           = true
-  temp_path             = "."
-  vlan_id               = "${var.vlan_id}"
-  switch_name      = "${var.switch_name}"
-  winrm_password   = "${var.winrm_password}"
-  winrm_timeout    = "6h"
-  winrm_username   = "${var.winrm_username}"
+  boot_command = ["<tab><wait><enter><wait>", "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
+  boot_wait            = "120s"
+  communicator         = "winrm"
+  disk_size            = "${var.disk_size}"
+  generation           = "2"
+  headless             = false
+  iso_checksum         = "${var.iso_checksum}"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
+  secondary_iso_images = ["${var.secondary_iso_image}"]
+  memory               = "${var.memsize}"
+  shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
+  skip_compaction      = false
+  shutdown_timeout     = "2h"
+  skip_export          = true
+  temp_path            = "."
+  vlan_id              = "${var.vlan_id}"
+  switch_name          = "${var.switch_name}"
+  winrm_password       = "${var.winrm_password}"
+  winrm_timeout        = "6h"
+  winrm_username       = "${var.winrm_username}"
 }
 
 ########################################################
@@ -134,7 +133,7 @@ source "vmware-iso" "vmware-win10" {
   disk_size       = "${var.disk_size}"
   floppy_files    = ["./Files/bios/win10/autounattend.xml", "./Files/scripts/update-windows.ps1", "./Files/scripts/configure-winrm.ps1"]
   guest_os_type   = "windows9-64"
-  headless        = true
+  headless        = false
   iso_checksum    = "${var.iso_checksum}"
   iso_urls        = ["${var.iso_path}", "${var.iso_url}"]
   skip_compaction = false
@@ -157,23 +156,23 @@ source "vmware-iso" "vmware-win10" {
 #################################################################
 
 source "virtualbox-iso" "vbox-win10" {
-  communicator = "winrm"
-  disk_size    = 61440
-  floppy_files    = ["./Files/bios/win10/autounattend.xml", "./Files/scripts/update-windows.ps1", "./Files/scripts/configure-winrm.ps1"]
+  communicator         = "winrm"
+  disk_size            = 61440
+  floppy_files         = ["./Files/bios/win10/autounattend.xml", "./Files/scripts/update-windows.ps1", "./Files/scripts/configure-winrm.ps1"]
   guest_additions_mode = "disable"
   #guest_additions_path = "c:/Windows/Temp/windows.iso"
   guest_os_type        = "Windows10_64"
   hard_drive_interface = "sata"
-  headless         = false
+  headless             = true
   iso_checksum         = "${var.iso_checksum}"
-  iso_interface    = "sata"
-  iso_urls          = ["${var.iso_path}", "${var.iso_url}"]
-  shutdown_command = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
-  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
-  winrm_insecure   = true
-  winrm_password   = "${var.winrm_password}"
-  winrm_timeout    = "4h"
-  winrm_username   = "${var.winrm_username}"
+  iso_interface        = "sata"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
+  shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
+  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
+  winrm_insecure       = true
+  winrm_password       = "${var.winrm_password}"
+  winrm_timeout        = "4h"
+  winrm_username       = "${var.winrm_username}"
 }
 
 build {
