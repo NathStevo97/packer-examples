@@ -93,7 +93,7 @@
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>powershell -NoLogo -ExecutionPolicy RemoteSigned -File a:\update-windows.ps1</CommandLine>
                     <Description>Update Windows, and when finished, run configure-winrm.ps1 to turn WinRM on so this par</Description>
-                    <Order>1</Order>
+                    <Order>2</Order>
                     <RequiresUserInput>false</RequiresUserInput>
                 </SynchronousCommand>
             </FirstLogonCommands>
