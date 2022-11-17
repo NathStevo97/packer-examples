@@ -14,7 +14,7 @@ winrm s "winrm/config/service" '@{AllowUnencrypted="true"}'
 winrm s "winrm/config/service/auth" '@{Basic="true"}'
 
 # Enable the WinRM Firewall rule, which will likely already be enabled due to the 'winrm quickconfig' command above
-Enable-NetFirewallRule -DisplayName "Windows Remote Management (HTTP-In)"
+netsh advfirewall firewall add rule name="Windows Remote Managment (HTTP-In)" dir=in action=allow protocol=TCP localport=5985
 
 sc.exe config winrm start= auto
 

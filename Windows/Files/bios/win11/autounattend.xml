@@ -159,7 +159,7 @@
                     <Description>Disable password expiration for vagrant user</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -NoLogo -ExecutionPolicy RemoteSigned -File a:\configure-winrm.ps1</CommandLine>
+                    <CommandLine>C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoLogo -ExecutionPolicy RemoteSigned -File a:\configure-winrm.ps1</CommandLine>
                     <Description>Update Windows, and when finished, run configure-winrm.ps1 to turn WinRM on so this par</Description>
                     <Order>5</Order>
                     <RequiresUserInput>false</RequiresUserInput>

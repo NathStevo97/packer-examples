@@ -51,12 +51,12 @@ variable "vm_name" {
 
 variable "winrm_password" {
   type    = string
-  default = "packer"
+  default = "vagrant"
 }
 
 variable "winrm_username" {
   type    = string
-  default = "Administrator"
+  default = "vagrant"
 }
 
 ########################################################
@@ -70,6 +70,7 @@ source "vmware-iso" "vmware-win11" {
   disk_adapter_type = "lsisas1068"
   disk_size       = "${var.disk_size}"
   floppy_files    = ["./Files/bios/win11/autounattend.xml", "./Files/scripts/update-windows.ps1", "./Files/scripts/configure-winrm.ps1"]
+  #floppy_files    = ["./Files/bios/win11/autounattend.xml","./Files/scripts/win11_winrm.ps1" ] 
   guest_os_type   = "windows9-64"
   headless        = false
   iso_checksum    = "${var.iso_checksum}"
