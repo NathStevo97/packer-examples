@@ -8,3 +8,8 @@
 ### P2
 - Test out QEMU Usage
 - Variablise builds to trim templates (focus on Windows originally)
+- Try get VirtualBox (amongst other providers) working for Linux-based images.
+
+### P3
+- Add more OSs (Fedora and Debian?)
+- Add other Kali builds
