@@ -9,7 +9,7 @@ $template_file="./templates/kali.pkr.hcl"
 $machine="Kali Linux"
 $packer_log=0
 $env:PACKER_LOG_PATH="packerlog-10-hv1.txt"
-packer init "./required_plugins.pkr.hcl"
+packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file")) {

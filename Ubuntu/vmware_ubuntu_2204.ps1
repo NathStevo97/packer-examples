@@ -9,7 +9,7 @@ $template_file="./templates/ubuntu-2204.pkr.hcl"
 $machine="Ubuntu 22.04"
 $packer_log=0
 $env:PACKER_LOG_PATH="packerlog-ubuntu-22.04.txt"
-packer init "./required_plugins.pkr.hcl"
+packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file")) {
