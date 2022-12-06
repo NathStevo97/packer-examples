@@ -9,8 +9,7 @@ $var_file="./variables/variables_win2019_dc.pkrvars.hcl"
 $machine="Windows Server 2019 Datacenter Gen-2"
 $packer_log=0
 $env:PACKER_LOG_PATH="packerlog-2019-DC-hv2.txt"
-
-packer init "./required_plugins.pkr.hcl"
+packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file") -and (Test-Path -Path "$var_file")) {

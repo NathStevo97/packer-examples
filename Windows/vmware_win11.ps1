@@ -9,7 +9,7 @@ $template_file="./templates/win11.pkr.hcl"
 $machine="Windows 11"
 $packer_log=1
 $env:PACKER_LOG_PATH="packerlog-11-vmware.txt"
-packer init "./required_plugins.pkr.hcl"
+packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file")) {
