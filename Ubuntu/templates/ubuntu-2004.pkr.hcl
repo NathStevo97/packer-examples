@@ -102,7 +102,7 @@ variable "version" {
 
 locals {
   build_timestamp = "${legacy_isotime("20060102150405")}"
-  http_directory  = "./http"
+  http_directory  = "../http/Ubuntu"
   scripts_directory = "./files"
 }
 
