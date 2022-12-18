@@ -5,7 +5,7 @@ packer {
       source  = "github.com/hashicorp/vmware"
     }
     hyperv = {
-      version = ">= 1.0.4"
+      version = "=1.0.1"
       source  = "github.com/hashicorp/hyperv"
     }
     virtualbox = {
