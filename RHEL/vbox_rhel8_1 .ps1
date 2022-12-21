@@ -18,7 +18,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate -only='vmware-iso.rhel-8' "$template_file"
+    packer validate -only='virtualbox-iso.rhel-8' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build -only='vmware-iso.rhel-8' --force "$template_file"
+    packer build -only='virtualbox-iso.rhel-8' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

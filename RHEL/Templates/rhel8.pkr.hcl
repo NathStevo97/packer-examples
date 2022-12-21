@@ -41,8 +41,33 @@ source "vmware-iso" "rhel-8" {
   vm_name = "packer-rhel-8-x86_64"
 }
 
+#################################################################
+#                    Virtualbox-ISO Builder                     #
+#################################################################
+
+source "virtualbox-iso" "rhel-8" {
+  boot_command     = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg<enter><wait>"]
+  boot_wait        = "45s"
+  disk_size            = 61440
+  guest_additions_mode = "disable"
+  #guest_additions_path = "c:/Windows/Temp/windows.iso"
+  guest_os_type        = "RedHat_64"
+  hard_drive_interface = "sata"
+  headless             = true
+  http_directory       = "../http/RHEL"
+  iso_checksum         = "md5:d04ab8a647d570708bfef8835faf37da"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
+  iso_interface        = "sata"
+  shutdown_command     = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
+  ssh_password         = "vagrant"
+  ssh_port             = 22
+  ssh_timeout          = "10000s"
+  ssh_username         = "vagrant"
+  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
+}
+
 build {
-  sources = ["source.vmware-iso.rhel-8"]
+  sources = ["source.vmware-iso.rhel-8", "source.virtualbox-iso.rhel-8"]
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
