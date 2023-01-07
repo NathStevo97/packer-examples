@@ -4,11 +4,11 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/rhel-6.10-x86_64.pkr.hcl"
+$template_file="./templates/rhel7.pkr.hcl"
 #$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
-$machine="RHEL 6.10"
+$machine="RHEL 7"
 $packer_log=1
-$env:PACKER_LOG_PATH="packerlog-RHEL6.txt"
+$env:PACKER_LOG_PATH="packerlog-RHEL7.txt"
 packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
@@ -18,7 +18,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate "$template_file"
+    packer validate -only='virtualbox-iso.rhel-7' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build --force "$template_file" 
+    packer build -only='virtualbox-iso.rhel-7' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

@@ -11,14 +11,14 @@ $packer_log=1
 $env:PACKER_LOG_PATH="packerlog-RHEL7.txt"
 packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
-Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
+Write-Host "Start Time: = $startDTM" -ForegroundColor Yellowa
 if ((Test-Path -Path "$template_file")) {
   Write-Output "Template file found"
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate "$template_file"
+    packer validate -only='vmware-iso.rhel-7' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build --force "$template_file"
+    packer build -only='vmware-iso.rhel-7' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."
