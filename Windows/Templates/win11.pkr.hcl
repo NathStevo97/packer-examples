@@ -69,12 +69,12 @@ variable "winrm_username" {
 ########################################################
 
 source "vmware-iso" "vmware-win11" {
-  boot_wait       = "${var.boot_wait}"
-  communicator    = "winrm"
-  cpus            = "${var.numvcpus}"
+  boot_wait         = "${var.boot_wait}"
+  communicator      = "winrm"
+  cpus              = "${var.numvcpus}"
   disk_adapter_type = "lsisas1068"
-  disk_size       = "${var.disk_size}"
-  floppy_files    = ["./Files/bios/win11/autounattend.xml", "./Files/scripts/configure-winrm.ps1"]
+  disk_size         = "${var.disk_size}"
+  floppy_files      = ["./Files/bios/win11/autounattend.xml", "./Files/scripts/configure-winrm.ps1"]
   #floppy_files    = ["./Files/bios/win11/autounattend.xml","./Files/scripts/win11_winrm.ps1" ] 
   guest_os_type   = "windows9-64"
   headless        = false
@@ -96,7 +96,7 @@ source "vmware-iso" "vmware-win11" {
 
 source "virtualbox-iso" "vbox-win11" {
   communicator         = "winrm"
-  disk_size       = "${var.disk_size}"
+  disk_size            = "${var.disk_size}"
   floppy_files         = ["./Files/bios/win11/autounattend.xml", "./Files/scripts/configure-winrm.ps1"]
   guest_additions_mode = "disable"
   #guest_additions_path = "c:/Windows/Temp/windows.iso"

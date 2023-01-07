@@ -115,7 +115,7 @@ source "hyperv-iso" "oracle9" {
   floppy_files         = ["${local.http_directory}/${var.ks_path}"]
   generation           = "${var.hyperv_generation}"
   guest_additions_mode = "disable"
-  http_directory = "./http"
+  http_directory       = "../http/oracle"
   iso_checksum         = "${var.iso_checksum}"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   memory               = "${var.memory}"
@@ -139,7 +139,7 @@ source "virtualbox-iso" "oracle9" {
   guest_os_type           = "Oracle_64"
   hard_drive_interface    = "sata"
   headless                = "${var.headless}"
-  http_directory = "../http"
+  http_directory          = "../http/oracle"
   iso_checksum            = "${var.iso_checksum}"
   iso_url                 = "${var.iso_url}"
   memory                  = "${var.memory}"
@@ -154,12 +154,12 @@ source "virtualbox-iso" "oracle9" {
 }
 
 source "vmware-iso" "oracle9" {
-  boot_command        = [ "<tab><wait2m> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-9.cfg<enter><wait>"]
+  boot_command        = ["<tab><wait2m> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-9.cfg<enter><wait>"]
   boot_wait           = "5s"
   disk_size           = "${var.disk_size}"
   guest_os_type       = "oraclelinux-64"
   headless            = "${var.headless}"
-  http_directory = "./http"
+  http_directory      = "../http/oracle"
   iso_checksum        = "${var.iso_checksum}"
   iso_url             = "${var.iso_url}"
   output_directory    = "${var.build_directory}/packer-${var.template}-vmware"

@@ -46,8 +46,8 @@ source "vmware-iso" "rhel-8" {
 #################################################################
 
 source "virtualbox-iso" "rhel-8" {
-  boot_command     = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg<enter><wait>"]
-  boot_wait        = "45s"
+  boot_command         = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg<enter><wait>"]
+  boot_wait            = "45s"
   disk_size            = 61440
   guest_additions_mode = "disable"
   #guest_additions_path = "c:/Windows/Temp/windows.iso"

@@ -101,8 +101,8 @@ variable "version" {
 # The "legacy_isotime" function has been provided for backwards compatability, but we recommend switching to the timestamp and formatdate functions.
 
 locals {
-  build_timestamp = "${legacy_isotime("20060102150405")}"
-  http_directory  = "../http/Ubuntu"
+  build_timestamp   = "${legacy_isotime("20060102150405")}"
+  http_directory    = "../http/Ubuntu"
   scripts_directory = "./files"
 }
 
@@ -134,7 +134,7 @@ source "vmware-iso" "ubuntu" {
 
 build {
   sources = ["source.vmware-iso.ubuntu"]
-    
+
   provisioner "shell" {
     environment_vars  = ["HOME_DIR=/home/vagrant", "http_proxy=${var.http_proxy}", "https_proxy=${var.https_proxy}", "no_proxy=${var.no_proxy}"]
     execute_command   = "echo 'vagrant' | {{ .Vars }} sudo -S -E sh -eux '{{ .Path }}'"

@@ -101,7 +101,7 @@ source "hyperv-iso" "hv1-win10" {
 ########################################################
 
 source "hyperv-iso" "hv2-win10" {
-  boot_command = ["<tab><wait><enter><wait>", "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
+  boot_command         = ["<tab><wait><enter><wait>", "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
   boot_wait            = "120s"
   communicator         = "winrm"
   disk_size            = "${var.disk_size}"

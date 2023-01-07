@@ -96,8 +96,8 @@ variable "version" {
 # The "legacy_isotime" function has been provided for backwards compatability, but we recommend switching to the timestamp and formatdate functions.
 
 locals {
-  build_timestamp = "${legacy_isotime("20060102150405")}"
-  http_directory  = "../http/Ubuntu"
+  build_timestamp   = "${legacy_isotime("20060102150405")}"
+  http_directory    = "../http/Ubuntu"
   scripts_directory = "./files"
 }
 

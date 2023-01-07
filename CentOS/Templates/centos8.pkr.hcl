@@ -10,19 +10,19 @@ variable "disk_size" {
 }
 
 variable "iso_checksum" {
-  type    = string
+  type = string
   #default = "3d09d111f1664334ab7ae080a32deb32effe6803b1ade9dcc32c1e3eead79b3a"
   default = "ba9f15bb15d689978b10eda55c276020a4bc5b8ffc624d24a1cfc73017aff75c"
 }
 
 variable "iso_path" {
-  type    = string
+  type = string
   #default = "../../ISOs/CentOS/CentOS-Stream-8-x86_64-latest-boot.iso"
   default = "../../ISOs/CentOS/CentOS-Stream-8-x86_64-latest-dvd1.iso"
 }
 
 variable "iso_url" {
-  type    = string
+  type = string
   #default = "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-latest-boot.iso"
   default = "https://mirrors.edge.kernel.org/centos/8-stream/isos/x86_64/CentOS-Stream-8-x86_64-latest-dvd1.iso"
 }
