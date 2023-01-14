@@ -5,7 +5,7 @@ $startDTM = (Get-Date)
 
 # Variables
 $template_file="./templates/oracle-7.9-x86_64.pkr.hcl"
-#$var_file="./variables/variables_win2018_std.pkrvars.hcl"
+$var_file="./variables/variables_oracle-7.9-x86_64.pkrvars.hcl"
 $machine="Oracle Linux 7.9"
 $packer_log=0
 
@@ -18,7 +18,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate -only='vmware-iso.oracle7' "$template_file"
+    packer validate -only='vmware-iso.oracle7' -var-file="$var_file" "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build -only='vmware-iso.oracle7' --force "$template_file"
+    packer build -only='vmware-iso.oracle7' -var-file="$var_file" --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

@@ -3,4 +3,3 @@
 | Oracle 9.0 | Working            | Pending       | Pending       | Pending    |
 | Oracle 8.6 | Working            | Pending       | Pending       | Pending    |
 | Oracle 7.9 | Working            | Pending       | Pending       | Pending    |
-| Oracle 6.9 | Pending            | Pending       | Pending       | Pending    |

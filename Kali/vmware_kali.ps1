@@ -4,7 +4,7 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/kali.pkr.hcl"
+$template_file="./Templates/kali.pkr.hcl"
 #$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
 $machine="Kali Linux"
 $packer_log=0
