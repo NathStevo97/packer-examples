@@ -1,52 +1,72 @@
 
 variable "boot_wait" {
   type    = string
-  default = "5s"
+  default = ""
 }
 
 variable "disk_size" {
   type    = string
-  default = "40960"
+  default = ""
+}
+
+variable "guest_os_type_virtualbox" {
+  type = string
+  default = ""
+}
+
+variable "guest_os_type_vmware" {
+  type = string
+  default = ""
+}
+
+variable "http_directory" {
+  type    = string
+  default = ""
 }
 
 variable "iso_checksum" {
   type    = string
-  default = "sha256:d6dccd66ba317a2825821fe92169a53079df95b04581c065a8244f67303e1f46"
+  default = ""
 }
 
 variable "iso_path" {
   type    = string
-  default = "../../ISOs/CentOS/CentOS-Stream-8-x86_64-latest-dvd1.iso"
+  default = ""
 }
 
 variable "iso_url" {
   type    = string
-  default = "http://mirror.stream.centos.org/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20220531.0-x86_64-boot.iso"
+  default = ""
 }
 
 variable "memsize" {
   type    = string
-  default = "1024"
+  default = ""
 }
 
 variable "numvcpus" {
   type    = string
-  default = "2"
+  default = ""
 }
 
 variable "ssh_password" {
   type    = string
-  default = "vagrant"
+  default = ""
+}
+
+variable "ssh_timeout" {
+  type    = string
+  default = ""
 }
 
 variable "ssh_username" {
   type    = string
-  default = "vagrant"
+  default = ""
 }
 
 variable "vm_name" {
   type    = string
-  default = "centos-stream-9-x86_64"
+  default = ""
 }
 
 source "vmware-iso" "centos-stream-9_vmware" {
@@ -54,15 +74,15 @@ source "vmware-iso" "centos-stream-9_vmware" {
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
-  guest_os_type    = "centos-64"
+  guest_os_type    = "${var.guest_os_type_vmware}"
   headless         = false
-  http_directory   = "../http/CentOS"
+  http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
-  ssh_timeout      = "2h"
+  ssh_timeout      = "${var.ssh_timeout}"
   ssh_username     = "${var.ssh_username}"
   vm_name          = "${var.vm_name}"
   vmx_data = {

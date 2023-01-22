@@ -1,63 +1,81 @@
 
 variable "boot_wait" {
   type    = string
-  default = "5s"
+  default = ""
 }
 
 variable "disk_size" {
   type    = string
-  default = "40960"
+  default = ""
+}
+
+variable "guest_os_type_virtualbox" {
+  type = string
+  default = ""
+}
+
+variable "guest_os_type_vmware" {
+  type = string
+  default = ""
+}
+
+variable "http_directory" {
+  type    = string
+  default = ""
 }
 
 variable "iso_checksum" {
   type    = string
-  default = "b79079ad71cc3c5ceb3561fff348a1b67ee37f71f4cddfec09480d4589c191d6"
+  default = ""
 }
 
 variable "iso_path" {
   type    = string
-  default = "../../ISOs/CentOS/CentOS-7-x86_64-NetInstall-2009.iso"
+  default = ""
 }
 
 variable "iso_url" {
   type    = string
-  default = "http://miroir.univ-paris13.fr/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-NetInstall-2009.iso"
+  default = ""
 }
 
 variable "memsize" {
   type    = string
-  default = "1024"
+  default = ""
 }
 
 variable "numvcpus" {
   type    = string
-  default = "2"
+  default = ""
 }
 
 variable "ssh_password" {
   type    = string
-  default = "vagrant"
+  default = ""
+}
+
+variable "ssh_timeout" {
+  type    = string
+  default = ""
 }
 
 variable "ssh_username" {
   type    = string
-  default = "vagrant"
+  default = ""
 }
 
 variable "vm_name" {
   type    = string
-  default = "CentOS-7-x86_64-2009"
+  default = ""
 }
 
 source "virtualbox-iso" "centos7" {
-  #boot_command     = ["<up><wait><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<enter><wait>"]
-  #boot_command     = ["<up><wait><e> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<wait>"]
   boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<leftCtrlOn>x<leftCtrlOff>"]
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
-  guest_os_type    = "RedHat_64"
+  guest_os_type    = "${var.guest_os_type_virtualbox}"
   headless         = true
-  http_directory   = "../http/CentOS"
+  http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
@@ -65,7 +83,7 @@ source "virtualbox-iso" "centos7" {
   shutdown_timeout = "1h"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
-  ssh_timeout      = "30m"
+  ssh_timeout      = "${var.ssh_timeout}"
   ssh_username     = "${var.ssh_username}"
   vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--firmware", "EFI"]]
   vm_name          = "${var.vm_name}"
@@ -76,16 +94,16 @@ source "vmware-iso" "centos7" {
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
-  guest_os_type    = "centos-64"
+  guest_os_type    = "${var.guest_os_type_vmware}"
   headless         = false
-  http_directory   = "../http/CentOS"
+  http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "echo 'vagrant' | sudo -S /sbin/shutdown -P now"
   shutdown_timeout = "1h"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
-  ssh_timeout      = "30m"
+  ssh_timeout      = "${var.ssh_timeout}"
   ssh_username     = "${var.ssh_username}"
   vm_name          = "${var.vm_name}"
   vmx_data = {

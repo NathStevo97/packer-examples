@@ -5,7 +5,7 @@ $startDTM = (Get-Date)
 
 # Variables
 $template_file="./templates/centos8.pkr.hcl"
-#$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
+$var_file="./variables/variables_centos8.pkrvars.hcl"
 $machine="CentOS Stream 8"
 $packer_log=0
 $env:PACKER_LOG_PATH="packerlog-centos-stream-8.txt"
@@ -18,7 +18,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate -only='virtualbox-iso.centos8_vbox' "$template_file"
+    packer validate -only='virtualbox-iso.centos8_vbox' -var-file="$var_file" "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build -only='virtualbox-iso.centos8_vbox' --force "$template_file"
+    packer build -only='virtualbox-iso.centos8_vbox' -var-file="$var_file" --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

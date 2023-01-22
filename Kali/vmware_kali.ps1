@@ -5,10 +5,10 @@ $startDTM = (Get-Date)
 
 # Variables
 $template_file="./Templates/kali.pkr.hcl"
-#$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
-$machine="Kali Linux"
+$var_file="./variables/kali-2021.pkrvars.hcl"
+$machine="Kali Linux 2021"
 $packer_log=0
-$env:PACKER_LOG_PATH="packerlog-10-hv1.txt"
+$env:PACKER_LOG_PATH="packerlog-kali-2021-vmware.txt"
 packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
@@ -17,8 +17,7 @@ if ((Test-Path -Path "$template_file")) {
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    #packer validate -var-file="$var_file" "$template_file"
-    packer validate -only='vmware-iso.kali_vmware' "$template_file"
+    packer validate -var-file="$var_file" -only='vmware-iso.kali_vmware' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -27,8 +26,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    #packer build --force -var-file="$var_file" "$template_file"
-    packer build -only='vmware-iso.kali_vmware' --force "$template_file"
+    packer build -var-file="$var_file" -only='vmware-iso.kali_vmware' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

@@ -5,9 +5,9 @@ $startDTM = (Get-Date)
 
 # Variables
 $template_file="./templates/centos7_uefi.pkr.hcl"
-#$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
+$var_file="./variables/variables_centos_7_9.pkrvars.hcl"
 $machine="CentOS 7"
-$packer_log=1
+$packer_log=0
 $env:PACKER_LOG_PATH="packerlog-CentOS7.txt"
 packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
@@ -18,7 +18,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate -only='vmware-iso.centos7' "$template_file"
+    packer validate -only='vmware-iso.centos7' -var-file="$var_file" --force "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build -only='vmware-iso.centos7' --force "$template_file"
+    packer build --force -only='vmware-iso.centos7' -var-file="$var_file" --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."
