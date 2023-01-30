@@ -7,7 +7,7 @@ $startDTM = (Get-Date)
 $template_file="./Templates/kali.pkr.hcl"
 $var_file="./variables/kali-2021.pkrvars.hcl"
 $machine="Kali Linux 2021"
-$packer_log=1
+$packer_log=0
 $env:PACKER_LOG_PATH="packerlog-kali-2021-virtualbox.txt"
 packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been

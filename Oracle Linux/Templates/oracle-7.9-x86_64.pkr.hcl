@@ -123,13 +123,9 @@ variable "version" {
   type    = string
   default = "TIMESTAMP"
 }
-# The "legacy_isotime" function has been provided for backwards compatability, but we recommend switching to the timestamp and formatdate functions.
 
 locals {
-  #boot_command    = ["<up><wait><tab> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.ks_path}<enter><wait>"]
   build_timestamp = "${legacy_isotime("2019102650405")}"
-  #http_directory  = "${path.root}/http"
-  #http_directory = "./http"
 }
 
 source "vmware-iso" "oracle7" {

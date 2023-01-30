@@ -79,43 +79,7 @@ variable "ssh_username" {
 }
 
 source "virtualbox-iso" "kali_vbox" {
-  boot_command            = ["<esc><wait2m>", "/install.amd/vmlinuz<wait>", " auto<wait>", " console-setup/ask_detect=false<wait>", " console-setup/layoutcode=us<wait>", " console-setup/modelcode=pc105<wait>", " debconf/frontend=noninteractive<wait>", " debian-installer=en_US<wait>", " fb=false<wait>", " initrd=/install.amd/initrd.gz<wait>", " kbd-chooser/method=us<wait>", " netcfg/choose_interface=eth0<wait>", " console-keymaps-at/keymap=us<wait>", " keyboard-configuration/xkb-keymap=us<wait>", " keyboard-configuration/layout=USA<wait>", " keyboard-configuration/variant=USA<wait>", " locale=en_US<wait>", " netcfg/get_domain=vm<wait>", " netcfg/get_hostname=kali<wait>", " grub-installer/bootdev=/dev/sda<wait>", " noapic<wait>", " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kali/preseed.cfg auto=true priority=critical", " -- <wait2m>", "<enter>"]
-  /*  
-  boot_command = ["<esc><wait>",
-        "/install.amd/vmlinuz<wait>",
-        " auto<wait>",
-        " console-setup/ask_detect=false<wait>",
-        " console-setup/layoutcode=us<wait>",
-        " console-setup/modelcode=pc105<wait>",
-        " debconf/frontend=noninteractive<wait>",
-        " debian-installer=en_US<wait>",
-        " fb=false<wait>",
-        " initrd=/install.amd/initrd.gz<wait>",
-        " kbd-chooser/method=us<wait>",
-        " netcfg/choose_interface=eth0<wait>",
-        " console-keymaps-at/keymap=us<wait>",
-        " keyboard-configuration/xkb-keymap=us<wait>",
-        " keyboard-configuration/layout=USA<wait>",
-        " keyboard-configuration/variant=USA<wait>",
-        " locale=en_US<wait>",
-        " netcfg/get_domain=vm<wait>",
-        " netcfg/get_hostname=kali<wait>",
-        " grub-installer/bootdev=/dev/sda<wait>",
-        " noapic<wait>",
-        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg auto=true priority=critical",
-        " -- <wait>",
-        "<enter><wait>"]
-  
-  boot_command = ["<esc><wait2m>",
-    "install <wait>",
-    "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kali/preseed.cfg ",
-    "locale=en_US ",
-    "keymap=us ",
-    "hostname=kali ",
-    "domain='' ",
-    "<enter>"
-  ]
-  */
+  boot_command            = ["<esc><wait1m>", "/install.amd/vmlinuz<wait>", " auto<wait>", " console-setup/ask_detect=false<wait>", " console-setup/layoutcode=us<wait>", " console-setup/modelcode=pc105<wait>", " debconf/frontend=noninteractive<wait>", " debian-installer=en_US<wait>", " fb=false<wait>", " initrd=/install.amd/initrd.gz<wait>", " kbd-chooser/method=us<wait>", " netcfg/choose_interface=eth0<wait>", " console-keymaps-at/keymap=us<wait>", " keyboard-configuration/xkb-keymap=us<wait>", " keyboard-configuration/layout=USA<wait>", " keyboard-configuration/variant=USA<wait>", " locale=en_US<wait>", " netcfg/get_domain=vm<wait>", " netcfg/get_hostname=kali<wait>", " grub-installer/bootdev=/dev/sda<wait>", " noapic<wait>", " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kali/preseed.cfg auto=true priority=critical", " -- <wait2m>", "<enter>"]
   boot_wait               = "${var.boot_wait}"
   disk_size               = "${var.disk_size}"
   guest_additions_path    = "VBoxGuestAdditions_{{ .Version }}.iso"
@@ -136,24 +100,7 @@ source "virtualbox-iso" "kali_vbox" {
 }
 
 source "vmware-iso" "kali_vmware" {
-  #boot_command     = ["<esc><wait2m>", "/install.amd/vmlinuz<wait>", " auto<wait>", " console-setup/ask_detect=false<wait>", " console-setup/layoutcode=us<wait>", " console-setup/modelcode=pc105<wait>", " debconf/frontend=noninteractive<wait>", " debian-installer=en_US<wait>", " fb=false<wait>", " initrd=/install.amd/initrd.gz<wait>", " kbd-chooser/method=us<wait>", " netcfg/choose_interface=eth0<wait>", " console-keymaps-at/keymap=us<wait>", " keyboard-configuration/xkb-keymap=us<wait>", " keyboard-configuration/layout=USA<wait>", " keyboard-configuration/variant=USA<wait>", " locale=en_US<wait>", " netcfg/get_domain=vm<wait>", " netcfg/get_hostname=kali<wait>", " grub-installer/bootdev=/dev/sda<wait>", " noapic<wait>", " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kali/preseed.cfg auto=true priority=critical", " -- <wait2m>", "<enter><wait>"]
-  boot_command = [ "<esc><wait>",
-        "install <wait>",
-        " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kali/preseed-test-elrey.cfg <wait>",
-        "debian-installer=en_US.UTF-8 <wait>",
-        "auto <wait>",
-        "locale=en_US.UTF-8 <wait>",
-        "kbd-chooser/method=us <wait>",
-        "keyboard-configuration/xkb-keymap=us <wait>",
-        "netcfg/get_hostname=kali <wait>",
-        "netcfg/get_domain=vagrantup.com <wait>",
-        "fb=false <wait>",
-        "debconf/frontend=noninteractive <wait>",
-        "console-setup/ask_detect=false <wait>",
-        "console-keymaps-at/keymap=us <wait>",
-        "grub-installer/bootdev=/dev/sda <wait>",
-        "<enter><wait>"
-  ]
+  boot_command     = ["<esc><wait2m>", "/install.amd/vmlinuz<wait>", " auto<wait>", " console-setup/ask_detect=false<wait>", " console-setup/layoutcode=us<wait>", " console-setup/modelcode=pc105<wait>", " debconf/frontend=noninteractive<wait>", " debian-installer=en_US<wait>", " fb=false<wait>", " initrd=/install.amd/initrd.gz<wait>", " kbd-chooser/method=us<wait>", " netcfg/choose_interface=eth0<wait>", " console-keymaps-at/keymap=us<wait>", " keyboard-configuration/xkb-keymap=us<wait>", " keyboard-configuration/layout=USA<wait>", " keyboard-configuration/variant=USA<wait>", " locale=en_US<wait>", " netcfg/get_domain=vm<wait>", " netcfg/get_hostname=kali<wait>", " grub-installer/bootdev=/dev/sda<wait>", " noapic<wait>", " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kali/preseed.cfg auto=true priority=critical", " -- <wait2m>", "<enter><wait>"]
   boot_wait        = "${var.boot_wait}"
   cpus             = "${var.cpus}"
   cores            = "2"
@@ -182,30 +129,25 @@ build {
     only            = ["virtualbox-iso"]
     script          = "packer-scripts/virtualbox-guest-additions.sh"
   }
-
   provisioner "shell" {
     execute_command = "echo 'kali' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     only            = ["vmware-iso"]
     script          = "packer-scripts/vmware-tools.sh"
   }
-
   provisioner "shell" {
     execute_command = "echo 'kali' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     script          = "packer-scripts/ansible.sh"
   }
-
   provisioner "shell" {
     execute_command = "echo 'kali' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     script          = "packer-scripts/setup.sh"
   }
-
   provisioner "ansible-local" {
     command           = "PYTHONUNBUFFERED=1 ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3 ANSIBLE_ROLES_PATH=\"/tmp/ansible-roles/roles:/home/kali/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:/tmp/ansible-roles:/tmp/ansible-roles/roles/roles\" ansible-playbook"
     playbook_file     = "./playbook.yml"
     role_paths        = ["./ansible-collection-dev/roles/", "./ansible-collection-security/roles/"]
     staging_directory = "/tmp/ansible-roles/"
   }
-
   provisioner "shell" {
     execute_command = "echo 'kali' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     script          = "packer-scripts/cleanup.sh"
