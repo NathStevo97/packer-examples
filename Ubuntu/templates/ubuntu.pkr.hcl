@@ -1,3 +1,7 @@
+variable "boot_command" {
+  type = list(string)
+  default = []
+}
 
 variable "boot_wait" {
   type    = string
@@ -136,7 +140,7 @@ locals {
 }
 
 source "vmware-iso" "ubuntu" {
-  boot_command        = [" <wait>", " <wait>", " <wait>", " <wait>", " <wait>", "<esc><wait>", "<f6><wait>", "<esc><wait>", "<bs><bs><bs><bs><wait>", " autoinstall<wait5>", " ds=nocloud-net<wait5>", ";s=http://<wait5>{{ .HTTPIP }}<wait5>:{{ .HTTPPort }}/<wait5>", " ---<wait5>", "<enter><wait5>"]
+  boot_command        = "${var.boot_command}"
   boot_wait           = "${var.boot_wait}"
   cpus                = "${var.cpus}"
   disk_size           = "${var.disk_size}"
@@ -149,6 +153,7 @@ source "vmware-iso" "ubuntu" {
   memory              = "${var.memory}"
   output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S shutdown -P now"
+  ssh_handshake_attempts = 1000
   ssh_password        = "${var.ssh_password}"
   ssh_port            = 22
   ssh_timeout         = "${var.ssh_timeout}"
