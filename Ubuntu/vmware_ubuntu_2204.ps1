@@ -4,8 +4,8 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/ubuntu-2204.pkr.hcl"
-#$var_file="./variables/variables_ubuntu-22.04-amd.pkrvars.hcl"
+$template_file="./templates/ubuntu.pkr.hcl"
+$var_file="./variables/ubuntu-2204.pkrvars.hcl"
 $machine="Ubuntu 22.04"
 $packer_log=0
 $env:PACKER_LOG_PATH="packerlog-ubuntu-22.04.txt"
@@ -18,7 +18,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate -only='vmware-iso.ubuntu' "$template_file"
+    packer validate -var-file="$var_file" -only='vmware-iso.ubuntu' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build -only='vmware-iso.ubuntu' --force "$template_file"
+    packer build -var-file="$var_file" -only='vmware-iso.ubuntu' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."
