@@ -10,12 +10,12 @@ variable "disk_size" {
 }
 
 variable "guest_os_type_virtualbox" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "guest_os_type_vmware" {
-  type = string
+  type    = string
   default = ""
 }
 

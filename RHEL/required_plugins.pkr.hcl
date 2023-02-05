@@ -12,5 +12,10 @@ packer {
       version = ">= 1.0.4"
       source  = "github.com/hashicorp/virtualbox"
     }
+
+    qemu = {
+      version = ">= 1.0.9"
+      source  = "github.com/hashicorp/qemu"
+    }
   }
 }

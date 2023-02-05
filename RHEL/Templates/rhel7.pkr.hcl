@@ -94,8 +94,8 @@ source "vmware-iso" "rhel-7" {
   ssh_timeout      = "${var.ssh_timeout}"
   ssh_username     = "${var.ssh_username}"
   vmx_data = {
-    memsize             = "${var.memsize}"
-    numvcpus            = "${var.numvcpus}"
+    memsize  = "${var.memsize}"
+    numvcpus = "${var.numvcpus}"
   }
   vm_name = "${var.vm_name}"
 }

@@ -1,5 +1,5 @@
 variable "boot_command" {
-  type = list(string)
+  type    = list(string)
   default = []
 }
 
@@ -140,26 +140,26 @@ locals {
 }
 
 source "vmware-iso" "ubuntu" {
-  boot_command        = "${var.boot_command}"
-  boot_wait           = "${var.boot_wait}"
-  cpus                = "${var.cpus}"
-  disk_size           = "${var.disk_size}"
-  guest_os_type       = "${var.guest_os_type_vmware}"
-  headless            = "${var.headless}"
-  http_directory      = "${var.http_directory}"
-  iso_checksum        = "${var.iso_checksum}"
+  boot_command   = "${var.boot_command}"
+  boot_wait      = "${var.boot_wait}"
+  cpus           = "${var.cpus}"
+  disk_size      = "${var.disk_size}"
+  guest_os_type  = "${var.guest_os_type_vmware}"
+  headless       = "${var.headless}"
+  http_directory = "${var.http_directory}"
+  iso_checksum   = "${var.iso_checksum}"
   #iso_url             = "${var.mirror}/${var.mirror_directory}/${var.iso_name}"
-  iso_url             = "${var.iso_url}"
-  memory              = "${var.memory}"
-  output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
-  shutdown_command    = "echo 'vagrant' | sudo -S shutdown -P now"
+  iso_url                = "${var.iso_url}"
+  memory                 = "${var.memory}"
+  output_directory       = "${var.build_directory}/packer-${var.template}-vmware"
+  shutdown_command       = "echo 'vagrant' | sudo -S shutdown -P now"
   ssh_handshake_attempts = 1000
-  ssh_password        = "${var.ssh_password}"
-  ssh_port            = 22
-  ssh_timeout         = "${var.ssh_timeout}"
-  ssh_username        = "${var.ssh_username}"
-  tools_upload_flavor = "linux"
-  vm_name             = "${var.template}"
+  ssh_password           = "${var.ssh_password}"
+  ssh_port               = 22
+  ssh_timeout            = "${var.ssh_timeout}"
+  ssh_username           = "${var.ssh_username}"
+  tools_upload_flavor    = "linux"
+  vm_name                = "${var.template}"
   vmx_data = {
     "cpuid.coresPerSocket"    = "1"
     "ethernet0.pciSlotNumber" = "32"

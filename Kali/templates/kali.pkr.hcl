@@ -1,5 +1,5 @@
 variable "boot_wait" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -14,7 +14,7 @@ variable "box_name" {
 }
 
 variable "cpus" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -93,7 +93,7 @@ source "virtualbox-iso" "kali_virtualbox" {
   headless                = true
   http_directory          = "${var.http_directory}"
   iso_checksum            = "${var.iso_checksum_type}:${var.iso_checksum}"
-  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  iso_urls                = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command        = "echo 'vagrant' | sudo -S shutdown -h -P now"
   ssh_password            = "${var.ssh_password}"
   ssh_port                = 22
@@ -113,7 +113,7 @@ source "vmware-iso" "kali_vmware" {
   headless       = false
   http_directory = "${var.http_directory}"
   iso_checksum   = "${var.iso_checksum_type}:${var.iso_checksum}"
-  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  iso_urls       = ["${var.iso_path}", "${var.iso_url}"]
   network        = "nat"
   memory         = "${var.memory}"
   #output_directory = "${var.build_directory}/${var.vmname}-vmware"
@@ -133,7 +133,7 @@ build {
   provisioner "shell" {
     expect_disconnect = true
     pause_before      = "10s"
-    scripts             = ["./Files/ansible.sh",]
+    scripts           = ["./Files/ansible.sh", ]
   }
   /*
   provisioner "shell" {

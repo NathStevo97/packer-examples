@@ -1,7 +1,7 @@
 boot_wait                = "45s"
 box_basename             = "rhel-8.1"
 build_directory          = "../../builds"
-numvcpus                     = "2"
+numvcpus                 = "2"
 disk_size                = "65536"
 guest_os_type_virtualbox = "RedHat_64"
 guest_os_type_vmware     = "rhel7-64"
