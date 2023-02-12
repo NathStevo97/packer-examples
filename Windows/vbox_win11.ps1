@@ -7,7 +7,7 @@ $startDTM = (Get-Date)
 $template_file="./templates/win11.pkr.hcl"
 $var_file="./variables/variables_win11.pkrvars.hcl"
 $machine="Windows 11"
-$packer_log=1
+$packer_log=0
 $env:PACKER_LOG_PATH="packerlog-11-virtualbox.txt"
 packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been

@@ -7,7 +7,7 @@ $startDTM = (Get-Date)
 $template_file="./templates/ubuntu.pkr.hcl"
 $var_file="./variables/ubuntu-2204.pkrvars.hcl"
 $machine="Ubuntu 22.04"
-$packer_log=1
+$packer_log=0
 $env:PACKER_LOG_PATH="packerlog-ubuntu-22.04.txt"
 packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been

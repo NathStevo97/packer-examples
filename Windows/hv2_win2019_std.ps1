@@ -7,7 +7,7 @@ $startDTM = (Get-Date)
 $template_file="./templates/win2019_std.pkr.hcl"
 $var_file="./variables/variables_win2019_std.pkrvars.hcl"
 $machine="Windows Server 2019 Standard Gen-2"
-$packer_log=1
+$packer_log=0
 $env:PACKER_LOG_PATH="packerlog-2019-STD-hv2.txt"
 packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been

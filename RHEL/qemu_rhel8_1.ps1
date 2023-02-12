@@ -7,7 +7,7 @@ $startDTM = (Get-Date)
 $template_file="./templates/rhel8.pkr.hcl"
 $var_file="./variables/variables_rhel8.pkrvars.hcl"
 $machine="RHEL 8"
-$packer_log=1
+$packer_log=0
 $env:PACKER_LOG_PATH="packerlog-RHEL8.txt"
 packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been

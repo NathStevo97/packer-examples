@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build -var-file="$var_file"-only='virtualbox-iso.vbox-win2022-datacenter' --force "$template_file"
+    packer build -var-file="$var_file" -only='virtualbox-iso.vbox-win2022-datacenter' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

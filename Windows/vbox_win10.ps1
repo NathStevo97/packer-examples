@@ -7,7 +7,7 @@ $startDTM = (Get-Date)
 $template_file="./templates/win10.pkr.hcl"
 $var_file="./variables/variables_win10.pkrvars.hcl"
 $machine="Windows 10"
-$packer_log=1
+$packer_log=0
 $env:PACKER_LOG_PATH="packerlog-10-virtualbox.txt"
 packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
