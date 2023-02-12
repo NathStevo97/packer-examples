@@ -1,37 +1,56 @@
-
 variable "boot_wait" {
   type    = string
-  default = "2m"
+  default = ""
 }
 
 variable "disk_size" {
   type    = string
-  default = "61440"
+  default = ""
+}
+
+variable "floppy_files" {
+  type    = list(string)
+  default = []
+}
+
+variable "guest_os_type_virtualbox" {
+  type    = string
+  default = ""
+}
+
+variable "guest_os_type_vmware" {
+  type    = string
+  default = ""
+}
+
+variable "headless" {
+  type    = bool
+  default = false
 }
 
 variable "iso_checksum" {
   type    = string
-  default = "e8b1d2a1a85a09b4bf6154084a8be8e3c814894a15a7bcf3e8e63fcfa9a528cb"
+  default = ""
 }
 
 variable "iso_path" {
   type    = string
-  default = "../../ISOs/Windows/11/22000.194.210913-1444.co_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso"
+  default = ""
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://software-download.microsoft.com/download/sg/22000.194.210913-1444.co_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso"
+  default = ""
 }
 
 variable "memsize" {
   type    = string
-  default = "4096"
+  default = ""
 }
 
 variable "numvcpus" {
   type    = string
-  default = "2"
+  default = ""
 }
 
 variable "output_directory" {
@@ -41,7 +60,7 @@ variable "output_directory" {
 
 variable "switch_name" {
   type    = string
-  default = "Default Switch"
+  default = ""
 }
 
 variable "upgrade_timeout" {
@@ -49,19 +68,29 @@ variable "upgrade_timeout" {
   default = ""
 }
 
+variable "vlan_id" {
+  type    = string
+  default = ""
+}
+
 variable "vm_name" {
   type    = string
-  default = "Win11"
+  default = ""
 }
 
 variable "winrm_password" {
   type    = string
-  default = "vagrant"
+  default = ""
+}
+
+variable "winrm_timeout" {
+  type    = string
+  default = ""
 }
 
 variable "winrm_username" {
   type    = string
-  default = "vagrant"
+  default = ""
 }
 
 ########################################################
@@ -74,19 +103,18 @@ source "vmware-iso" "vmware-win11" {
   cpus              = "${var.numvcpus}"
   disk_adapter_type = "lsisas1068"
   disk_size         = "${var.disk_size}"
-  floppy_files      = ["./Files/bios/win11/autounattend.xml", "./Files/scripts/configure-winrm.ps1"]
-  #floppy_files    = ["./Files/bios/win11/autounattend.xml","./Files/scripts/win11_winrm.ps1" ] 
-  guest_os_type   = "windows9-64"
-  headless        = false
-  iso_checksum    = "${var.iso_checksum}"
-  iso_urls        = ["${var.iso_path}", "${var.iso_url}"]
-  memory          = "${var.memsize}"
-  skip_compaction = false
+  floppy_files      = "${var.floppy_files}"
+  guest_os_type     = "${var.guest_os_type_vmware}"
+  headless          = "${var.headless}"
+  iso_checksum      = "${var.iso_checksum}"
+  iso_urls          = ["${var.iso_path}", "${var.iso_url}"]
+  memory            = "${var.memsize}"
+  skip_compaction   = false
   #tools_upload_flavor = "windows"
   #tools_upload_path   = "c:/Windows/Temp/windows.iso"
   version        = "19"
   winrm_password = "${var.winrm_password}"
-  winrm_timeout  = "6h"
+  winrm_timeout  = "${var.winrm_timeout}"
   winrm_username = "${var.winrm_username}"
 }
 
@@ -97,12 +125,12 @@ source "vmware-iso" "vmware-win11" {
 source "virtualbox-iso" "vbox-win11" {
   communicator         = "winrm"
   disk_size            = "${var.disk_size}"
-  floppy_files         = ["./Files/bios/win11/autounattend.xml", "./Files/scripts/configure-winrm.ps1"]
+  floppy_files         = "${var.floppy_files}"
   guest_additions_mode = "disable"
   #guest_additions_path = "c:/Windows/Temp/windows.iso"
-  guest_os_type        = "Windows11_64"
+  guest_os_type        = "${var.guest_os_type_virtualbox}"
   hard_drive_interface = "sata"
-  headless             = true
+  headless             = "${var.headless}"
   iso_checksum         = "${var.iso_checksum}"
   iso_interface        = "ide"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
@@ -110,7 +138,7 @@ source "virtualbox-iso" "vbox-win11" {
   vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
   winrm_insecure       = true
   winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "6h"
+  winrm_timeout        = "${var.winrm_timeout}"
   winrm_username       = "${var.winrm_username}"
 }
 
@@ -122,9 +150,9 @@ source "hyperv-iso" "hv1-win11" {
   boot_wait        = "${var.boot_wait}"
   communicator     = "winrm"
   disk_size        = "${var.disk_size}"
-  floppy_files     = ["./Files/bios/win11/autounattend.xml", "./Files/scripts/configure-winrm.ps1"]
+  floppy_files     = "${var.floppy_files}"
   generation       = "1"
-  headless         = false
+  headless         = "${var.headless}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   memory           = "${var.memsize}"
@@ -132,7 +160,7 @@ source "hyperv-iso" "hv1-win11" {
   skip_compaction  = false
   switch_name      = "${var.switch_name}"
   winrm_password   = "${var.winrm_password}"
-  winrm_timeout    = "6h"
+  winrm_timeout    = "${var.winrm_timeout}"
   winrm_username   = "${var.winrm_username}"
 }
 

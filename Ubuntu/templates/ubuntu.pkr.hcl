@@ -50,7 +50,7 @@ variable "guest_os_type_vmware" {
 
 variable "headless" {
   type    = bool
-  default = "false"
+  default = false
 }
 
 variable "http_directory" {

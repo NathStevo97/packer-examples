@@ -1,0 +1,574 @@
+2023/02/12 13:47:34 [INFO] Packer version: 1.8.5 [go1.18.9 windows amd64]
+2023/02/12 13:47:34 [TRACE] discovering plugins in C:\HashiCorp\Packer
+2023/02/12 13:47:34 [TRACE] discovering plugins in C:\Users\natst\AppData\Roaming\packer.d\plugins
+2023/02/12 13:47:34 [DEBUG] Discovered plugin: hyperv = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\hyperv\packer-plugin-hyperv_v1.0.1_x5.0_windows_amd64.exe
+2023/02/12 13:47:34 [DEBUG] Discovered plugin: hyperv = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\hyperv\packer-plugin-hyperv_v1.0.4_x5.0_windows_amd64.exe
+2023/02/12 13:47:34 [DEBUG] Discovered plugin: qemu = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\qemu\packer-plugin-qemu_v1.0.9_x5.0_windows_amd64.exe
+2023/02/12 13:47:34 [DEBUG] Discovered plugin: virtualbox = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\virtualbox\packer-plugin-virtualbox_v1.0.4_x5.0_windows_amd64.exe
+2023/02/12 13:47:34 [DEBUG] Discovered plugin: vmware = C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe
+2023/02/12 13:47:34 [INFO] found external [iso vmx] builders from vmware plugin
+2023/02/12 13:47:35 [INFO] found external [iso vmcx] builders from hyperv plugin
+2023/02/12 13:47:35 [INFO] found external [-packer-default-plugin-name-] builders from qemu plugin
+2023/02/12 13:47:35 [INFO] found external [iso ovf vm] builders from virtualbox plugin
+2023/02/12 13:47:35 [TRACE] discovering plugins in .
+2023/02/12 13:47:35 [INFO] PACKER_CONFIG env var not set; checking the default config file path
+2023/02/12 13:47:35 [INFO] PACKER_CONFIG env var set; attempting to open config file: C:\Users\natst\AppData\Roaming\packer.config
+2023/02/12 13:47:35 [WARN] Config file doesn't exist: C:\Users\natst\AppData\Roaming\packer.config
+2023/02/12 13:47:35 [INFO] Setting cache directory: C:\Users\natst\Documents\Programming\Packer-Examples\Windows\packer_cache
+e: cannot determine if process is in background: Process background check error: not implemented yet
+2023/02/12 13:47:35 [TRACE] validateValue: not active for disk_size, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for floppy_files, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for iso_url, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for vm_name, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for winrm_timeout, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for iso_checksum, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for memsize, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for numvcpus, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for switch_name, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for upgrade_timeout, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for boot_wait, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for output_directory, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for winrm_password, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for winrm_username, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for guest_os_type_virtualbox, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for guest_os_type_vmware, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for headless, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for iso_path, so skipping
+2023/02/12 13:47:35 [TRACE] validateValue: not active for vlan_id, so skipping
+2023/02/12 13:47:35 [TRACE] Starting external plugin C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe start builder iso
+2023/02/12 13:47:35 Starting plugin: C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe []string{"C:\\Users\\natst\\AppData\\Roaming\\packer.d\\plugins\\github.com\\hashicorp\\vmware\\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe", "start", "builder", "iso"}
+2023/02/12 13:47:35 Waiting for RPC address for: C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Plugin port range: [10000,25000]
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Plugin address: tcp 127.0.0.1:10000
+2023/02/12 13:47:35 Received tcp RPC address for C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe: addr is 127.0.0.1:10000
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Waiting for connection...
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Serving a plugin connection...
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 [TRACE] starting builder iso
+2023/02/12 13:47:35 ui: Warning: A shutdown_command was not specified. Without a shutdown command, Packer
+will forcibly halt the virtual machine, which may result in data loss.
+
+  on ./templates/win11.pkr.hcl line 100:
+  (source code not available)
+
+2023/02/12 13:47:35 ui: vmware-iso.vmware-win11: output will be in this color.
+2023/02/12 13:47:35 ui: 
+2023/02/12 13:47:35 Build debug mode: false
+2023/02/12 13:47:35 Force build: true
+2023/02/12 13:47:35 On error: 
+2023/02/12 13:47:35 Waiting on builds to complete...
+2023/02/12 13:47:35 Starting build run: vmware-iso.vmware-win11
+2023/02/12 13:47:35 Running builder: 
+2023/02/12 13:47:35 [INFO] (telemetry) Starting builder vmware-iso.vmware-win11
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Searching for file 'C:/Program Files (x86)/VMware/VMware Workstation/vmware.exe'
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Found file 'C:/Program Files (x86)/VMware/VMware Workstation/vmware.exe'
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Searching for file 'C:/Program Files (x86)/VMware/VMware Workstation/vmrun.exe'
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Found file 'C:/Program Files (x86)/VMware/VMware Workstation/vmrun.exe'
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Searching for file 'C:/Program Files (x86)/VMware/VMware Workstation/vmware-vdiskmanager.exe'
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Found file 'C:/Program Files (x86)/VMware/VMware Workstation/vmware-vdiskmanager.exe'
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 VMware app path: C:/Program Files (x86)/VMware/VMware Workstation/vmware.exe
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 vmrun path: C:/Program Files (x86)/VMware/VMware Workstation/vmrun.exe
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 vdisk-manager path: C:/Program Files (x86)/VMware/VMware Workstation/vmware-vdiskmanager.exe
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Detected VMware WS version: 17
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Testing against vmware driver *common.Workstation10Driver, Success: true
+2023/02/12 13:47:35 ui: ==> vmware-iso.vmware-win11: Retrieving ISO
+2023/02/12 13:47:35 ui: ==> vmware-iso.vmware-win11: Trying ../../ISOs/Windows/11/22000.194.210913-1444.co_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso
+2023/02/12 13:47:35 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:35 Acquiring lock for: ../../ISOs/Windows/11/22000.194.210913-1444.co_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso?checksum=sha256%3Ae8b1d2a1a85a09b4bf6154084a8be8e3c814894a15a7bcf3e8e63fcfa9a528cb (C:\Users\natst\Documents\Programming\Packer-Examples\Windows\packer_cache\3eb93e793f0db7bb02bc2cbe4072109086d9e9a0.iso.lock)
+2023/02/12 13:47:35 ui: ==> vmware-iso.vmware-win11: Trying ../../ISOs/Windows/11/22000.194.210913-1444.co_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso?checksum=sha256%3Ae8b1d2a1a85a09b4bf6154084a8be8e3c814894a15a7bcf3e8e63fcfa9a528cb
+2023/02/12 13:47:49 ui: ==> vmware-iso.vmware-win11: ../../ISOs/Windows/11/22000.194.210913-1444.co_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso?checksum=sha256%3Ae8b1d2a1a85a09b4bf6154084a8be8e3c814894a15a7bcf3e8e63fcfa9a528cb => C:/Users/natst/Documents/Programming/ISOs/Windows/11/22000.194.210913-1444.co_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Leaving retrieve loop for ISO
+2023/02/12 13:47:49 ui: ==> vmware-iso.vmware-win11: Configuring output and export directories...
+2023/02/12 13:47:49 ui: ==> vmware-iso.vmware-win11: Creating floppy disk...
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Floppy path: C:\Users\natst\AppData\Local\Temp\packer3553190442
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Initializing block device backed by temporary file
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Formatting the block device with a FAT filesystem...
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Initializing FAT filesystem on block device
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Reading the root directory from the filesystem
+2023/02/12 13:47:49 ui:     vmware-iso.vmware-win11: Copying files flatly from floppy_files
+2023/02/12 13:47:49 ui:     vmware-iso.vmware-win11: Copying file: ./Files/bios/win11/autounattend.xml
+2023/02/12 13:47:49 ui:     vmware-iso.vmware-win11: Copying file: ./Files/scripts/configure-winrm.ps1
+2023/02/12 13:47:49 ui:     vmware-iso.vmware-win11: Done copying files from floppy_files
+2023/02/12 13:47:49 ui:     vmware-iso.vmware-win11: Collecting paths from floppy_dirs
+2023/02/12 13:47:49 ui:     vmware-iso.vmware-win11: Resulting paths from floppy_dirs : []
+2023/02/12 13:47:49 ui:     vmware-iso.vmware-win11: Done copying paths from floppy_dirs
+2023/02/12 13:47:49 ui:     vmware-iso.vmware-win11: Copying files from floppy_content
+2023/02/12 13:47:49 ui:     vmware-iso.vmware-win11: Done copying files from floppy_content
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 No CD files specified. CD disk will not be made.
+2023/02/12 13:47:49 ui: ==> vmware-iso.vmware-win11: Creating required virtual machine disks
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 [INFO] Creating disk with Path: output-vmware-win11\disk.vmdk and Size: 61440M
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Executing: C:/Program Files (x86)/VMware/VMware Workstation/vmware-vdiskmanager.exe -c -s 61440M -a lsisas1068 -t 1 output-vmware-win11\disk.vmdk
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 stdout: Creating disk 'output-vmware-win11\disk.vmdk'
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: Virtual disk creation successful.
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 stderr:
+2023/02/12 13:47:49 ui: ==> vmware-iso.vmware-win11: Building and writing VMX file
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Writing VMX to: output-vmware-win11\packer-vmware-win11.vmx
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Configuring VMX...
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Floppy path present, setting in VMX
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Writing VMX to: output-vmware-win11\packer-vmware-win11.vmx
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Suppressing messages in VMX
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 HostIP discovered device matching nat: vmnet8
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Searching for file 'C:/ProgramData/VMware/vmnetdhcp.conf'
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Found file 'C:/ProgramData/VMware/vmnetdhcp.conf'
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Host IP for the VMware machine: 192.168.23.1
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Looking for available port between 5900 and 6000
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Found available port: 5901 on IP: 127.0.0.1
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Found available VNC port: 127.0.0.1:5901
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Writing VMX to: output-vmware-win11\packer-vmware-win11.vmx
+2023/02/12 13:47:49 ui: ==> vmware-iso.vmware-win11: Starting virtual machine...
+2023/02/12 13:47:49 ui:     vmware-iso.vmware-win11: The VM will be run headless, without a GUI. If you want to
+    vmware-iso.vmware-win11: view the screen of the VM, connect via VNC with the password "kFPEwqx6" to
+    vmware-iso.vmware-win11: vnc://127.0.0.1:5901
+2023/02/12 13:47:49 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:49 Executing: C:/Program Files (x86)/VMware/VMware Workstation/vmrun.exe -T ws start output-vmware-win11\packer-vmware-win11.vmx nogui
+2023/02/12 13:47:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:51 stdout:
+2023/02/12 13:47:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:47:51 stderr:
+2023/02/12 13:47:51 ui: ==> vmware-iso.vmware-win11: Connecting to VNC...
+2023/02/12 13:47:51 ui: ==> vmware-iso.vmware-win11: Waiting 2m0s for boot...
+2023/02/12 13:49:51 ui: ==> vmware-iso.vmware-win11: Typing the boot command over VNC...
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Lookup up IP information...
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 [DEBUG] Unable to get address during connection step: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Waiting for WinRM, up to timeout: 6h0m0s
+2023/02/12 13:49:51 ui: ==> vmware-iso.vmware-win11: Waiting for WinRM to become available...
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Lookup up IP information...
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:49:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:51 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:49:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:56 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:49:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:56 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:49:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:56 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:49:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:56 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:49:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:56 Lookup up IP information...
+2023/02/12 13:49:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:56 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:49:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:56 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:49:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:56 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:49:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:56 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:49:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:49:56 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:01 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:01 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:01 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:01 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:01 Lookup up IP information...
+2023/02/12 13:50:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:01 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:01 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:01 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:01 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:01 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:06 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:06 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:06 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:06 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:06 Lookup up IP information...
+2023/02/12 13:50:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:06 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:06 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:06 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:06 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:06 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:11 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:11 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:11 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:11 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:11 Lookup up IP information...
+2023/02/12 13:50:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:11 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:11 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:11 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:11 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:11 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:16 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:16 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:16 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:16 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:16 Lookup up IP information...
+2023/02/12 13:50:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:16 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:16 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:16 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:16 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:16 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:21 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:21 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:21 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:21 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:21 Lookup up IP information...
+2023/02/12 13:50:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:21 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:21 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:21 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:21 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:21 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:26 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:26 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:26 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:26 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:26 Lookup up IP information...
+2023/02/12 13:50:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:26 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:26 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:26 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:26 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:26 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:31 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:31 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:31 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:31 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:31 Lookup up IP information...
+2023/02/12 13:50:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:31 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:31 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:31 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:31 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:31 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:31 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:36 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:36 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:36 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:36 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:36 Lookup up IP information...
+2023/02/12 13:50:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:36 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:36 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:36 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:36 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:36 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:36 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:41 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:41 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:41 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:41 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:41 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:41 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:41 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:41 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:41 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:41 Lookup up IP information...
+2023/02/12 13:50:41 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:41 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:41 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:41 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:41 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:41 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:41 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:41 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:41 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:41 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:46 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:46 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:46 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:46 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:46 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:46 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:46 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:46 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:46 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:46 Lookup up IP information...
+2023/02/12 13:50:46 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:46 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:46 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:46 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:46 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:46 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:46 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:46 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:46 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:46 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:51 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:51 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:51 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:51 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:51 Lookup up IP information...
+2023/02/12 13:50:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:51 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:51 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:51 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:51 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:51 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:51 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:56 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:56 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:50:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:56 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:50:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:56 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:50:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:56 Lookup up IP information...
+2023/02/12 13:50:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:56 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:50:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:56 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:50:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:56 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:50:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:56 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:50:56 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:50:56 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:01 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:01 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:01 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:51:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:01 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:51:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:01 Lookup up IP information...
+2023/02/12 13:51:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:01 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:51:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:01 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:51:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:01 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:51:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:01 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:01 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:01 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:06 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:06 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:06 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:51:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:06 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:51:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:06 Lookup up IP information...
+2023/02/12 13:51:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:06 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:51:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:06 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:51:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:06 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:51:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:06 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:06 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:11 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:11 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:11 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:51:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:11 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:51:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:11 Lookup up IP information...
+2023/02/12 13:51:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:11 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:51:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:11 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:51:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:11 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:51:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:11 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:11 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:11 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:16 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:16 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:16 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:51:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:16 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:51:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:16 Lookup up IP information...
+2023/02/12 13:51:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:16 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:51:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:16 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:51:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:16 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:51:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:16 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:16 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:16 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:21 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:21 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:21 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:51:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:21 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:51:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:21 Lookup up IP information...
+2023/02/12 13:51:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:21 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:51:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:21 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:51:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:21 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:51:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:21 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:21 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:21 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:26 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:26 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:26 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:51:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:26 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:51:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:26 Lookup up IP information...
+2023/02/12 13:51:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:26 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:51:26 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:26 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:51:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:27 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:51:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:27 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:27 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:32 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:32 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:32 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:51:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:32 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:51:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:32 Lookup up IP information...
+2023/02/12 13:51:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:32 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:51:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:32 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:51:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:32 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:51:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:32 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:32 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:37 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:37 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:37 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:51:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:37 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:51:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:37 Lookup up IP information...
+2023/02/12 13:51:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:37 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:51:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:37 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:51:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:37 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:51:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:37 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:37 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:42 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:42 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:42 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:51:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:42 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:51:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:42 Lookup up IP information...
+2023/02/12 13:51:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:42 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:51:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:42 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:51:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:42 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:51:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:42 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:42 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:47 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:47 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:47 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:51:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:47 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:51:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:47 Lookup up IP information...
+2023/02/12 13:51:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:47 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:51:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:47 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:51:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:47 Unable to find an exact match for DHCP lease. Falling back to a loose match for hw address 00:0c:29:c5:de:3c
+2023/02/12 13:51:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:47 IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:47 [DEBUG] Error getting WinRM host: IP lookup failed: None of the found device(s) [vmnet8] has a DHCP lease for MAC 00:0c:29:c5:de:3c
+2023/02/12 13:51:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:52 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:52 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:51:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:52 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:51:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:52 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:51:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:52 Lookup up IP information...
+2023/02/12 13:51:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:52 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:51:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:51:52 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:52:07 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:07 Skipping lease entry #1 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:52:07 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:07 [DEBUG] Error getting WinRM host: Host is not up
+2023/02/12 13:52:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:12 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:52:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:12 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:52:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:12 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:52:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:12 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:52:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:12 Lookup up IP information...
+2023/02/12 13:52:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:12 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:52:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:12 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:52:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:27 Skipping lease entry #1 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:52:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:27 [DEBUG] Error getting WinRM host: Host is not up
+2023/02/12 13:52:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:32 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:52:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:32 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:52:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:32 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:52:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:32 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:52:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:32 Lookup up IP information...
+2023/02/12 13:52:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:32 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:52:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:32 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:52:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:47 Skipping lease entry #1 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:52:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:47 [DEBUG] Error getting WinRM host: Host is not up
+2023/02/12 13:52:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:52 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:52:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:52 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:52:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:52 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:52:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:52 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:52:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:52 Lookup up IP information...
+2023/02/12 13:52:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:52 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:52:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:52:52 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:53:07 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:07 Skipping lease entry #1 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:53:07 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:07 [DEBUG] Error getting WinRM host: Host is not up
+2023/02/12 13:53:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:12 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:53:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:12 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:53:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:12 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:53:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:12 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:53:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:12 Lookup up IP information...
+2023/02/12 13:53:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:12 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:53:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:12 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:53:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:27 Skipping lease entry #1 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:53:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:42 Skipping lease entry #2 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:53:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:42 [DEBUG] Error getting WinRM host: Host is not up
+2023/02/12 13:53:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:47 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:53:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:47 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:53:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:47 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:53:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:47 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:53:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:47 Lookup up IP information...
+2023/02/12 13:53:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:47 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:53:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:53:47 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:54:02 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:02 Skipping lease entry #1 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:54:17 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:17 Skipping lease entry #2 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:54:17 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:17 [DEBUG] Error getting WinRM host: Host is not up
+2023/02/12 13:54:22 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:22 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:54:22 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:22 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:54:22 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:22 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:54:22 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:22 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:54:22 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:22 Lookup up IP information...
+2023/02/12 13:54:22 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:22 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:54:22 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:22 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:54:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:37 Skipping lease entry #1 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:54:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:52 Skipping lease entry #2 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:54:52 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:52 [DEBUG] Error getting WinRM host: Host is not up
+2023/02/12 13:54:57 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:57 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:54:57 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:57 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:54:57 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:57 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:54:57 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:57 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:54:57 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:57 Lookup up IP information...
+2023/02/12 13:54:57 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:57 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:54:57 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:54:57 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:55:12 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:55:12 Skipping lease entry #1 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:55:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:55:27 Skipping lease entry #2 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:55:27 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:55:27 [DEBUG] Error getting WinRM host: Host is not up
+2023/02/12 13:55:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:55:32 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:55:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:55:32 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:55:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:55:32 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:55:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:55:32 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:55:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:55:32 Lookup up IP information...
+2023/02/12 13:55:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:55:32 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:55:32 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:55:32 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:55:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:55:47 Skipping lease entry #1 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:56:02 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:02 Skipping lease entry #2 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:56:02 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:02 [DEBUG] Error getting WinRM host: Host is not up
+2023/02/12 13:56:07 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:07 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:56:07 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:07 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:56:07 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:07 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:56:07 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:07 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:56:07 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:07 Lookup up IP information...
+2023/02/12 13:56:07 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:07 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:56:07 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:07 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:56:22 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:22 Skipping lease entry #1 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:56:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:37 Skipping lease entry #2 due to being unable to connect to the host (192.168.23.137) with tcp port (5985).
+2023/02/12 13:56:37 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:37 [DEBUG] Error getting WinRM host: Host is not up
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 Searching for file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 Found file 'C:/ProgramData/VMware/netmap.conf'
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 Located networkmapper configuration file using Workstation: C:/ProgramData/VMware/netmap.conf
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 GuestIP discovered device matching nat: vmnet8
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 Lookup up IP information...
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 GuestAddress found MAC address in VMX: 00:0c:29:c5:de:3c
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 Trying DHCP leases path: C:/ProgramData/VMware/vmnetdhcp.leases
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 Detected IP: 192.168.23.137
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 [INFO] Attempting WinRM connection...
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 [DEBUG] connecting to remote shell using WinRM
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 [ERROR] connection error: http response error: 401 - invalid content type
+2023/02/12 13:56:42 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:42 [ERROR] WinRM connection err: http response error: 401 - invalid content type
+2023/02/12 13:56:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:47 [INFO] Attempting WinRM connection...
+2023/02/12 13:56:47 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:56:47 [DEBUG] connecting to remote shell using WinRM
+2023/02/12 13:57:03 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:57:03 Checking that WinRM is connected with: 'powershell.exe -EncodedCommand JABQAHIAbwBnAHIAZQBzAHMAUAByAGUAZgBlAHIAZQBuAGMAZQAgAD0AIAAnAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUAJwA7AGkAZgAgACgAVABlAHMAdAAtAFAAYQB0AGgAIAB2AGEAcgBpAGEAYgBsAGUAOgBnAGwAbwBiAGEAbAA6AFAAcgBvAGcAcgBlAHMAcwBQAHIAZQBmAGUAcgBlAG4AYwBlACkAewAkAFAAcgBvAGcAcgBlAHMAcwBQAHIAZQBmAGUAcgBlAG4AYwBlAD0AJwBTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACcAfQA7ACAAZQBjAGgAbwAgACIAVwBpAG4AUgBNACAAYwBvAG4AbgBlAGMAdABlAGQALgAiAA=='
+2023/02/12 13:57:06 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:57:06 [INFO] starting remote command: powershell.exe -EncodedCommand JABQAHIAbwBnAHIAZQBzAHMAUAByAGUAZgBlAHIAZQBuAGMAZQAgAD0AIAAnAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUAJwA7AGkAZgAgACgAVABlAHMAdAAtAFAAYQB0AGgAIAB2AGEAcgBpAGEAYgBsAGUAOgBnAGwAbwBiAGEAbAA6AFAAcgBvAGcAcgBlAHMAcwBQAHIAZQBmAGUAcgBlAG4AYwBlACkAewAkAFAAcgBvAGcAcgBlAHMAcwBQAHIAZQBmAGUAcgBlAG4AYwBlAD0AJwBTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACcAfQA7ACAAZQBjAGgAbwAgACIAVwBpAG4AUgBNACAAYwBvAG4AbgBlAGMAdABlAGQALgAiAA==
+2023/02/12 13:57:15 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:57:15 [INFO] command 'powershell.exe -EncodedCommand JABQAHIAbwBnAHIAZQBzAHMAUAByAGUAZgBlAHIAZQBuAGMAZQAgAD0AIAAnAFMAaQBsAGUAbgB0AGwAeQBDAG8AbgB0AGkAbgB1AGUAJwA7AGkAZgAgACgAVABlAHMAdAAtAFAAYQB0AGgAIAB2AGEAcgBpAGEAYgBsAGUAOgBnAGwAbwBiAGEAbAA6AFAAcgBvAGcAcgBlAHMAcwBQAHIAZQBmAGUAcgBlAG4AYwBlACkAewAkAFAAcgBvAGcAcgBlAHMAcwBQAHIAZQBmAGUAcgBlAG4AYwBlAD0AJwBTAGkAbABlAG4AdABsAHkAQwBvAG4AdABpAG4AdQBlACcAfQA7ACAAZQBjAGgAbwAgACIAVwBpAG4AUgBNACAAYwBvAG4AbgBlAGMAdABlAGQALgAiAA==' exited with code: 0
+2023/02/12 13:57:15 ui:     vmware-iso.vmware-win11: WinRM connected.
+2023/02/12 13:57:15 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:57:15 Connected to machine
+2023/02/12 13:57:15 ui: ==> vmware-iso.vmware-win11: Connected to WinRM!
+2023/02/12 13:57:15 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:57:15 Running the provision hook
+2023/02/12 13:57:15 ui: ==> vmware-iso.vmware-win11: Forcibly halting virtual machine...
+2023/02/12 13:57:15 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:57:15 Executing: C:/Program Files (x86)/VMware/VMware Workstation/vmrun.exe -T ws stop output-vmware-win11\packer-vmware-win11.vmx hard
+2023/02/12 13:57:17 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:57:17 stdout:
+2023/02/12 13:57:17 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:57:17 stderr:
+2023/02/12 13:57:17 ui:     vmware-iso.vmware-win11: Waiting for VMware to clean up after itself...
+2023/02/12 13:57:17 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:57:17 No more lock files found. VMware is clean.
+2023/02/12 13:57:22 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:57:22 VM shut down.
+2023/02/12 13:57:22 ui: ==> vmware-iso.vmware-win11: Deleting unnecessary VMware files...
+2023/02/12 13:57:22 ui:     vmware-iso.vmware-win11: Deleting: output-vmware-win11\packer-vmware-win11.scoreboard
+2023/02/12 13:57:22 ui:     vmware-iso.vmware-win11: Deleting: output-vmware-win11\vmware.log
+2023/02/12 13:57:22 ui: ==> vmware-iso.vmware-win11: Compacting all attached virtual disks...
+2023/02/12 13:57:22 ui:     vmware-iso.vmware-win11: Compacting virtual disk 1
+2023/02/12 13:57:22 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:57:22 Executing: C:/Program Files (x86)/VMware/VMware Workstation/vmware-vdiskmanager.exe -d output-vmware-win11\disk.vmdk
+2023/02/12 13:58:55 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:58:55 stdout: Defragment: 0% done.  Defragment: 1% done.  Defragment: 2% done.  Defragment: 3% done.  Defragment: 4% done.  Defragment: 5% done.  Defragment: 6% done.  Defragment: 7% done.  Defragment: 8% done.  Defragment: 9% done.  Defragment: 10% done.  Defragment: 11% done.  Defragment: 12% done.  Defragment: 13% done.  Defragment: 14% done.  Defragment: 15% done.  Defragment: 16% done.  Defragment: 17% done.  Defragment: 18% done.  Defragment: 19% done.  Defragment: 20% done.  Defragment: 21% done.  Defragment: 22% done.  Defragment: 23% done.  Defragment: 24% done.  Defragment: 25% done.  Defragment: 26% done.  Defragment: 27% done.  Defragment: 28% done.  Defragment: 29% done.  Defragment: 30% done.  Defragment: 31% done.  Defragment: 32% done.  Defragment: 33% done.  Defragment: 34% done.  Defragment: 35% done.  Defragment: 36% done.  Defragment: 37% done.  Defragment: 38% done.  Defragment: 39% done.  Defragment: 40% done.  Defragment: 41% done.  Defragment: 42% done.  Defragment: 43% done.  Defragment: 44% done.  Defragment: 45% done.  Defragment: 46% done.  Defragment: 47% done.  Defragment: 48% done.  Defragment: 49% done.  Defragment: 50% done.  Defragment: 51% done.  Defragment: 52% done.  Defragment: 53% done.  Defragment: 54% done.  Defragment: 55% done.  Defragment: 56% done.  Defragment: 57% done.  Defragment: 58% done.  Defragment: 59% done.  Defragment: 60% done.  Defragment: 61% done.  Defragment: 62% done.  Defragment: 63% done.  Defragment: 64% done.  Defragment: 65% done.  Defragment: 66% done.  Defragment: 67% done.  Defragment: 68% done.  Defragment: 69% done.  Defragment: 70% done.  Defragment: 71% done.  Defragment: 72% done.  Defragment: 73% done.  Defragment: 74% done.  Defragment: 75% done.  Defragment: 76% done.  Defragment: 77% done.  Defragment: 78% done.  Defragment: 79% done.  Defragment: 80% done.  Defragment: 81% done.  Defragment: 82% done.  Defragment: 83% done.  Defragment: 84% done.  Defragment: 85% done.  Defragment: 86% done.  Defragment: 87% done.  Defragment: 88% done.  Defragment: 89% done.  Defragment: 90% done.  Defragment: 91% done.  Defragment: 92% done.  Defragment: 93% done.  Defragment: 94% done.  Defragment: 95% done.  Defragment: 96% done.  Defragment: 97% done.  Defragment: 98% done.  Defragment: 99% done.  Defragment: 100% done.
+2023/02/12 13:58:55 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: Defragmentation completed successfully.
+2023/02/12 13:58:55 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:58:55 stderr:
+2023/02/12 13:58:55 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:58:55 Executing: C:/Program Files (x86)/VMware/VMware Workstation/vmware-vdiskmanager.exe -k output-vmware-win11\disk.vmdk
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 stdout: Shrink: 0% done.  Shrink: 1% done.  Shrink: 2% done.  Shrink: 3% done.  Shrink: 4% done.  Shrink: 5% done.  Shrink: 6% done.  Shrink: 7% done.  Shrink: 8% done.  Shrink: 9% done.  Shrink: 10% done.  Shrink: 11% done.  Shrink: 12% done.  Shrink: 13% done.  Shrink: 14% done.  Shrink: 15% done.  Shrink: 16% done.  Shrink: 17% done.  Shrink: 18% done.  Shrink: 19% done.  Shrink: 20% done.  Shrink: 21% done.  Shrink: 22% done.  Shrink: 23% done.  Shrink: 24% done.  Shrink: 25% done.  Shrink: 26% done.  Shrink: 27% done.  Shrink: 28% done.  Shrink: 29% done.  Shrink: 30% done.  Shrink: 31% done.  Shrink: 32% done.  Shrink: 33% done.  Shrink: 34% done.  Shrink: 35% done.  Shrink: 36% done.  Shrink: 37% done.  Shrink: 38% done.  Shrink: 39% done.  Shrink: 40% done.  Shrink: 41% done.  Shrink: 42% done.  Shrink: 43% done.  Shrink: 44% done.  Shrink: 45% done.  Shrink: 46% done.  Shrink: 47% done.  Shrink: 48% done.  Shrink: 49% done.  Shrink: 50% done.  Shrink: 51% done.  Shrink: 52% done.  Shrink: 53% done.  Shrink: 54% done.  Shrink: 55% done.  Shrink: 56% done.  Shrink: 57% done.  Shrink: 58% done.  Shrink: 59% done.  Shrink: 60% done.  Shrink: 61% done.  Shrink: 62% done.  Shrink: 63% done.  Shrink: 64% done.  Shrink: 65% done.  Shrink: 66% done.  Shrink: 67% done.  Shrink: 68% done.  Shrink: 69% done.  Shrink: 70% done.  Shrink: 71% done.  Shrink: 72% done.  Shrink: 73% done.  Shrink: 74% done.  Shrink: 75% done.  Shrink: 76% done.  Shrink: 77% done.  Shrink: 78% done.  Shrink: 79% done.  Shrink: 80% done.  Shrink: 81% done.  Shrink: 82% done.  Shrink: 83% done.  Shrink: 84% done.  Shrink: 85% done.  Shrink: 86% done.  Shrink: 87% done.  Shrink: 88% done.  Shrink: 89% done.  Shrink: 90% done.  Shrink: 91% done.  Shrink: 92% done.  Shrink: 93% done.  Shrink: 94% done.  Shrink: 95% done.  Shrink: 96% done.  Shrink: 97% done.  Shrink: 98% done.  Shrink: 99% done.  Shrink: 100% done.
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: Shrink completed successfully.
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 stderr:
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 Configuring VMX...
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 Writing VMX to: output-vmware-win11\packer-vmware-win11.vmx
+2023/02/12 13:59:59 ui: ==> vmware-iso.vmware-win11: Cleaning VMX prior to finishing up...
+2023/02/12 13:59:59 ui:     vmware-iso.vmware-win11: Detaching ISO from CD-ROM device ide0:0...
+2023/02/12 13:59:59 ui:     vmware-iso.vmware-win11: Unmounting floppy0 from VMX...
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 Deleting key for floppy device: floppy0.filetype
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 Deleting key for floppy device: floppy0.filename
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 Deleting key for floppy device: floppy0.present
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 Deleting key for floppy device: floppy0.clientdevice
+2023/02/12 13:59:59 ui:     vmware-iso.vmware-win11: Disabling VNC server...
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 Writing VMX to: output-vmware-win11\packer-vmware-win11.vmx
+2023/02/12 13:59:59 ui: ==> vmware-iso.vmware-win11: Skipping export of virtual machine...
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 Executing: C:/Program Files (x86)/VMware/VMware Workstation/vmrun.exe -T ws list
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 stdout: Total running VMs: 0
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 stderr:
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 failed to unlock port lockfile: close tcp 127.0.0.1:5901: use of closed network connection
+2023/02/12 13:59:59 packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe plugin: 2023/02/12 13:59:59 Deleting floppy disk: C:\Users\natst\AppData\Local\Temp\packer3553190442
+2023/02/12 13:59:59 [INFO] (telemetry) ending vmware-iso.vmware-win11
+2023/02/12 13:59:59 ui: Build 'vmware-iso.vmware-win11' finished after 12 minutes 23 seconds.
+2023/02/12 13:59:59 ui: 
+==> Wait completed after 12 minutes 23 seconds
+2023/02/12 13:59:59 ui: 
+==> Builds finished. The artifacts of successful builds are:
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact-count []string{"1"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "builder-id", "mitchellh.vmware"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "id", "packer-vmware-win11"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "string", "VM files in directory: output-vmware-win11"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "files-count", "21"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "0", "output-vmware-win11\\disk-s001.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "1", "output-vmware-win11\\disk-s002.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "2", "output-vmware-win11\\disk-s003.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "3", "output-vmware-win11\\disk-s004.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "4", "output-vmware-win11\\disk-s005.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "5", "output-vmware-win11\\disk-s006.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "6", "output-vmware-win11\\disk-s007.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "7", "output-vmware-win11\\disk-s008.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "8", "output-vmware-win11\\disk-s009.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "9", "output-vmware-win11\\disk-s010.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "10", "output-vmware-win11\\disk-s011.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "11", "output-vmware-win11\\disk-s012.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "12", "output-vmware-win11\\disk-s013.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "13", "output-vmware-win11\\disk-s014.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "14", "output-vmware-win11\\disk-s015.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "15", "output-vmware-win11\\disk-s016.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "16", "output-vmware-win11\\disk.vmdk"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "17", "output-vmware-win11\\packer-vmware-win11.nvram"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "18", "output-vmware-win11\\packer-vmware-win11.vmsd"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "19", "output-vmware-win11\\packer-vmware-win11.vmx"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "file", "20", "output-vmware-win11\\packer-vmware-win11.vmxf"}
+2023/02/12 13:59:59 machine readable: vmware-iso.vmware-win11,artifact []string{"0", "end"}
+2023/02/12 13:59:59 ui: --> vmware-iso.vmware-win11: VM files in directory: output-vmware-win11
+2023/02/12 13:59:59 [INFO] (telemetry) Finalizing.
+2023/02/12 13:59:59 waiting for all plugin processes to complete...
+2023/02/12 13:59:59 C:\Users\natst\AppData\Roaming\packer.d\plugins\github.com\hashicorp\vmware\packer-plugin-vmware_v1.0.7_x5.0_windows_amd64.exe: plugin process exited

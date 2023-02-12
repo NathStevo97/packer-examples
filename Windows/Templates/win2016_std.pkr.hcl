@@ -1,39 +1,74 @@
 #################################################################
 #                           Variables                           #
 #################################################################
+variable "boot_command" {
+  type    = list(string)
+  default = []
+}
+
 variable "boot_wait" {
   type    = string
-  default = "5s"
+  default = ""
+}
+
+variable "boot_wait_hyperv" {
+  type    = string
+  default = ""
 }
 
 variable "disk_size" {
   type    = string
-  default = "40960"
+  default = ""
+}
+
+variable "floppy_files" {
+  type    = list(string)
+  default = []
+}
+
+variable "guest_os_type_virtualbox" {
+  type    = string
+  default = ""
+}
+
+variable "guest_os_type_vmware" {
+  type    = string
+  default = ""
+}
+
+variable "headless" {
+  type    = bool
+  default = false
+}
+
+variable "http_directory" {
+  type    = string
+  default = ""
 }
 
 variable "iso_checksum" {
   type    = string
-  default = "70721288bbcdfe3239d8f8c0fae55f1f"
+  default = ""
 }
 
 variable "iso_path" {
   type    = string
-  default = "../../ISOs/Windows Server/2016/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
+  default = ""
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
+  default = ""
 }
 
 variable "memsize" {
   type    = string
-  default = "4096"
+  default = ""
 }
 
 variable "numvcpus" {
   type    = string
-  default = "2"
+  default = ""
 }
 
 variable "output_directory" {
@@ -48,7 +83,7 @@ variable "secondary_iso_image" {
 
 variable "switch_name" {
   type    = string
-  default = "Default Switch"
+  default = ""
 }
 
 variable "upgrade_timeout" {
@@ -63,17 +98,22 @@ variable "vlan_id" {
 
 variable "vm_name" {
   type    = string
-  default = "Win2016_Standard"
+  default = ""
 }
 
 variable "winrm_password" {
   type    = string
-  default = "packer"
+  default = ""
+}
+
+variable "winrm_timeout" {
+  type    = string
+  default = ""
 }
 
 variable "winrm_username" {
   type    = string
-  default = "Administrator"
+  default = ""
 }
 
 #################################################################
@@ -84,10 +124,10 @@ source "vmware-iso" "vmware-win2016-standard" {
   communicator     = "winrm"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
-  floppy_files     = ["./Files/bios/win2016/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
-  guest_os_type    = "windows8srv-64"
-  headless         = false
-  http_directory   = "../http/Agent_Installations"
+  floppy_files     = "${var.floppy_files}"
+  guest_os_type    = "${var.guest_os_type_vmware}"
+  headless         = "${var.headless}"
+  http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
@@ -102,7 +142,7 @@ source "vmware-iso" "vmware-win2016-standard" {
   }
   winrm_insecure = true
   winrm_password = "${var.winrm_password}"
-  winrm_timeout  = "4h"
+  winrm_timeout  = "${var.winrm_timeout}"
   winrm_use_ssl  = true
   winrm_username = "${var.winrm_username}"
 }
@@ -114,9 +154,9 @@ source "hyperv-iso" "hv1-win2016-standard" {
   communicator         = "winrm"
   cpus                 = "${var.numvcpus}"
   disk_size            = "${var.disk_size}"
-  floppy_files         = ["./Files/bios/win2016/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
+  floppy_files         = "${var.floppy_files}"
   guest_additions_mode = "disable"
-  http_directory       = "../http/Agent_Installations"
+  http_directory       = "${var.http_directory}"
   iso_checksum         = "${var.iso_checksum}"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   memory               = "${var.memsize}"
@@ -124,7 +164,7 @@ source "hyperv-iso" "hv1-win2016-standard" {
   switch_name          = "${var.switch_name}"
   vm_name              = "${var.vm_name}"
   winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "4h"
+  winrm_timeout        = "${var.winrm_timeout}"
   winrm_username       = "${var.winrm_username}"
 }
 
@@ -132,9 +172,8 @@ source "hyperv-iso" "hv1-win2016-standard" {
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
 source "hyperv-iso" "hv2-win2016-standard" {
-  boot_command = ["<tab><wait><enter><wait>",
-  "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
-  boot_wait             = "120s"
+  boot_command = "${var.boot_command}"
+  boot_wait             = "${var.boot_wait_hyperv}"
   communicator          = "winrm"
   cpus                  = "${var.numvcpus}"
   disk_size             = "${var.disk_size}"
@@ -142,8 +181,8 @@ source "hyperv-iso" "hv2-win2016-standard" {
   enable_secure_boot    = false
   generation            = 2
   guest_additions_mode  = "disable"
-  headless              = true
-  http_directory        = "../http/Agent_Installations"
+  headless              = "${var.headless}"
+  http_directory        = "${var.http_directory}"
   iso_checksum          = "${var.iso_checksum}"
   iso_urls              = ["${var.iso_path}", "${var.iso_url}"]
   memory                = "${var.memsize}"
@@ -156,7 +195,7 @@ source "hyperv-iso" "hv2-win2016-standard" {
   vlan_id               = "${var.vlan_id}"
   vm_name               = "${var.vm_name}"
   winrm_password        = "${var.winrm_password}"
-  winrm_timeout         = "4h"
+  winrm_timeout         = "${var.winrm_timeout}"
   winrm_username        = "${var.winrm_username}"
 }
 
@@ -166,14 +205,14 @@ source "hyperv-iso" "hv2-win2016-standard" {
 
 source "virtualbox-iso" "vbox-win2016-standard" {
   communicator         = "winrm"
-  disk_size            = 61440
-  floppy_files         = ["./Files/bios/win2016/Std/autounattend.xml", "./Files/scripts/winrmConfig.ps1"]
+  disk_size            = "${var.disk_size}"
+  floppy_files         = "${var.floppy_files}"
   guest_additions_mode = "disable"
   #guest_additions_path = "c:/Windows/Temp/windows.iso"
-  guest_os_type        = " Windows2016_64"
+  guest_os_type        = "${var.guest_os_type_virtualbox}"
   hard_drive_interface = "sata"
-  headless             = true
-  http_directory       = "../http/Agent_Installations"
+  headless             = "${var.headless}"
+  http_directory       = "${var.http_directory}"
   iso_checksum         = "${var.iso_checksum}"
   iso_interface        = "sata"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
@@ -181,7 +220,7 @@ source "virtualbox-iso" "vbox-win2016-standard" {
   vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "2048"], ["modifyvm", "{{ .Name }}", "--cpus", "1"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
   winrm_insecure       = true
   winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "4h"
+  winrm_timeout        = "${var.winrm_timeout}"
   winrm_username       = "${var.winrm_username}"
 }
 

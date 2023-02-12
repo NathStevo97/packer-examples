@@ -5,7 +5,7 @@ $startDTM = (Get-Date)
 
 # Variables
 $template_file="./templates/win10.pkr.hcl"
-#$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
+$var_file="./variables/variables_win10.pkrvars.hcl"
 $machine="Windows 10"
 $packer_log=1
 $env:PACKER_LOG_PATH="packerlog-10-hv1.txt"
@@ -18,7 +18,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate -only='hyperv-iso.hv1-win10' "$template_file"
+    packer validate -var-file="$var_file" -only='hyperv-iso.hv1-win10' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build -only='hyperv-iso.hv1-win10' --force "$template_file"
+    packer build -var-file="$var_file" -only='hyperv-iso.hv1-win10' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

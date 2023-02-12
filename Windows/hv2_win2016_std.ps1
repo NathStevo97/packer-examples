@@ -17,7 +17,7 @@ if ((Test-Path -Path "$template_file") -and (Test-Path -Path "$var_file")) {
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    packer validate -only='hyperv-iso.hv2-win2016-standard' -var-file="$var_file" "$template_file"
+    packer validate -var-file="$var_file" -only='hyperv-iso.hv2-win2016-standard' -var-file="$var_file" "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -26,7 +26,7 @@ if ((Test-Path -Path "$template_file") -and (Test-Path -Path "$var_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    packer build -only='hyperv-iso.hv2-win2016-standard' --force -var-file="$var_file" "$template_file"
+    packer build -var-file="$var_file" -only='hyperv-iso.hv2-win2016-standard' --force -var-file="$var_file" "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."
