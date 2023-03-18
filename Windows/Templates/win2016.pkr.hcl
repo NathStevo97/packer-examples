@@ -119,7 +119,7 @@ variable "winrm_username" {
 #################################################################
 #                           VMware-ISO Builder                  #
 #################################################################
-source "vmware-iso" "vmware-win2019-standard" {
+source "vmware-iso" "vmware-win2016" {
   boot_wait        = "${var.boot_wait}"
   communicator     = "winrm"
   disk_size        = "${var.disk_size}"
@@ -150,14 +150,13 @@ source "vmware-iso" "vmware-win2019-standard" {
 #################################################################
 #                        Gen-1 Hyper-V Builder                  #
 #################################################################
-source "hyperv-iso" "hv1-win2019-standard" {
+source "hyperv-iso" "hv1-win2016" {
   communicator         = "winrm"
   cpus                 = "${var.numvcpus}"
   disk_size            = "${var.disk_size}"
   floppy_files         = "${var.floppy_files}"
   guest_additions_mode = "disable"
-  headless         = "${var.headless}"
-  http_directory   = "${var.http_directory}"
+  http_directory       = "${var.http_directory}"
   iso_checksum         = "${var.iso_checksum}"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   memory               = "${var.memsize}"
@@ -172,7 +171,7 @@ source "hyperv-iso" "hv1-win2019-standard" {
 #################################################################
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
-source "hyperv-iso" "hv2-win2019-standard" {
+source "hyperv-iso" "hv2-win2016" {
   boot_command = "${var.boot_command}"
   boot_wait             = "${var.boot_wait_hyperv}"
   communicator          = "winrm"
@@ -204,7 +203,7 @@ source "hyperv-iso" "hv2-win2019-standard" {
 #                    Virtualbox-ISO Builder                     #
 #################################################################
 
-source "virtualbox-iso" "vbox-win2019-standard" {
+source "virtualbox-iso" "vbox-win2016" {
   communicator         = "winrm"
   disk_size            = "${var.disk_size}"
   floppy_files         = "${var.floppy_files}"
@@ -218,7 +217,7 @@ source "virtualbox-iso" "vbox-win2019-standard" {
   iso_interface        = "sata"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
-  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
+  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "2048"], ["modifyvm", "{{ .Name }}", "--cpus", "1"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
   winrm_insecure       = true
   winrm_password       = "${var.winrm_password}"
   winrm_timeout        = "${var.winrm_timeout}"
@@ -230,16 +229,15 @@ source "virtualbox-iso" "vbox-win2019-standard" {
 #################################################################
 
 build {
-  sources = ["source.vmware-iso.vmware-win2019-standard", "source.hyperv-iso.hv1-win2019-standard", "source.hyperv-iso.hv2-win2019-standard", "source.virtualbox-iso.vbox-win2019-standard"]
-
+  sources = ["source.vmware-iso.vmware-win2016", "source.hyperv-iso.hv1-win2016", "source.hyperv-iso.hv2-win2016", "source.virtualbox-iso.vbox-win2016"]
 
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
-    only              = ["vmware-iso.win2019-standard"] # this provisioner will only run for the vmware-iso build
+    only              = ["vmware-iso.win2016"] # this provisioner will only run for the vmware-iso build
     scripts           = ["./Files/scripts/vmware-tools.ps1"]
   }
-
+  /*
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
@@ -249,7 +247,7 @@ build {
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
-  /*
+
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
@@ -310,5 +308,5 @@ build {
   #provisioner "powershell" {
   #  scripts = ["scripts/cleanup.ps1"]
   #}
-  */
+   */
 }

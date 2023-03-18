@@ -4,7 +4,7 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/win2016_std.pkr.hcl"
+$template_file="./templates/win2016.pkr.hcl"
 $var_file="./variables/variables_win2016_std.pkrvars.hcl"
 $machine="Windows Server 2016 Standard Gen-2"
 $packer_log=0
@@ -17,7 +17,7 @@ if ((Test-Path -Path "$template_file") -and (Test-Path -Path "$var_file")) {
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    packer validate -var-file="$var_file" -only='hyperv-iso.hv2-win2016-standard' -var-file="$var_file" "$template_file"
+    packer validate -var-file="$var_file" -only='hyperv-iso.hv2-win2016' -var-file="$var_file" "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -26,7 +26,7 @@ if ((Test-Path -Path "$template_file") -and (Test-Path -Path "$var_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    packer build -var-file="$var_file" -only='hyperv-iso.hv2-win2016-standard' --force -var-file="$var_file" "$template_file"
+    packer build -var-file="$var_file" -only='hyperv-iso.hv2-win2016' --force -var-file="$var_file" "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

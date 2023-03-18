@@ -119,7 +119,7 @@ variable "winrm_username" {
 #################################################################
 #                           VMware-ISO Builder                  #
 #################################################################
-source "vmware-iso" "vmware-win2016-datacenter" {
+source "vmware-iso" "vmware-win2022" {
   boot_wait        = "${var.boot_wait}"
   communicator     = "winrm"
   disk_size        = "${var.disk_size}"
@@ -150,14 +150,14 @@ source "vmware-iso" "vmware-win2016-datacenter" {
 #################################################################
 #                        Gen-1 Hyper-V Builder                  #
 #################################################################
-source "hyperv-iso" "hv1-win2016-datacenter" {
+source "hyperv-iso" "hv1-win2022" {
   communicator         = "winrm"
   cpus                 = "${var.numvcpus}"
   disk_size            = "${var.disk_size}"
   floppy_files         = "${var.floppy_files}"
-  headless             = "${var.headless}"
   guest_additions_mode = "disable"
-  http_directory       = "${var.http_directory}"
+  headless         = "${var.headless}"
+  http_directory   = "${var.http_directory}"
   iso_checksum         = "${var.iso_checksum}"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   memory               = "${var.memsize}"
@@ -172,7 +172,7 @@ source "hyperv-iso" "hv1-win2016-datacenter" {
 #################################################################
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
-source "hyperv-iso" "hv2-win2016-datacenter" {
+source "hyperv-iso" "hv2-win2022" {
   boot_command = "${var.boot_command}"
   boot_wait             = "${var.boot_wait_hyperv}"
   communicator          = "winrm"
@@ -184,36 +184,36 @@ source "hyperv-iso" "hv2-win2016-datacenter" {
   guest_additions_mode  = "disable"
   headless              = "${var.headless}"
   http_directory        = "${var.http_directory}"
-  iso_checksum         = "${var.iso_checksum}"
-  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
-  memory               = "${var.memsize}"
-  output_directory     = "${var.output_directory}"
-  secondary_iso_images = ["${var.secondary_iso_image}"]
-  shutdown_timeout     = "2h"
-  skip_export          = true
-  switch_name          = "${var.switch_name}"
-  temp_path            = "."
-  vlan_id              = "${var.vlan_id}"
-  vm_name              = "${var.vm_name}"
-  winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "${var.winrm_timeout}"
-  winrm_username       = "${var.winrm_username}"
+  iso_checksum          = "${var.iso_checksum}"
+  iso_urls              = ["${var.iso_path}", "${var.iso_url}"]
+  memory                = "${var.memsize}"
+  output_directory      = "${var.output_directory}"
+  secondary_iso_images  = ["${var.secondary_iso_image}"]
+  shutdown_timeout      = "2h"
+  skip_export           = true
+  switch_name           = "${var.switch_name}"
+  temp_path             = "."
+  vlan_id               = "${var.vlan_id}"
+  vm_name               = "${var.vm_name}"
+  winrm_password        = "${var.winrm_password}"
+  winrm_timeout         = "${var.winrm_timeout}"
+  winrm_username        = "${var.winrm_username}"
 }
 
 #################################################################
 #                    Virtualbox-ISO Builder                     #
 #################################################################
 
-source "virtualbox-iso" "vbox-win2016-dc" {
-  communicator = "winrm"
-  disk_size    = "${var.disk_size}"
-  floppy_files = "${var.floppy_files}"
-  #guest_additions_mode = "upload"
+source "virtualbox-iso" "vbox-win2022" {
+  communicator         = "winrm"
+  disk_size            = "${var.disk_size}"
+  floppy_files         = "${var.floppy_files}"
+  guest_additions_mode = "disable"
   #guest_additions_path = "c:/Windows/Temp/windows.iso"
   guest_os_type        = "${var.guest_os_type_virtualbox}"
   hard_drive_interface = "sata"
-  headless              = "${var.headless}"
-  http_directory        = "${var.http_directory}"
+  headless             = "${var.headless}"
+  http_directory       = "${var.http_directory}"
   iso_checksum         = "${var.iso_checksum}"
   iso_interface        = "sata"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
@@ -225,21 +225,21 @@ source "virtualbox-iso" "vbox-win2016-dc" {
   winrm_username       = "${var.winrm_username}"
 }
 
-
 #################################################################
 #                           Builders                            #
 #################################################################
 
 build {
-  sources = ["source.vmware-iso.vmware-win2016-datacenter", "source.hyperv-iso.hv1-win2016-datacenter", "source.hyperv-iso.hv2-win2016-datacenter", "source.virtualbox-iso.vbox-win2016-dc"]
+  sources = ["source.vmware-iso.vmware-win2022", "source.hyperv-iso.hv1-win2022", "source.hyperv-iso.hv2-win2022", "source.virtualbox-iso.vbox-win2022"]
+
 
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
-    only              = ["vmware-iso.win2016-datacenter"] # this provisioner will only run for the vmware-iso build
+    only              = ["vmware-iso.win2022"] # this provisioner will only run for the vmware-iso build
     scripts           = ["./Files/scripts/vmware-tools.ps1"]
   }
-  /*
+
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
@@ -249,7 +249,7 @@ build {
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
-
+  /*
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
@@ -269,7 +269,7 @@ build {
     restart_timeout = "30m"
   }
 
-    
+  
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
@@ -307,7 +307,8 @@ build {
     elevated_user     = "Administrator"
     scripts           = ["./Files/scripts/sec_hardening_setup.ps1"]
   }
-  provisioner "powershell" {
-    scripts = ["scripts/cleanup.ps1"]
-  }*/
+  #provisioner "powershell" {
+  #  scripts = ["scripts/cleanup.ps1"]
+  #}
+  */
 }

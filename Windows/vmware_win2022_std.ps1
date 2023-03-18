@@ -4,7 +4,7 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/win2022_std.pkr.hcl"
+$template_file="./templates/win2022.pkr.hcl"
 $var_file="./variables/variables_win2022_std.pkrvars.hcl"
 $machine="Windows Server 2022 Standard"
 $packer_log=0
@@ -18,7 +18,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     #packer validate -var-file="$var_file" "$template_file"
-    packer validate -var-file="$var_file" -only='vmware-iso.vmware-win2022-standard' "$template_file"
+    packer validate -var-file="$var_file" -only='vmware-iso.vmware-win2022' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,7 +28,7 @@ if ((Test-Path -Path "$template_file")) {
     $env:PACKER_LOG=$packer_log
     packer version
     #packer build --force -var-file="$var_file" "$template_file"
-    packer build -var-file="$var_file" -only='vmware-iso.vmware-win2022-standard' --force "$template_file"
+    packer build -var-file="$var_file" -only='vmware-iso.vmware-win2022' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

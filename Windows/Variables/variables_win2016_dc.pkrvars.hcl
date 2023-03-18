@@ -8,7 +8,6 @@ guest_os_type_vmware = "windows8srv-64"
 headless = true
 http_directory = "../http/Agent_Installations"
 iso_checksum = "70721288bbcdfe3239d8f8c0fae55f1f"
-iso_checksum_type = "md5"
 iso_path = "../../ISOs/Windows Server/2016/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
 iso_url = "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO"
 memsize = "4096"

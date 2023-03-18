@@ -4,8 +4,8 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/win2016_dc.pkr.hcl"
-$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
+$template_file="./templates/win2016.pkr.hcl"
+$var_file="./variables/variables_win2016.pkrvars.hcl"
 $machine="Windows Server 2016 Datacenter"
 $packer_log=0
 $env:PACKER_LOG_PATH="packerlog-2016-DC-vbox.txt"
@@ -17,8 +17,7 @@ if ((Test-Path -Path "$template_file")) {
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    #packer validate -var-file="$var_file" "$template_file"
-    packer validate -var-file="$var_file" -only='virtualbox-iso.vbox-win2016-dc' "$template_file"
+    packer validate -var-file="$var_file" -only='virtualbox-iso.vbox-win2016' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -27,8 +26,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    #packer build --force -var-file="$var_file" "$template_file"
-    packer build -var-file="$var_file" -only='virtualbox-iso.vbox-win2016-dc' --force "$template_file"
+    packer build -var-file="$var_file" -only='virtualbox-iso.vbox-win2016' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

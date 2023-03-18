@@ -119,7 +119,7 @@ variable "winrm_username" {
 #################################################################
 #                           VMware-ISO Builder                  #
 #################################################################
-source "vmware-iso" "vmware-win2022-standard" {
+source "vmware-iso" "vmware-win2019" {
   boot_wait        = "${var.boot_wait}"
   communicator     = "winrm"
   disk_size        = "${var.disk_size}"
@@ -150,7 +150,7 @@ source "vmware-iso" "vmware-win2022-standard" {
 #################################################################
 #                        Gen-1 Hyper-V Builder                  #
 #################################################################
-source "hyperv-iso" "hv1-win2022-standard" {
+source "hyperv-iso" "hv1-win2019" {
   communicator         = "winrm"
   cpus                 = "${var.numvcpus}"
   disk_size            = "${var.disk_size}"
@@ -172,7 +172,7 @@ source "hyperv-iso" "hv1-win2022-standard" {
 #################################################################
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
-source "hyperv-iso" "hv2-win2022-standard" {
+source "hyperv-iso" "hv2-win2019" {
   boot_command = "${var.boot_command}"
   boot_wait             = "${var.boot_wait_hyperv}"
   communicator          = "winrm"
@@ -204,7 +204,7 @@ source "hyperv-iso" "hv2-win2022-standard" {
 #                    Virtualbox-ISO Builder                     #
 #################################################################
 
-source "virtualbox-iso" "vbox-win2022-standard" {
+source "virtualbox-iso" "vbox-win2019" {
   communicator         = "winrm"
   disk_size            = "${var.disk_size}"
   floppy_files         = "${var.floppy_files}"
@@ -230,13 +230,13 @@ source "virtualbox-iso" "vbox-win2022-standard" {
 #################################################################
 
 build {
-  sources = ["source.vmware-iso.vmware-win2022-standard", "source.hyperv-iso.hv1-win2022-standard", "source.hyperv-iso.hv2-win2022-standard", "source.virtualbox-iso.vbox-win2022-standard"]
+  sources = ["source.vmware-iso.vmware-win2019", "source.hyperv-iso.hv1-win2019", "source.hyperv-iso.hv2-win2019", "source.virtualbox-iso.vbox-win2019"]
 
 
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
-    only              = ["vmware-iso.win2022-standard"] # this provisioner will only run for the vmware-iso build
+    only              = ["vmware-iso.win2019"] # this provisioner will only run for the vmware-iso build
     scripts           = ["./Files/scripts/vmware-tools.ps1"]
   }
 

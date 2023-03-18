@@ -4,7 +4,7 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/win2022_dc.pkr.hcl"
+$template_file="./templates/win2022.pkr.hcl"
 $var_file="./variables/variables_win2022_dc.pkrvars.hcl"
 $machine="Windows Server 2022 datacenter Gen-2"
 $packer_log=0
@@ -17,7 +17,7 @@ if ((Test-Path -Path "$template_file") -and (Test-Path -Path "$var_file")) {
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    packer validate -var-file="$var_file" -only='hyperv-iso.hv2-win2022-datacenter' -var-file="$var_file" "$template_file"
+    packer validate -var-file="$var_file" -only='hyperv-iso.hv2-win2022' -var-file="$var_file" "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -26,7 +26,7 @@ if ((Test-Path -Path "$template_file") -and (Test-Path -Path "$var_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    packer build -var-file="$var_file" -only='hyperv-iso.hv2-win2022-datacenter' --force -var-file="$var_file" "$template_file"
+    packer build -var-file="$var_file" -only='hyperv-iso.hv2-win2022' --force -var-file="$var_file" "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."
