@@ -125,8 +125,31 @@ source "virtualbox-iso" "rhel-7" {
   vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
 }
 
+#################################################################
+#                    QEMU-ISO Builder                     #
+#################################################################
+
+source "qemu" "rhel-7" {
+  headless         = var.headless
+  boot_command     = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<enter><wait>"]
+  floppy_files     = ["${var.http_directory}/ks-7.cfg", ]
+  http_directory   = "${var.http_directory}"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  shutdown_command = "echo 'vagrant'|sudo -S shutdown -P now"
+  ssh_password     = "${var.ssh_password}"
+  ssh_port         = 22
+  ssh_timeout      = "${var.ssh_timeout}"
+  ssh_username     = "${var.ssh_username}"
+  disk_size        = "${var.disk_size}"
+  disk_interface   = "virtio-scsi"
+  memory           = "${var.memsize}"
+  cpus             = "${var.numvcpus}"
+  boot_wait        = "5s"
+}
+
 build {
-  sources = ["source.vmware-iso.rhel-7", "source.virtualbox-iso.rhel-7"]
+  sources = ["source.vmware-iso.rhel-7", "source.virtualbox-iso.rhel-7", "source.qemu.rhel-7"]
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
