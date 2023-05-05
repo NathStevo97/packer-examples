@@ -7,17 +7,36 @@
 # Request user input (select number) to determine the plugin desired
 # Get the list of all available OS variants for the plugin
 
-$osTypes = @{
-    CentOS = 'CentOS'
-    Kali   = 'Kali Linux'
-    Oracle  = 'Oracle Linux'
-    RHEL = 'Red Hat Linux'
-    Ubuntu   = 'Ubuntu'
-    Windows = 'Windows'
-}
-$osIndex = 0
-$osTypes.keys | ForEach-Object{
-    $message = '{0} : {1}' -f $osIndex, $osTypes[$_]
-    Write-Output $message
-    $osIndex = $osIndex + 1
-}
+<#
+.SYNOPSIS
+Rename Azure VM Network Interfaces.
+
+.DESCRIPTION
+Rename single or multiple Network Adapter interfaces attached to an Azure Virtual Machine (Linux and Windows).
+
+.EXAMPLE
+.\Rename-AzVMNIC.ps1 -resourceGroup [ResourceGroupName] -VMName [VMName] -NewNicName [NewNicName] -Subscription [AzSub] -Verbose
+This example will rename the NIC interface for the specified VM, you need to specify the Resource Group name, VM name, and the new NIC name.
+The script will preserve the old network settings and apply them to the new network interface.
+#>
+
+[CmdletBinding()]
+Param (
+[Parameter(Position = 0, Mandatory = $True, HelpMessage = 'Enter either vmware, hyperv, virtualbox, or qemu')]
+[Alias('plugin')]
+[String]$packerPlugin,
+
+[Parameter(Position = 1, Mandatory = $False)]
+[Alias('gen')]
+[String]$generation,
+
+[Parameter(Position = 2, Mandatory = $True, HelpMessage = 'Enter a valid OS variant')]
+[Alias('os')]
+[String]$osVariant
+)
+
+write-host $packerPlugin $generation $osVariant
+
+$filename = $packerPlugin + '_' + $osVariant + '.ps1'
+
+write-host $filename
