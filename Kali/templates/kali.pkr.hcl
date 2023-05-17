@@ -33,6 +33,11 @@ variable "guest_os_type_vmware" {
   default = ""
 }
 
+variable "headless" {
+  type    = string
+  default = "true"
+}
+
 variable "iso_checksum" {
   type    = string
   default = ""
@@ -90,7 +95,7 @@ source "virtualbox-iso" "kali_virtualbox" {
   format                  = "ova"
   guest_additions_path    = "VBoxGuestAdditions_{{ .Version }}.iso"
   guest_os_type           = "${var.guest_os_type_virtualbox}"
-  headless                = true
+  headless                = "${var.headless}"
   http_directory          = "${var.http_directory}"
   iso_checksum            = "${var.iso_checksum_type}:${var.iso_checksum}"
   iso_urls                = ["${var.iso_path}", "${var.iso_url}"]
@@ -110,7 +115,7 @@ source "vmware-iso" "kali_vmware" {
   cpus           = "${var.cpus}"
   disk_size      = "${var.disk_size}"
   guest_os_type  = "${var.guest_os_type_vmware}"
-  headless       = false
+  headless       = "${var.headless}"
   http_directory = "${var.http_directory}"
   iso_checksum   = "${var.iso_checksum_type}:${var.iso_checksum}"
   iso_urls       = ["${var.iso_path}", "${var.iso_url}"]
