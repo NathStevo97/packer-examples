@@ -85,7 +85,7 @@ source "virtualbox-iso" "centos7" {
   ssh_port         = 22
   ssh_timeout      = "${var.ssh_timeout}"
   ssh_username     = "${var.ssh_username}"
-  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--firmware", "EFI"]]
+  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--firmware", "EFI"], ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]]
   vm_name          = "${var.vm_name}"
 }
 
@@ -116,9 +116,14 @@ source "vmware-iso" "centos7" {
 
 build {
   sources = ["source.vmware-iso.centos7", "source.virtualbox-iso.centos7"]
-  /*  
+
   provisioner "shell" {
-    execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    inline          = ["yum -y update", "yum -y install python3"]
+  }
+
+  provisioner "shell" {
+    execute_command = "echo 'vagrant' |{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     inline          = ["yum -y install epel-release", "yum -y update", "yum -y install ansible"]
   }
 
@@ -127,8 +132,8 @@ build {
   }
 
   provisioner "shell" {
-    execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     scripts         = ["./Files/scripts/cleanup.sh"]
   }
-  */
+
 }

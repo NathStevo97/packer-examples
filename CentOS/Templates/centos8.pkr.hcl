@@ -70,7 +70,7 @@ variable "vm_name" {
 }
 
 source "virtualbox-iso" "centos8_vbox" {
-  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8-stream.cfg<leftCtrlOn>x<leftCtrlOff>"]
+  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>inst.text <wait10s> inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8-stream.cfg <wait10s> <leftCtrlOn>x<leftCtrlOff>"]
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "${var.guest_os_type_virtualbox}"
@@ -84,7 +84,7 @@ source "virtualbox-iso" "centos8_vbox" {
   ssh_port         = 22
   ssh_timeout      = "${var.ssh_timeout}"
   ssh_username     = "${var.ssh_username}"
-  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--firmware", "EFI"]]
+  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--firmware", "EFI"], ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]]
   vm_name          = "${var.vm_name}"
 }
 
@@ -117,17 +117,23 @@ build {
   sources = ["source.virtualbox-iso.centos8_vbox", "source.vmware-iso.centos8_vmware"]
 
   provisioner "shell" {
-    execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     inline          = ["dnf -y update", "dnf -y install python3", "alternatives --set python /usr/bin/python3"]
-  }
-  /*  
-  provisioner "ansible-local" {
-    playbook_file = "scripts/setup.yml"
   }
 
   provisioner "shell" {
-    execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
-    scripts         = ["scripts/cleanup.sh"]
+    execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    inline          = ["yum -y install epel-release", "yum -y update", "yum -y install ansible"]
   }
-  */
+
+
+  provisioner "ansible-local" {
+    playbook_file = "./Files/scripts/setup.yml"
+  }
+
+  provisioner "shell" {
+    execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    scripts         = ["./Files/scripts/cleanup.sh"]
+  }
+
 }
