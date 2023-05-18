@@ -122,7 +122,7 @@ source "virtualbox-iso" "rhel-7" {
   ssh_port             = 22
   ssh_timeout          = "${var.ssh_timeout}"
   ssh_username         = "${var.ssh_username}"
-  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
+  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"], ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]]
 }
 
 #################################################################

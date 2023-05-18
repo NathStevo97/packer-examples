@@ -104,7 +104,7 @@ source "virtualbox-iso" "kali_virtualbox" {
   ssh_port                = 22
   ssh_timeout             = "${var.ssh_timeout}"
   ssh_username            = "${var.ssh_username}"
-  vboxmanage              = [["modifyvm", "{{ .Name }}", "--memory", "${var.memory}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.cpus}"]]
+  vboxmanage              = [["modifyvm", "{{ .Name }}", "--memory", "${var.memory}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.cpus}"], ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]]
   virtualbox_version_file = ".vbox_version"
   vm_name                 = "${var.vm_name}"
 }
