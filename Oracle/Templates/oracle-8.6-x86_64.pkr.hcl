@@ -126,14 +126,14 @@ variable "version" {
 # The "legacy_isotime" function has been provided for backwards compatability, but we recommend switching to the timestamp and formatdate functions.
 
 locals {
-  #boot_command    = ["<up><wait><tab> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.ks_path}<enter><wait>"]
+  #boot_command    = ["<up><wait><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/${var.ks_path}<enter><wait>"]
   build_timestamp = "${legacy_isotime("2019102650405")}"
   #http_directory  = "${path.root}/http"
   #http_directory = "./http"
 }
 
 source "vmware-iso" "oracle8" {
-  boot_command        = ["<tab><wait2m> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg <enter><wait>"]
+  boot_command        = ["<tab><wait2m> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg net.ifnames=0 biosdevname=0 <enter><wait>"]
   boot_wait           = "${var.boot_wait}"
   disk_size           = "${var.disk_size}"
   guest_os_type       = "oraclelinux-64"
@@ -168,7 +168,7 @@ build {
     expect_disconnect = true
     scripts           = ["./Files/update.sh", "./Files/networking.sh", "./Files/cleanup.sh"]
   }
-  /* 
+  /*
   post-processor "vagrant" {
     output = "${var.build_directory}/${var.box_basename}.<no value>.box"
   }

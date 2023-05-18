@@ -36,7 +36,7 @@ variable "guest_additions_url" {
 
 variable "headless" {
   type    = bool
-  default = "false"
+  default = "true"
 }
 
 variable "http_directory" {
@@ -164,7 +164,7 @@ build {
     expect_disconnect = true
     scripts           = ["./Files/update.sh", "./Files/networking.sh", "./Files/cleanup.sh"]
   }
-  /* 
+  /*
   post-processor "vagrant" {
     output = "${var.build_directory}/${var.box_basename}.<no value>.box"
   }
