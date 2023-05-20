@@ -100,6 +100,7 @@ source "virtualbox-iso" "kali_virtualbox" {
   iso_checksum            = "${var.iso_checksum_type}:${var.iso_checksum}"
   iso_urls                = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command        = "echo 'vagrant' | sudo -S shutdown -h -P now"
+  shutdown_timeout        = "30m"
   ssh_password            = "${var.ssh_password}"
   ssh_port                = 22
   ssh_timeout             = "${var.ssh_timeout}"
@@ -122,7 +123,8 @@ source "vmware-iso" "kali_vmware" {
   network        = "nat"
   memory         = "${var.memory}"
   #output_directory = "${var.build_directory}/${var.vmname}-vmware"
-  shutdown_command = "echo 'kali'|sudo -S shutdown -P now"
+  shutdown_command = "echo 'vagrant'|sudo -S shutdown -P now"
+  shutdown_timeout        = "1h"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "${var.ssh_timeout}"
@@ -137,13 +139,15 @@ build {
 
   provisioner "shell" {
     expect_disconnect = true
+    execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     pause_before      = "10s"
     scripts           = ["./Files/ansible.sh", ]
   }
   /*
   provisioner "shell" {
+    execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     pause_before = "10s"
-    Files      = ["Files/sudoers.sh", "Files/python.sh", "Files/virtualbox.sh", "Files/networking.sh", "Files/vagrant.sh", "Files/cleanup.sh", "Files/minimize.sh"]
+    Files      = ["./Files/sudoers.sh","./Files/python.sh", "./Files/virtualbox.sh", "./Files/networking.sh", "./Files/vagrant.sh", "./Files/cleanup.sh", "./Files/minimize.sh"]
   }
 
   post-processor "vagrant" {
