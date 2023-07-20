@@ -35,7 +35,7 @@ variable "iso_url" {
 
 variable "name" {
   type    = string
-  default = "debian-11"
+  default = "debian-12"
 }
 
 variable "ram" {

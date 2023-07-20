@@ -3,11 +3,6 @@ variable "boot_wait" {
   default = "10s"
 }
 
-variable "config_file" {
-  type    = string
-  default = "almalinux9-kickstart.cfg"
-}
-
 variable "cpu" {
   type    = string
   default = "2"
@@ -68,7 +63,7 @@ source "vmware-iso" "almalinux-9" {
   http_directory   = "./http"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
-  shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
+  shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "30m"
