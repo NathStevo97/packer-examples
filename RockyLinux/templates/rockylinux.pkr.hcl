@@ -113,15 +113,4 @@ build {
     execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     inline          = ["dnf -y update", "dnf -y install python3", "alternatives --set python /usr/bin/python3", "python3 -m pip install -U pip", "pip3 install ansible"]
   }
-
-  /*
-  provisioner "ansible-local" {
-    playbook_file = "scripts/setup.yml"
-  }
-
-  provisioner "shell" {
-    execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
-    scripts         = ["scripts/cleanup.sh"]
-  }
-  */
 }

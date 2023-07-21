@@ -4,7 +4,7 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/rocky-8.pkr.hcl"
+$template_file="./templates/rockylinux.pkr.hcl"
 #$var_file="./variables/variables_rhel8.pkrvars.hcl"
 $machine="Rocky Linux 8.8"
 $packer_log=0
