@@ -172,7 +172,7 @@ source "hyperv-iso" "hv1-win2016" {
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
 source "hyperv-iso" "hv2-win2016" {
-  boot_command = "${var.boot_command}"
+  boot_command          = "${var.boot_command}"
   boot_wait             = "${var.boot_wait_hyperv}"
   communicator          = "winrm"
   cpus                  = "${var.numvcpus}"

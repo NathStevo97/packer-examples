@@ -19,12 +19,12 @@ variable "disk_size" {
 }
 
 variable "guest_os_type_vbox" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "guest_os_type_vmware" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -34,7 +34,7 @@ variable "headless" {
 }
 
 variable "http_directory" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -114,13 +114,13 @@ source "virtualbox-iso" "almalinux" {
   ssh_port         = 22
   ssh_timeout      = "30m"
   ssh_username     = "${var.ssh_username}"
-  vboxmanage       = [
+  vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--memory", "${var.ram}"],
     ["modifyvm", "{{ .Name }}", "--cpus", "${var.cpu}"],
     ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
     ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
-    ]
-  vm_name          = "${var.name}-virtualbox"
+  ]
+  vm_name = "${var.name}-virtualbox"
 }
 
 build {

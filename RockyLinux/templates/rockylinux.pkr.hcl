@@ -9,7 +9,7 @@ variable "boot_wait" {
 }
 
 variable "config_file" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -19,12 +19,12 @@ variable "disk_size" {
 }
 
 variable "guest_os_type_vmware" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "guest_os_type_vbox" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -34,7 +34,7 @@ variable "headless" {
 }
 
 variable "http_directory" {
-  type = string
+  type    = string
   default = ""
 }
 
@@ -79,7 +79,7 @@ source "virtualbox-iso" "rocky" {
   disk_size        = "${var.disk_size}"
   guest_os_type    = "${var.guest_os_type_vbox}"
   headless         = "${var.headless}"
-  http_directory   =  "${var.http_directory}"
+  http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
   iso_url          = "${var.iso_url}"
@@ -89,13 +89,13 @@ source "virtualbox-iso" "rocky" {
   ssh_port         = 22
   ssh_timeout      = "30m"
   ssh_username     = "${var.ssh_username}"
-  vboxmanage       = [
+  vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
     ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
     ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
     ["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"]
-    ]
-  vm_name          = "${var.vm_name}-virtualbox"
+  ]
+  vm_name = "${var.vm_name}-virtualbox"
 }
 
 source "vmware-iso" "rocky" {
@@ -126,7 +126,7 @@ source "vmware-iso" "rocky" {
 source "qemu" "rocky" {
   headless         = "${var.headless}"
   boot_command     = "${var.boot_command}"
-  floppy_files     = ["${var.http_directory}/${var.config_file}" ]
+  floppy_files     = ["${var.http_directory}/${var.config_file}"]
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"

@@ -1,75 +1,7 @@
-variable "boot_command" {
-  type    = list(string)
-  default = []
-}
 
-variable "boot_wait" {
-  type    = string
-  default = "10s"
-}
-
-variable "cpu" {
-  type    = string
-  default = "2"
-}
-
-variable "disk_size" {
-  type    = string
-  default = "70000"
-}
-
-variable "guest_os_type_vmware" {
-  type = string
-  default = ""
-}
-
-variable "guest_os_type_vbox" {
-  type = string
-  default = ""
-}
-
-variable "headless" {
-  type    = string
-  default = "true"
-}
-
-variable "http_directory" {
-  type = string
-  default = ""
-}
-
-variable "iso_checksum" {
-  type    = string
-  default = "61bd4ac9215a418924b48442ff84870082602b390b98037e5699e1fb0c6cb700"
-}
-
-variable "iso_url" {
-  type    = string
-  default = "https://deb.debian.org/debian/dists/bookworm/main/installer-amd64/current/images/netboot/mini.iso"
-}
-
-variable "name" {
-  type    = string
-  default = "debian-12"
-}
-
-variable "ram" {
-  type    = string
-  default = "4096"
-}
-
-variable "ssh_password" {
-  type    = string
-  default = "packer"
-}
-
-variable "ssh_username" {
-  type    = string
-  default = "packer"
-}
 
 source "vmware-iso" "debian" {
-  boot_command = "${var.boot_command}"
+  boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
@@ -109,13 +41,13 @@ source "virtualbox-iso" "debian" {
   ssh_port         = 22
   ssh_timeout      = "30m"
   ssh_username     = "${var.ssh_username}"
-  vboxmanage       = [
+  vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--memory", "${var.ram}"],
     ["modifyvm", "{{ .Name }}", "--cpus", "${var.cpu}"],
     ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
     ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
-    ]
-  vm_name          = "${var.name}-virtualbox"
+  ]
+  vm_name = "${var.name}-virtualbox"
 }
 
 build {

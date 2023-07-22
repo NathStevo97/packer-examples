@@ -124,7 +124,7 @@ source "vmware-iso" "kali_vmware" {
   memory         = "${var.memory}"
   #output_directory = "${var.build_directory}/${var.vmname}-vmware"
   shutdown_command = "echo 'vagrant'|sudo -S shutdown -P now"
-  shutdown_timeout        = "1h"
+  shutdown_timeout = "1h"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "${var.ssh_timeout}"
@@ -139,7 +139,7 @@ build {
 
   provisioner "shell" {
     expect_disconnect = true
-    execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    execute_command   = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     pause_before      = "10s"
     scripts           = ["./Files/ansible.sh", ]
   }

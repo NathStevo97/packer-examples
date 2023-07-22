@@ -156,8 +156,8 @@ source "hyperv-iso" "hv1-win2022" {
   disk_size            = "${var.disk_size}"
   floppy_files         = "${var.floppy_files}"
   guest_additions_mode = "disable"
-  headless         = "${var.headless}"
-  http_directory   = "${var.http_directory}"
+  headless             = "${var.headless}"
+  http_directory       = "${var.http_directory}"
   iso_checksum         = "${var.iso_checksum}"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   memory               = "${var.memsize}"
@@ -173,7 +173,7 @@ source "hyperv-iso" "hv1-win2022" {
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
 source "hyperv-iso" "hv2-win2022" {
-  boot_command = "${var.boot_command}"
+  boot_command          = "${var.boot_command}"
   boot_wait             = "${var.boot_wait_hyperv}"
   communicator          = "winrm"
   cpus                  = "${var.numvcpus}"
