@@ -4,8 +4,8 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/rocky-8.pkr.hcl"
-#$var_file="./variables/variables_rhel8.pkrvars.hcl"
+$template_file="./templates/rockylinux.pkr.hcl"
+$var_file="./variables/rocky-8.pkrvars.hcl"
 $machine="Rocky Linux 8.8"
 $packer_log=0
 $env:PACKER_LOG_PATH="packerlog-Rocky-8.txt"
@@ -17,9 +17,7 @@ if ((Test-Path -Path "$template_file")) {
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    #packer validate -var-file="$var_file" "$template_file"
-    #packer validate -var-file="$var_file" -only='virtualbox-iso.rhel-8' "$template_file"
-    packer validate -only='virtualbox-iso.rocky-8-virtualbox' "$template_file"
+    packer validate -var-file="$var_file" -only='virtualbox-iso.rocky' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,9 +26,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    #packer build --force -var-file="$var_file" "$template_file"
-    #packer build -var-file="$var_file" -only='virtualbox-iso.rhel-8' --force "$template_file"
-    packer build -only='virtualbox-iso.rocky-8-virtualbox' --force "$template_file"
+    packer build -var-file="$var_file" -only='virtualbox-iso.rocky' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

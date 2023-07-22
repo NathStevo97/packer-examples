@@ -1,16 +1,16 @@
+variable "boot_command" {
+  type    = list(string)
+  default = []
+}
+
 variable "boot_wait" {
   type    = string
   default = "10s"
 }
 
-variable "config_file" {
-  type    = string
-  default = "preseed.cfg"
-}
-
 variable "cpu" {
   type    = string
-  default = "4"
+  default = "2"
 }
 
 variable "disk_size" {
@@ -18,9 +18,24 @@ variable "disk_size" {
   default = "70000"
 }
 
+variable "guest_os_type_vmware" {
+  type = string
+  default = ""
+}
+
+variable "guest_os_type_vbox" {
+  type = string
+  default = ""
+}
+
 variable "headless" {
   type    = string
   default = "true"
+}
+
+variable "http_directory" {
+  type = string
+  default = ""
 }
 
 variable "iso_checksum" {
@@ -54,18 +69,16 @@ variable "ssh_username" {
 }
 
 source "vmware-iso" "debian" {
-  boot_command = [
-    "e<down><down><down><end> ",
-    "auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<f10>"
-  ]
+  boot_command = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
-  guest_os_type    = "debian-64"
-  headless         = false
-  http_directory   = "./http"
+  guest_os_type    = "${var.guest_os_type_vmware}"
+  headless         = "${var.headless}"
+  http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
+  output_directory = "${var.name}-vmware"
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
@@ -80,6 +93,31 @@ source "vmware-iso" "debian" {
   }
 }
 
+source "virtualbox-iso" "debian" {
+  boot_command     = "${var.boot_command}"
+  boot_wait        = "${var.boot_wait}"
+  disk_size        = "${var.disk_size}"
+  guest_os_type    = "${var.guest_os_type_vbox}"
+  headless         = "${var.headless}"
+  http_directory   = "${var.http_directory}"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_interface    = "sata"
+  iso_url          = "${var.iso_url}"
+  output_directory = "${var.name}-vbox"
+  shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
+  ssh_password     = "${var.ssh_password}"
+  ssh_port         = 22
+  ssh_timeout      = "30m"
+  ssh_username     = "${var.ssh_username}"
+  vboxmanage       = [
+    ["modifyvm", "{{ .Name }}", "--memory", "${var.ram}"],
+    ["modifyvm", "{{ .Name }}", "--cpus", "${var.cpu}"],
+    ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
+    ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
+    ]
+  vm_name          = "${var.name}-virtualbox"
+}
+
 build {
-  sources = ["source.vmware-iso.debian"]
+  sources = ["source.vmware-iso.debian", "source.virtualbox-iso.debian"]
 }

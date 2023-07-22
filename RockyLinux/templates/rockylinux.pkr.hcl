@@ -1,12 +1,41 @@
+variable "boot_command" {
+  type    = list(string)
+  default = []
+}
 
 variable "boot_wait" {
   type    = string
   default = "5s"
 }
 
+variable "config_file" {
+  type = string
+  default = ""
+}
+
 variable "disk_size" {
   type    = string
   default = "40960"
+}
+
+variable "guest_os_type_vmware" {
+  type = string
+  default = ""
+}
+
+variable "guest_os_type_vbox" {
+  type = string
+  default = ""
+}
+
+variable "headless" {
+  type    = string
+  default = "true"
+}
+
+variable "http_directory" {
+  type = string
+  default = ""
 }
 
 variable "iso_checksum" {
@@ -44,35 +73,42 @@ variable "vm_name" {
   default = "Rocky-8.8-x86_64"
 }
 
-source "virtualbox-iso" "rocky-8-virtualbox" {
-  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<leftCtrlOn>x<leftCtrlOff>"]
+source "virtualbox-iso" "rocky" {
+  boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
-  guest_os_type    = "RedHat_64"
-  headless         = true
-  http_directory   = "./http"
+  guest_os_type    = "${var.guest_os_type_vbox}"
+  headless         = "${var.headless}"
+  http_directory   =  "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
   iso_url          = "${var.iso_url}"
+  output_directory = "${var.vm_name}-vbox"
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "30m"
   ssh_username     = "${var.ssh_username}"
-  vboxmanage       = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--firmware", "EFI"]]
+  vboxmanage       = [
+    ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
+    ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
+    ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
+    ["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"]
+    ]
   vm_name          = "${var.vm_name}-virtualbox"
 }
 
-source "vmware-iso" "rocky-8-vmware" {
-  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<leftCtrlOn>x<leftCtrlOff>"]
+source "vmware-iso" "rocky" {
+  boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
-  guest_os_type    = "centos-64"
-  headless         = false
-  http_directory   = "./http"
+  guest_os_type    = "${var.guest_os_type_vmware}"
+  headless         = "${var.headless}"
+  http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
+  output_directory = "${var.vm_name}"
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
@@ -87,13 +123,14 @@ source "vmware-iso" "rocky-8-vmware" {
   }
 }
 
-source "qemu" "rocky-8-qemu" {
-  headless         = false
-  boot_command     = ["e<tab><down><down><end><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter>"]
-  floppy_files     = ["./http/ks.cfg", ]
-  http_directory   = "./http"
+source "qemu" "rocky" {
+  headless         = "${var.headless}"
+  boot_command     = "${var.boot_command}"
+  floppy_files     = ["${var.http_directory}/${var.config_file}" ]
+  http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
+  output_directory = "${var.vm_name}-qemu"
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
@@ -104,10 +141,11 @@ source "qemu" "rocky-8-qemu" {
   memory           = "${var.memsize}"
   cpus             = "${var.numvcpus}"
   boot_wait        = "5s"
+  vm_name          = "${var.vm_name}-qemu"
 }
 
 build {
-  sources = ["source.virtualbox-iso.rocky-8-virtualbox", "source.vmware-iso.rocky-8-vmware", "source.qemu.rocky-8-qemu"]
+  sources = ["source.virtualbox-iso.rocky", "source.vmware-iso.rocky"]
 
   provisioner "shell" {
     execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"

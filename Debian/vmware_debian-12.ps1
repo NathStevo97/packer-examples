@@ -4,11 +4,11 @@
 $startDTM = (Get-Date)
 
 # Variables
-$template_file="./templates/rockylinux.pkr.hcl"
-#$var_file="./variables/variables_rhel8.pkrvars.hcl"
-$machine="Rocky Linux 8.8"
+$template_file="./templates/debian.pkr.hcl"
+$var_file="./variables/debian-12.pkrvars.hcl"
+$machine="Debian 12.0"
 $packer_log=0
-$env:PACKER_LOG_PATH="packerlog-Rocky-8.txt"
+$env:PACKER_LOG_PATH="packerlog-debian.txt"
 packer init -upgrade "./required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
@@ -17,9 +17,7 @@ if ((Test-Path -Path "$template_file")) {
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    #packer validate -var-file="$var_file" "$template_file"
-    #packer validate -var-file="$var_file" -only='qemu.rhel-8' "$template_file"
-    packer validate -only='qemu.rocky-8-qemu' "$template_file"
+    packer validate -var-file="$var_file" -only='vmware-iso.debian' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -28,9 +26,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    #packer build --force -var-file="$var_file" "$template_file"
-    #packer build -var-file="$var_file" -only='qemu.rhel-8' --force "$template_file"
-    packer build -only='qemu.rocky-8-qemu' --force "$template_file"
+    packer build -var-file="$var_file" -only='vmware-iso.debian' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."

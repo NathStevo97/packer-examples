@@ -1,12 +1,14 @@
-boot_wait =
-boot_command =
-cpu =
-disk_size =
-gues_os_type_vmware = 
-headless =
-iso_checksum =
-iso_url =
-name =
-ram =
-ssh_password =
-ssh_username =
+boot_wait = "10s"
+boot_command =  ["e<down><down><down><end> ", "auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<f10>"]
+cpu = "4"
+disk_size = "70000"
+guest_os_type_vmware = "debian-64"
+guest_os_type_vbox = "Debian_64"
+http_directory = "./http"
+headless = "true"
+iso_checksum = "61bd4ac9215a418924b48442ff84870082602b390b98037e5699e1fb0c6cb700"
+iso_url = "https://deb.debian.org/debian/dists/bookworm/main/installer-amd64/current/images/netboot/mini.iso"
+name = "debian-12"
+ram = "4096"
+ssh_password = "packer"
+ssh_username = "packer"
