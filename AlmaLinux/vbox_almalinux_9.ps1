@@ -17,7 +17,7 @@ if ((Test-Path -Path "$template_file")) {
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    packer validate -var-file="$var_file" -only='vmware-iso.almalinux' "$template_file"
+    packer validate -var-file="$var_file" -only='virtualbox-iso.almalinux' "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -26,7 +26,7 @@ if ((Test-Path -Path "$template_file")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    packer build -var-file="$var_file" -only='vmware-iso.almalinux' --force "$template_file"
+    packer build -var-file="$var_file" -only='virtualbox-iso.almalinux' --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."
