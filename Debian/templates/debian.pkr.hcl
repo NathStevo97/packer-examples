@@ -40,17 +40,17 @@ variable "http_directory" {
 
 variable "iso_checksum" {
   type    = string
-  default = "sha256:f501de55f92e59a3fcf4ad252fdfc4e02ee2ad013d2e1ec818bb38052bcb3c32"
+  default = ""
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://repo.almalinux.org/almalinux/9.2/isos/x86_64/AlmaLinux-9.2-x86_64-boot.iso"
+  default = ""
 }
 
 variable "name" {
   type    = string
-  default = "almalinux"
+  default = ""
 }
 
 variable "ram" {
@@ -66,11 +66,6 @@ variable "ssh_password" {
 variable "ssh_username" {
   type    = string
   default = ""
-}
-
-variable "version" {
-  type    = string
-  default = "9"
 }
 
 source "vmware-iso" "debian" {
@@ -112,7 +107,7 @@ source "virtualbox-iso" "debian" {
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
-  ssh_timeout      = "60m"
+  ssh_timeout      = "1h"
   ssh_username     = "${var.ssh_username}"
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--memory", "${var.ram}"],

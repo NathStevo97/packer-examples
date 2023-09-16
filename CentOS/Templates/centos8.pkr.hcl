@@ -94,7 +94,7 @@ source "vmware-iso" "centos8_vmware" {
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
   guest_os_type    = "${var.guest_os_type_vmware}"
-  headless         = false
+  headless         = true
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]

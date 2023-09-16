@@ -1,4 +1,6 @@
 
+/* Todo - Sort Out Undefined Variables Set */
+
 variable "boot_wait" {
   type    = string
   default = ""

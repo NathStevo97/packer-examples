@@ -136,7 +136,7 @@ source "vmware-iso" "oracle7" {
   headless            = "${var.headless}"
   http_directory      = "${var.http_directory}"
   iso_checksum        = "${var.iso_checksum}"
-  iso_urls            = ["${var.iso_path}", "${var.iso_url}"]
+  iso_urls            = ["${var.iso_url}", "${var.iso_path}"]
   output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
   ssh_password        = "${var.ssh_password}"
