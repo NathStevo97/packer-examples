@@ -5,7 +5,7 @@ $startDTM = (Get-Date)
 
 # Variables
 $template_file="./templates/win2016.pkr.hcl"
-$var_file="./variables/variables_win2016.pkrvars.hcl"
+$var_file="./variables/variables_win2016_dc.pkrvars.hcl"
 $machine="Windows Server 2016 Datacenter"
 $packer_log=0
 $env:PACKER_LOG_PATH="packerlog-2016-DC-vbox.txt"

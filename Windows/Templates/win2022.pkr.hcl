@@ -218,7 +218,12 @@ source "virtualbox-iso" "vbox-win2022" {
   iso_interface        = "sata"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
-  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"]]
+    vboxmanage           = [
+    ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
+    ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
+    ["modifyvm", "{{ .Name }}", "--vram", "32"],
+    ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
+  ]
   winrm_insecure       = true
   winrm_password       = "${var.winrm_password}"
   winrm_timeout        = "${var.winrm_timeout}"
@@ -269,7 +274,7 @@ build {
     restart_timeout = "30m"
   }
 
-  
+
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
