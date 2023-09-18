@@ -130,6 +130,7 @@ source "vmware-iso" "vmware-win2016" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory      = "${var.output_directory}-vmware"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout = "30m"
   skip_compaction  = false
@@ -160,6 +161,7 @@ source "hyperv-iso" "hv1-win2016" {
   iso_checksum         = "${var.iso_checksum}"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   memory               = "${var.memsize}"
+  output_directory      = "${var.output_directory}-hv1"
   shutdown_timeout     = "15m"
   switch_name          = "${var.switch_name}"
   vm_name              = "${var.vm_name}"
@@ -186,7 +188,7 @@ source "hyperv-iso" "hv2-win2016" {
   iso_checksum          = "${var.iso_checksum}"
   iso_urls              = ["${var.iso_path}", "${var.iso_url}"]
   memory                = "${var.memsize}"
-  output_directory      = "${var.output_directory}"
+  output_directory      = "${var.output_directory}-hv2"
   secondary_iso_images  = ["${var.secondary_iso_image}"]
   shutdown_timeout      = "2h"
   skip_export           = true
@@ -216,6 +218,7 @@ source "virtualbox-iso" "vbox-win2016" {
   iso_checksum         = "${var.iso_checksum}"
   iso_interface        = "sata"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory      = "${var.output_directory}-vbox"
   shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
     vboxmanage           = [
     ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],

@@ -90,6 +90,7 @@ source "vmware-iso" "rhel-7" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory = "../builds/${var.vm_name}-vmware"
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
@@ -119,6 +120,7 @@ source "virtualbox-iso" "rhel-7" {
   iso_checksum         = "${var.iso_checksum}"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   iso_interface        = "sata"
+  output_directory     = "../builds/${var.vm_name}-vbox"
   shutdown_command     = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password         = "${var.ssh_password}"
   ssh_port             = 22
@@ -138,6 +140,7 @@ source "qemu" "rhel-7" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory = "../builds/${var.vm_name}-qemu"
   shutdown_command = "echo 'vagrant'|sudo -S shutdown -P now"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22

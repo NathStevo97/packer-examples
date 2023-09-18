@@ -79,7 +79,7 @@ source "virtualbox-iso" "opensuse" {
   iso_checksum           = "${var.iso_checksum}"
   iso_url                = "${var.iso_url}"
   memory                 = "${var.ram}"
-  output_directory       = "${var.name}-vbox"
+  output_directory       = "../builds/${var.name}-vbox"
   shutdown_command       = "sudo shutdown -h now"
   ssh_password           = "${var.ssh_password}"
   ssh_port               = 22

@@ -79,6 +79,7 @@ source "virtualbox-iso" "centos-stream-9_vbox" {
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory = "../builds/${var.vm_name}"
   shutdown_command = "echo 'vagrant' | sudo -S /sbin/shutdown -P now"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
@@ -98,6 +99,7 @@ source "vmware-iso" "centos-stream-9_vmware" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory = "../builds/${var.vm_name}"
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22

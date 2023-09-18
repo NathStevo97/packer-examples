@@ -126,7 +126,7 @@ source "virtualbox-iso" "ubuntu" {
   iso_url                 = "${var.iso_url}"
   memory                  = "${var.memory}"
   disk_size               = "${var.disk_size}"
-  output_directory        = "${var.vm_name}-vbox"
+  output_directory        = "../builds/${var.vm_name}-vbox"
   shutdown_command        = "echo 'vagrant'|sudo -S shutdown -P now"
   ssh_handshake_attempts  = "1000"
   ssh_keep_alive_interval = "90s"

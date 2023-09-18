@@ -108,7 +108,7 @@ source "virtualbox-iso" "almalinux" {
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
   iso_url          = "${var.iso_url}"
-  output_directory = "${var.name}-vbox"
+  output_directory = "../builds/${var.name}-vbox"
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22

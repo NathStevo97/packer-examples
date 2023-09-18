@@ -122,6 +122,7 @@ source "hyperv-iso" "hv1-win10" {
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   memory           = "${var.memsize}"
+  output_directory      = "${var.output_directory}-hv1"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   skip_compaction  = false
   switch_name      = "${var.switch_name}"
@@ -145,6 +146,7 @@ source "hyperv-iso" "hv2-win10" {
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   secondary_iso_images = ["${var.secondary_iso_image}"]
   memory               = "${var.memsize}"
+  output_directory      = "${var.output_directory}-hv2"
   shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   skip_compaction      = false
   shutdown_timeout     = "2h"
@@ -170,6 +172,7 @@ source "vmware-iso" "vmware-win10" {
   headless        = "${var.headless}"
   iso_checksum    = "${var.iso_checksum}"
   iso_urls        = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory      = "${var.output_directory}-vmware"
   skip_compaction = false
   #tools_upload_flavor = "windows"
   #tools_upload_path   = "c:/Windows/Temp/windows.iso"
@@ -201,6 +204,7 @@ source "virtualbox-iso" "vbox-win10" {
   iso_checksum         = "${var.iso_checksum}"
   iso_interface        = "sata"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory      = "${var.output_directory}-vbox"
   shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
   vboxmanage           = [
     ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],

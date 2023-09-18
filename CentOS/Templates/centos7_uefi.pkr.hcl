@@ -79,6 +79,7 @@ source "virtualbox-iso" "centos7" {
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory = "../builds/${var.vm_name}"
   shutdown_command = "echo 'vagrant' | sudo -S /sbin/shutdown -P now"
   shutdown_timeout = "1h"
   ssh_password     = "${var.ssh_password}"
@@ -99,6 +100,7 @@ source "vmware-iso" "centos7" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory = "../builds/${var.vm_name}"
   shutdown_command = "echo 'vagrant' | sudo -S /sbin/shutdown -P now"
   shutdown_timeout = "1h"
   ssh_password     = "${var.ssh_password}"

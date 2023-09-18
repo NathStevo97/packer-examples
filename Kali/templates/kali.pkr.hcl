@@ -99,6 +99,7 @@ source "virtualbox-iso" "kali_virtualbox" {
   http_directory          = "${var.http_directory}"
   iso_checksum            = "${var.iso_checksum_type}:${var.iso_checksum}"
   iso_urls                = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory        = "../builds/${var.vm_name}-vbox"
   shutdown_command        = "echo 'vagrant' | sudo -S shutdown -h -P now"
   shutdown_timeout        = "30m"
   ssh_password            = "${var.ssh_password}"
@@ -122,7 +123,7 @@ source "vmware-iso" "kali_vmware" {
   iso_urls       = ["${var.iso_path}", "${var.iso_url}"]
   network        = "nat"
   memory         = "${var.memory}"
-  #output_directory = "${var.build_directory}/${var.vmname}-vmware"
+  output_directory = "../builds/${var.vm_name}-vmware"
   shutdown_command = "echo 'vagrant'|sudo -S shutdown -P now"
   shutdown_timeout = "1h"
   ssh_password     = "${var.ssh_password}"
