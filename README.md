@@ -7,7 +7,6 @@
 | CentOS Stream 8         | Working            | TBD           | TBD           | Working                 | TBD     | 16/09/2023       |
 | CentOS Stream 9         | Working            | TBD           | TBD           | Working                 | TBD     | 16/09/2023       |
 | Debian 12               | Working            | TBD           | TBD           | Working                 | TBD     | 14/09/2023       |
-| Kali Linux 2023         | Failing            | TBD           | TBD           | Failing                 | TBD     | 15/09/2023       |
 | OpenSUSE 15             | TBD                | TBD           | TBD           | Working                 | TBD     | 15/09/2023       |
 | Oracle 7.9              | Working            | TBD           | TBD           | TBD                     | TBD     | 15/09/2023       |
 | Oracle 8.6              | Working            | TBD           | TBD           | TBD                     | TBD     | 15/09/2023       |
@@ -29,6 +28,5 @@
 
 ## ToDos & Notes
 
-- Kali Linux builds failing during base OS software install, likely an ISO upgrade needed and/or ensuring a secure connection during installation.
 - Try to rework CentOS builds to use boot isos for ease - saves storing the ~10Gb Net Install ISOs locally
 - Fix up Windows 11 Build for Hyper-V
