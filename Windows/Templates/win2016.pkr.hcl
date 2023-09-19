@@ -130,7 +130,7 @@ source "vmware-iso" "vmware-win2016" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
-  output_directory      = "${var.output_directory}-vmware"
+  output_directory = "${var.output_directory}-vmware"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout = "30m"
   skip_compaction  = false
@@ -161,7 +161,7 @@ source "hyperv-iso" "hv1-win2016" {
   iso_checksum         = "${var.iso_checksum}"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   memory               = "${var.memsize}"
-  output_directory      = "${var.output_directory}-hv1"
+  output_directory     = "${var.output_directory}-hv1"
   shutdown_timeout     = "15m"
   switch_name          = "${var.switch_name}"
   vm_name              = "${var.vm_name}"
@@ -218,18 +218,18 @@ source "virtualbox-iso" "vbox-win2016" {
   iso_checksum         = "${var.iso_checksum}"
   iso_interface        = "sata"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
-  output_directory      = "${var.output_directory}-vbox"
+  output_directory     = "${var.output_directory}-vbox"
   shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
-    vboxmanage           = [
+  vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
     ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
     ["modifyvm", "{{ .Name }}", "--vram", "32"],
     ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
   ]
-  winrm_insecure       = true
-  winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "${var.winrm_timeout}"
-  winrm_username       = "${var.winrm_username}"
+  winrm_insecure = true
+  winrm_password = "${var.winrm_password}"
+  winrm_timeout  = "${var.winrm_timeout}"
+  winrm_username = "${var.winrm_username}"
 }
 
 #################################################################

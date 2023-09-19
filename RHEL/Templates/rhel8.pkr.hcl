@@ -8,6 +8,16 @@ variable "boot_wait_virtualbox" {
   default = ""
 }
 
+variable "box_basename" {
+  type    = string
+  default = ""
+}
+
+variable "build_directory" {
+  type    = string
+  default = ""
+}
+
 variable "disk_size" {
   type    = string
   default = ""
@@ -29,6 +39,16 @@ variable "headless" {
 }
 
 variable "http_directory" {
+  type    = string
+  default = ""
+}
+
+variable "hyperv_generation" {
+  type    = string
+  default = ""
+}
+
+variable "hyperv_switch" {
   type    = string
   default = ""
 }
@@ -78,6 +98,7 @@ variable "vm_name" {
   default = ""
 }
 
+
 source "vmware-iso" "rhel-8" {
   boot_command     = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg<enter><wait>"]
   boot_wait        = "${var.boot_wait}"
@@ -87,7 +108,7 @@ source "vmware-iso" "rhel-8" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
-  output_directory = "../builds/${var.vm_name}-vmware"
+  output_directory = "${var.build_directory}/${var.vm_name}-vmware"
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
@@ -117,7 +138,7 @@ source "virtualbox-iso" "rhel-8" {
   iso_checksum         = "${var.iso_checksum}"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   iso_interface        = "sata"
-  output_directory     = "../builds/${var.vm_name}-vbox"
+  output_directory     = "${var.build_directory}/${var.vm_name}-vbox"
   shutdown_command     = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password         = "${var.ssh_password}"
   ssh_port             = 22

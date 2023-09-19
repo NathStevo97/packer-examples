@@ -122,7 +122,7 @@ source "hyperv-iso" "hv1-win10" {
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   memory           = "${var.memsize}"
-  output_directory      = "${var.output_directory}-hv1"
+  output_directory = "${var.output_directory}-hv1"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   skip_compaction  = false
   switch_name      = "${var.switch_name}"
@@ -146,7 +146,7 @@ source "hyperv-iso" "hv2-win10" {
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
   secondary_iso_images = ["${var.secondary_iso_image}"]
   memory               = "${var.memsize}"
-  output_directory      = "${var.output_directory}-hv2"
+  output_directory     = "${var.output_directory}-hv2"
   shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   skip_compaction      = false
   shutdown_timeout     = "2h"
@@ -164,16 +164,16 @@ source "hyperv-iso" "hv2-win10" {
 ########################################################
 
 source "vmware-iso" "vmware-win10" {
-  boot_wait       = "${var.boot_wait}"
-  communicator    = "winrm"
-  disk_size       = "${var.disk_size}"
-  floppy_files    = "${var.floppy_files}"
-  guest_os_type   = "${var.guest_os_type_vmware}"
-  headless        = "${var.headless}"
-  iso_checksum    = "${var.iso_checksum}"
-  iso_urls        = ["${var.iso_path}", "${var.iso_url}"]
-  output_directory      = "${var.output_directory}-vmware"
-  skip_compaction = false
+  boot_wait        = "${var.boot_wait}"
+  communicator     = "winrm"
+  disk_size        = "${var.disk_size}"
+  floppy_files     = "${var.floppy_files}"
+  guest_os_type    = "${var.guest_os_type_vmware}"
+  headless         = "${var.headless}"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory = "${var.output_directory}-vmware"
+  skip_compaction  = false
   #tools_upload_flavor = "windows"
   #tools_upload_path   = "c:/Windows/Temp/windows.iso"
   vmx_data = {
@@ -204,18 +204,18 @@ source "virtualbox-iso" "vbox-win10" {
   iso_checksum         = "${var.iso_checksum}"
   iso_interface        = "sata"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
-  output_directory      = "${var.output_directory}-vbox"
+  output_directory     = "${var.output_directory}-vbox"
   shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
-  vboxmanage           = [
+  vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
     ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
     ["modifyvm", "{{ .Name }}", "--vram", "32"],
     ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
   ]
-  winrm_insecure       = true
-  winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "${var.winrm_timeout}"
-  winrm_username       = "${var.winrm_username}"
+  winrm_insecure = true
+  winrm_password = "${var.winrm_password}"
+  winrm_timeout  = "${var.winrm_timeout}"
+  winrm_username = "${var.winrm_username}"
 }
 
 build {

@@ -2,7 +2,7 @@ boot_command         = ["e<down><down><end><bs><bs><bs><bs><bs>text inst.ks=http
 boot_wait            = "5s"
 config_file          = "ks.cfg"
 disk_size            = "40960"
-headless             = "false"
+headless             = "true"
 guest_os_type_vbox   = "RedHat_64"
 guest_os_type_vmware = "centos-64"
 http_directory       = "./http"

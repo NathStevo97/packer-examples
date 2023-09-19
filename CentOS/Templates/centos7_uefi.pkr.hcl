@@ -19,6 +19,11 @@ variable "guest_os_type_vmware" {
   default = ""
 }
 
+variable "headless" {
+  type    = string
+  default = "true"
+}
+
 variable "http_directory" {
   type    = string
   default = ""
@@ -74,7 +79,7 @@ source "virtualbox-iso" "centos7" {
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "${var.guest_os_type_virtualbox}"
-  headless         = true
+  headless         = "${var.headless}"
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
@@ -96,7 +101,7 @@ source "vmware-iso" "centos7" {
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
   guest_os_type    = "${var.guest_os_type_vmware}"
-  headless         = true
+  headless         = "${var.headless}"
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]

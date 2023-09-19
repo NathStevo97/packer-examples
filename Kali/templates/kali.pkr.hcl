@@ -13,6 +13,11 @@ variable "box_name" {
   default = ""
 }
 
+variable "build_directory" {
+  type    = string
+  default = ""
+}
+
 variable "cpus" {
   type    = string
   default = ""
@@ -112,17 +117,17 @@ source "virtualbox-iso" "kali_virtualbox" {
 }
 
 source "vmware-iso" "kali_vmware" {
-  boot_command   = ["<esc><wait>", "install preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kali/preseed-rolling-desktop.cfg locale=en_US.UTF-8 keymap=us <wait>", "netcfg/get_hostname={{ .Name }} netcfg/get_domain=local.lan fb=false debconf/frontend=noninteractive console-setup/ask_detect=false <wait>", "<enter><wait>"]
-  boot_wait      = "${var.boot_wait}"
-  cpus           = "${var.cpus}"
-  disk_size      = "${var.disk_size}"
-  guest_os_type  = "${var.guest_os_type_vmware}"
-  headless       = "${var.headless}"
-  http_directory = "${var.http_directory}"
-  iso_checksum   = "${var.iso_checksum_type}:${var.iso_checksum}"
-  iso_urls       = ["${var.iso_path}", "${var.iso_url}"]
-  network        = "nat"
-  memory         = "${var.memory}"
+  boot_command     = ["<esc><wait>", "install preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/kali/preseed-rolling-desktop.cfg locale=en_US.UTF-8 keymap=us <wait>", "netcfg/get_hostname={{ .Name }} netcfg/get_domain=local.lan fb=false debconf/frontend=noninteractive console-setup/ask_detect=false <wait>", "<enter><wait>"]
+  boot_wait        = "${var.boot_wait}"
+  cpus             = "${var.cpus}"
+  disk_size        = "${var.disk_size}"
+  guest_os_type    = "${var.guest_os_type_vmware}"
+  headless         = "${var.headless}"
+  http_directory   = "${var.http_directory}"
+  iso_checksum     = "${var.iso_checksum_type}:${var.iso_checksum}"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  network          = "nat"
+  memory           = "${var.memory}"
   output_directory = "../builds/${var.vm_name}-vmware"
   shutdown_command = "echo 'vagrant'|sudo -S shutdown -P now"
   shutdown_timeout = "1h"
