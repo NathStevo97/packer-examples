@@ -30,9 +30,5 @@
 ## ToDos & Notes
 
 - Kali Linux builds failing during base OS software install, likely an ISO upgrade needed and/or ensuring a secure connection during installation.
-- RHEL Builds showing a lot of undeclared / unused variables.
-- Re-check Windows Hyper-V Builds as the plugins have recently been upgraded
-- Point all build output directories to root "builds" directory in repo
-- Make headless a variable across all builds with default value of true
 - Try to rework CentOS builds to use boot isos for ease - saves storing the ~10Gb Net Install ISOs locally
 - Fix up Windows 11 Build for Hyper-V
