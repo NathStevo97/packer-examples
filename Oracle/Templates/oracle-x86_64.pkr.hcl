@@ -3,7 +3,6 @@ variable "boot_wait" {
   default = ""
 }
 
-
 variable "box_basename" {
   type    = string
   default = ""
@@ -128,7 +127,7 @@ locals {
   build_timestamp = "${legacy_isotime("2019102650405")}"
 }
 
-source "vmware-iso" "oracle7" {
+source "vmware-iso" "oracle" {
   boot_command        = ["<up><wait2m><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg net.ifnames=0 biosdevname=0 <enter><wait>"]
   boot_wait           = "${var.boot_wait}"
   disk_size           = "${var.disk_size}"
@@ -156,7 +155,7 @@ source "vmware-iso" "oracle7" {
 }
 
 build {
-  sources = ["source.vmware-iso.oracle7"]
+  sources = ["source.vmware-iso.oracle"]
 
   provisioner "shell" {
     environment_vars  = ["HOME_DIR=/home/vagrant"]

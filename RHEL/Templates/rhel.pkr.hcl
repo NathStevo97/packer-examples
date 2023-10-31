@@ -98,7 +98,7 @@ variable "vm_name" {
   default = ""
 }
 
-source "vmware-iso" "rhel-7" {
+source "vmware-iso" "rhel" {
   boot_command     = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<enter><wait>"]
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
@@ -124,7 +124,7 @@ source "vmware-iso" "rhel-7" {
 #                    Virtualbox-ISO Builder                     #
 #################################################################
 
-source "virtualbox-iso" "rhel-7" {
+source "virtualbox-iso" "rhel" {
   boot_command         = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<enter><wait>"]
   boot_wait            = "${var.boot_wait_virtualbox}"
   disk_size            = "${var.disk_size}"
@@ -150,7 +150,7 @@ source "virtualbox-iso" "rhel-7" {
 #                    QEMU-ISO Builder                     #
 #################################################################
 
-source "qemu" "rhel-7" {
+source "qemu" "rhel" {
   headless         = var.headless
   boot_command     = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<enter><wait>"]
   floppy_files     = ["${var.http_directory}/ks-7.cfg", ]
@@ -171,7 +171,7 @@ source "qemu" "rhel-7" {
 }
 
 build {
-  sources = ["source.vmware-iso.rhel-7", "source.virtualbox-iso.rhel-7", "source.qemu.rhel-7"]
+  sources = ["source.vmware-iso.rhel", "source.virtualbox-iso.rhel", "source.qemu.rhel"]
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
