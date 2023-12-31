@@ -83,7 +83,7 @@ source "vmware-iso" "almalinux" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
-  output_directory = "${var.name}-vmware"
+  output_directory = "../builds/${var.name}-vmware"
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
