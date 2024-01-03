@@ -1,0 +1,3 @@
+| OS                      | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox      | Qemu    | Date Last Tested | Avg Build Time |
+|-------------------------|--------------------|---------------|---------------|-----------------|---------|------------------|----------------|
+| OpenSUSE 15             | TBD                | TBD           | TBD           | Working         | TBD     | 27/12/2023       | 17 mins        |
