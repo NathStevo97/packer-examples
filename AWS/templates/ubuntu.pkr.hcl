@@ -37,8 +37,8 @@ source "amazon-ebs" "ubuntu" {
   instance_type = "${var.instance_type}"
   region        = "${var.region}"
   #profile       = "${var.profile}"
-  source_ami    = "${data.amazon-ami.ubuntu.id}"
-  ssh_username  = "${var.ssh_username}"
+  source_ami   = "${data.amazon-ami.ubuntu.id}"
+  ssh_username = "${var.ssh_username}"
   tags = {
     Name  = "${var.name_prefix}"
     Value = "${var.name_prefix}-${local.timestamp}"

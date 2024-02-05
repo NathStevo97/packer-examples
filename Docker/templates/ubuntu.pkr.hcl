@@ -1,5 +1,5 @@
 source "docker" "ubuntu" {
-  image = "ubuntu"
+  image  = "ubuntu"
   commit = true
   /*
     changes = [

@@ -23,6 +23,16 @@ variable "disk_size" {
   default = "70000"
 }
 
+variable "disk_additional_size" {
+  type    = list(number)
+  default = ["1024"]
+}
+
+variable "guest_os_type_vmware" {
+  type    = string
+  default = ""
+}
+
 variable "guest_os_type_vbox" {
   type    = string
   default = ""
@@ -62,9 +72,20 @@ variable "ssh_username" {
   type    = string
   default = "vagrant"
 }
+
+variable "switch_name" {
+  type    = string
+  default = ""
+}
+
 variable "vagrantcloud_token" {
   type    = string
   default = "${env("VAGRANT_CLOUD_TOKEN")}"
+}
+
+variable "vlan_id" {
+  type    = string
+  default = ""
 }
 
 variable "vm_name" {
@@ -72,13 +93,13 @@ variable "vm_name" {
   default = ""
 }
 
-locals { timestamp = regex_replace(timestamp(), "[- TZ:]", "") }
+#locals { timestamp = regex_rveplace(timestamp(), "[- TZ:]", "") }
 
-locals {
-  #osdetails    = "ubuntu-${local.vboxversion}-amd64"
-  version = "${local.timestamp}"
-  #version_desc = "Latest kernel build of Ubuntu Vagrant images based on Ubuntu Server ${local.vboxversion} LTS (Jammy Jellyfish)"
-}
+#locals {
+#  #osdetails    = "ubuntu-${local.vboxversion}-amd64"
+#  version = "${local.timestamp}"
+#version_desc = "Latest kernel build of Ubuntu Vagrant images based on Ubuntu Server ${local.vboxversion} LTS (Jammy Jellyfish)"
+#}
 
 # could not parse template for following block: "template: hcl2_upgrade:2: bad character U+0060 '`'"
 
@@ -117,23 +138,22 @@ source "virtualbox-iso" "ubuntu" {
   #   "<enter><f10><wait>"
   # ]
 
-  boot_wait               = "${var.boot_wait}"
-  http_directory          = "${var.http_directory}"
-  guest_additions_path    = "VBoxGuestAdditions_{{.Version}}.iso"
-  guest_os_type           = "${var.guest_os_type_vbox}"
-  headless                = "${var.non_gui}"
-  iso_checksum            = "${var.iso_checksum}"
-  iso_url                 = "${var.iso_url}"
-  memory                  = "${var.memory}"
-  disk_size               = "${var.disk_size}"
-  output_directory        = "../builds/${var.vm_name}-vbox"
-  shutdown_command        = "echo 'vagrant'|sudo -S shutdown -P now"
-  ssh_handshake_attempts  = "1000"
-  ssh_keep_alive_interval = "90s"
-  ssh_password            = "${var.ssh_password}"
-  ssh_timeout             = "90m"
-  ssh_username            = "${var.ssh_username}"
-  ssh_wait_timeout        = "6h"
+  boot_wait              = "${var.boot_wait}"
+  http_directory         = "${var.http_directory}"
+  guest_additions_path   = "VBoxGuestAdditions_{{.Version}}.iso"
+  guest_os_type          = "${var.guest_os_type_vbox}"
+  headless               = "${var.non_gui}"
+  iso_checksum           = "${var.iso_checksum}"
+  iso_url                = "${var.iso_url}"
+  memory                 = "${var.memory}"
+  disk_size              = "${var.disk_size}"
+  output_directory       = "../builds/${var.vm_name}-vbox"
+  shutdown_command       = "echo 'password'|sudo -S shutdown -P now"
+  ssh_handshake_attempts = "1000"
+  ssh_password           = "${var.ssh_password}"
+  ssh_timeout            = "6h"
+  ssh_username           = "${var.ssh_username}"
+  ssh_wait_timeout       = "6h"
   vboxmanage = [
     ["modifyvm", "{{.Name}}", "--memory", "${var.memory}"],
     ["modifyvm", "{{.Name}}", "--cpus", "${var.cpu}"],
@@ -143,14 +163,82 @@ source "virtualbox-iso" "ubuntu" {
   vm_name                 = "${var.vm_name}-vbox"
 }
 
+source "hyperv-iso" "ubuntu" {
+  boot_command          = "${var.boot_command}"
+  boot_wait             = "${var.boot_wait}"
+  communicator          = "ssh"
+  cpus                  = "${var.cpu}"
+  disk_block_size       = "1"
+  disk_size             = "${var.disk_size}"
+  enable_dynamic_memory = "true"
+  enable_secure_boot    = false
+  generation            = 2
+  guest_additions_mode  = "disable"
+  headless              = "${var.non_gui}"
+  http_directory        = "${var.http_directory}"
+  iso_checksum          = "${var.iso_checksum}"
+  iso_url               = "${var.iso_url}"
+  memory                = "${var.memory}"
+  output_directory      = "../builds/${var.vm_name}-hyperv"
+  shutdown_command      = "echo 'password'|sudo -S shutdown -P now"
+  shutdown_timeout      = "30m"
+  ssh_password          = "${var.ssh_password}"
+  ssh_timeout           = "6h"
+  ssh_username          = "${var.ssh_username}"
+  ssh_wait_timeout      = "6h"
+  switch_name           = "${var.switch_name}"
+  temp_path             = "."
+  vlan_id               = "${var.vlan_id}"
+  vm_name               = "${var.vm_name}-hyperv"
+}
+
+#################################################################
+#                    QEMU-ISO Builder                     #
+#################################################################
+
+source "qemu" "ubuntu" {
+  headless         = "${var.non_gui}"
+  boot_command     = "${var.boot_command}"
+  http_directory   = "${var.http_directory}"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_url          = "${var.iso_url}"
+  format           = "qcow2"
+  output_directory = "../builds/${var.vm_name}-qemu"
+  shutdown_command = "echo 'password' | sudo -S shutdown -P now"
+  ssh_password     = "${var.ssh_password}"
+  ssh_port         = 22
+  ssh_timeout      = "6h"
+  ssh_username     = "${var.ssh_username}"
+  disk_size        = "${var.disk_size}"
+  disk_interface   = "virtio-scsi"
+  memory           = "${var.memory}"
+  cpus      = "${var.cpu}"
+  boot_wait = "5s"
+}
+
 build {
-  sources = ["source.virtualbox-iso.ubuntu"]
+  sources = ["source.virtualbox-iso.ubuntu", "source.hyperv-iso.ubuntu", "source.qemu.ubuntu"]
 
   provisioner "shell" {
-    execute_command   = "echo 'vagrant' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    only              = ["hyperv-iso.ubuntu"]
+    execute_command   = "echo 'password' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     expect_disconnect = true
     scripts = [
-      "scripts/update.sh",
+      "scripts/init_hyperv.sh",
+      "scripts/uefi.sh"
+    ]
+  }
+
+  provisioner "shell" {
+    execute_command   = "echo 'password' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    expect_disconnect = true
+    script            = "scripts/update.sh"
+  }
+
+  provisioner "shell" {
+    execute_command   = "echo 'password' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
+    expect_disconnect = true
+    scripts = [
       "scripts/motd.sh",
       "scripts/networking.sh",
       "scripts/sudoers.sh",
@@ -159,6 +247,7 @@ build {
       "scripts/minimize.sh",
     ]
   }
+
   /*
   post-processors {
     post-processor "vagrant" {
