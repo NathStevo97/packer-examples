@@ -248,7 +248,7 @@ build {
     ]
   }
 
-  /*
+  /*##
   post-processors {
     post-processor "vagrant" {
       keep_input_artifact = false
