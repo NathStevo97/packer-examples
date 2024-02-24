@@ -9,7 +9,7 @@ $var_file="./variables/variables_centos8.pkrvars.hcl"
 $machine="CentOS Stream 8"
 $packer_log=0
 $env:PACKER_LOG_PATH="packerlog-centos-stream-8.txt"
-packer init -upgrade "./required_plugins.pkr.hcl"
+packer init -upgrade "../required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file")) {

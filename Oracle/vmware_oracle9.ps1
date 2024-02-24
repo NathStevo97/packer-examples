@@ -9,7 +9,7 @@ $var_file="./variables/variables_oracle-9.0-x86_64.pkrvars.hcl"
 $machine="Oracle Linux 9.0"
 $packer_log=0
 
-packer init -upgrade "./required_plugins.pkr.hcl"
+packer init -upgrade "../required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file")) {

@@ -9,7 +9,7 @@ $var_file="./variables/variables_centos_7_9.pkrvars.hcl"
 $machine="CentOS 7"
 $packer_log=0
 $env:PACKER_LOG_PATH="packerlog-CentOS7.txt"
-packer init -upgrade "./required_plugins.pkr.hcl"
+packer init -upgrade "../required_plugins.pkr.hcl"
 #Write start time so you know how long it's been
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 if ((Test-Path -Path "$template_file")) {
