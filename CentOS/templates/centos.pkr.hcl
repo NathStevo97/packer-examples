@@ -1,3 +1,7 @@
+variable "boot_command" {
+  type    = list(string)
+  default = []
+}
 
 variable "boot_wait" {
   type    = string
@@ -74,8 +78,9 @@ variable "vm_name" {
   default = ""
 }
 
-source "virtualbox-iso" "centos7" {
-  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<leftCtrlOn>x<leftCtrlOff>"]
+
+source "virtualbox-iso" "centos" {
+  boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "${var.guest_os_type_virtualbox}"
@@ -86,7 +91,6 @@ source "virtualbox-iso" "centos7" {
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   output_directory = "../builds/${var.vm_name}"
   shutdown_command = "echo 'vagrant' | sudo -S /sbin/shutdown -P now"
-  shutdown_timeout = "1h"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "${var.ssh_timeout}"
@@ -95,8 +99,8 @@ source "virtualbox-iso" "centos7" {
   vm_name          = "${var.vm_name}"
 }
 
-source "vmware-iso" "centos7" {
-  boot_command     = ["e<down><down><end><bs><bs><bs><bs><bs>text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<leftCtrlOn>x<leftCtrlOff>"]
+source "vmware-iso" "centos" {
+  boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
@@ -121,8 +125,9 @@ source "vmware-iso" "centos7" {
   }
 }
 
+
 build {
-  sources = ["source.vmware-iso.centos7", "source.virtualbox-iso.centos7"]
+  sources = ["source.vmware-iso.centos", "source.virtualbox-iso.centos"]
 
   provisioner "shell" {
     execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"

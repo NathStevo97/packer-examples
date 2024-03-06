@@ -1,3 +1,8 @@
+variable "boot_command" {
+  type    = list(string)
+  default = []
+}
+
 variable "boot_wait" {
   type    = string
   default = ""
@@ -99,7 +104,7 @@ variable "vm_name" {
 }
 
 source "vmware-iso" "rhel" {
-  boot_command     = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<enter><wait>"]
+  boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "${var.guest_os_type_vmware}"
@@ -125,7 +130,7 @@ source "vmware-iso" "rhel" {
 #################################################################
 
 source "virtualbox-iso" "rhel" {
-  boot_command         = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<enter><wait>"]
+  boot_command         = "${var.boot_command}"
   boot_wait            = "${var.boot_wait_virtualbox}"
   disk_size            = "${var.disk_size}"
   guest_additions_mode = "disable"
@@ -152,7 +157,7 @@ source "virtualbox-iso" "rhel" {
 
 source "qemu" "rhel" {
   headless         = var.headless
-  boot_command     = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg<enter><wait>"]
+  boot_command     = "${var.boot_command}"
   floppy_files     = ["${var.http_directory}/ks-7.cfg", ]
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"

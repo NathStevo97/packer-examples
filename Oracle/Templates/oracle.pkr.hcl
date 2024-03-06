@@ -1,3 +1,8 @@
+variable "boot_command" {
+  type    = list(string)
+  default = []
+}
+
 variable "boot_wait" {
   type    = string
   default = ""
@@ -128,7 +133,7 @@ locals {
 }
 
 source "vmware-iso" "oracle" {
-  boot_command        = ["<up><wait2m><tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-7.cfg net.ifnames=0 biosdevname=0 <enter><wait>"]
+  boot_command        = "${var.boot_command}"
   boot_wait           = "${var.boot_wait}"
   disk_size           = "${var.disk_size}"
   guest_os_type       = "oraclelinux-64"

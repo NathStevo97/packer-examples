@@ -212,8 +212,8 @@ source "qemu" "ubuntu" {
   disk_size        = "${var.disk_size}"
   disk_interface   = "virtio-scsi"
   memory           = "${var.memory}"
-  cpus      = "${var.cpu}"
-  boot_wait = "5s"
+  cpus             = "${var.cpu}"
+  boot_wait        = "5s"
 }
 
 build {

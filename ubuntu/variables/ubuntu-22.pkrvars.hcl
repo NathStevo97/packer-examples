@@ -1,9 +1,9 @@
-boot_command         = [
-    "<wait3>c<wait3>",
-    "linux /casper/vmlinuz quiet autoinstall net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 ds=nocloud-net\\;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ <enter>",
-    "initrd /casper/initrd <enter>",
-    "boot <enter>"
-    ]
+boot_command = [
+  "<wait3>c<wait3>",
+  "linux /casper/vmlinuz quiet autoinstall net.ifnames=0 biosdevname=0 ip=dhcp ipv6.disable=1 ds=nocloud-net\\;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ <enter>",
+  "initrd /casper/initrd <enter>",
+  "boot <enter>"
+]
 boot_wait            = "5s"
 cpu                  = 2
 disk_size            = 70000

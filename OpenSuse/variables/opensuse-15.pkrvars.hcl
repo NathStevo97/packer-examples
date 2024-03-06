@@ -8,7 +8,8 @@ headless             = "false"
 http_directory       = "./http"
 iso_checksum         = "4683345f242397c7fd7d89a50731a120ffd60a24460e21d2634e783b3c169695"
 iso_url              = "http://downloadcontent.opensuse.org/distribution/leap/15.4/iso/openSUSE-Leap-15.4-DVD-x86_64-Build243.2-Media.iso"
-name                 = "opensuse-15"
-ram                  = 4096
-ssh_password         = "vagrant"
-ssh_username         = "vagrant"
+# https://download.opensuse.org/distribution/leap/15.4/iso/openSUSE-Leap-15.4-DVD-x86_64-Current.iso
+name         = "opensuse-15"
+ram          = 4096
+ssh_password = "vagrant"
+ssh_username = "vagrant"

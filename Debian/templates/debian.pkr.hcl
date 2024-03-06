@@ -113,7 +113,7 @@ source "virtualbox-iso" "debian" {
     ["modifyvm", "{{ .Name }}", "--memory", "${var.ram}"],
     ["modifyvm", "{{ .Name }}", "--cpus", "${var.cpu}"],
     ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
-    ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
+    ["modifyvm", "{{.Name}}", "--nat-localhostreachable", "on"]
   ]
   vm_name = "${var.name}-virtualbox"
 }

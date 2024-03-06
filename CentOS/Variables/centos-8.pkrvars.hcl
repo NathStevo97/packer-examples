@@ -1,3 +1,4 @@
+boot_command             = ["e<down><down><end><bs><bs><bs><bs><bs>inst.text <wait10s> inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8-stream.cfg <wait10s> <leftCtrlOn>x<leftCtrlOff>"]
 boot_wait                = "5s"
 disk_size                = "40960"
 guest_os_type_virtualbox = "RedHat_64"

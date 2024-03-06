@@ -1,3 +1,4 @@
+boot_command      = ["<tab><wait2m> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-9.cfg <enter><wait>"]
 boot_wait         = "5s"
 box_basename      = "oracle-9.0"
 build_directory   = "../builds"

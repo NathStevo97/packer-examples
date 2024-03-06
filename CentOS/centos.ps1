@@ -34,9 +34,10 @@ param(
 
     [string]$Template = "",
 
+    [ValidateSet("7", "8", "9")]
     [string]$Version = "",
 
-    [ValidateSet("virtualbox-iso")]
+    [ValidateSet("vmware-iso", "virtualbox-iso")]
     [string]$Provider = ""
 )
 
@@ -52,15 +53,15 @@ if ($Log -eq 1) {
 }
 
 if ($Template -eq "") {
-    $Template = "opensuse"
+    $Template = "centos"
 }
 
 if ($Version -eq "") {
-    $Version = "25"
+    $Version = "9"
 }
 
 if ($Provider -eq "") {
-    $Provider = "virtualbox-iso"
+    $Provider = "vmware-iso"
 }
 
 # Define other variables
@@ -71,10 +72,10 @@ $template = "templates/$Template.pkr.hcl"
 $startDTM = (Get-Date)
 
 # Variables
-$env:PACKER_LOG_PATH="packerlog-opensuse-$Version.txt"
+$env:PACKER_LOG_PATH="packerlog-centos-$Version.txt"
 packer init -upgrade "../required_plugins.pkr.hcl"
 
-$machine="OpenSUSE $Version"
+$machine="CentOS $Version"
 
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 
@@ -83,7 +84,7 @@ if ((Test-Path -Path "$template")) {
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    packer validate -var-file="$var_file" -only="$Provider.opensuse" "$template"
+    packer validate -var-file="$var_file" -only="$Provider.centos" "$template"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -92,7 +93,7 @@ if ((Test-Path -Path "$template")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    packer build -var-file="$var_file" -only="$Provider.opensuse" --force "$template"
+    packer build -var-file="$var_file" -only="$Provider.centos" --force "$template"
   }
   catch {
     Write-Output "Packer build failed, exiting."

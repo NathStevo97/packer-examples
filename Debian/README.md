@@ -1,3 +1,0 @@
-| OS                      | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox      | Qemu    | Date Last Tested | Avg Build Time |
-|-------------------------|--------------------|---------------|---------------|-----------------|---------|------------------|----------------|
-| Debian 12               | Failing            | TBD           | TBD           | Failing         | TBD     | 27/12/2023       |                |
