@@ -40,11 +40,12 @@
 
 | OS        | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
 |-----------|--------------------|---------------|---------------|------------|------|------------------|----------------|
-| Debian 12 | Failing            | TBD           | TBD           | Failing    | TBD  | 27/12/2023       |                |
+| Debian 12 | Working            | TBD           | TBD           | Working    | TBD  | 07/03/2024       |                |
 
 ### Debian ToDos
 
-- All platforms getting stuck at boot
+- All platforms getting stuck at boot - `No Kernel Module Found`
+- Fix: Get the Latest `mini.iso` from Debian.
 
 ## OpenSUSE Builds
 
@@ -62,15 +63,11 @@
 |------------|--------------------|---------------|---------------|------------|------|------------------|----------------|
 | Oracle 7.9 | Working            | TBD           | TBD           | TBD        | TBD  | 04/03/2024       | 25 mins        |
 | Oracle 8.6 | Working            | TBD           | TBD           | TBD        | TBD  | 04/03/2024       |                |
-| Oracle 9.0 | Failing            | TBD           | TBD           | TBD        | TBD  | 04/03/2024       |                |
+| Oracle 9.0 | Working            | TBD           | TBD           | TBD        | TBD  | 07/03/2024       |                |
 
 ```powershell
 .\oracle.ps1 -Action build -Version 7 -Template oracle -Provider vmware-iso
 ```
-
-### Oracle ToDos
-
-- Oracle 9 - Getting stuck at boot launch
 
 ## RHEL Builds
 
@@ -82,8 +79,6 @@
 ### RHEL ToDos
 
 - RHEL 7 and RHEL 8 Needs ISO predownloaded
-
-- Fix up Windows 11 Build for Hyper-V
 
 ## RockyLinux Builds
 
@@ -113,7 +108,6 @@
 | Windows 2019 Datacenter | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
 | Windows 2016 Standard   | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
 | Windows 2016 Datacenter | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
-
 
 ### Windows ToDos
 
