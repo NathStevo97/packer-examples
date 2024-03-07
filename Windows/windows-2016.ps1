@@ -74,7 +74,7 @@ $startDTM = (Get-Date)
 $env:PACKER_LOG_PATH="packerlog-opensuse-$Version.txt"
 packer init -upgrade "../required_plugins.pkr.hcl"
 
-$machine="Alma Linux $Version"
+$machine="Windows $Version"
 
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 

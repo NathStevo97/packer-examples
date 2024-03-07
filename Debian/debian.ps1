@@ -75,7 +75,7 @@ $startDTM = (Get-Date)
 $env:PACKER_LOG_PATH="packerlog-debian-$Version.txt"
 packer init -upgrade "../required_plugins.pkr.hcl"
 
-$machine="Alma Linux $Version"
+$machine="Debian Linux $Version"
 
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 
