@@ -11,9 +11,10 @@ headless                 = "true"
 http_directory           = "./http"
 hyperv_generation        = "1"
 hyperv_switch            = "default"
-iso_checksum             = "53913176d219a02550ff4d1756b0f0f8"
+iso_checksum             = "2cb36122a74be084c551bc7173d2d38a1cfb75c8ffbc1489c630c916d1b31b25"
 iso_path                 = "../../ISOs/RHEL/rhel-server-7.9-x86_64-dvd.iso"
 iso_url                  = "https://archive.org/download/rhel-server-7.9-x86_64-dvd/rhel-server-7.9-x86_64-dvd.iso"
+# https://access.cdn.redhat.com/content/origin/files/sha256/2c/2cb36122a74be084c551bc7173d2d38a1cfb75c8ffbc1489c630c916d1b31b25/rhel-server-7.9-x86_64-dvd.iso
 memsize                  = 2048
 ssh_password             = "vagrant"
 ssh_timeout              = "10000s"

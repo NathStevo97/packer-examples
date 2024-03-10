@@ -8,6 +8,7 @@ http_directory           = "./http"
 iso_checksum             = "e16bc20fe7bfb6c768e2492842a5ec8b183ade5ee0dc41aaa5692a516e1e9cb7"
 iso_path                 = "../../ISOs/CentOS/CentOS-Stream-9-latest-x86_64-dvd1.iso"
 iso_url                  = "https://mirrors.centos.org/mirrorlist?path=/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-latest-x86_64-dvd1.iso&redirect=1&protocol=https"
+# https://mirror.transip.net/centos-stream/9-stream/BaseOS/x86_64/iso/CentOS-Stream-9-20240307.0-x86_64-boot.iso
 memsize                  = "4096"
 numvcpus                 = "2"
 ssh_password             = "vagrant"

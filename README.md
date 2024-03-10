@@ -74,27 +74,32 @@
 | OS       | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu    | Date Last Tested | Avg Build Time |
 |----------|--------------------|---------------|---------------|------------|---------|------------------|----------------|
 | RHEL 7.9 | Working            | TBD           | TBD           | Working    | Working | 16/09/2023       |                |
-| RHEL 8.1 | Working            | TBD           | TBD           | Working    | Working | 16/09/2023       |                |
+| RHEL 8.1 | Working            | TBD           | TBD           | Working    | Working | 09/03/2024       | 45 mins        |
 
 ### RHEL ToDos
 
-- RHEL 7 and RHEL 8 Needs ISO predownloaded
+- RHEL 7 and RHEL 8 Needs ISO predownloaded - want to see if I can do something with the boot iso rather than full dvd(?)
+- Add note about downloading ISOs from RHEL
 
 ## RockyLinux Builds
 
 | OS              | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
 |-----------------|--------------------|---------------|---------------|------------|------|------------------|----------------|
-| Rocky Linux 8.6 | Failing            | TBD           | TBD           | Failing    | TBD  | 27/12/2023       |                |
+| Rocky Linux 8.6 | Failing            | TBD           | TBD           | Working    | TBD  | 09/03/2024       |                |
 
 ### Rocky Linux ToDos
 
-- Getting Stuck at Boot Launch
+- Getting Stuck at Boot Launch for some reason (VMware)
 
 ## Ubuntu Builds
 
 | OS        | Hyper-V Gen 2 | VirtualBox | Qemu    | Date Last Tested | Avg Build Time |
 |-----------|---------------|------------|---------|------------------|----------------|
-| Ubuntu 22 | Working       | Working    | Working | 05/02/2024       | 35 mins        |
+| Ubuntu 22 | Working       | Working    | Working | 09/03/2024       | 35 mins        |
+
+```powershell
+.\ubuntu.ps1 -Action build -Version 22 -Template ubuntu -Provider virtualbox-iso
+```
 
 ## Windows Builds
 

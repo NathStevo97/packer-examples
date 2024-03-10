@@ -75,7 +75,7 @@ $startDTM = (Get-Date)
 $env:PACKER_LOG_PATH="packerlog-rhel-$Version.txt"
 packer init -upgrade "../required_plugins.pkr.hcl"
 
-$machine="rhel Linux $Version"
+$machine="Red Hat Enterprise Linux $Version"
 
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 

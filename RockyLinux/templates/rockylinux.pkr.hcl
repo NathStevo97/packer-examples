@@ -30,7 +30,7 @@ variable "guest_os_type_vbox" {
 
 variable "headless" {
   type    = string
-  default = "true"
+  default = "false"
 }
 
 variable "http_directory" {
