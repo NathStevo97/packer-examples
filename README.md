@@ -114,6 +114,22 @@
 | Windows 2016 Standard   | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
 | Windows 2016 Datacenter | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
 
+```powershell
+.\windows-server.ps1 -Action build -Version 2016 -Type std -Template windows-server -Provider vmware-iso
+```
+
+```powershell
+.\windows-server.ps1 -Action build -Version 2016 -Type std -Template windows-server -Provider hyperv-iso -Generation 2
+```
+
+```powershell
+.\windows.ps1 -Action build -Version 2016 -Type std -Template windows -Provider vmware-iso
+```
+
+```powershell
+.\windows.ps1 -Action build -Version 2016 -Type std -Template windows -Provider hyperv-iso -Generation 2
+```
+
 ### Windows ToDos
 
 - Windows 10 Autounattend script needs to not include windows update script, only winRM.

@@ -112,7 +112,7 @@ variable "winrm_username" {
 #                 Hyper-V Gen 1 Builder                #
 ########################################################
 
-source "hyperv-iso" "hv1-win10" {
+source "hyperv-iso" "hv1-windows" {
   boot_wait        = "${var.boot_wait}"
   communicator     = "winrm"
   disk_size        = "${var.disk_size}"
@@ -135,7 +135,7 @@ source "hyperv-iso" "hv1-win10" {
 #                 Hyper-V Gen 2 Builder                #
 ########################################################
 
-source "hyperv-iso" "hv2-win10" {
+source "hyperv-iso" "hv2-windows" {
   boot_command         = "${var.boot_command}"
   boot_wait            = "${var.boot_wait_hyperv}"
   communicator         = "winrm"
@@ -163,7 +163,7 @@ source "hyperv-iso" "hv2-win10" {
 #                 VMWare Builder                       #
 ########################################################
 
-source "vmware-iso" "vmware-win10" {
+source "vmware-iso" "windows" {
   boot_wait        = "${var.boot_wait}"
   communicator     = "winrm"
   disk_size        = "${var.disk_size}"
@@ -192,7 +192,7 @@ source "vmware-iso" "vmware-win10" {
 #                    Virtualbox-ISO Builder                     #
 #################################################################
 
-source "virtualbox-iso" "vbox-win10" {
+source "virtualbox-iso" "windows" {
   communicator         = "winrm"
   disk_size            = "${var.disk_size}"
   floppy_files         = "${var.floppy_files}"
@@ -219,6 +219,6 @@ source "virtualbox-iso" "vbox-win10" {
 }
 
 build {
-  sources = ["source.hyperv-iso.hv1-win10", "source.hyperv-iso.hv2-win10", "source.vmware-iso.vmware-win10", "source.virtualbox-iso.vbox-win10"]
+  sources = ["source.hyperv-iso.hv1-windows", "source.hyperv-iso.hv2-windows", "source.vmware-iso.windows", "source.virtualbox-iso.windows"]
 
 }

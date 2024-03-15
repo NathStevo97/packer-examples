@@ -18,11 +18,17 @@ Controls the logging behavior of Packer. It can be:
 .PARAMETER Version
 Specifies the version of the template to be used. If not specified, it defaults to "rockylinux-8.8".
 
+.PARAMETER Type
+Specify the type of Windows Server - Standard or Datacenter
+
 .PARAMETER Template
 Specifies the path to the Packer template to be used. If not specified, it defaults to "templates/hv_rhel.pkr.hcl".
 
 .PARAMETER Provider
 Specifies the path to the Packer template to be used. If not specified, it defaults to "templates/hv_rhel.pkr.hcl".
+
+.PARAMETER Generation
+Specify the Hyper-V VM Generation (1 or 2)
 #>
 
 param(
@@ -34,10 +40,17 @@ param(
 
     [string]$Template = "",
 
+    [ValidateSet("2016", "2019", "2022")]
     [string]$Version = "",
 
-    [ValidateSet("hyperv-iso")]
-    [string]$Provider = ""
+    [ValidateSet("std", "dc")]
+    [string]$Type = "",
+
+    [ValidateSet("hyperv-iso", "virtualbox-iso", "vmware-iso")]
+    [string]$Provider = "",
+
+    [ValidateSet("1", "2")]
+    [string]$Generation = ""
 )
 
 # Set default values if parameters are not specified
@@ -52,29 +65,37 @@ if ($Log -eq 1) {
 }
 
 if ($Template -eq "") {
-    $Template = "win2022"
+    $Template = "windows-server"
 }
 
 if ($Version -eq "") {
-    $Version = "25"
+    $Version = "2022"
+}
+
+if ($Type -eq "") {
+  $Type = "std"
 }
 
 if ($Provider -eq "") {
     $Provider = "virtualbox-iso"
 }
 
+if ($Generation -eq "") {
+  $Generation = "2"
+}
+
 # Define other variables
-$var_file = "variables/$Template-$Version.pkrvars.hcl"
+$var_file = "variables/$Template-$Version-$Type.pkrvars.hcl"
 $template = "templates/$Template.pkr.hcl"
 
 # Get Start Time
 $startDTM = (Get-Date)
 
 # Variables
-$env:PACKER_LOG_PATH="packerlog-opensuse-$Version.txt"
+$env:PACKER_LOG_PATH="packerlog-windows-server-$Version-$Type.txt"
 packer init -upgrade "../required_plugins.pkr.hcl"
 
-$machine="Windows $Version"
+$machine="Windows Server $Version $Type"
 
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 
@@ -83,7 +104,12 @@ if ((Test-Path -Path "$template")) {
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    packer validate -var-file="$var_file" -only="$Provider.opensuse" "$template"
+    if (( $Provider -eq "hyperv-iso")) {
+      packer validate -var-file="$var_file" -only="$Provider.hv$Generation-windows-server" "$template"
+    }
+    else {
+      packer validate -var-file="$var_file" -only="$Provider.windows-server" "$template"
+    }
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -92,7 +118,12 @@ if ((Test-Path -Path "$template")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    packer build -var-file="$var_file" -only="$Provider.opensuse" --force "$template"
+    if (( $Provider -eq "hyperv-iso")) {
+      packer build -var-file="$var_file" -only="$Provider.hv$Generation-windows-server" --force "$template"
+    }
+    else {
+      packer build -var-file="$var_file" -only="$Provider.windows-server" --force "$template"
+    }
   }
   catch {
     Write-Output "Packer build failed, exiting."

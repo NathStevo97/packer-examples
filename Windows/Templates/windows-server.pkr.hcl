@@ -18,9 +18,6 @@ Controls the logging behavior of Packer. It can be:
 .PARAMETER Version
 Specifies the version of the template to be used. If not specified, it defaults to "rockylinux-8.8".
 
-.PARAMETER Type
-Specify the type of Windows Server - Standard or Datacenter
-
 .PARAMETER Template
 Specifies the path to the Packer template to be used. If not specified, it defaults to "templates/hv_rhel.pkr.hcl".
 
@@ -69,6 +66,10 @@ if ($Version -eq "") {
     $Version = "10"
 }
 
+if ($Type -eq "") {
+  $Type = "std"
+}
+
 if ($Provider -eq "") {
     $Provider = "virtualbox-iso"
 }
@@ -78,17 +79,17 @@ if ($Generation -eq "") {
 }
 
 # Define other variables
-$var_file = "variables/$Template-$Version.pkrvars.hcl"
+$var_file = "variables/$Template-$Version-$Type.pkrvars.hcl"
 $template = "templates/$Template.pkr.hcl"
 
 # Get Start Time
 $startDTM = (Get-Date)
 
 # Variables
-$env:PACKER_LOG_PATH="packerlog-windows-$Version.txt"
+$env:PACKER_LOG_PATH="packerlog-windows-server-$Version-$Type.txt"
 packer init -upgrade "../required_plugins.pkr.hcl"
 
-$machine="Windows $Version $Type"
+$machine="Windows $Version"
 
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 
@@ -98,10 +99,10 @@ if ((Test-Path -Path "$template")) {
   try {
     $env:PACKER_LOG=$packer_log
     if (( $Provider -eq "hyperv-iso")) {
-      packer validate -var-file="$var_file" -only="$Provider.hv$Generation-windows" "$template"
+      packer validate -var-file="$var_file" -only="$Provider.hv$Generation-windows-server" "$template"
     }
     else {
-      packer validate -var-file="$var_file" -only="$Provider.windows" "$template"
+      packer validate -var-file="$var_file" -only="$Provider.windows-server" "$template"
     }
   }
   catch {
@@ -112,10 +113,10 @@ if ((Test-Path -Path "$template")) {
     $env:PACKER_LOG=$packer_log
     packer version
     if (( $Provider -eq "hyperv-iso")) {
-      packer build -var-file="$var_file" -only="$Provider.hv$Generation-windows" --force "$template"
+      packer build -var-file="$var_file" -only="$Provider.hv$Generation-windows-server" --force "$template"
     }
     else {
-      packer build -var-file="$var_file" -only="$Provider.windows" --force "$template"
+      packer build -var-file="$var_file" -only="$Provider.windows-server" --force "$template"
     }
   }
   catch {
