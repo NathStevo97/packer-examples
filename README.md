@@ -106,7 +106,7 @@
 | OS                      | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
 |-------------------------|--------------------|---------------|---------------|------------|------|------------------|----------------|
 | Windows 10              | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 45mins - 1hr   |
-| Windows 11              | Working            | Failing       | TBD           | Working    | TBD  | 28/12/2023       | 12 - 45 mins   |
+| Windows 11              | Working            | N/A           | TBD           | Working    | TBD  | 28/12/2023       | 12 - 45 mins   |
 | Windows 2022 Standard   | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
 | Windows 2022 Datacenter | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
 | Windows 2019 Standard   | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
@@ -123,14 +123,9 @@
 ```
 
 ```powershell
-.\windows.ps1 -Action build -Version 2016 -Type std -Template windows -Provider vmware-iso
+.\windows.ps1 -Action build -Version 10 -Template windows -Provider vmware-iso
 ```
 
 ```powershell
 .\windows.ps1 -Action build -Version 2016 -Type std -Template windows -Provider hyperv-iso -Generation 2
 ```
-
-### Windows ToDos
-
-- Windows 10 Autounattend script needs to not include windows update script, only winRM.
-- Windows 11 failing in Hyper-V  due to compatability issues

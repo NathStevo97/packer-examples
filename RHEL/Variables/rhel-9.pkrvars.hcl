@@ -1,1 +1,0 @@
-iso_url = "https://developers.redhat.com/content-gateway/file/rhel/Red_Hat_Enterprise_Linux_9.3/rhel-9.3-x86_64-dvd.iso"

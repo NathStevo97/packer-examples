@@ -1,11 +1,11 @@
 packer {
   required_plugins {
     vmware = {
-      version = ">= 1.0.7"
+      version = ">= 1.0.11"
       source  = "github.com/hashicorp/vmware"
     }
     virtualbox = {
-      version = ">= 1.0.4"
+      version = ">= 1.0.5"
       source  = "github.com/hashicorp/virtualbox"
     }
     hyperv = {

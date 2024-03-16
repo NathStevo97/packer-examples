@@ -1,133 +1,312 @@
-<#
-.SYNOPSIS
-This script validates and builds Packer templates based on the specified parameters.
-
-.DESCRIPTION
-The script accepts three parameters: Action, Log, and Version. Based on these parameters, it performs actions like validating and building Packer templates. It also sets the PACKER_LOG environment variable to control Packer's logging behavior.
-
-.PARAMETER Action
-Specifies the action to be performed. It can be:
-- "verify": Only validates the Packer template.
-- "build": Validates and then builds the Packer template (default action).
-
-.PARAMETER Log
-Controls the logging behavior of Packer. It can be:
-- 0: Disables logging (default).
-- 1: Enables logging.
-
-.PARAMETER Version
-Specifies the version of the template to be used. If not specified, it defaults to "rockylinux-8.8".
-
-.PARAMETER Template
-Specifies the path to the Packer template to be used. If not specified, it defaults to "templates/hv_rhel.pkr.hcl".
-
-.PARAMETER Provider
-Specifies the path to the Packer template to be used. If not specified, it defaults to "templates/hv_rhel.pkr.hcl".
-
-.PARAMETER Generation
-Specify the Hyper-V VM Generation (1 or 2)
-#>
-
-param(
-    [ValidateSet("verify", "build", "")]
-    [string]$Action = "",
-
-    [ValidateSet(0, 1)]
-    [int]$Log = 0,
-
-    [string]$Template = "",
-
-    [ValidateSet("10", "11")]
-    [string]$Version = "",
-
-    [ValidateSet("hyperv-iso", "virtualbox-iso", "vmware-iso")]
-    [string]$Provider = "",
-
-    [ValidateSet("1", "2")]
-    [string]$Generation = ""
-)
-
-# Set default values if parameters are not specified
-if ($Action -eq "") {
-    $Action = "build"
+#################################################################
+#                           Variables                           #
+#################################################################
+variable "boot_command" {
+  type    = list(string)
+  default = []
 }
 
-if ($Log -eq 1) {
-    $PACKER_LOG = 1
-} else {
-    $PACKER_LOG = 0
+variable "boot_wait" {
+  type    = string
+  default = ""
 }
 
-if ($Template -eq "") {
-    $Template = "windows"
+variable "boot_wait_hyperv" {
+  type    = string
+  default = ""
 }
 
-if ($Version -eq "") {
-    $Version = "10"
+variable "disk_size" {
+  type    = string
+  default = ""
 }
 
-if ($Type -eq "") {
-  $Type = "std"
+variable "floppy_files" {
+  type    = list(string)
+  default = []
 }
 
-if ($Provider -eq "") {
-    $Provider = "virtualbox-iso"
+variable "guest_os_type_virtualbox" {
+  type    = string
+  default = ""
 }
 
-if ($Generation -eq "") {
-  $Generation = "2"
+variable "guest_os_type_vmware" {
+  type    = string
+  default = ""
 }
 
-# Define other variables
-$var_file = "variables/$Template-$Version-$Type.pkrvars.hcl"
-$template = "templates/$Template.pkr.hcl"
+variable "headless" {
+  type    = bool
+  default = false
+}
 
-# Get Start Time
-$startDTM = (Get-Date)
+variable "http_directory" {
+  type    = string
+  default = ""
+}
 
-# Variables
-$env:PACKER_LOG_PATH="packerlog-windows-server-$Version-$Type.txt"
-packer init -upgrade "../required_plugins.pkr.hcl"
+variable "iso_checksum" {
+  type    = string
+  default = ""
+}
 
-$machine="Windows $Version"
+variable "iso_path" {
+  type    = string
+  default = ""
+}
 
-Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
+variable "iso_url" {
+  type    = string
+  default = ""
+}
 
-if ((Test-Path -Path "$template")) {
-  Write-Output "Template file found"
-  Write-Output "Building: $machine"
-  try {
-    $env:PACKER_LOG=$packer_log
-    if (( $Provider -eq "hyperv-iso")) {
-      packer validate -var-file="$var_file" -only="$Provider.hv$Generation-windows-server" "$template"
-    }
-    else {
-      packer validate -var-file="$var_file" -only="$Provider.windows-server" "$template"
-    }
+variable "memsize" {
+  type    = string
+  default = ""
+}
+
+variable "numvcpus" {
+  type    = string
+  default = ""
+}
+
+variable "output_directory" {
+  type    = string
+  default = ""
+}
+
+variable "secondary_iso_image" {
+  type    = string
+  default = ""
+}
+
+variable "switch_name" {
+  type    = string
+  default = ""
+}
+
+variable "upgrade_timeout" {
+  type    = string
+  default = ""
+}
+
+variable "vlan_id" {
+  type    = string
+  default = ""
+}
+
+variable "vm_name" {
+  type    = string
+  default = ""
+}
+
+variable "winrm_password" {
+  type    = string
+  default = ""
+}
+
+variable "winrm_timeout" {
+  type    = string
+  default = ""
+}
+
+variable "winrm_username" {
+  type    = string
+  default = ""
+}
+
+#################################################################
+#                           VMware-ISO Builder                  #
+#################################################################
+source "vmware-iso" "windows-server" {
+  boot_wait        = "${var.boot_wait}"
+  communicator     = "winrm"
+  disk_size        = "${var.disk_size}"
+  disk_type_id     = "0"
+  floppy_files     = "${var.floppy_files}"
+  guest_os_type    = "${var.guest_os_type_vmware}"
+  headless         = "${var.headless}"
+  http_directory   = "${var.http_directory}"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory = "${var.output_directory}-vmware"
+  shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
+  shutdown_timeout = "30m"
+  skip_compaction  = false
+  vm_name          = "${var.vm_name}"
+  vmx_data = {
+    memsize             = "${var.memsize}"
+    numvcpus            = "${var.numvcpus}"
+    "scsi0.virtualDev"  = "lsisas1068"
+    "virtualHW.version" = "14"
   }
-  catch {
-    Write-Output "Packer validation failed, exiting."
-    exit (-1)
-  }
-  try {
-    $env:PACKER_LOG=$packer_log
-    packer version
-    if (( $Provider -eq "hyperv-iso")) {
-      packer build -var-file="$var_file" -only="$Provider.hv$Generation-windows-server" --force "$template"
-    }
-    else {
-      packer build -var-file="$var_file" -only="$Provider.windows-server" --force "$template"
-    }
-  }
-  catch {
-    Write-Output "Packer build failed, exiting."
-    exit (-1)
-  }
-}
-else {
-  Write-Output "Template or Var file not found - exiting"
-  exit (-1)
+  winrm_insecure = true
+  winrm_password = "${var.winrm_password}"
+  winrm_timeout  = "${var.winrm_timeout}"
+  winrm_use_ssl  = true
+  winrm_username = "${var.winrm_username}"
 }
 
-$endDTM = (Get-Date)
-Write-Host "[INFO]  - Elapsed Time: $(($endDTM-$startDTM).totalseconds) seconds" -ForegroundColor Yellow
+#################################################################
+#                        Gen-1 Hyper-V Builder                  #
+#################################################################
+source "hyperv-iso" "hv1-windows-server" {
+  communicator         = "winrm"
+  cpus                 = "${var.numvcpus}"
+  disk_size            = "${var.disk_size}"
+  floppy_files         = "${var.floppy_files}"
+  guest_additions_mode = "disable"
+  headless             = "${var.headless}"
+  http_directory       = "${var.http_directory}"
+  iso_checksum         = "${var.iso_checksum}"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
+  memory               = "${var.memsize}"
+  output_directory     = "${var.output_directory}-hv1"
+  shutdown_timeout     = "15m"
+  switch_name          = "${var.switch_name}"
+  vm_name              = "${var.vm_name}"
+  winrm_password       = "${var.winrm_password}"
+  winrm_timeout        = "${var.winrm_timeout}"
+  winrm_username       = "${var.winrm_username}"
+}
+
+#################################################################
+#                        Gen-2 Hyper-V Builder                  #
+#################################################################
+source "hyperv-iso" "hv2-windows-server" {
+  boot_command          = "${var.boot_command}"
+  boot_wait             = "${var.boot_wait_hyperv}"
+  communicator          = "winrm"
+  cpus                  = "${var.numvcpus}"
+  disk_size             = "${var.disk_size}"
+  enable_dynamic_memory = "true"
+  enable_secure_boot    = false
+  generation            = 2
+  guest_additions_mode  = "disable"
+  headless              = "${var.headless}"
+  http_directory        = "${var.http_directory}"
+  iso_checksum          = "${var.iso_checksum}"
+  iso_urls              = ["${var.iso_path}", "${var.iso_url}"]
+  memory                = "${var.memsize}"
+  output_directory      = "${var.output_directory}-hv2"
+  secondary_iso_images  = ["${var.secondary_iso_image}"]
+  shutdown_timeout      = "2h"
+  skip_export           = true
+  switch_name           = "${var.switch_name}"
+  temp_path             = "."
+  vlan_id               = "${var.vlan_id}"
+  vm_name               = "${var.vm_name}"
+  winrm_password        = "${var.winrm_password}"
+  winrm_timeout         = "${var.winrm_timeout}"
+  winrm_username        = "${var.winrm_username}"
+}
+
+#################################################################
+#                    Virtualbox-ISO Builder                     #
+#################################################################
+
+source "virtualbox-iso" "windows-server" {
+  communicator         = "winrm"
+  disk_size            = "${var.disk_size}"
+  floppy_files         = "${var.floppy_files}"
+  guest_additions_mode = "disable"
+  #guest_additions_path = "c:/Windows/Temp/windows.iso"
+  guest_os_type        = "${var.guest_os_type_virtualbox}"
+  hard_drive_interface = "sata"
+  headless             = "${var.headless}"
+  http_directory       = "${var.http_directory}"
+  iso_checksum         = "${var.iso_checksum}"
+  iso_interface        = "sata"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory     = "${var.output_directory}-vbox"
+  shutdown_command     = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
+  vboxmanage = [
+    ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
+    ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
+    ["modifyvm", "{{ .Name }}", "--vram", "32"],
+    ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
+  ]
+  winrm_insecure = true
+  winrm_password = "${var.winrm_password}"
+  winrm_timeout  = "${var.winrm_timeout}"
+  winrm_username = "${var.winrm_username}"
+}
+
+#################################################################
+#                           Builders                            #
+#################################################################
+
+build {
+  sources = ["source.vmware-iso.windows-server", "source.hyperv-iso.hv1-windows-server", "source.hyperv-iso.hv2-windows-server", "source.virtualbox-iso.windows-server"]
+
+/*
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    only              = ["vmware-iso.windows-server"] # this provisioner will only run for the vmware-iso build
+    scripts           = ["./Files/scripts/vmware-tools.ps1"]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/setup.ps1"]
+  }
+
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
+  }*/
+  /*
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/win-update.ps1"]
+  }
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
+  }
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/win-update.ps1"]
+  }
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
+  }
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/illumio_install.ps1"]
+  }
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/qualys_install.ps1"]
+  }
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/mcafee_install.ps1"]
+  }
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
+  }
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/sccm_setup.ps1"]
+  }
+  provisioner "windows-restart" {
+    restart_timeout = "30m"
+  }
+  provisioner "powershell" {
+    elevated_password = "packer"
+    elevated_user     = "Administrator"
+    scripts           = ["./Files/scripts/sec_hardening_setup.ps1"]
+  }
+  #provisioner "powershell" {
+  #  scripts = ["scripts/cleanup.ps1"]
+  #}
+  */
+}
