@@ -134,7 +134,7 @@ source "vmware-iso" "windows-server" {
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout = "30m"
   skip_compaction  = false
-  vm_name          = "${var.vm_name}"
+  vm_name          = "${var.vm_name}-vmware"
   vmx_data = {
     memsize             = "${var.memsize}"
     numvcpus            = "${var.numvcpus}"
@@ -165,7 +165,7 @@ source "hyperv-iso" "hv1-windows-server" {
   output_directory     = "${var.output_directory}-hv1"
   shutdown_timeout     = "15m"
   switch_name          = "${var.switch_name}"
-  vm_name              = "${var.vm_name}"
+  vm_name              = "${var.vm_name}-hv1"
   winrm_password       = "${var.winrm_password}"
   winrm_timeout        = "${var.winrm_timeout}"
   winrm_username       = "${var.winrm_username}"
@@ -196,7 +196,7 @@ source "hyperv-iso" "hv2-windows-server" {
   switch_name           = "${var.switch_name}"
   temp_path             = "."
   vlan_id               = "${var.vlan_id}"
-  vm_name               = "${var.vm_name}"
+  vm_name               = "${var.vm_name}-hv2"
   winrm_password        = "${var.winrm_password}"
   winrm_timeout         = "${var.winrm_timeout}"
   winrm_username        = "${var.winrm_username}"

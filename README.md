@@ -105,14 +105,14 @@
 
 | OS                      | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
 |-------------------------|--------------------|---------------|---------------|------------|------|------------------|----------------|
-| Windows 10              | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 45mins - 1hr   |
-| Windows 11              | Working            | N/A           | TBD           | Working    | TBD  | 28/12/2023       | 12 - 45 mins   |
-| Windows 2022 Standard   | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
-| Windows 2022 Datacenter | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
-| Windows 2019 Standard   | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
-| Windows 2019 Datacenter | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
-| Windows 2016 Standard   | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
-| Windows 2016 Datacenter | Working            | Working       | Working       | Working    | TBD  | 28/12/2023       | 10 - 20 mins   |
+| Windows 10              | Working            | Working       | Working       | Working    | TBD  | 25/03/2024       | 45mins - 1hr   |
+| Windows 11              | Working            | N/A           | TBD           | Working    | TBD  | 16/03/2024       | 12 - 45 mins   |
+| Windows 2022 Standard   | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
+| Windows 2022 Datacenter | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
+| Windows 2019 Standard   | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
+| Windows 2019 Datacenter | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
+| Windows 2016 Standard   | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
+| Windows 2016 Datacenter | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
 
 ```powershell
 .\windows-server.ps1 -Action build -Version 2016 -Type std -Template windows-server -Provider vmware-iso
@@ -127,5 +127,5 @@
 ```
 
 ```powershell
-.\windows.ps1 -Action build -Version 2016 -Type std -Template windows -Provider hyperv-iso -Generation 2
+.\windows.ps1 -Action build -Version 10 -Template windows -Provider hyperv-iso -Generation 2
 ```
