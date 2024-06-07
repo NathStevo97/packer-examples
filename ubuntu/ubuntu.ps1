@@ -34,10 +34,10 @@ param(
 
     [string]$Template = "",
 
-    [ValidateSet("20", "22")]
+    [ValidateSet("20", "22", "24")]
     [string]$Version = "",
 
-    [ValidateSet("hyperv-iso", "virtualbox-iso", "qemu")]
+    [ValidateSet("vmware-iso", "hyperv-iso", "virtualbox-iso", "qemu")]
     [string]$Provider = ""
 )
 

@@ -93,9 +93,11 @@
 
 ## Ubuntu Builds
 
-| OS        | Hyper-V Gen 2 | VirtualBox | Qemu    | Date Last Tested | Avg Build Time |
-|-----------|---------------|------------|---------|------------------|----------------|
-| Ubuntu 22 | Working       | Working    | Working | 09/03/2024       | 35 mins        |
+| OS           | Hyper-V Gen 2 | VirtualBox | Qemu    | Date Last Tested | Avg Build Time |
+|--------------|---------------|------------|---------|------------------|----------------|
+| Ubuntu 20.04 | Working       | TBD        | TBD     | 05/06/2024       | 15 mins        |
+| Ubuntu 22.04 | Working       | Working    | Working | 07/06/2024       | 20 mins        |
+| Ubuntu 24.04 | Working       | Working    | Working | 07/06/2024       | 20 mins        |
 
 ```powershell
 .\ubuntu.ps1 -Action build -Version 22 -Template ubuntu -Provider virtualbox-iso

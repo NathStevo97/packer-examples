@@ -1,11 +1,11 @@
 packer {
   required_plugins {
     vmware = {
-      version = ">= 1.0.11"
+      version = "= 1.0.11"
       source  = "github.com/hashicorp/vmware"
     }
     virtualbox = {
-      version = ">= 1.0.5"
+      version = "= 1.0.5"
       source  = "github.com/hashicorp/virtualbox"
     }
     hyperv = {
@@ -13,16 +13,16 @@ packer {
       source  = "github.com/hashicorp/hyperv"
     }
     qemu = {
-      version = ">= 1.0.10"
+      version = "= 1.1.0"
       source  = "github.com/hashicorp/qemu"
     }
     ansible = {
       source  = "github.com/hashicorp/ansible"
-      version = "~> 1"
+      version = "= 1.1.1"
     }
     docker = {
       source  = "github.com/hashicorp/docker"
-      version = "~> 1"
+      version = "= 1.0.9"
     }
   }
 }

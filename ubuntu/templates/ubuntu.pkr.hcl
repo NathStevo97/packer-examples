@@ -8,6 +8,11 @@ variable "boot_command" {
   default = []
 }
 
+variable "boot_command_vbox" {
+  type    = list(string)
+  default = []
+}
+
 variable "boot_wait" {
   type    = string
   default = "10s"
@@ -108,7 +113,7 @@ source "virtualbox-iso" "ubuntu" {
   #   "<wait>c<wait>set gfxpayload=keep<enter><wait>linux /casper/vmlinuz quiet autoinstall ds=nocloud-net\\;s=http://{{.HTTPIP}}:{{.HTTPPort}}/ ---<enter><wait>initrd /casper/initrd<wait><enter><wait>boot<enter><wait>"
   # ]
 
-  boot_command = "${var.boot_command}"
+  boot_command = "${var.boot_command_vbox}"
 
   # boot_command = [
   #   "<wait>c<wait>",
@@ -129,16 +134,9 @@ source "virtualbox-iso" "ubuntu" {
   #   "<enter><f10><wait>"
   # ]
 
-  # boot_command = [
-  #   "<wait>c<wait>",
-  #   "set gfxpayload=keep<enter><wait>",
-  #   "linux /casper/vmlinuz autoinstall ds='nocloud-net;seedfrom=http://{{.HTTPIP}}:{{.HTTPPort}}/' ---<enter><wait>",
-  #   "initrd /casper/initrd<wait><enter><wait>",
-  #   "boot<enter>",
-  #   "<enter><f10><wait>"
-  # ]
 
-  boot_wait              = "${var.boot_wait}"
+
+  boot_wait              = "5s"
   http_directory         = "${var.http_directory}"
   guest_additions_path   = "VBoxGuestAdditions_{{.Version}}.iso"
   guest_os_type          = "${var.guest_os_type_vbox}"
@@ -148,7 +146,7 @@ source "virtualbox-iso" "ubuntu" {
   memory                 = "${var.memory}"
   disk_size              = "${var.disk_size}"
   output_directory       = "../builds/${var.vm_name}-vbox"
-  shutdown_command       = "echo 'password'|sudo -S shutdown -P now"
+  shutdown_command       = "echo '${var.ssh_password}'|sudo -S shutdown -P now"
   ssh_handshake_attempts = "1000"
   ssh_password           = "${var.ssh_password}"
   ssh_timeout            = "6h"
@@ -165,7 +163,7 @@ source "virtualbox-iso" "ubuntu" {
 
 source "hyperv-iso" "ubuntu" {
   boot_command          = "${var.boot_command}"
-  boot_wait             = "${var.boot_wait}"
+  boot_wait             = "1s"
   communicator          = "ssh"
   cpus                  = "${var.cpu}"
   disk_block_size       = "1"
@@ -174,22 +172,21 @@ source "hyperv-iso" "ubuntu" {
   enable_secure_boot    = false
   generation            = 2
   guest_additions_mode  = "disable"
-  headless              = "${var.non_gui}"
+  headless               = "${var.non_gui}"
   http_directory        = "${var.http_directory}"
-  iso_checksum          = "${var.iso_checksum}"
+  iso_checksum          = "sha256:${var.iso_checksum}"
   iso_url               = "${var.iso_url}"
   memory                = "${var.memory}"
   output_directory      = "../builds/${var.vm_name}-hyperv"
-  shutdown_command      = "echo 'password'|sudo -S shutdown -P now"
+  shutdown_command      = "echo 'password' | sudo -S shutdown -P now"
   shutdown_timeout      = "30m"
   ssh_password          = "${var.ssh_password}"
-  ssh_timeout           = "6h"
+  ssh_timeout           = "4h"
   ssh_username          = "${var.ssh_username}"
-  ssh_wait_timeout      = "6h"
   switch_name           = "${var.switch_name}"
   temp_path             = "."
   vlan_id               = "${var.vlan_id}"
-  vm_name               = "${var.vm_name}-hyperv"
+  vm_name               = "${var.vm_name}"
 }
 
 #################################################################
@@ -197,6 +194,7 @@ source "hyperv-iso" "ubuntu" {
 #################################################################
 
 source "qemu" "ubuntu" {
+  boot_wait             = "1s"
   headless         = "${var.non_gui}"
   boot_command     = "${var.boot_command}"
   http_directory   = "${var.http_directory}"
@@ -204,7 +202,7 @@ source "qemu" "ubuntu" {
   iso_url          = "${var.iso_url}"
   format           = "qcow2"
   output_directory = "../builds/${var.vm_name}-qemu"
-  shutdown_command = "echo 'password' | sudo -S shutdown -P now"
+  shutdown_command = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "6h"
@@ -213,13 +211,12 @@ source "qemu" "ubuntu" {
   disk_interface   = "virtio-scsi"
   memory           = "${var.memory}"
   cpus             = "${var.cpu}"
-  boot_wait        = "5s"
 }
 
 build {
   sources = ["source.virtualbox-iso.ubuntu", "source.hyperv-iso.ubuntu", "source.qemu.ubuntu"]
 
-  provisioner "shell" {
+  /*  provisioner "shell" {
     only              = ["hyperv-iso.ubuntu"]
     execute_command   = "echo 'password' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     expect_disconnect = true
@@ -246,7 +243,7 @@ build {
       "scripts/cleanup.sh",
       "scripts/minimize.sh",
     ]
-  }
+  } */
 
   /*##
   post-processors {
