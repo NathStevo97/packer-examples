@@ -29,8 +29,8 @@ variable "guest_os_type_vbox" {
 }
 
 variable "headless" {
-  type    = string
-  default = "true"
+  type    = bool
+  default = false
 }
 
 variable "http_directory" {
@@ -74,7 +74,7 @@ source "virtualbox-iso" "opensuse" {
   cpus                   = "${var.cpu}"
   disk_size              = "${var.disk_size}"
   guest_os_type          = "${var.guest_os_type_vbox}"
-  headless               = "${var.headless}"
+  headless               = var.headless
   http_directory         = "${var.http_directory}"
   iso_checksum           = "${var.iso_checksum}"
   iso_url                = "${var.iso_url}"

@@ -29,8 +29,8 @@ variable "guest_os_type_vbox" {
 }
 
 variable "headless" {
-  type    = string
-  default = "false"
+  type    = bool
+  default = false
 }
 
 variable "http_directory" {
@@ -78,7 +78,7 @@ source "virtualbox-iso" "rocky" {
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "${var.guest_os_type_vbox}"
-  headless         = "${var.headless}"
+  headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
@@ -104,7 +104,7 @@ source "vmware-iso" "rocky" {
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
   guest_os_type    = "${var.guest_os_type_vmware}"
-  headless         = "${var.headless}"
+  headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
@@ -124,7 +124,7 @@ source "vmware-iso" "rocky" {
 }
 
 source "qemu" "rocky" {
-  headless         = "${var.headless}"
+  headless         = var.headless
   boot_command     = "${var.boot_command}"
   floppy_files     = ["${var.http_directory}/${var.config_file}"]
   http_directory   = "${var.http_directory}"

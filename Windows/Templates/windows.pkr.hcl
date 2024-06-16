@@ -123,7 +123,7 @@ source "virtualbox-iso" "windows" {
   floppy_files         = var.floppy_files
   guest_additions_mode = "disable"
   guest_os_type        = var.guest_os_type_virtualbox
-  headless             = false
+  headless             = var.headless
   iso_checksum         = var.iso_checksum
   iso_urls             = [var.iso_url, var.iso_path]
   output_directory     = "${var.output_directory}-vbox"
@@ -144,16 +144,16 @@ source "virtualbox-iso" "windows" {
 }
 
 source "vmware-iso" "windows" {
-  boot_wait     = var.boot_wait
-  communicator  = "winrm"
-  disk_size     = var.disk_size
-  disk_type_id  = "0"
-  floppy_files  = var.floppy_files
-  guest_os_type = var.guest_os_type_vmware
-  headless      = var.headless
+  boot_wait        = var.boot_wait
+  communicator     = "winrm"
+  disk_size        = var.disk_size
+  disk_type_id     = "0"
+  floppy_files     = var.floppy_files
+  guest_os_type    = var.guest_os_type_vmware
+  headless         = var.headless
   iso_checksum     = var.iso_checksum
-  iso_urls             = [var.iso_url, var.iso_path]
-  output_directory     = "${var.output_directory}-vmware"
+  iso_urls         = [var.iso_url, var.iso_path]
+  output_directory = "${var.output_directory}-vmware"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout = "30m"
   skip_compaction  = false
@@ -203,21 +203,21 @@ source "hyperv-iso" "hv2-windows" {
   generation            = 2
   guest_additions_mode  = "disable"
   headless              = var.headless
-  iso_checksum         = var.iso_checksum
-  iso_urls             = [var.iso_url, var.iso_path]
-  memory               = var.memsize
-  output_directory     = "${var.output_directory}-hv2"
-  secondary_iso_images = [var.secondary_iso_image]
-  shutdown_timeout     = "2h"
-  skip_export          = true
-  switch_name          = "Default Switch"
-  temp_path            = "."
-  vm_name              = "${var.vm_name}-hv2"
-  winrm_insecure       = true
-  winrm_password       = var.winrm_password
-  winrm_timeout        = var.winrm_timeout
-  winrm_use_ssl        = true
-  winrm_username       = var.winrm_username
+  iso_checksum          = var.iso_checksum
+  iso_urls              = [var.iso_url, var.iso_path]
+  memory                = var.memsize
+  output_directory      = "${var.output_directory}-hv2"
+  secondary_iso_images  = [var.secondary_iso_image]
+  shutdown_timeout      = "2h"
+  skip_export           = true
+  switch_name           = "Default Switch"
+  temp_path             = "."
+  vm_name               = "${var.vm_name}-hv2"
+  winrm_insecure        = true
+  winrm_password        = var.winrm_password
+  winrm_timeout         = var.winrm_timeout
+  winrm_use_ssl         = true
+  winrm_username        = var.winrm_username
 }
 
 build {

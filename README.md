@@ -4,7 +4,7 @@
 
 | OS           | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
 |--------------|--------------------|---------------|---------------|------------|------|------------------|----------------|
-| Alma Linux 9 | Working            | TBD           | TBD           | Working    | TBD  | 04/03/2024       | 15 - 30 mins   |
+| Alma Linux 9 | Failing            | TBD           | TBD           | Failing    | TBD  | 15/06/2024       | 15 - 30 mins   |
 
 ```powershell
 .\almalinux.ps1 -Action build -Version 9 -Template almalinux -Provider virtualbox-iso
@@ -14,15 +14,19 @@
 .\almalinux.ps1 -Action build -Version 9 -Template almalinux -Provider vmware-iso
 ```
 
+### Todos
+
+- Boot command not getting passed correctly / installation src + software selection unchecked
+
 ---
 
 ## CentOS Builds
 
 | OS               | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox      | Qemu | Date Last Tested | Avg Build Time |
 |------------------|--------------------|---------------|---------------|-----------------|------|------------------|----------------|
-| CentOS 7         | Working            | TBD           | TBD           | Working         | TBD  | 04/03/2024       | 22 mins        |
-| CentOS Stream 8* | Changes Pending    | TBD           | TBD           | Changes Pending | TBD  | 16/09/2023       |                |
-| CentOS Stream 9* | Changes Pending    | TBD           | TBD           | Changes Pending | TBD  | 16/09/2023       |                |
+| CentOS 7         | Working            | TBD           | TBD           | Working         | TBD  | 15/06/2024       | 22 mins        |
+| CentOS Stream 8* | Changes Pending    | TBD           | TBD           | Changes Pending | TBD  | 15/06/2024       |                |
+| CentOS Stream 9* | Changes Pending    | TBD           | TBD           | Changes Pending | TBD  | 15/06/2024       |                |
 
 ```powershell
 .\centos.ps1 -Action build -Version 7 -Template centos -Provider virtualbox-iso
@@ -40,18 +44,18 @@
 
 | OS        | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
 |-----------|--------------------|---------------|---------------|------------|------|------------------|----------------|
-| Debian 12 | Working            | TBD           | TBD           | Working    | TBD  | 07/03/2024       |                |
+| Debian 12 | Working            | TBD           | TBD           | Working    | TBD  | 15/06/2024       |                |
 
-### Debian ToDos
+### Debian Notes
 
-- All platforms getting stuck at boot - `No Kernel Module Found`
+- Platforms getting stuck at boot - `No Kernel Module Found`
 - Fix: Get the Latest `mini.iso` from Debian.
 
 ## OpenSUSE Builds
 
 | OS          | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
 |-------------|--------------------|---------------|---------------|------------|------|------------------|----------------|
-| OpenSUSE 15 | TBD                | TBD           | TBD           | Working    | TBD  | 04/03/2024       | 17 mins        |
+| OpenSUSE 15 | TBD                | TBD           | TBD           | Working    | TBD  | 15/06/2024       | 17 mins        |
 
 ```powershell
 .\opensuse.ps1 -Action build -Version 15 -Template opensuse -Provider virtualbox-iso
@@ -61,9 +65,9 @@
 
 | OS         | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
 |------------|--------------------|---------------|---------------|------------|------|------------------|----------------|
-| Oracle 7.9 | Working            | TBD           | TBD           | TBD        | TBD  | 04/03/2024       | 25 mins        |
-| Oracle 8.6 | Working            | TBD           | TBD           | TBD        | TBD  | 04/03/2024       |                |
-| Oracle 9.0 | Working            | TBD           | TBD           | TBD        | TBD  | 07/03/2024       |                |
+| Oracle 7.9 | Working            | TBD           | TBD           | TBD        | TBD  | 15/06/2024       | 25 mins        |
+| Oracle 8.6 | Working            | TBD           | TBD           | TBD        | TBD  | 15/06/2024       |                |
+| Oracle 9.0 | Working            | TBD           | TBD           | TBD        | TBD  | 15/06/2024       |                |
 
 ```powershell
 .\oracle.ps1 -Action build -Version 7 -Template oracle -Provider vmware-iso
@@ -73,8 +77,16 @@
 
 | OS       | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu    | Date Last Tested | Avg Build Time |
 |----------|--------------------|---------------|---------------|------------|---------|------------------|----------------|
-| RHEL 7.9 | Working            | TBD           | TBD           | Working    | Working | 16/09/2023       |                |
-| RHEL 8.1 | Working            | TBD           | TBD           | Working    | Working | 09/03/2024       | 45 mins        |
+| RHEL 7.9 | Working            | TBD           | TBD           | Working    | Working | 15/06/2024       |                |
+| RHEL 8.1 | Working            | TBD           | TBD           | Working    | Working | 15/06/2024       | 45 mins        |
+
+```powershell
+.\rhel.ps1 -Action build -Version 7 -Template rhel -Provider vmware-iso
+```
+
+```powershell
+.\rhel.ps1 -Action build -Version 7 -Template rhel -Provider virtualbox-iso
+```
 
 ### RHEL ToDos
 
@@ -85,36 +97,44 @@
 
 | OS              | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
 |-----------------|--------------------|---------------|---------------|------------|------|------------------|----------------|
-| Rocky Linux 8.6 | Failing            | TBD           | TBD           | Working    | TBD  | 09/03/2024       |                |
+| Rocky Linux 8.6 | Working            | TBD           | TBD           | Working    | TBD  | 15/06/2024       | 15-25 mins     |
 
-### Rocky Linux ToDos
-
-- Getting Stuck at Boot Launch for some reason (VMware)
+```powershell
+.\rockylinux.ps1 -Action build -Version 8 -Template rockylinux -Provider virtualbox-iso
+```
 
 ## Ubuntu Builds
 
 | OS           | Hyper-V Gen 2 | VirtualBox | Qemu    | Date Last Tested | Avg Build Time |
 |--------------|---------------|------------|---------|------------------|----------------|
-| Ubuntu 20.04 | Working       | TBD        | TBD     | 05/06/2024       | 15 mins        |
-| Ubuntu 22.04 | Working       | Working    | Working | 07/06/2024       | 20 mins        |
-| Ubuntu 24.04 | Working       | Working    | Working | 07/06/2024       | 20 mins        |
+| Ubuntu 20.04 | Working       | TBD        | TBD     | 15/06/2024       | 15 mins        |
+| Ubuntu 22.04 | Working       | Failing    | Working | 15/06/2024       | 20 mins        |
+| Ubuntu 24.04 | Working       | Failing    | Working | 15/06/2024       | 20 mins        |
+
+```powershell
+.\ubuntu.ps1 -Action build -Version 22 -Template ubuntu -Provider hyperv-iso
+```
 
 ```powershell
 .\ubuntu.ps1 -Action build -Version 22 -Template ubuntu -Provider virtualbox-iso
+```
+
+```powershell
+.\ubuntu.ps1 -Action build -Version 22 -Template ubuntu -Provider qemu
 ```
 
 ## Windows Builds
 
 | OS                      | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
 |-------------------------|--------------------|---------------|---------------|------------|------|------------------|----------------|
-| Windows 10              | Working            | Working       | Working       | Working    | TBD  | 25/03/2024       | 45mins - 1hr   |
-| Windows 11              | Working            | N/A           | TBD           | Working    | TBD  | 16/03/2024       | 12 - 45 mins   |
-| Windows 2022 Standard   | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
-| Windows 2022 Datacenter | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
-| Windows 2019 Standard   | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
-| Windows 2019 Datacenter | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
-| Windows 2016 Standard   | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
-| Windows 2016 Datacenter | Working            | Working       | Working       | Working    | TBD  | 16/03/2024       | 10 - 20 mins   |
+| Windows 10              | Working            | Working       | Working       | Working    | TBD  | 16/06/2024       | 45mins - 1hr   |
+| Windows 11              | Working            | N/A           | Working       | Working    | TBD  | 16/06/2024       | 12 - 45 mins   |
+| Windows 2022 Standard   | Working            | Working       | Working       | Working    | TBD  | 16/06/2024       | 10 - 20 mins   |
+| Windows 2022 Datacenter | Working            | Working       | Working       | Working    | TBD  | 16/06/2024       | 10 - 20 mins   |
+| Windows 2019 Standard   | Working            | Working       | Working       | Working    | TBD  | 16/06/2024       | 10 - 20 mins   |
+| Windows 2019 Datacenter | Working            | Working       | Working       | Working    | TBD  | 16/06/2024       | 10 - 20 mins   |
+| Windows 2016 Standard   | Working            | Working       | Working       | Working    | TBD  | 16/06/2024       | 10 - 20 mins   |
+| Windows 2016 Datacenter | Working            | Working       | Working       | Working    | TBD  | 16/06/2024       | 10 - 20 mins   |
 
 ```powershell
 .\windows-server.ps1 -Action build -Version 2016 -Type std -Template windows-server -Provider vmware-iso

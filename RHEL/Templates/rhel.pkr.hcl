@@ -40,7 +40,7 @@ variable "guest_os_type_vmware" {
 
 variable "headless" {
   type    = bool
-  default = "false"
+  default = false
 }
 
 variable "http_directory" {
@@ -108,7 +108,7 @@ source "vmware-iso" "rhel" {
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "${var.guest_os_type_vmware}"
-  headless         = "${var.headless}"
+  headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]

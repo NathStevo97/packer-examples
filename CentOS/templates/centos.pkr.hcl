@@ -24,8 +24,8 @@ variable "guest_os_type_vmware" {
 }
 
 variable "headless" {
-  type    = string
-  default = "true"
+  type    = bool
+  default = false
 }
 
 variable "http_directory" {
@@ -84,7 +84,7 @@ source "virtualbox-iso" "centos" {
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "${var.guest_os_type_virtualbox}"
-  headless         = "${var.headless}"
+  headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
@@ -105,7 +105,7 @@ source "vmware-iso" "centos" {
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
   guest_os_type    = "${var.guest_os_type_vmware}"
-  headless         = "${var.headless}"
+  headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
@@ -129,7 +129,7 @@ source "vmware-iso" "centos" {
 build {
   sources = ["source.vmware-iso.centos", "source.virtualbox-iso.centos"]
 
-  provisioner "shell" {
+/*   provisioner "shell" {
     execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     inline          = ["yum -y update", "yum -y install python3"]
   }
@@ -146,6 +146,6 @@ build {
   provisioner "shell" {
     execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     scripts         = ["./Files/scripts/cleanup.sh"]
-  }
+  } */
 
 }

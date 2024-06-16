@@ -29,8 +29,8 @@ variable "guest_os_type_vmware" {
 }
 
 variable "headless" {
-  type    = string
-  default = "true"
+  type    = bool
+  default = false
 }
 
 variable "http_directory" {
@@ -74,7 +74,7 @@ source "vmware-iso" "debian" {
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
   guest_os_type    = "${var.guest_os_type_vmware}"
-  headless         = "${var.headless}"
+  headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
@@ -98,7 +98,7 @@ source "virtualbox-iso" "debian" {
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "${var.guest_os_type_vbox}"
-  headless         = "${var.headless}"
+  headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"

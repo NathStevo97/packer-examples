@@ -58,9 +58,9 @@ variable "iso_url" {
   default = ""
 }
 
-variable "non_gui" {
-  type    = string
-  default = "true"
+variable "headless" {
+  type    = bool
+  default = false
 }
 
 variable "memory" {
@@ -136,11 +136,11 @@ source "virtualbox-iso" "ubuntu" {
 
 
 
-  boot_wait              = "5s"
+  boot_wait              = "${var.boot_wait}"
   http_directory         = "${var.http_directory}"
   guest_additions_path   = "VBoxGuestAdditions_{{.Version}}.iso"
   guest_os_type          = "${var.guest_os_type_vbox}"
-  headless               = "${var.non_gui}"
+  headless               = var.headless
   iso_checksum           = "${var.iso_checksum}"
   iso_url                = "${var.iso_url}"
   memory                 = "${var.memory}"
@@ -163,7 +163,7 @@ source "virtualbox-iso" "ubuntu" {
 
 source "hyperv-iso" "ubuntu" {
   boot_command          = "${var.boot_command}"
-  boot_wait             = "1s"
+  boot_wait             = "${var.boot_wait}"
   communicator          = "ssh"
   cpus                  = "${var.cpu}"
   disk_block_size       = "1"
@@ -172,7 +172,7 @@ source "hyperv-iso" "ubuntu" {
   enable_secure_boot    = false
   generation            = 2
   guest_additions_mode  = "disable"
-  headless               = "${var.non_gui}"
+  headless              = var.headless
   http_directory        = "${var.http_directory}"
   iso_checksum          = "sha256:${var.iso_checksum}"
   iso_url               = "${var.iso_url}"
@@ -194,8 +194,8 @@ source "hyperv-iso" "ubuntu" {
 #################################################################
 
 source "qemu" "ubuntu" {
-  boot_wait             = "1s"
-  headless         = "${var.non_gui}"
+  boot_wait        = "${var.boot_wait}"
+  headless         = var.headless
   boot_command     = "${var.boot_command}"
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
@@ -213,8 +213,30 @@ source "qemu" "ubuntu" {
   cpus             = "${var.cpu}"
 }
 
+source "vmware-iso" "ubuntu" {
+  boot_command     = "${var.boot_command}"
+  boot_wait        = "${var.boot_wait}"
+  disk_size        = "${var.disk_size}"
+  guest_os_type    = "${var.guest_os_type_vmware}"
+  headless         = var.headless
+  http_directory   = "${var.http_directory}"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_url          = "${var.iso_url}"
+  output_directory = "../builds/${var.vm_name}-vmware"
+  shutdown_command = "echo '${var.ssh_password}' |sudo -S /sbin/halt -h -p"
+  ssh_password     = "${var.ssh_password}"
+  ssh_port         = 22
+  ssh_timeout      = "6h"
+  ssh_username     = "${var.ssh_username}"
+  vmx_data = {
+    memsize  = "${var.memory}"
+    numvcpus = "${var.cpu}"
+  }
+  vm_name = "${var.vm_name}"
+}
+
 build {
-  sources = ["source.virtualbox-iso.ubuntu", "source.hyperv-iso.ubuntu", "source.qemu.ubuntu"]
+  sources = ["source.virtualbox-iso.ubuntu", "source.hyperv-iso.ubuntu", "source.qemu.ubuntu", "source.vmware-iso.ubuntu"]
 
   /*  provisioner "shell" {
     only              = ["hyperv-iso.ubuntu"]

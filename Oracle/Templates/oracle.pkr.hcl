@@ -40,7 +40,7 @@ variable "guest_additions_url" {
 
 variable "headless" {
   type    = bool
-  default = "true"
+  default = false
 }
 
 variable "http_directory" {
@@ -137,7 +137,7 @@ source "vmware-iso" "oracle" {
   boot_wait           = "${var.boot_wait}"
   disk_size           = "${var.disk_size}"
   guest_os_type       = "oraclelinux-64"
-  headless            = "${var.headless}"
+  headless            = var.headless
   http_directory      = "${var.http_directory}"
   iso_checksum        = "${var.iso_checksum}"
   iso_urls            = ["${var.iso_url}", "${var.iso_path}"]

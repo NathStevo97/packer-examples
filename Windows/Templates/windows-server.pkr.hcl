@@ -126,7 +126,7 @@ source "vmware-iso" "windows-server" {
   disk_type_id     = "0"
   floppy_files     = "${var.floppy_files}"
   guest_os_type    = "${var.guest_os_type_vmware}"
-  headless         = "${var.headless}"
+  headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
@@ -157,7 +157,7 @@ source "hyperv-iso" "hv1-windows-server" {
   disk_size            = "${var.disk_size}"
   floppy_files         = "${var.floppy_files}"
   guest_additions_mode = "disable"
-  headless             = "${var.headless}"
+  headless             = var.headless
   http_directory       = "${var.http_directory}"
   iso_checksum         = "${var.iso_checksum}"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
@@ -184,7 +184,7 @@ source "hyperv-iso" "hv2-windows-server" {
   enable_secure_boot    = false
   generation            = 2
   guest_additions_mode  = "disable"
-  headless              = "${var.headless}"
+  headless              = var.headless
   http_directory        = "${var.http_directory}"
   iso_checksum          = "${var.iso_checksum}"
   iso_urls              = ["${var.iso_path}", "${var.iso_url}"]
@@ -214,7 +214,7 @@ source "virtualbox-iso" "windows-server" {
   #guest_additions_path = "c:/Windows/Temp/windows.iso"
   guest_os_type        = "${var.guest_os_type_virtualbox}"
   hard_drive_interface = "sata"
-  headless             = "${var.headless}"
+  headless             = var.headless
   http_directory       = "${var.http_directory}"
   iso_checksum         = "${var.iso_checksum}"
   iso_interface        = "sata"
@@ -240,7 +240,7 @@ source "virtualbox-iso" "windows-server" {
 build {
   sources = ["source.vmware-iso.windows-server", "source.hyperv-iso.hv1-windows-server", "source.hyperv-iso.hv2-windows-server", "source.virtualbox-iso.windows-server"]
 
-/*
+  /*
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
