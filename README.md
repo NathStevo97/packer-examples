@@ -4,7 +4,7 @@
 
 | OS           | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
 |--------------|--------------------|---------------|---------------|------------|------|------------------|----------------|
-| Alma Linux 9 | Failing            | TBD           | TBD           | Failing    | TBD  | 15/06/2024       | 15 - 30 mins   |
+| Alma Linux 9 | Working            | TBD           | TBD           | Working    | TBD  | 29/06/2024       | 15 - 30 mins   |
 
 ```powershell
 .\almalinux.ps1 -Action build -Version 9 -Template almalinux -Provider virtualbox-iso
