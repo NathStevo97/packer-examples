@@ -22,21 +22,13 @@
 
 ## CentOS Builds
 
-| OS               | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox      | Qemu | Date Last Tested | Avg Build Time |
-|------------------|--------------------|---------------|---------------|-----------------|------|------------------|----------------|
-| CentOS 7         | Working            | TBD           | TBD           | Working         | TBD  | 15/06/2024       | 22 mins        |
-| CentOS Stream 8* | Changes Pending    | TBD           | TBD           | Changes Pending | TBD  | 15/06/2024       |                |
-| CentOS Stream 9* | Changes Pending    | TBD           | TBD           | Changes Pending | TBD  | 15/06/2024       |                |
+| OS               | VMWare Workstation | Hyper-V Gen 1 | Hyper-V Gen 2 | VirtualBox | Qemu | Date Last Tested | Avg Build Time |
+|------------------|--------------------|---------------|---------------|------------|------|------------------|----------------|
+| CentOS Stream 9* | Working            | TBD           | TBD           | Working    | TBD  | 15/07/2024       |                |
 
 ```powershell
-.\centos.ps1 -Action build -Version 7 -Template centos -Provider virtualbox-iso
+.\centos.ps1 -Action build -Version 9 -Template centos -Provider virtualbox-iso
 ```
-
-### CentOS ToDos
-
-- *Try to rework CentOS builds to use boot isos for ease - saves storing the ~10Gb Net Install ISOs locally
-- CentOS 7 Virtualbox Build Getting Stuck at Boot
-- Stream 8 and 9 need ISO pre-downloaded currently
 
 ---
 
