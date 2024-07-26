@@ -73,7 +73,7 @@ variable "vm_name" {
   default = "Rocky-8.8-x86_64"
 }
 
-source "virtualbox-iso" "rocky" {
+source "virtualbox-iso" "rockylinux" {
   boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
@@ -98,7 +98,7 @@ source "virtualbox-iso" "rocky" {
   vm_name = "${var.vm_name}-virtualbox"
 }
 
-source "vmware-iso" "rocky" {
+source "vmware-iso" "rockylinux" {
   boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
@@ -123,7 +123,7 @@ source "vmware-iso" "rocky" {
   }
 }
 
-source "qemu" "rocky" {
+source "qemu" "rockylinux" {
   headless         = var.headless
   boot_command     = "${var.boot_command}"
   floppy_files     = ["${var.http_directory}/${var.config_file}"]
@@ -145,7 +145,7 @@ source "qemu" "rocky" {
 }
 
 build {
-  sources = ["source.virtualbox-iso.rocky", "source.vmware-iso.rocky"]
+  sources = ["source.virtualbox-iso.rockylinux", "source.vmware-iso.rockylinux"]
 
   provisioner "shell" {
     execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"

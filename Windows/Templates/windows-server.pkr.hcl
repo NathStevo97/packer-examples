@@ -233,6 +233,33 @@ source "virtualbox-iso" "windows-server" {
   winrm_username = "${var.winrm_username}"
 }
 
+source "qemu" "testimage" {
+  iso_url          = "http://download.microsoft.com/download/1/6/F/16FA20E6-4662-482A-920B-1A45CF5AAE3C/14393.0.160715-1616.RS1_RELEASE_SERVER_EVAL_X64FRE_EN-US.ISO"
+  iso_checksum     = "...."
+  output_directory = " /home/.../outputs"
+  shutdown_command = "c:\\windows\\system32\\sysprep\\sysprep.exe /oobe /generalize /mode:vm /shutdown"
+  qemu_binary      = "/usr/libexec/qemu-kvm"
+  ram_size         = "4096"
+  disk_size        = "51200M"
+  cpus             = "4"
+  format           = "qcow2"
+  accelerator      = "kvm"
+  communicator     = "winrm"
+  winrm_insecure   = "true"
+  winrm_use_ssl    = "true"
+  winrm_username   = "Administrator"
+  winrm_password   = "Password"
+  winrm_port       = "5986"
+  vm_name          = "WinVM"
+  net_device       = "virtio-net"
+  disk_interface   = "virtio-scsi"
+  headless         = "false"
+  cd_files = "${var.floppy_files}"
+  cd_label     = "iso-boot"
+  boot_wait    = "5m"
+  boot_command = "<enter>"
+}
+
 #################################################################
 #                           Builders                            #
 #################################################################

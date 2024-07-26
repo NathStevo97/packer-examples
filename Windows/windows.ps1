@@ -98,6 +98,10 @@ if ((Test-Path -Path "$template")) {
   try {
     $env:PACKER_LOG=$packer_log
     if (( $Provider -eq "hyperv-iso")) {
+      if (( $Version -eq "11" -And $Generation -eq "1")) {
+        Write-Output "Windows 11 is not Supported for Generation 1 VMs - Please Update to Generation 2"
+        exit (-1)
+      }
       packer validate -var-file="$var_file" -only="$Provider.hv$Generation-windows" "$template"
     }
     else {

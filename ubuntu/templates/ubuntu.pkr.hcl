@@ -8,11 +8,6 @@ variable "boot_command" {
   default = []
 }
 
-variable "boot_command_vbox" {
-  type    = list(string)
-  default = []
-}
-
 variable "boot_wait" {
   type    = string
   default = "10s"
@@ -113,7 +108,7 @@ source "virtualbox-iso" "ubuntu" {
   #   "<wait>c<wait>set gfxpayload=keep<enter><wait>linux /casper/vmlinuz quiet autoinstall ds=nocloud-net\\;s=http://{{.HTTPIP}}:{{.HTTPPort}}/ ---<enter><wait>initrd /casper/initrd<wait><enter><wait>boot<enter><wait>"
   # ]
 
-  boot_command = "${var.boot_command_vbox}"
+  boot_command = "${var.boot_command}"
 
   # boot_command = [
   #   "<wait>c<wait>",

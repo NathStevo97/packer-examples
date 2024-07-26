@@ -76,7 +76,7 @@ variable "output_directory" {
   default = ""
 }
 
-variable "secondary_iso_image" {
+variable "secondary_iso_images" {
   type    = string
   default = ""
 }
@@ -207,7 +207,7 @@ source "hyperv-iso" "hv2-windows" {
   iso_urls              = [var.iso_url, var.iso_path]
   memory                = var.memsize
   output_directory      = "${var.output_directory}-hv2"
-  secondary_iso_images  = [var.secondary_iso_image]
+  secondary_iso_images  = [var.secondary_iso_images]
   shutdown_timeout      = "2h"
   skip_export           = true
   switch_name           = "Default Switch"
