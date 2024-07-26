@@ -101,7 +101,7 @@
 |--------------|---------------|------------|---------|------------------|----------------|
 | Ubuntu 20.04 | Working       | TBD        | TBD     | 15/06/2024       | 15 mins        |
 | Ubuntu 22.04 | Working       | Working    | Working | 15/06/2024       | 20 mins        |
-| Ubuntu 24.04 | Working       | Failing    | Working | 15/06/2024       | 20 mins        |
+| Ubuntu 24.04 | Working       | Working    | Working | 15/06/2024       | 20 mins        |
 
 ```powershell
 .\ubuntu.ps1 -Action build -Version 22 -Template ubuntu -Provider hyperv-iso
