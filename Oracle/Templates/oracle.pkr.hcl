@@ -123,9 +123,19 @@ variable "template" {
   default = ""
 }
 
+variable "switch_name" {
+  type    = string
+  default = ""
+}
+
 variable "version" {
   type    = string
   default = "TIMESTAMP"
+}
+
+variable "vlan_id" {
+  type    = string
+  default = ""
 }
 
 locals {
@@ -159,8 +169,36 @@ source "vmware-iso" "oracle" {
   vmx_remove_ethernet_interfaces = true
 }
 
+source "hyperv-iso" "oracle" {
+  boot_command          = ["c  setparams 'kickstart' <enter> linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=OL-9-0-0-BaseOS-x86_64 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-9.cfg<enter> initrdefi /images/pxeboot/initrd.img<enter> boot<enter>"]
+  boot_wait             = "${var.boot_wait}"
+  communicator          = "ssh"
+  cpus                  = "${var.cpus}"
+  disk_block_size       = "1"
+  disk_size             = "${var.disk_size}"
+  enable_dynamic_memory = "true"
+  enable_secure_boot    = false
+  generation            = 2
+  guest_additions_mode  = "disable"
+  headless              = var.headless
+  http_directory        = "${var.http_directory}"
+  iso_checksum          = "${var.iso_checksum}"
+  iso_urls            = ["${var.iso_url}", "${var.iso_path}"]
+  memory                = "${var.memory}"
+  output_directory    = "${var.build_directory}/packer-${var.template}-hv"
+  shutdown_command      = "echo 'vagrant' | sudo -S shutdown -P now"
+  shutdown_timeout      = "30m"
+  ssh_password          = "${var.ssh_password}"
+  ssh_timeout           = "4h"
+  ssh_username          = "${var.ssh_username}"
+  switch_name           = "${var.switch_name}"
+  temp_path             = "."
+  vlan_id               = "${var.vlan_id}"
+  vm_name               = "${var.template}"
+}
+
 build {
-  sources = ["source.vmware-iso.oracle"]
+  sources = ["source.vmware-iso.oracle", "source.hyperv-iso.oracle"]
 
   provisioner "shell" {
     environment_vars  = ["HOME_DIR=/home/vagrant"]

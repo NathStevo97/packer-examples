@@ -37,7 +37,7 @@ param(
     [ValidateSet("7", "8", "9")]
     [string]$Version = "",
 
-    [ValidateSet("vmware-iso")]
+    [ValidateSet("vmware-iso", "hyperv-iso")]
     [string]$Provider = ""
 )
 
