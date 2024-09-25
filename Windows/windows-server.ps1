@@ -46,7 +46,7 @@ param(
     [ValidateSet("std", "dc")]
     [string]$Type = "",
 
-    [ValidateSet("hyperv-iso", "virtualbox-iso", "vmware-iso")]
+    [ValidateSet("hyperv-iso", "virtualbox-iso", "vmware-iso", "qemu")]
     [string]$Provider = "",
 
     [ValidateSet("1", "2")]
