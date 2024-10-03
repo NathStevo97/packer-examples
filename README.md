@@ -59,7 +59,7 @@
 |------------|--------------------|---------------|---------------|------------|------|----------------|
 | Oracle 7.9 | Working            | TBD           | TBD           | TBD        | TBD  | 25 mins        |
 | Oracle 8.6 | Working            | TBD           | TBD           | TBD        | TBD  |                |
-| Oracle 9.0 | Working            | TBD           | TBD           | TBD        | TBD  |                |
+| Oracle 9.0 | Working            | TBD           | Working       | TBD        | TBD  | 20 mins        |
 
 ```powershell
 .\oracle.ps1 -Action build -Version 7 -Template oracle -Provider vmware-iso
