@@ -3,6 +3,11 @@ variable "boot_command" {
   default = []
 }
 
+variable "boot_command_hv" {
+  type    = list(string)
+  default = []
+}
+
 variable "boot_wait" {
   type    = string
   default = ""
@@ -150,7 +155,7 @@ source "vmware-iso" "oracle" {
   headless            = var.headless
   http_directory      = "${var.http_directory}"
   iso_checksum        = "${var.iso_checksum}"
-  iso_urls            = ["${var.iso_url}", "${var.iso_path}"]
+  iso_urls            = ["${var.iso_path}", "${var.iso_url}"]
   output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
   ssh_password        = "${var.ssh_password}"
@@ -170,7 +175,7 @@ source "vmware-iso" "oracle" {
 }
 
 source "hyperv-iso" "oracle" {
-  boot_command          = ["c  setparams 'kickstart' <enter> linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=OL-9-0-0-BaseOS-x86_64 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-9.cfg<enter> initrdefi /images/pxeboot/initrd.img<enter> boot<enter>"]
+  boot_command          = var.boot_command_hv
   boot_wait             = "${var.boot_wait}"
   communicator          = "ssh"
   cpus                  = "${var.cpus}"
@@ -183,7 +188,7 @@ source "hyperv-iso" "oracle" {
   headless              = var.headless
   http_directory        = "${var.http_directory}"
   iso_checksum          = "${var.iso_checksum}"
-  iso_urls            = ["${var.iso_url}", "${var.iso_path}"]
+  iso_urls            = ["${var.iso_path}", "${var.iso_url}"]
   memory                = "${var.memory}"
   output_directory    = "${var.build_directory}/packer-${var.template}-hv"
   shutdown_command      = "echo 'vagrant' | sudo -S shutdown -P now"
