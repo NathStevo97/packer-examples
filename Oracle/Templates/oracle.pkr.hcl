@@ -202,15 +202,38 @@ source "hyperv-iso" "oracle" {
   vm_name               = "${var.template}"
 }
 
-build {
-  sources = ["source.vmware-iso.oracle", "source.hyperv-iso.oracle"]
+source "virtualbox-iso" "oracle" {
+  boot_command         = "${var.boot_command}"
+  boot_wait            = "${var.boot_wait}"
+  disk_size            = "${var.disk_size}"
+  guest_additions_mode = "disable"
+  #guest_additions_path = "c:/Windows/Temp/windows.iso"
+  guest_os_type        = "RedHat_64"
+  hard_drive_interface = "sata"
+  headless             = var.headless
+  http_directory       = "${var.http_directory}"
+  iso_checksum         = "${var.iso_checksum}"
+  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
+  iso_interface        = "sata"
+  output_directory     = "${var.build_directory}/packer-${var.template}-hv"
+  shutdown_command     = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
+  ssh_password         = "${var.ssh_password}"
+  ssh_port             = 22
+  ssh_timeout          = "${var.ssh_timeout}"
+  ssh_username         = "${var.ssh_username}"
+  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memory}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.cpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"], ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]]
+}
 
+build {
+  sources = ["source.vmware-iso.oracle", "source.hyperv-iso.oracle", "source.virtualbox-iso.oracle"]
+  /*
   provisioner "shell" {
     environment_vars  = ["HOME_DIR=/home/vagrant"]
     execute_command   = "echo 'vagrant' | {{ .Vars }} sudo -S -E sh -eux '{{ .Path }}'"
     expect_disconnect = true
     scripts           = ["./Files/update.sh", "./Files/networking.sh", "./Files/cleanup.sh"]
   }
+  */
   /*
   post-processor "vagrant" {
     output = "${var.build_directory}/${var.box_basename}.<no value>.box"

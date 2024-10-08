@@ -1,4 +1,4 @@
-boot_command      = ["<tab><wait2m> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg net.ifnames=0 biosdevname=0 <enter><wait>"]
+boot_command      = ["<tab><wait1m> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg net.ifnames=0 biosdevname=0 <enter><wait>"]
 boot_command_hv   = ["c  setparams 'kickstart' <enter> linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=OL-8-9-0-BaseOS-x86_64 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg<enter> initrdefi /images/pxeboot/initrd.img<enter> boot<enter>"]
 boot_wait         = "5s"
 box_basename      = "oracle-8.9"
