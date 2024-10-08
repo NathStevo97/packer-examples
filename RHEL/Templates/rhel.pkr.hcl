@@ -158,7 +158,6 @@ source "virtualbox-iso" "rhel" {
 source "qemu" "rhel" {
   headless         = var.headless
   boot_command     = "${var.boot_command}"
-  floppy_files     = ["${var.http_directory}/ks-7.cfg", ]
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]

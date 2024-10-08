@@ -57,8 +57,8 @@
 
 | OS         | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
 |------------|--------------------|---------------|------------|------|----------------|
-| Oracle 8.6 | Working            | Working       | TBD        | TBD  |                |
-| Oracle 9.0 | Working            | Working       | TBD        | TBD  | 20 mins        |
+| Oracle 8.6 | Working            | Working       | Working    | TBD  |                |
+| Oracle 9.0 | Working            | Working       | Working    | TBD  | 20 mins        |
 
 ```powershell
 .\oracle.ps1 -Action build -Version 8 -Template oracle -Provider vmware-iso
