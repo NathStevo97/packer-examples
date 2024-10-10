@@ -224,8 +224,27 @@ source "virtualbox-iso" "oracle" {
   vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memory}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.cpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"], ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]]
 }
 
+source "qemu" "oracle" {
+  headless         = var.headless
+  boot_command     = "${var.boot_command}"
+  http_directory   = "${var.http_directory}"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  output_directory = "../builds/${var.template}-qemu"
+  shutdown_command = "echo 'vagrant'|sudo -S shutdown -P now"
+  ssh_password     = "${var.ssh_password}"
+  ssh_port         = 22
+  ssh_timeout      = "${var.ssh_timeout}"
+  ssh_username     = "${var.ssh_username}"
+  disk_size        = "${var.disk_size}"
+  disk_interface   = "virtio-scsi"
+  boot_wait        = "5s"
+  memory           = "${var.memory}"
+  cpus             = "${var.cpus}"
+}
+
 build {
-  sources = ["source.vmware-iso.oracle", "source.hyperv-iso.oracle", "source.virtualbox-iso.oracle"]
+  sources = ["source.vmware-iso.oracle", "source.hyperv-iso.oracle", "source.virtualbox-iso.oracle", "source.qemu.oracle"]
   /*
   provisioner "shell" {
     environment_vars  = ["HOME_DIR=/home/vagrant"]

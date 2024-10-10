@@ -73,7 +73,7 @@ $startDTM = (Get-Date)
 
 # Variables
 $env:PACKER_LOG_PATH="packerlog-rhel-$Version.txt"
-packer init -upgrade "../required_plugins.pkr.hcl"
+packer init "../required_plugins.pkr.hcl"
 
 $machine="Red Hat Enterprise Linux $Version"
 

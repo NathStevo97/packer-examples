@@ -37,7 +37,7 @@ param(
     [ValidateSet("8", "9")]
     [string]$Version = "",
 
-    [ValidateSet("vmware-iso", "hyperv-iso", "virtualbox-iso")]
+    [ValidateSet("vmware-iso", "hyperv-iso", "virtualbox-iso", "qemu")]
     [string]$Provider = ""
 )
 
@@ -73,7 +73,7 @@ $startDTM = (Get-Date)
 
 # Variables
 $env:PACKER_LOG_PATH="packerlog-oracle-$Version.txt"
-packer init -upgrade "../required_plugins.pkr.hcl"
+packer init "../required_plugins.pkr.hcl"
 
 $machine="Oracle Linux $Version"
 

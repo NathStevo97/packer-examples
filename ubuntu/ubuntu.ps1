@@ -73,7 +73,7 @@ $startDTM = (Get-Date)
 
 # Variables
 $env:PACKER_LOG_PATH="packerlog-ubuntu-$Version.txt"
-packer init -upgrade "../required_plugins.pkr.hcl"
+packer init "../required_plugins.pkr.hcl"
 
 $machine="Ubuntu $Version"
 

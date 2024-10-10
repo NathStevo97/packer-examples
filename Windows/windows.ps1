@@ -86,7 +86,7 @@ $startDTM = (Get-Date)
 
 # Variables
 $env:PACKER_LOG_PATH="packerlog-windows-$Version.txt"
-packer init -upgrade "../required_plugins.pkr.hcl"
+packer init "../required_plugins.pkr.hcl"
 
 $machine="Windows $Version $Type"
 

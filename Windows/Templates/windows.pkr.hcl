@@ -171,28 +171,7 @@ source "vmware-iso" "windows" {
   winrm_username = var.winrm_username
 }
 
-source "hyperv-iso" "hv1-windows" {
-  communicator         = "winrm"
-  cpus                 = var.numvcpus
-  disk_size            = var.disk_size
-  floppy_files         = var.floppy_files
-  guest_additions_mode = "disable"
-  headless             = var.headless
-  iso_checksum         = var.iso_checksum
-  iso_urls             = [var.iso_url, var.iso_path]
-  memory               = var.memsize
-  output_directory     = "${var.output_directory}-hv1"
-  shutdown_timeout     = "15m"
-  switch_name          = "Default Switch"
-  vm_name              = "${var.vm_name}-hv1"
-  winrm_insecure       = true
-  winrm_password       = var.winrm_password
-  winrm_timeout        = var.winrm_timeout
-  winrm_use_ssl        = true
-  winrm_username       = var.winrm_username
-}
-
-source "hyperv-iso" "hv2-windows" {
+source "hyperv-iso" "hv-windows" {
   boot_command          = var.boot_command
   boot_wait             = var.boot_wait_hyperv
   communicator          = "winrm"
@@ -221,7 +200,7 @@ source "hyperv-iso" "hv2-windows" {
 }
 
 build {
-  sources = ["source.virtualbox-iso.windows", "source.vmware-iso.windows", "source.hyperv-iso.hv1-windows", "source.hyperv-iso.hv2-windows"]
+  sources = ["source.virtualbox-iso.windows", "source.vmware-iso.windows", "source.hyperv-iso.hv2-windows"]
 
   /* provisioner "powershell" {
     only         = ["vmware-iso"]

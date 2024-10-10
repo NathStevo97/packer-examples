@@ -149,29 +149,6 @@ source "vmware-iso" "windows-server" {
 }
 
 #################################################################
-#                        Gen-1 Hyper-V Builder                  #
-#################################################################
-source "hyperv-iso" "hv1-windows-server" {
-  communicator         = "winrm"
-  cpus                 = "${var.numvcpus}"
-  disk_size            = "${var.disk_size}"
-  floppy_files         = "${var.floppy_files}"
-  guest_additions_mode = "disable"
-  headless             = var.headless
-  http_directory       = "${var.http_directory}"
-  iso_checksum         = "${var.iso_checksum}"
-  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
-  memory               = "${var.memsize}"
-  output_directory     = "${var.output_directory}-hv1"
-  shutdown_timeout     = "15m"
-  switch_name          = "${var.switch_name}"
-  vm_name              = "${var.vm_name}-hv1"
-  winrm_password       = "${var.winrm_password}"
-  winrm_timeout        = "${var.winrm_timeout}"
-  winrm_username       = "${var.winrm_username}"
-}
-
-#################################################################
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
 source "hyperv-iso" "hv2-windows-server" {
@@ -238,7 +215,7 @@ source "virtualbox-iso" "windows-server" {
 #################################################################
 
 build {
-  sources = ["source.vmware-iso.windows-server", "source.hyperv-iso.hv1-windows-server", "source.hyperv-iso.hv2-windows-server", "source.virtualbox-iso.windows-server"]
+  sources = ["source.vmware-iso.windows-server", "source.hyperv-iso.hv2-windows-server", "source.virtualbox-iso.windows-server"]
 
   /*
   provisioner "powershell" {

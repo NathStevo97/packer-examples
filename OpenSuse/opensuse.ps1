@@ -72,7 +72,7 @@ $startDTM = (Get-Date)
 
 # Variables
 $env:PACKER_LOG_PATH="packerlog-opensuse-$Version.txt"
-packer init -upgrade "../required_plugins.pkr.hcl"
+packer init "../required_plugins.pkr.hcl"
 
 $machine="OpenSUSE $Version"
 
