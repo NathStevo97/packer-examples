@@ -4,7 +4,7 @@
 
 | OS           | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
 |--------------|--------------------|---------------|------------|------|----------------|
-| Alma Linux 9 | Working            | TBD           | Working    | TBD  | 15 - 30 mins   |
+| Alma Linux 9 | Working            | Working       | Working    | TBD  | 15 - 30 mins   |
 
 ```powershell
 .\almalinux.ps1 -Action build -Version 9 -Template almalinux -Provider virtualbox-iso
@@ -47,7 +47,7 @@
 
 | OS          | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
 |-------------|--------------------|---------------|------------|------|----------------|
-| OpenSUSE 15 | TBD                | TBD           | Working    | TBD  | 17 mins        |
+| OpenSUSE 15 | Working            | TBD           | Working    | TBD  | 17 mins        |
 
 ```powershell
 .\opensuse.ps1 -Action build -Version 15 -Template opensuse -Provider virtualbox-iso
@@ -64,7 +64,7 @@
 .\oracle.ps1 -Action build -Version 8 -Template oracle -Provider vmware-iso
 ```
 
-### Notes
+### Oracle Notes
 
 - Oracle 9.4 failing on QEMU due to known lack of support - [GH Issue](https://github.com/hashicorp/packer-plugin-qemu/issues/76)
 
@@ -92,7 +92,7 @@
 
 | OS              | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
 |-----------------|--------------------|---------------|------------|------|----------------|
-| Rocky Linux 8.6 | Working            | TBD           | Working    | TBD  | 15-25 mins     |
+| Rocky Linux 8.8 | Working            | Working       | Working    | TBD  | 15-25 mins     |
 
 ```powershell
 .\rockylinux.ps1 -Action build -Version 8 -Template rockylinux -Provider virtualbox-iso

@@ -1,4 +1,5 @@
 boot_command             = ["e<down><down><end><bs><bs><bs><bs><bs>inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-9-stream.cfg<leftCtrlOn>x<leftCtrlOff>"]
+boot_command_hyperv      =  ["c  setparams 'kickstart' <enter> linuxefi /images/pxeboot/vmlinuz inst.repo=http://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/ inst.addrepo= inst.stage2=hd:LABEL=CentOS-9-x86_64-dvd inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-9-stream.cfg<enter> initrdefi /images/pxeboot/initrd.img<enter> boot<enter>"]
 boot_wait                = "5s"
 disk_size                = "40960"
 guest_os_type_virtualbox = "RedHat_64"
@@ -17,4 +18,6 @@ numvcpus     = "2"
 ssh_password = "vagrant"
 ssh_timeout  = "2h"
 ssh_username = "vagrant"
+switch_name          = "Default Switch"
+vlan_id              = ""
 vm_name      = "centos-stream-9-x86_64"

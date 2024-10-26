@@ -3,6 +3,11 @@ variable "boot_command" {
   default = []
 }
 
+variable "boot_command_hyperv" {
+  type    = list(string)
+  default = []
+}
+
 variable "boot_wait" {
   type    = string
   default = ""
@@ -73,6 +78,16 @@ variable "ssh_username" {
   default = ""
 }
 
+variable "switch_name" {
+  type    = string
+  default = ""
+}
+
+variable "vlan_id" {
+  type    = string
+  default = ""
+}
+
 variable "vm_name" {
   type    = string
   default = ""
@@ -125,9 +140,37 @@ source "vmware-iso" "centos" {
   }
 }
 
+source "hyperv-iso" "centos" {
+  boot_command          = "${var.boot_command_hyperv}"
+  boot_wait             = "${var.boot_wait}"
+  communicator          = "ssh"
+  cpus                  = "${var.numvcpus}"
+  disk_block_size       = "1"
+  disk_size             = "${var.disk_size}"
+  enable_dynamic_memory = "true"
+  enable_secure_boot    = false
+  generation            = 2
+  guest_additions_mode  = "disable"
+  headless              = var.headless
+  http_directory        = "${var.http_directory}"
+  iso_checksum          = "${var.iso_checksum}"
+  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  memory                = "${var.memsize}"
+  output_directory      = "../builds/${var.vm_name}-hyperv"
+  shutdown_command      = "echo 'password' | sudo -S shutdown -P now"
+  shutdown_timeout      = "30m"
+  ssh_password          = "${var.ssh_password}"
+  ssh_timeout           = "4h"
+  ssh_username          = "${var.ssh_username}"
+  switch_name           = "${var.switch_name}"
+  temp_path             = "."
+  vlan_id               = "${var.vlan_id}"
+  vm_name               = "${var.vm_name}"
+}
+
 
 build {
-  sources = ["source.vmware-iso.centos", "source.virtualbox-iso.centos"]
+  sources = ["source.vmware-iso.centos", "source.virtualbox-iso.centos", "source.hyperv-iso.centos"]
 
 /*   provisioner "shell" {
     execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"

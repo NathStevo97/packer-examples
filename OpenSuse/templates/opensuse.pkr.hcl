@@ -93,6 +93,28 @@ source "virtualbox-iso" "opensuse" {
   vrdp_port_min          = 5900
 }
 
+source "vmware-iso" "opensuse" {
+  boot_command     = "${var.boot_command}"
+  boot_wait        = "${var.boot_wait}"
+  disk_size        = "${var.disk_size}"
+  guest_os_type    = "${var.guest_os_type_vmware}"
+  headless         = var.headless
+  http_directory   = "${var.http_directory}"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_url          = "${var.iso_url}"
+  output_directory = "../builds/${var.name}-vmware"
+  shutdown_command = "echo '${var.ssh_password}' |sudo -S /sbin/halt -h -p"
+  ssh_password     = "${var.ssh_password}"
+  ssh_port         = 22
+  ssh_timeout      = "6h"
+  ssh_username     = "${var.ssh_username}"
+  vmx_data = {
+    memsize  = "${var.ram}"
+    numvcpus = "${var.cpu}"
+  }
+  vm_name = "${var.name}"
+}
+
 build {
-  sources = ["source.virtualbox-iso.opensuse"]
+  sources = ["source.virtualbox-iso.opensuse", "source.vmware-iso.opensuse"]
 }

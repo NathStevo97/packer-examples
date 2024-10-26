@@ -8,6 +8,12 @@ variable "boot_command" {
   default = []
 }
 
+variable "boot_command_hyperv" {
+  type    = list(string)
+  default = []
+}
+
+
 variable "cpu" {
   type    = string
   default = "2"
@@ -68,6 +74,16 @@ variable "ssh_username" {
   default = ""
 }
 
+variable "switch_name" {
+  type    = string
+  default = ""
+}
+
+variable "vlan_id" {
+  type    = string
+  default = ""
+}
+
 variable "version" {
   type    = string
   default = "9"
@@ -123,6 +139,34 @@ source "virtualbox-iso" "almalinux" {
   vm_name = "${var.name}-virtualbox"
 }
 
+source "hyperv-iso" "almalinux" {
+  boot_command          = "${var.boot_command_hyperv}"
+  boot_wait             = "${var.boot_wait}"
+  communicator          = "ssh"
+  cpus                  = "${var.cpu}"
+  disk_block_size       = "1"
+  disk_size             = "${var.disk_size}"
+  enable_dynamic_memory = "true"
+  enable_secure_boot    = false
+  generation            = 2
+  guest_additions_mode  = "disable"
+  headless              = var.headless
+  http_directory        = "${var.http_directory}"
+  iso_checksum          = "${var.iso_checksum}"
+  iso_url               = "${var.iso_url}"
+  memory                = "${var.ram}"
+  output_directory      = "../builds/${var.name}-hyperv"
+  shutdown_command      = "echo 'password' | sudo -S shutdown -P now"
+  shutdown_timeout      = "30m"
+  ssh_password          = "${var.ssh_password}"
+  ssh_timeout           = "4h"
+  ssh_username          = "${var.ssh_username}"
+  switch_name           = "${var.switch_name}"
+  temp_path             = "."
+  vlan_id               = "${var.vlan_id}"
+  vm_name               = "${var.name}"
+}
+
 build {
-  sources = ["source.vmware-iso.almalinux", "source.virtualbox-iso.almalinux"]
+  sources = ["source.vmware-iso.almalinux", "source.virtualbox-iso.almalinux", "source.hyperv-iso.almalinux"]
 }
