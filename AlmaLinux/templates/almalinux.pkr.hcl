@@ -156,7 +156,7 @@ source "hyperv-iso" "almalinux" {
   iso_url               = "${var.iso_url}"
   memory                = "${var.ram}"
   output_directory      = "../builds/${var.name}-hyperv"
-  shutdown_command      = "echo 'password' | sudo -S shutdown -P now"
+  shutdown_command      = "echo 'vagrant' | sudo -S shutdown -P now"
   shutdown_timeout      = "30m"
   ssh_password          = "${var.ssh_password}"
   ssh_timeout           = "4h"

@@ -4,6 +4,7 @@
 
 | OS           | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
 |--------------|--------------------|---------------|------------|------|----------------|
+| Alma Linux 8 | Working            | Working       | Working    | TBD  | 15 - 30 mins   |
 | Alma Linux 9 | Working            | Working       | Working    | TBD  | 15 - 30 mins   |
 
 ```powershell
