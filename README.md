@@ -44,6 +44,16 @@
 - Platforms getting stuck at boot - `No Kernel Module Found`
 - Fix: Get the Latest `mini.iso` from Debian.
 
+## Fedora Builds
+
+| OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
+|-----------|--------------------|---------------|------------|------|----------------|
+| Fedora 40 | TBD                | TBD           | TBD        | TBD  |                |
+
+```powershell
+.\fedora.ps1 -Action build -Version 40 -Template fedora -Provider virtualbox-iso
+```
+
 ## OpenSUSE Builds
 
 | OS          | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
