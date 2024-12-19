@@ -14,12 +14,3 @@ crash.log
 **/output-*/*
 
 ### Non-Packer Files ###
-#Ignore Agent Installation Files in HTTP Directory
-/http/Agent_Installations/*
-
-#Ignore Provisioner Scripts Relating to Agent Installations
-/Windows/Files/scripts/illumio_install.ps1
-/Windows/Files/Scripts/mcafee_install.ps1
-/Windows/Files/Scripts/qualys_install.ps1
-/Windows/Files/Scripts/sec_hardening_setup.ps1
-/Windows/Files/Scripts/sccm_setup.ps1

@@ -48,7 +48,7 @@
 
 | OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
 |-----------|--------------------|---------------|------------|------|----------------|
-| Fedora 40 | TBD                | TBD           | TBD        | TBD  |                |
+| Fedora 40 | Working                | Working           | Working    | TBD  | 10-30 mins     |
 
 ```powershell
 .\fedora.ps1 -Action build -Version 40 -Template fedora -Provider virtualbox-iso

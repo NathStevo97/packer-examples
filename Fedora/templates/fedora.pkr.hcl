@@ -101,7 +101,7 @@ source "vmware-iso" "fedora" {
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
-  ssh_timeout      = "30m"
+  ssh_timeout      = "2h"
   ssh_username     = "${var.ssh_username}"
   vm_name          = "${var.name}-vmware"
   vmx_data = {
@@ -126,7 +126,7 @@ source "virtualbox-iso" "fedora" {
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
-  ssh_timeout      = "30m"
+  ssh_timeout      = "2h"
   ssh_username     = "${var.ssh_username}"
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--memory", "${var.ram}"],
@@ -138,13 +138,15 @@ source "virtualbox-iso" "fedora" {
 }
 
 source "hyperv-iso" "fedora" {
-  boot_command          = "${var.boot_command_hyperv}"
+  #boot_command          = "${var.boot_command_hyperv}"
+  boot_command     = "${var.boot_command}"
   boot_wait             = "${var.boot_wait}"
   communicator          = "ssh"
   cpus                  = "${var.cpu}"
   disk_block_size       = "1"
   disk_size             = "${var.disk_size}"
-  enable_dynamic_memory = "true"
+  enable_dynamic_memory = false
+  enable_virtualization_extensions = false
   enable_secure_boot    = false
   generation            = 2
   guest_additions_mode  = "disable"
@@ -157,7 +159,7 @@ source "hyperv-iso" "fedora" {
   shutdown_command      = "echo 'vagrant' | sudo -S shutdown -P now"
   shutdown_timeout      = "30m"
   ssh_password          = "${var.ssh_password}"
-  ssh_timeout           = "4h"
+  ssh_timeout           = "2h"
   ssh_username          = "${var.ssh_username}"
   switch_name           = "${var.switch_name}"
   temp_path             = "."
