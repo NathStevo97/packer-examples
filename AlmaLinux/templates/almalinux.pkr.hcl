@@ -92,26 +92,24 @@ variable "version" {
 source "vmware-iso" "almalinux" {
   boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
+  cpus           = "${var.cpu}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
+  firmware            = "efi"
   guest_os_type    = "${var.guest_os_type_vmware}"
   headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
+  memory        = "${var.ram}"
   output_directory = "../builds/${var.name}-vmware"
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "30m"
   ssh_username     = "${var.ssh_username}"
+  version          = "14"
   vm_name          = "${var.name}-vmware"
-  vmx_data = {
-    firmware            = "efi"
-    memsize             = "${var.ram}"
-    numvcpus            = "${var.cpu}"
-    "virtualHW.version" = "14"
-  }
 }
 
 source "virtualbox-iso" "almalinux" {
