@@ -18,7 +18,7 @@ packer {
     }
     ansible = {
       source  = "github.com/hashicorp/ansible"
-      version = ">= 1.1.2"
+      version = ">= 1.1.3"
     }
     docker = {
       source  = "github.com/hashicorp/docker"
