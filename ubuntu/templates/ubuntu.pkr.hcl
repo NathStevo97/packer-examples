@@ -128,9 +128,6 @@ source "virtualbox-iso" "ubuntu" {
   #   "boot<enter>",
   #   "<enter><f10><wait>"
   # ]
-
-
-
   boot_wait              = "${var.boot_wait}"
   http_directory         = "${var.http_directory}"
   guest_additions_path   = "VBoxGuestAdditions_{{.Version}}.iso"
@@ -211,22 +208,20 @@ source "qemu" "ubuntu" {
 source "vmware-iso" "ubuntu" {
   boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
+  cpus             = "${var.cpu}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "${var.guest_os_type_vmware}"
   headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
+  memory          = "${var.memory}"
   output_directory = "../builds/${var.vm_name}-vmware"
   shutdown_command = "echo '${var.ssh_password}' |sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "6h"
   ssh_username     = "${var.ssh_username}"
-  vmx_data = {
-    memsize  = "${var.memory}"
-    numvcpus = "${var.cpu}"
-  }
   vm_name = "${var.vm_name}"
 }
 

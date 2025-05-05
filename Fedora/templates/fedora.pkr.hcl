@@ -45,11 +45,11 @@ variable "http_directory" {
 }
 
 variable "iso_checksum" {
-  type    = string
+  type = string
 }
 
 variable "iso_url" {
-  type    = string
+  type = string
 }
 
 variable "name" {
@@ -90,26 +90,24 @@ variable "version" {
 source "vmware-iso" "fedora" {
   boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
+  cpus             = "${var.cpu}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
+  firmware         = "efi"
   guest_os_type    = "${var.guest_os_type_vmware}"
   headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
+  memory           = "${var.ram}"
   output_directory = "../builds/${var.name}-vmware"
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "2h"
   ssh_username     = "${var.ssh_username}"
+  version          = "14"
   vm_name          = "${var.name}-vmware"
-  vmx_data = {
-    firmware            = "efi"
-    memsize             = "${var.ram}"
-    numvcpus            = "${var.cpu}"
-    "virtualHW.version" = "14"
-  }
 }
 
 source "virtualbox-iso" "fedora" {
@@ -139,32 +137,32 @@ source "virtualbox-iso" "fedora" {
 
 source "hyperv-iso" "fedora" {
   #boot_command          = "${var.boot_command_hyperv}"
-  boot_command     = "${var.boot_command}"
-  boot_wait             = "${var.boot_wait}"
-  communicator          = "ssh"
-  cpus                  = "${var.cpu}"
-  disk_block_size       = "1"
-  disk_size             = "${var.disk_size}"
-  enable_dynamic_memory = false
+  boot_command                     = "${var.boot_command}"
+  boot_wait                        = "${var.boot_wait}"
+  communicator                     = "ssh"
+  cpus                             = "${var.cpu}"
+  disk_block_size                  = "1"
+  disk_size                        = "${var.disk_size}"
+  enable_dynamic_memory            = false
   enable_virtualization_extensions = false
-  enable_secure_boot    = false
-  generation            = 2
-  guest_additions_mode  = "disable"
-  headless              = var.headless
-  http_directory        = "${var.http_directory}"
-  iso_checksum          = "${var.iso_checksum}"
-  iso_url               = "${var.iso_url}"
-  memory                = "${var.ram}"
-  output_directory      = "../builds/${var.name}-hyperv"
-  shutdown_command      = "echo 'vagrant' | sudo -S shutdown -P now"
-  shutdown_timeout      = "30m"
-  ssh_password          = "${var.ssh_password}"
-  ssh_timeout           = "2h"
-  ssh_username          = "${var.ssh_username}"
-  switch_name           = "${var.switch_name}"
-  temp_path             = "."
-  vlan_id               = "${var.vlan_id}"
-  vm_name               = "${var.name}"
+  enable_secure_boot               = false
+  generation                       = 2
+  guest_additions_mode             = "disable"
+  headless                         = var.headless
+  http_directory                   = "${var.http_directory}"
+  iso_checksum                     = "${var.iso_checksum}"
+  iso_url                          = "${var.iso_url}"
+  memory                           = "${var.ram}"
+  output_directory                 = "../builds/${var.name}-hyperv"
+  shutdown_command                 = "echo 'vagrant' | sudo -S shutdown -P now"
+  shutdown_timeout                 = "30m"
+  ssh_password                     = "${var.ssh_password}"
+  ssh_timeout                      = "2h"
+  ssh_username                     = "${var.ssh_username}"
+  switch_name                      = "${var.switch_name}"
+  temp_path                        = "."
+  vlan_id                          = "${var.vlan_id}"
+  vm_name                          = "${var.name}"
 }
 
 build {

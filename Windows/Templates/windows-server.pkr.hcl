@@ -122,6 +122,7 @@ variable "winrm_username" {
 source "vmware-iso" "windows-server" {
   boot_wait        = "${var.boot_wait}"
   communicator     = "winrm"
+  cpus             = "${var.numvcpus}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
   floppy_files     = "${var.floppy_files}"
@@ -130,17 +131,13 @@ source "vmware-iso" "windows-server" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  memory           = "${var.memsize}"
   output_directory = "${var.output_directory}-vmware"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout = "30m"
   skip_compaction  = false
+  version         = "14"
   vm_name          = "${var.vm_name}-vmware"
-  vmx_data = {
-    memsize             = "${var.memsize}"
-    numvcpus            = "${var.numvcpus}"
-    "scsi0.virtualDev"  = "lsisas1068"
-    "virtualHW.version" = "14"
-  }
   winrm_insecure = true
   winrm_password = "${var.winrm_password}"
   winrm_timeout  = "${var.winrm_timeout}"

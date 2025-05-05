@@ -106,22 +106,20 @@ variable "vm_name" {
 source "vmware-iso" "rhel" {
   boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
+  cpus = "${var.numvcpus}"
   disk_size        = "${var.disk_size}"
   guest_os_type    = "${var.guest_os_type_vmware}"
   headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  memory  = "${var.memsize}"
   output_directory = "${var.build_directory}/${var.vm_name}-vmware"
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "${var.ssh_timeout}"
   ssh_username     = "${var.ssh_username}"
-  vmx_data = {
-    memsize  = "${var.memsize}"
-    numvcpus = "${var.numvcpus}"
-  }
   vm_name = "${var.vm_name}"
 }
 

@@ -154,7 +154,7 @@ source "hyperv-iso" "centos" {
   headless              = var.headless
   http_directory        = "${var.http_directory}"
   iso_checksum          = "${var.iso_checksum}"
-  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  iso_urls              = ["${var.iso_path}", "${var.iso_url}"]
   memory                = "${var.memsize}"
   output_directory      = "../builds/${var.vm_name}-hyperv"
   shutdown_command      = "echo 'password' | sudo -S shutdown -P now"
@@ -172,7 +172,7 @@ source "hyperv-iso" "centos" {
 build {
   sources = ["source.vmware-iso.centos", "source.virtualbox-iso.centos", "source.hyperv-iso.centos"]
 
-/*   provisioner "shell" {
+  /*   provisioner "shell" {
     execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
     inline          = ["yum -y update", "yum -y install python3"]
   }

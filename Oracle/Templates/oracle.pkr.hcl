@@ -150,12 +150,14 @@ locals {
 source "vmware-iso" "oracle" {
   boot_command        = "${var.boot_command}"
   boot_wait           = "${var.boot_wait}"
+  cpus            = "${var.cpus}"
   disk_size           = "${var.disk_size}"
   guest_os_type       = "oraclelinux-64"
   headless            = var.headless
   http_directory      = "${var.http_directory}"
   iso_checksum        = "${var.iso_checksum}"
   iso_urls            = ["${var.iso_path}", "${var.iso_url}"]
+  memory             = "${var.memory}"
   output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
   shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
   ssh_password        = "${var.ssh_password}"
@@ -165,12 +167,6 @@ source "vmware-iso" "oracle" {
   tools_upload_flavor = "linux"
   version             = 19
   vm_name             = "${var.template}"
-  vmx_data = {
-    memsize             = "${var.memory}"
-    numvcpus            = "${var.cpus}"
-    "scsi0.virtualDev"  = "lsisas1068"
-    "virtualHW.version" = "14"
-  }
   vmx_remove_ethernet_interfaces = true
 }
 
@@ -188,9 +184,9 @@ source "hyperv-iso" "oracle" {
   headless              = var.headless
   http_directory        = "${var.http_directory}"
   iso_checksum          = "${var.iso_checksum}"
-  iso_urls            = ["${var.iso_path}", "${var.iso_url}"]
+  iso_urls              = ["${var.iso_path}", "${var.iso_url}"]
   memory                = "${var.memory}"
-  output_directory    = "${var.build_directory}/packer-${var.template}-hv"
+  output_directory      = "${var.build_directory}/packer-${var.template}-hv"
   shutdown_command      = "echo 'vagrant' | sudo -S shutdown -P now"
   shutdown_timeout      = "30m"
   ssh_password          = "${var.ssh_password}"
