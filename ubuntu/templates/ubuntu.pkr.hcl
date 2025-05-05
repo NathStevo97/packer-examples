@@ -215,14 +215,14 @@ source "vmware-iso" "ubuntu" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
-  memory          = "${var.memory}"
+  memory           = "${var.memory}"
   output_directory = "../builds/${var.vm_name}-vmware"
   shutdown_command = "echo '${var.ssh_password}' |sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "6h"
   ssh_username     = "${var.ssh_username}"
-  vm_name = "${var.vm_name}"
+  vm_name          = "${var.vm_name}"
 }
 
 build {

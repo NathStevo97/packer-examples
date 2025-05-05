@@ -148,25 +148,25 @@ locals {
 }
 
 source "vmware-iso" "oracle" {
-  boot_command        = "${var.boot_command}"
-  boot_wait           = "${var.boot_wait}"
-  cpus            = "${var.cpus}"
-  disk_size           = "${var.disk_size}"
-  guest_os_type       = "oraclelinux-64"
-  headless            = var.headless
-  http_directory      = "${var.http_directory}"
-  iso_checksum        = "${var.iso_checksum}"
-  iso_urls            = ["${var.iso_path}", "${var.iso_url}"]
-  memory             = "${var.memory}"
-  output_directory    = "${var.build_directory}/packer-${var.template}-vmware"
-  shutdown_command    = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
-  ssh_password        = "${var.ssh_password}"
-  ssh_port            = 22
-  ssh_timeout         = "${var.ssh_timeout}"
-  ssh_username        = "${var.ssh_username}"
-  tools_upload_flavor = "linux"
-  version             = 19
-  vm_name             = "${var.template}"
+  boot_command                   = "${var.boot_command}"
+  boot_wait                      = "${var.boot_wait}"
+  cpus                           = "${var.cpus}"
+  disk_size                      = "${var.disk_size}"
+  guest_os_type                  = "oraclelinux-64"
+  headless                       = var.headless
+  http_directory                 = "${var.http_directory}"
+  iso_checksum                   = "${var.iso_checksum}"
+  iso_urls                       = ["${var.iso_path}", "${var.iso_url}"]
+  memory                         = "${var.memory}"
+  output_directory               = "${var.build_directory}/packer-${var.template}-vmware"
+  shutdown_command               = "echo 'vagrant' | sudo -S /sbin/halt -h -p"
+  ssh_password                   = "${var.ssh_password}"
+  ssh_port                       = 22
+  ssh_timeout                    = "${var.ssh_timeout}"
+  ssh_username                   = "${var.ssh_username}"
+  tools_upload_flavor            = "linux"
+  version                        = 19
+  vm_name                        = "${var.template}"
   vmx_remove_ethernet_interfaces = true
 }
 

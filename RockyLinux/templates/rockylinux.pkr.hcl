@@ -116,7 +116,7 @@ source "virtualbox-iso" "rockylinux" {
 source "vmware-iso" "rockylinux" {
   boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
-  cpus            = "${var.numvcpus}"
+  cpus             = "${var.numvcpus}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
   firmware         = "efi"
@@ -125,7 +125,7 @@ source "vmware-iso" "rockylinux" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
-  memory             = "${var.memsize}"
+  memory           = "${var.memsize}"
   output_directory = "../builds/${var.vm_name}-vmware"
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"

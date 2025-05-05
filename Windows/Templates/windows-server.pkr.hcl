@@ -136,13 +136,13 @@ source "vmware-iso" "windows-server" {
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout = "30m"
   skip_compaction  = false
-  version         = "14"
+  version          = "14"
   vm_name          = "${var.vm_name}-vmware"
-  winrm_insecure = true
-  winrm_password = "${var.winrm_password}"
-  winrm_timeout  = "${var.winrm_timeout}"
-  winrm_use_ssl  = true
-  winrm_username = "${var.winrm_username}"
+  winrm_insecure   = true
+  winrm_password   = "${var.winrm_password}"
+  winrm_timeout    = "${var.winrm_timeout}"
+  winrm_use_ssl    = true
+  winrm_username   = "${var.winrm_username}"
 }
 
 #################################################################
