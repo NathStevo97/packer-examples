@@ -117,13 +117,16 @@ source "virtualbox-iso" "centos" {
 source "vmware-iso" "centos" {
   boot_command     = "${var.boot_command}"
   boot_wait        = "${var.boot_wait}"
+  cpus           = "${var.numvcpus}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
+  firmware        = "efi"
   guest_os_type    = "${var.guest_os_type_vmware}"
   headless         = var.headless
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  memory          = "${var.memsize}"
   output_directory = "../builds/${var.vm_name}"
   shutdown_command = "echo 'vagrant' | sudo -S /sbin/shutdown -P now"
   shutdown_timeout = "1h"
@@ -132,12 +135,7 @@ source "vmware-iso" "centos" {
   ssh_timeout      = "${var.ssh_timeout}"
   ssh_username     = "${var.ssh_username}"
   vm_name          = "${var.vm_name}"
-  vmx_data = {
-    firmware            = "efi"
-    memsize             = "${var.memsize}"
-    numvcpus            = "${var.numvcpus}"
-    "virtualHW.version" = "14"
-  }
+  version          = "14"
 }
 
 source "hyperv-iso" "centos" {
