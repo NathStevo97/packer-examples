@@ -226,7 +226,7 @@ source "qemu" "oracle" {
   http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
-  output_directory = "../builds/${var.template}-qemu"
+  output_directory = "./builds/${var.template}-qemu"
   shutdown_command = "echo 'vagrant'|sudo -S shutdown -P now"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22

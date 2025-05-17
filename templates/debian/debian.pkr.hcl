@@ -81,13 +81,12 @@ source "vmware-iso" "debian" {
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   memory           = "${var.ram}"
-  output_directory = "../builds/${var.name}-vmware"
+  output_directory = "./builds/${var.name}-vmware"
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "1h"
   ssh_username     = "${var.ssh_username}"
-  version          = "14"
   vm_name          = "${var.name}-vmware"
 }
 
@@ -101,7 +100,7 @@ source "virtualbox-iso" "debian" {
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
   iso_url          = "${var.iso_url}"
-  output_directory = "../builds/${var.name}-vbox"
+  output_directory = "./builds/${var.name}-vbox"
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22

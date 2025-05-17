@@ -65,15 +65,15 @@ if ($Provider -eq "") {
 }
 
 # Define other variables
-$var_file = "variables/$Template-$Version.pkrvars.hcl"
-$template = "templates/$Template.pkr.hcl"
+$var_file = "variables/$Template/$Template-$Version.pkrvars.hcl"
+$template = "templates/$Template/$Template.pkr.hcl"
 
 # Get Start Time
 $startDTM = (Get-Date)
 
 # Variables
 $env:PACKER_LOG_PATH="packerlog-centos-$Version.txt"
-packer init "../required_plugins.pkr.hcl"
+packer init "required_plugins.pkr.hcl"
 
 $machine="CentOS $Version"
 

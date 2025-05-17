@@ -102,13 +102,12 @@ source "vmware-iso" "almalinux" {
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   memory           = "${var.ram}"
-  output_directory = "../builds/${var.name}-vmware"
+  output_directory = "./builds/${var.name}-vmware"
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "30m"
   ssh_username     = "${var.ssh_username}"
-  version          = "14"
   vm_name          = "${var.name}-vmware"
 }
 
@@ -122,7 +121,7 @@ source "virtualbox-iso" "almalinux" {
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
   iso_url          = "${var.iso_url}"
-  output_directory = "../builds/${var.name}-vbox"
+  output_directory = "./builds/${var.name}-vbox"
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
@@ -153,7 +152,7 @@ source "hyperv-iso" "almalinux" {
   iso_checksum          = "${var.iso_checksum}"
   iso_url               = "${var.iso_url}"
   memory                = "${var.ram}"
-  output_directory      = "../builds/${var.name}-hyperv"
+  output_directory      = "./builds/${var.name}-hyperv"
   shutdown_command      = "echo 'vagrant' | sudo -S shutdown -P now"
   shutdown_timeout      = "30m"
   ssh_password          = "${var.ssh_password}"

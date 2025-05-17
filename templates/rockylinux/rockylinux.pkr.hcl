@@ -98,7 +98,7 @@ source "virtualbox-iso" "rockylinux" {
   iso_checksum     = "${var.iso_checksum}"
   iso_interface    = "sata"
   iso_url          = "${var.iso_url}"
-  output_directory = "../builds/${var.vm_name}-vbox"
+  output_directory = "./builds/${var.vm_name}-vbox"
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
@@ -126,13 +126,12 @@ source "vmware-iso" "rockylinux" {
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   memory           = "${var.memsize}"
-  output_directory = "../builds/${var.vm_name}-vmware"
+  output_directory = "./builds/${var.vm_name}-vmware"
   shutdown_command = "echo 'packer'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "30m"
   ssh_username     = "${var.ssh_username}"
-  version          = "14"
   vm_name          = "${var.vm_name}-vmware"
 }
 
@@ -152,7 +151,7 @@ source "hyperv-iso" "rockylinux" {
   iso_checksum          = "sha256:${var.iso_checksum}"
   iso_url               = "${var.iso_url}"
   memory                = "${var.memsize}"
-  output_directory      = "../builds/${var.vm_name}-hyperv"
+  output_directory      = "./builds/${var.vm_name}-hyperv"
   shutdown_command      = "echo 'password' | sudo -S shutdown -P now"
   shutdown_timeout      = "30m"
   ssh_password          = "${var.ssh_password}"

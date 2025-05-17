@@ -2,7 +2,7 @@ boot_command      = ["<tab><wait30s> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .
 boot_command_hv   = ["c  setparams 'kickstart' <enter> linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=OL-9-4-0-BaseOS-x86_64 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-9.cfg<enter> initrdefi /images/pxeboot/initrd.img<enter> boot<enter>"]
 boot_wait         = "5s"
 box_basename      = "oracle-9.0"
-build_directory   = "../builds"
+build_directory   = "./builds"
 cpus              = "2"
 disk_size         = "65536"
 headless          = false

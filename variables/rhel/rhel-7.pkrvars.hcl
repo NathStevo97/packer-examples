@@ -2,7 +2,7 @@ boot_command             = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/
 boot_wait                = "10s"
 boot_wait_virtualbox     = "45s"
 box_basename             = "rhel-7.9"
-build_directory          = "../builds"
+build_directory          = "./builds"
 numvcpus                 = "2"
 disk_size                = "65536"
 guest_os_type_virtualbox = "RedHat_64"

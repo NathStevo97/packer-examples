@@ -2,10 +2,10 @@
 
 ## Alma Linux Builds
 
-| OS           | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
-|--------------|--------------------|---------------|------------|------|----------------|
-| Alma Linux 8 | Working            | Working       | Working    | TBD  | 15 - 30 mins   |
-| Alma Linux 9 | Working            | Working       | Working    | TBD  | 15 - 30 mins   |
+| OS           | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
+|--------------|--------------------|---------------|------------|------|----------------|--------------------|
+| Alma Linux 8 | Working            | Working       | Working    | TBD  | 15 - 30 mins   | 17/05/2025         |
+| Alma Linux 9 | Working            | Working       | Working    | TBD  | 15 - 30 mins   | 17/05/2025         |
 
 ```powershell
 .\almalinux.ps1 -Action build -Version 9 -Template almalinux -Provider virtualbox-iso
@@ -15,17 +15,13 @@
 .\almalinux.ps1 -Action build -Version 9 -Template almalinux -Provider vmware-iso
 ```
 
-### Todos
-
-- Boot command not getting passed correctly / installation src + software selection unchecked
-
 ---
 
 ## CentOS Builds
 
-| OS              | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
-|-----------------|--------------------|---------------|------------|------|----------------|
-| CentOS Stream 9 | Working            | TBD           | Working    | TBD  |                |
+| OS              | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
+|-----------------|--------------------|---------------|------------|------|----------------|--------------------|
+| CentOS Stream 9 | Working            | Working       | Working    | TBD  | 10 - 15 mins   | 17/05/2025         |
 
 ```powershell
 .\centos.ps1 -Action build -Version 9 -Template centos -Provider virtualbox-iso
@@ -35,9 +31,9 @@
 
 ## Debian Builds
 
-| OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
-|-----------|--------------------|---------------|------------|------|----------------|
-| Debian 12 | Working            | TBD           | Working    | TBD  |                |
+| OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
+|-----------|--------------------|---------------|------------|------|----------------|--------------------|
+| Debian 12 | Working            | TBD           | Working    | TBD  |                |                    |
 
 ### Notes
 
@@ -46,9 +42,9 @@
 
 ## Fedora Builds
 
-| OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
-|-----------|--------------------|---------------|------------|------|----------------|
-| Fedora 40 | Working            | Working       | Working    | TBD  | 10-30 mins     |
+| OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
+|-----------|--------------------|---------------|------------|------|----------------|--------------------|
+| Fedora 40 | Working            | Working       | Working    | TBD  | 10-30 mins     |                    |
 
 ```powershell
 .\fedora.ps1 -Action build -Version 40 -Template fedora -Provider virtualbox-iso
@@ -56,9 +52,9 @@
 
 ## OpenSUSE Builds
 
-| OS          | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
-|-------------|--------------------|---------------|------------|------|----------------|
-| OpenSUSE 15 | Working            | TBD           | Working    | TBD  | 17 mins        |
+| OS          | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
+|-------------|--------------------|---------------|------------|------|----------------|--------------------|
+| OpenSUSE 15 | Working            | TBD           | Working    | TBD  | 17 mins        |                    |
 
 ```powershell
 .\opensuse.ps1 -Action build -Version 15 -Template opensuse -Provider virtualbox-iso
@@ -66,10 +62,10 @@
 
 ## Oracle Builds
 
-| OS         | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time |
-|------------|--------------------|---------------|------------|---------|----------------|
-| Oracle 8.6 | Working            | Working       | Working    | Working |                |
-| Oracle 9.4 | Working            | Working       | Working    | Failing | 20 mins        |
+| OS         | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
+|------------|--------------------|---------------|------------|---------|----------------|--------------------|
+| Oracle 8.6 | Working            | Working       | Working    | Working |                |                    |
+| Oracle 9.4 | Working            | Working       | Working    | Failing | 20 mins        |                    |
 
 ```powershell
 .\oracle.ps1 -Action build -Version 8 -Template oracle -Provider vmware-iso
@@ -81,10 +77,10 @@
 
 ## RHEL Builds
 
-| OS       | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time |
-|----------|--------------------|---------------|------------|---------|----------------|
-| RHEL 7.9 | Working            | TBD           | Working    | Working |                |
-| RHEL 8.1 | Working            | TBD           | Working    | Working | 45 mins        |
+| OS       | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
+|----------|--------------------|---------------|------------|---------|----------------|--------------------|
+| RHEL 7.9 | Working            | TBD           | Working    | Working |                |                    |
+| RHEL 8.1 | Working            | TBD           | Working    | Working | 45 mins        |                    |
 
 ```powershell
 .\rhel.ps1 -Action build -Version 7 -Template rhel -Provider vmware-iso
@@ -101,9 +97,9 @@
 
 ## RockyLinux Builds
 
-| OS              | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time |
-|-----------------|--------------------|---------------|------------|------|----------------|
-| Rocky Linux 8.8 | Working            | Working       | Working    | TBD  | 15-25 mins     |
+| OS              | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
+|-----------------|--------------------|---------------|------------|------|----------------|--------------------|
+| Rocky Linux 8.8 | Working            | Working       | Working    | TBD  | 15-25 mins     |                    |
 
 ```powershell
 .\rockylinux.ps1 -Action build -Version 8 -Template rockylinux -Provider virtualbox-iso
@@ -111,10 +107,10 @@
 
 ## Ubuntu Builds
 
-| OS           | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time |
-|--------------|---------------|------------|---------|----------------|
-| Ubuntu 22.04 | Working       | Working    | Working | 20 mins        |
-| Ubuntu 24.04 | Working       | Working    | Working | 20 mins        |
+| OS           | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
+|--------------|---------------|------------|---------|----------------|--------------------|
+| Ubuntu 22.04 | Working       | Working    | Working | 20 mins        |                    |
+| Ubuntu 24.04 | Working       | Working    | Working | 20 mins        |                    |
 
 ```powershell
 .\ubuntu.ps1 -Action build -Version 22 -Template ubuntu -Provider hyperv-iso
@@ -130,14 +126,14 @@
 
 ## Windows Builds
 
-| OS                      | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Avg Build Time |
-|-------------------------|--------------------|---------------|------------|----------------|
-| Windows 10              | Working            | Working       | Working    | 45mins - 1hr   |
-| Windows 11              | Working            | Working       | Working    | 12 - 45 mins   |
-| Windows 2022 Standard   | Working            | Working       | Working    | 10 - 20 mins   |
-| Windows 2022 Datacenter | Working            | Working       | Working    | 10 - 20 mins   |
-| Windows 2019 Standard   | Working            | Working       | Working    | 10 - 20 mins   |
-| Windows 2019 Datacenter | Working            | Working       | Working    | 10 - 20 mins   |
+| OS                      | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Avg Build Time | Date Last Reviewed |
+|-------------------------|--------------------|---------------|------------|----------------|--------------------|
+| Windows 10              | Working            | Working       | Working    | 45mins - 1hr   |                    |
+| Windows 11              | Working            | Working       | Working    | 12 - 45 mins   |                    |
+| Windows 2022 Standard   | Working            | Working       | Working    | 10 - 20 mins   |                    |
+| Windows 2022 Datacenter | Working            | Working       | Working    | 10 - 20 mins   |                    |
+| Windows 2019 Standard   | Working            | Working       | Working    | 10 - 20 mins   |                    |
+| Windows 2019 Datacenter | Working            | Working       | Working    | 10 - 20 mins   |                    |
 
 ```powershell
 .\windows-server.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider vmware-iso
