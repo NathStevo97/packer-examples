@@ -35,6 +35,10 @@
 |-----------|--------------------|---------------|------------|------|----------------|--------------------|
 | Debian 12 | Working            | TBD           | Working    | TBD  |                |                    |
 
+```powershell
+.\debian.ps1 -Action build -Version 12 -Template debian -Provider virtualbox-iso
+```
+
 ### Notes
 
 - Platforms getting stuck at boot - `No Kernel Module Found`

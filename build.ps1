@@ -36,7 +36,7 @@ param(
 
     [string]$Version = "",
 
-    [ValidateSet("virtualbox-iso", "vmware-iso")]
+    [ValidateSet("vmware-iso", "virtualbox-iso", "hyperv-iso", "qemu")]
     [string]$Provider = ""
 )
 
@@ -52,11 +52,11 @@ if ($Log -eq 1) {
 }
 
 if ($Template -eq "") {
-    $Template = "opensuse"
+    $Template = "almalinux"
 }
 
 if ($Version -eq "") {
-    $Version = "25"
+    $Version = "9"
 }
 
 if ($Provider -eq "") {
@@ -64,26 +64,26 @@ if ($Provider -eq "") {
 }
 
 # Define other variables
-$var_file = "variables/$Template-$Version.pkrvars.hcl"
-$template = "templates/$Template.pkr.hcl"
+$var_file = "./variables/$Template/$Template-$Version.pkrvars.hcl"
+$template_file = "./templates/$Template/$Template.pkr.hcl"
 
 # Get Start Time
 $startDTM = (Get-Date)
 
 # Variables
-$env:PACKER_LOG_PATH="packerlog-opensuse-$Version.txt"
-packer init "../required_plugins.pkr.hcl"
+$env:PACKER_LOG_PATH="packerlog-almalinux-9.txt"
+packer init "required_plugins.pkr.hcl"
 
-$machine="OpenSUSE $Version"
+$machine="$Template: $Version"
 
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 
-if ((Test-Path -Path "$template")) {
+if ((Test-Path -Path "$Template_file")) {
   Write-Output "Template file found"
   Write-Output "Building: $machine"
   try {
     $env:PACKER_LOG=$packer_log
-    packer validate -var-file="$var_file" -only="$Provider.opensuse" "$template"
+    packer validate -var-file="$var_file" -only="$Provider.$template" "$template_file"
   }
   catch {
     Write-Output "Packer validation failed, exiting."
@@ -92,7 +92,7 @@ if ((Test-Path -Path "$template")) {
   try {
     $env:PACKER_LOG=$packer_log
     packer version
-    packer build -var-file="$var_file" -only="$Provider.opensuse" --force "$template"
+    packer build -var-file="$var_file" -only="$Provider.$template" --force "$template_file"
   }
   catch {
     Write-Output "Packer build failed, exiting."
