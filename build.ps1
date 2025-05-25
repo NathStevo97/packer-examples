@@ -1,30 +1,3 @@
-<#
-.SYNOPSIS
-This script validates and builds Packer templates based on the specified parameters.
-
-.DESCRIPTION
-The script accepts three parameters: Action, Log, and Version. Based on these parameters, it performs actions like validating and building Packer templates. It also sets the PACKER_LOG environment variable to control Packer's logging behavior.
-
-.PARAMETER Action
-Specifies the action to be performed. It can be:
-- "verify": Only validates the Packer template.
-- "build": Validates and then builds the Packer template (default action).
-
-.PARAMETER Log
-Controls the logging behavior of Packer. It can be:
-- 0: Disables logging (default).
-- 1: Enables logging.
-
-.PARAMETER Version
-Specifies the version of the template to be used. If not specified, it defaults to "rockylinux-8.8".
-
-.PARAMETER Template
-Specifies the path to the Packer template to be used. If not specified, it defaults to "templates/hv_rhel.pkr.hcl".
-
-.PARAMETER Provider
-Specifies the path to the Packer template to be used. If not specified, it defaults to "templates/hv_rhel.pkr.hcl".
-#>
-
 param(
     [ValidateSet("verify", "build", "")]
     [string]$Action = "",
@@ -71,10 +44,10 @@ $template_file = "./templates/$Template/$Template.pkr.hcl"
 $startDTM = (Get-Date)
 
 # Variables
-$env:PACKER_LOG_PATH="packerlog-almalinux-9.txt"
+$env:PACKER_LOG_PATH="packerlog-$Template-$Version.txt"
 packer init "required_plugins.pkr.hcl"
 
-$machine="$Template: $Version"
+$machine="$Template - $Version"
 
 Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
 

@@ -8,11 +8,11 @@
 | Alma Linux 9 | Working            | Working       | Working    | TBD  | 15 - 30 mins   | 17/05/2025         |
 
 ```powershell
-.\almalinux.ps1 -Action build -Version 9 -Template almalinux -Provider virtualbox-iso
+.\build.ps1 -Action build -Version 9 -Template almalinux -Provider virtualbox-iso
 ```
 
 ```powershell
-.\almalinux.ps1 -Action build -Version 9 -Template almalinux -Provider vmware-iso
+.\build.ps1 -Action build -Version 9 -Template almalinux -Provider vmware-iso
 ```
 
 ---
@@ -36,13 +36,8 @@
 | Debian 12 | Working            | TBD           | Working    | TBD  |                |                    |
 
 ```powershell
-.\debian.ps1 -Action build -Version 12 -Template debian -Provider virtualbox-iso
+.\build.ps1 -Action build -Version 12 -Template debian -Provider virtualbox-iso
 ```
-
-### Notes
-
-- Platforms getting stuck at boot - `No Kernel Module Found`
-- Fix: Get the Latest `mini.iso` from Debian.
 
 ## Fedora Builds
 
@@ -51,7 +46,7 @@
 | Fedora 40 | Working            | Working       | Working    | TBD  | 10-30 mins     |                    |
 
 ```powershell
-.\fedora.ps1 -Action build -Version 40 -Template fedora -Provider virtualbox-iso
+.\build.ps1 -Action build -Version 40 -Template fedora -Provider virtualbox-iso
 ```
 
 ## OpenSUSE Builds
@@ -61,7 +56,7 @@
 | OpenSUSE 15 | Working            | TBD           | Working    | TBD  | 17 mins        |                    |
 
 ```powershell
-.\opensuse.ps1 -Action build -Version 15 -Template opensuse -Provider virtualbox-iso
+.\build.ps1 -Action build -Version 15 -Template opensuse -Provider virtualbox-iso
 ```
 
 ## Oracle Builds
@@ -72,7 +67,7 @@
 | Oracle 9.4 | Working            | Working       | Working    | Failing | 20 mins        |                    |
 
 ```powershell
-.\oracle.ps1 -Action build -Version 8 -Template oracle -Provider vmware-iso
+.\build.ps1 -Action build -Version 8 -Template oracle -Provider vmware-iso
 ```
 
 ### Oracle Notes
@@ -87,11 +82,11 @@
 | RHEL 8.1 | Working            | TBD           | Working    | Working | 45 mins        |                    |
 
 ```powershell
-.\rhel.ps1 -Action build -Version 7 -Template rhel -Provider vmware-iso
+.\build.ps1 -Action build -Version 7 -Template rhel -Provider vmware-iso
 ```
 
 ```powershell
-.\rhel.ps1 -Action build -Version 7 -Template rhel -Provider virtualbox-iso
+.\build.ps1 -Action build -Version 7 -Template rhel -Provider virtualbox-iso
 ```
 
 ### RHEL ToDos
@@ -117,15 +112,15 @@
 | Ubuntu 24.04 | Working       | Working    | Working | 20 mins        |                    |
 
 ```powershell
-.\ubuntu.ps1 -Action build -Version 22 -Template ubuntu -Provider hyperv-iso
+.\build.ps1 -Action build -Version 22 -Template ubuntu -Provider hyperv-iso
 ```
 
 ```powershell
-.\ubuntu.ps1 -Action build -Version 22 -Template ubuntu -Provider virtualbox-iso
+.\build.ps1 -Action build -Version 22 -Template ubuntu -Provider virtualbox-iso
 ```
 
 ```powershell
-.\ubuntu.ps1 -Action build -Version 22 -Template ubuntu -Provider qemu
+.\build.ps1 -Action build -Version 22 -Template ubuntu -Provider qemu
 ```
 
 ## Windows Builds
@@ -140,17 +135,17 @@
 | Windows 2019 Datacenter | Working            | Working       | Working    | 10 - 20 mins   |                    |
 
 ```powershell
-.\windows-server.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider vmware-iso
+.\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider vmware-iso
 ```
 
 ```powershell
-.\windows-server.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider hyperv-iso -Generation 2
+.\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider hyperv-iso -Generation 2
 ```
 
 ```powershell
-.\windows.ps1 -Action build -Version 11 -Template windows -Provider vmware-iso
+.\build.ps1 -Action build -Version 11 -Template windows -Provider vmware-iso
 ```
 
 ```powershell
-.\windows.ps1 -Action build -Version 11 -Template windows -Provider hyperv-iso -Generation 2
+.\build.ps1 -Action build -Version 11 -Template windows -Provider hyperv-iso -Generation 2
 ```
