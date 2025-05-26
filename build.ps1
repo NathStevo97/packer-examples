@@ -44,7 +44,7 @@ $template_file = "./templates/$Template/$Template.pkr.hcl"
 $startDTM = (Get-Date)
 
 # Variables
-$env:PACKER_LOG_PATH="packerlog-$Template-$Version.txt"
+$env:PACKER_LOG_PATH="./logs/packerlog-$Template-$Version.txt"
 packer init "required_plugins.pkr.hcl"
 
 $machine="$Template - $Version"

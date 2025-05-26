@@ -24,7 +24,7 @@
 | CentOS Stream 9 | Working            | Working       | Working    | TBD  | 10 - 15 mins   | 17/05/2025         |
 
 ```powershell
-.\centos.ps1 -Action build -Version 9 -Template centos -Provider virtualbox-iso
+.\build.ps1 -Action build -Version 9 -Template centos -Provider virtualbox-iso
 ```
 
 ---
