@@ -2,8 +2,8 @@
 # Cache objects
 packer_cache/
 **/packer_cache/*
-./builds/*
-./logs/*
+builds/*
+logs/*
 
 # Crash log
 crash.log

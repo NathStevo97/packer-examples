@@ -44,6 +44,11 @@ $template_file = "./templates/$Template/$Template.pkr.hcl"
 $startDTM = (Get-Date)
 
 # Variables
+$logs_path = ".\logs"
+If(!(test-path -PathType container $logs_path))
+{
+      New-Item -ItemType Directory -Path $logs_path
+}
 $env:PACKER_LOG_PATH="./logs/packerlog-$Template-$Version.txt"
 packer init "required_plugins.pkr.hcl"
 
