@@ -13,6 +13,10 @@ variable "boot_command_hyperv" {
   default = []
 }
 
+variable "boot_command_qemu" {
+  type    = list(string)
+  default = []
+}
 
 variable "cpu" {
   type    = string
@@ -164,6 +168,29 @@ source "hyperv-iso" "almalinux" {
   vm_name               = "${var.name}"
 }
 
+source "qemu" "almalinux" {
+  boot_command     = "${var.boot_command_qemu}"
+  boot_wait        = "${var.boot_wait}"
+  disk_size        = "${var.disk_size}"
+  headless         = var.headless
+  http_directory   = "${var.http_directory}"
+  iso_checksum     = "${var.iso_checksum}"
+  iso_url          = "${var.iso_url}"
+  memory           = "${var.ram}"
+  output_directory = "./builds/${var.name}-qemu"
+  qemuargs = [
+    [ "-cpu", "Nehalem" ], # set to "host" for linux-based packer execution
+    [ "-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
+    [ "-device", "virtio-net,netdev=forward,id=net0"]
+]
+  shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
+  ssh_password     = "${var.ssh_password}"
+  ssh_port         = 22
+  ssh_timeout      = "6h"
+  ssh_username     = "${var.ssh_username}"
+  vm_name          = "${var.name}-qemu"
+}
+
 build {
-  sources = ["source.vmware-iso.almalinux", "source.virtualbox-iso.almalinux", "source.hyperv-iso.almalinux"]
+  sources = ["source.vmware-iso.almalinux", "source.virtualbox-iso.almalinux", "source.hyperv-iso.almalinux", "source.qemu.almalinux"]
 }

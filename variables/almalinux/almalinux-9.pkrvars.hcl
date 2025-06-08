@@ -1,11 +1,12 @@
 boot_wait            = "10s"
 boot_command         = ["e<down><down><end><bs><bs><bs><bs><bs>inst.text rd.live.check=0 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/almalinux/almalinux9-kickstart.cfg<leftCtrlOn>x<leftCtrlOff>"]
-boot_command_hyperv  = ["c  setparams 'kickstart' <enter> linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=AlmaLinux-9-5-x86_64-dvd inst.repo=https://repo.almalinux.org/almalinux/9/BaseOS/x86_64/os/ rd.live.check=0 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/almalinux/almalinux9-kickstart.cfg<enter> initrdefi /images/pxeboot/initrd.img<enter> boot<enter>"]
+boot_command_hyperv  = ["c  setparams 'kickstart' <enter> linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=AlmaLinux-9-6-x86_64-dvd inst.repo=https://repo.almalinux.org/almalinux/9/BaseOS/x86_64/os/ rd.live.check=0 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/almalinux/almalinux9-kickstart.cfg<enter> initrdefi /images/pxeboot/initrd.img<enter> boot<enter>"]
+boot_command_qemu    = ["<tab> inst.text rd.live.check=0 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/almalinux/almalinux9-kickstart.cfg<enter>"]
 cpu                  = "2"
 disk_size            = "70000"
 guest_os_type_vmware = "centos-64"
 guest_os_type_vbox   = "RedHat_64"
-headless             = false
+headless             = true
 http_directory       = "./templates/http/"
 iso_checksum         = "sha256:113521ec7f28aa4ab71ba4e5896719da69a0cc46cf341c4ebbd215877214f661"
 iso_url              = "https://repo.almalinux.org/almalinux/9.6/isos/x86_64/AlmaLinux-9.6-x86_64-boot.iso"

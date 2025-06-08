@@ -110,13 +110,13 @@ source "virtualbox-iso" "centos" {
   ssh_port         = 22
   ssh_timeout      = "${var.ssh_timeout}"
   ssh_username     = "${var.ssh_username}"
-  vboxmanage       = [
+  vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
     ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
     ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
     ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
   ]
-  vm_name          = "${var.vm_name}"
+  vm_name = "${var.vm_name}"
 }
 
 source "vmware-iso" "centos" {
@@ -172,7 +172,7 @@ source "hyperv-iso" "centos" {
 
 
 build {
-  sources = ["source.vmware-iso.centos", "source.virtualbox-iso.centos", "source.hyperv-iso.centos"]
+  sources = ["source.vmware-iso.centos", "source.virtualbox-iso.centos", "source.hyperv-iso.centos", "source.qemu.centos"]
 
   /*   provisioner "shell" {
     execute_command = "echo 'vagrant'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"
