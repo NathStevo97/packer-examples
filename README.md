@@ -21,7 +21,7 @@
 
 | OS              | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
 |-----------------|--------------------|---------------|------------|------|----------------|--------------------|
-| CentOS Stream 9 | Working            | Working       | Working    | TBD  | 10 - 15 mins   | 17/05/2025         |
+| CentOS Stream 9 | Working            | Working       | Working    | Working  | 10 - 15 mins   | 17/05/2025         |
 
 ```powershell
 .\build.ps1 -Action build -Version 9 -Template centos -Provider virtualbox-iso
