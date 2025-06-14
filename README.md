@@ -2,10 +2,10 @@
 
 ## Alma Linux Builds
 
-| OS           | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
-|--------------|--------------------|---------------|------------|------|----------------|--------------------|
-| Alma Linux 8 | Working            | Working       | Working    | TBD  | 15 - 30 mins   | 17/05/2025         |
-| Alma Linux 9 | Working            | Working       | Working    | TBD  | 15 - 30 mins   | 17/05/2025         |
+| OS           | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
+|--------------|--------------------|---------------|------------|---------|----------------|--------------------|
+| Alma Linux 8 | Working            | Working       | Working    | Working | 15 - 30 mins   | 08/06/2025         |
+| Alma Linux 9 | Working            | Working       | Working    | Working | 15 - 30 mins   | 08/06/2025         |
 
 ```powershell
 .\build.ps1 -Action build -Version 9 -Template almalinux -Provider virtualbox-iso
