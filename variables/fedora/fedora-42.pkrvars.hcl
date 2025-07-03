@@ -1,5 +1,6 @@
-boot_command         = ["<wait><up>e<wait><down><down><end> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/ks-42.cfg<F10><wait>"]
-boot_command_hyperv  = ["c  setparams 'kickstart' <enter> linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-42-x86_64-dvd inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/ks-42.cfg<enter> initrdefi /images/pxeboot/initrd.img inst.repo=https://gb.mirrors.cicku.me/fedora/linux/releases/42/Server/x86_64/os/<enter> boot<enter>"]
+boot_command = ["<wait><up>e<wait><down><down><end> inst.text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/ks-42.cfg<F10><wait>"]
+boot_command_hyperv = [
+"c  setparams 'kickstart' <enter> linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=Fedora-42-x86_64-dvd inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/fedora/ks-42.cfg<enter> initrdefi /images/pxeboot/initrd.img inst.repo=https://gb.mirrors.cicku.me/fedora/linux/releases/42/Server/x86_64/os/<enter> boot<enter>"]
 boot_wait            = "5s"
 disk_size            = "40960"
 headless             = false
