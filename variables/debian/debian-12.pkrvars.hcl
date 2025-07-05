@@ -1,5 +1,21 @@
-boot_wait            = "10s"
-boot_command         = ["e<down><down><down><end> ", "auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/12/preseed.cfg<f10>"]
+boot_wait           = "10s"
+boot_command        = ["e<down><down><down><end> ", "auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/12/preseed.cfg<wait1m><f10>"]
+boot_command_hyperv = ["e<down><down><down><end> ", "auto=true priority=critical url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/12/preseed.cfg <wait1m><f10>"]
+boot_command_qemu = [
+  "<esc><wait>",
+  "auto <wait>",
+  "console-keymaps-at/keymap=us <wait>",
+  "console-setup/ask_detect=false <wait>",
+  "debconf/frontend=noninteractive <wait>",
+  "debian-installer=en_US <wait>",
+  "fb=false <wait>",
+  "install <wait>",
+  "kbd-chooser/method=us <wait>",
+  "keyboard-configuration/xkb-keymap=us <wait>",
+  "locale=en_US <wait>",
+  "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/debian/12/preseed.cfg <wait>",
+  "<enter><wait>"
+]
 cpu                  = "4"
 disk_size            = "70000"
 guest_os_type_vmware = "debian-64"
@@ -12,3 +28,5 @@ name                 = "debian-12"
 ram                  = "4096"
 ssh_password         = "packer"
 ssh_username         = "packer"
+switch_name          = "Default Switch"
+vlan_id              = ""

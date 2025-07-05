@@ -31,13 +31,15 @@
 
 ## Debian Builds
 
-| OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
-|-----------|--------------------|---------------|------------|------|----------------|--------------------|
-| Debian 12 | Working            | TBD           | Working    | TBD  |                | 03/07/2025         |
+| OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
+|-----------|--------------------|---------------|------------|---------|----------------|--------------------|
+| Debian 12 | Working            | Working       | Working    | Working | 15-30 mins     | 05/07/2025         |
 
 ```powershell
 .\build.ps1 -Action build -Version 12 -Template debian -Provider virtualbox-iso
 ```
+
+---
 
 ## Fedora Builds
 
@@ -49,6 +51,8 @@
 .\build.ps1 -Action build -Version 40 -Template fedora -Provider virtualbox-iso
 ```
 
+---
+
 ## OpenSUSE Builds
 
 | OS          | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
@@ -58,6 +62,8 @@
 ```powershell
 .\build.ps1 -Action build -Version 15 -Template opensuse -Provider virtualbox-iso
 ```
+
+---
 
 ## Oracle Builds
 
@@ -73,6 +79,8 @@
 ### Oracle Notes
 
 - Oracle 9.4 failing on QEMU due to known lack of support - [GH Issue](https://github.com/hashicorp/packer-plugin-qemu/issues/76)
+
+---
 
 ## RHEL Builds
 
@@ -94,6 +102,8 @@
 - RHEL 7 and RHEL 8 Needs ISO predownloaded - want to see if I can do something with the boot iso rather than full dvd(?)
 - Add note about downloading ISOs from RHEL
 
+---
+
 ## RockyLinux Builds
 
 | OS              | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
@@ -103,6 +113,8 @@
 ```powershell
 .\rockylinux.ps1 -Action build -Version 8 -Template rockylinux -Provider virtualbox-iso
 ```
+
+---
 
 ## Ubuntu Builds
 
@@ -122,6 +134,8 @@
 ```powershell
 .\build.ps1 -Action build -Version 22 -Template ubuntu -Provider qemu
 ```
+
+---
 
 ## Windows Builds
 
