@@ -135,8 +135,7 @@ source "virtualbox-iso" "fedora" {
 }
 
 source "hyperv-iso" "fedora" {
-  #boot_command          = "${var.boot_command_hyperv}"
-  boot_command                     = "${var.boot_command}"
+  boot_command                     = "${var.boot_command_hyperv}"
   boot_wait                        = "${var.boot_wait}"
   communicator                     = "ssh"
   cpus                             = "${var.cpu}"

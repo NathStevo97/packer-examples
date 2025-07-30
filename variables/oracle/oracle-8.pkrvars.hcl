@@ -1,4 +1,4 @@
-boot_command      = ["<tab><wait1m> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg net.ifnames=0 biosdevname=0 <enter><wait>"]
+boot_command      = ["<tab><wait1m> inst.text rd.live.check=0 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg net.ifnames=0 biosdevname=0 <enter><wait>"]
 boot_command_hv   = ["c  setparams 'kickstart' <enter> linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=OL-8-9-0-BaseOS-x86_64 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg<enter> initrdefi /images/pxeboot/initrd.img<enter> boot<enter>"]
 boot_wait         = "5s"
 box_basename      = "oracle-8.9"
@@ -6,7 +6,7 @@ build_directory   = "./builds"
 cpus              = "2"
 disk_size         = "65536"
 headless          = false
-http_directory    = "./templates/http/oracle/8"
+http_directory    = "./templates/http/oracle"
 hyperv_generation = "1"
 iso_checksum      = "ce90b598be2e9889fa880128fc53b3e9c1f95d9e31859759e5e180602312c181"
 iso_path          = "../../ISOs/Oracle/OracleLinux-R8-U9-x86_64-dvd.iso"

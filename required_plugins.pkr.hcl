@@ -13,7 +13,7 @@ packer {
       source  = "github.com/hashicorp/hyperv"
     }
     qemu = {
-      version = ">= 1.1.1"
+      version = ">= 1.1.3"
       source  = "github.com/hashicorp/qemu"
     }
     ansible = {

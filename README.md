@@ -45,11 +45,13 @@
 
 | OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
 |-----------|--------------------|---------------|------------|------|----------------|--------------------|
-| Fedora 42 | Working            | Working       | Working    | TBD  | 10-30 mins     |                    |
+| Fedora 42 | Working            | Failing       | Failing    | TBD  | 10-30 mins     | 27/7/25            |
 
 ```powershell
-.\build.ps1 -Action build -Version 40 -Template fedora -Provider virtualbox-iso
+.\build.ps1 -Action build -Version 42 -Template fedora -Provider virtualbox-iso
 ```
+
+- Need to update boot_command for hyper-v and virtualbox boot command usage
 
 ---
 
@@ -57,7 +59,7 @@
 
 | OS          | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
 |-------------|--------------------|---------------|------------|------|----------------|--------------------|
-| OpenSUSE 15 | Working            | TBD           | Working    | TBD  | 17 mins        |                    |
+| OpenSUSE 15 | Working            | TBD           | Working    | TBD  | 17 mins        | 27/07/2025         |
 
 ```powershell
 .\build.ps1 -Action build -Version 15 -Template opensuse -Provider virtualbox-iso
@@ -69,7 +71,7 @@
 
 | OS         | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
 |------------|--------------------|---------------|------------|---------|----------------|--------------------|
-| Oracle 8.6 | Working            | Working       | Working    | Working |                |                    |
+| Oracle 8.6 | Working            | Working       | Working    | Working |                | 27/07/2025         |
 | Oracle 9.4 | Working            | Working       | Working    | Failing | 20 mins        |                    |
 
 ```powershell
