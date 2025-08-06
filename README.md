@@ -72,7 +72,7 @@
 | OS         | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
 |------------|--------------------|---------------|------------|---------|----------------|--------------------|
 | Oracle 8.6 | Working            | Working       | Working    | Working |                | 27/07/2025         |
-| Oracle 9.4 | Working            | Working       | Working    | Failing | 20 mins        |                    |
+| Oracle 9.4 | Working            | Failing       | Working    | Failing | 20 mins        |   06/08/2025                |
 
 ```powershell
 .\build.ps1 -Action build -Version 8 -Template oracle -Provider vmware-iso
@@ -81,6 +81,7 @@
 ### Oracle Notes
 
 - Oracle 9.4 failing on QEMU due to known lack of support - [GH Issue](https://github.com/hashicorp/packer-plugin-qemu/issues/76)
+- Boot command needs updating for Oracle 9
 
 ---
 
