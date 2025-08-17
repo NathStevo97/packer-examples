@@ -72,7 +72,7 @@
 | OS         | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
 |------------|--------------------|---------------|------------|---------|----------------|--------------------|
 | Oracle 8.6 | Working            | Working       | Working    | Working |                | 27/07/2025         |
-| Oracle 9.4 | Working            | Failing       | Working    | Failing | 20 mins        |   06/08/2025                |
+| Oracle 9.4 | Working            | Failing       | Working    | Failing | 20 mins        | 06/08/2025         |
 
 ```powershell
 .\build.ps1 -Action build -Version 8 -Template oracle -Provider vmware-iso
@@ -111,10 +111,10 @@
 
 | OS              | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
 |-----------------|--------------------|---------------|------------|------|----------------|--------------------|
-| Rocky Linux 8.8 | Working            | Working       | Working    | TBD  | 15-25 mins     |                    |
+| Rocky Linux 8.8 | Working            | Working       | Working    | TBD  | 15-25 mins     | 17/08/2025         |
 
 ```powershell
-.\rockylinux.ps1 -Action build -Version 8 -Template rockylinux -Provider virtualbox-iso
+.\build.ps1 -Action build -Version 8 -Template rockylinux -Provider virtualbox-iso
 ```
 
 ---
