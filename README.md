@@ -87,17 +87,18 @@
 
 ## RHEL Builds
 
-| OS       | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
-|----------|--------------------|---------------|------------|---------|----------------|--------------------|
-| RHEL 7.9 | Working            | TBD           | Working    | Working |                |                    |
-| RHEL 8.1 | Working            | TBD           | Working    | Working | 45 mins        |                    |
+| OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
+|-----------|--------------------|---------------|------------|---------|----------------|--------------------|
+| RHEL 8.10 | Working            | TBD           | Working    | Working | 45 mins        |                    |
+| RHEL 9.6  | TBD                | TBD           | TBD        | TBD     | 45 mins        |                    |
+| RHEL 10.0 | TBD                | TBD           | TBD        | TBD     | 45 mins        |                    |
 
 ```powershell
-.\build.ps1 -Action build -Version 7 -Template rhel -Provider vmware-iso
+.\build.ps1 -Action build -Version 8 -Template rhel -Provider vmware-iso
 ```
 
 ```powershell
-.\build.ps1 -Action build -Version 7 -Template rhel -Provider virtualbox-iso
+.\build.ps1 -Action build -Version 8 -Template rhel -Provider virtualbox-iso
 ```
 
 ### RHEL ToDos
@@ -112,6 +113,14 @@
 | OS              | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
 |-----------------|--------------------|---------------|------------|------|----------------|--------------------|
 | Rocky Linux 8.8 | Working            | Working       | Working    | TBD  | 15-25 mins     | 17/08/2025         |
+
+```powershell
+.\build.ps1 -Action build -Version 8 -Template rockylinux -Provider vmware-iso
+```
+
+```powershell
+.\build.ps1 -Action build -Version 8 -Template rockylinux -Provider hyperv-iso
+```
 
 ```powershell
 .\build.ps1 -Action build -Version 8 -Template rockylinux -Provider virtualbox-iso

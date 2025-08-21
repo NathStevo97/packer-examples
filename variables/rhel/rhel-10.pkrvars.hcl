@@ -1,0 +1,21 @@
+boot_command             = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg<enter><wait>"]
+boot_wait                = "45s"
+boot_wait_virtualbox     = "45s"
+box_basename             = "rhel-10.0"
+build_directory          = "./builds"
+numvcpus                 = "2"
+disk_size                = "65536"
+guest_os_type_virtualbox = "RedHat_64"
+guest_os_type_vmware     = "rhel7-64"
+headless                 = false
+http_directory           = "./templates/http/rhel/10"
+hyperv_generation        = "1"
+hyperv_switch            = "default"
+iso_checksum             = "edce2dd6f8e1d1b2ff0b204f89b0659bc9e320d175beb7caad60712957a19608"
+iso_path                 = "../../ISOs/RHEL/rhel-10.0-x86_64-dvd.iso"
+iso_url                  = "https://archive.org/download/rhel-10.0-x86_64-resources/rhel-10.0-x86_64-dvd.iso"
+memsize                  = 2048
+ssh_password             = "vagrant"
+ssh_timeout              = "10000s"
+ssh_username             = "vagrant"
+vm_name                  = "rhel-10.0-x86_64"

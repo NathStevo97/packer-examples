@@ -1,21 +1,21 @@
-boot_command             = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg<enter><wait>"]
+boot_command             = ["<tab> inst.text rd.live.check=0 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg<enter><wait>"]
 boot_wait                = "45s"
 boot_wait_virtualbox     = "45s"
-box_basename             = "rhel-8.1"
+box_basename             = "rhel-8.10"
 build_directory          = "./builds"
 numvcpus                 = "2"
 disk_size                = "65536"
 guest_os_type_virtualbox = "RedHat_64"
 guest_os_type_vmware     = "rhel7-64"
 headless                 = false
-http_directory           = "./templates/http/rhel/8"
+http_directory           = "./templates/http/rhel"
 hyperv_generation        = "1"
 hyperv_switch            = "default"
-iso_checksum             = "c4fd0632ce15a7d56e1d174176456943bd48306f9d35bcecbcb0a1dc49088e23"
-iso_path                 = "../../ISOs/RHEL/rhel-8.9-x86_64-dvd.iso"
-iso_url                  = "https://archive.org/download/rhel-8.1-x86_64-dvd/rhel-8.1-x86_64-dvd.iso"
+iso_checksum             = "9b3c8e31bc2cdd2de9cf96abb3726347f5840ff3b176270647b3e66639af291b"
+iso_path                 = "../ISOs/RHEL/rhel-8.10-x86_64-dvd.iso"
+iso_url                  = "https://archive.org/download/rhel-8.10-x86_64-dvd/rhel-8.10-x86_64-dvd.iso"
 memsize                  = 2048
 ssh_password             = "vagrant"
 ssh_timeout              = "10000s"
 ssh_username             = "vagrant"
-vm_name                  = "rhel-8.9-x86_64"
+vm_name                  = "rhel-8.10-x86_64"

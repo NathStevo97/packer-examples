@@ -1,0 +1,21 @@
+boot_command             = ["<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks-8.cfg<enter><wait>"]
+boot_wait                = "45s"
+boot_wait_virtualbox     = "45s"
+box_basename             = "rhel-9.6"
+build_directory          = "./builds"
+numvcpus                 = "2"
+disk_size                = "65536"
+guest_os_type_virtualbox = "RedHat_64"
+guest_os_type_vmware     = "rhel7-64"
+headless                 = false
+http_directory           = "./templates/http/rhel/9"
+hyperv_generation        = "1"
+hyperv_switch            = "default"
+iso_checksum             = "febcc1359fd68faceff82d7eed8d21016e022a17e9c74e0e3f9dc3a78816b2bb"
+iso_path                 = "../../ISOs/RHEL/rhel-9.6-x86_64-dvd.iso"
+iso_url                  = "https://archive.org/download/rhel-9.6-x86_64-resources/rhel-9.6-x86_64-dvd.iso"
+memsize                  = 2048
+ssh_password             = "vagrant"
+ssh_timeout              = "10000s"
+ssh_username             = "vagrant"
+vm_name                  = "rhel-9.6-x86_64"

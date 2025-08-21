@@ -177,6 +177,6 @@ build {
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
-    script          = "./Files/scripts/cleanup.sh"
+    script          = "./templates/files/rhel/scripts/cleanup.sh"
   }
 }
