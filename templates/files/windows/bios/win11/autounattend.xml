@@ -13,11 +13,15 @@
         </component>
         <component name="Microsoft-Windows-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <DiskConfiguration>
-                <WillShowUI>OnError</WillShowUI>
                 <Disk wcm:action="add">
                     <CreatePartitions>
                         <CreatePartition wcm:action="add">
                             <Order>1</Order>
+                            <Size>500</Size>
+                            <Type>Primary</Type>
+                        </CreatePartition>
+                        <CreatePartition wcm:action="add">
+                            <Order>2</Order>
                             <Type>Primary</Type>
                             <Extend>true</Extend>
                         </CreatePartition>
@@ -25,16 +29,23 @@
                     <ModifyPartitions>
                         <ModifyPartition wcm:action="add">
                             <Active>true</Active>
-                            <Extend>false</Extend>
                             <Format>NTFS</Format>
-                            <Letter>C</Letter>
+                            <Label>systemofadown</Label>
                             <Order>1</Order>
                             <PartitionID>1</PartitionID>
+                        </ModifyPartition>
+                        <ModifyPartition wcm:action="add">
+                            <Format>NTFS</Format>
+                            <Label>SeaDrive</Label>
+                            <Letter>C</Letter>
+                            <Order>2</Order>
+                            <PartitionID>2</PartitionID>
                         </ModifyPartition>
                     </ModifyPartitions>
                     <DiskID>0</DiskID>
                     <WillWipeDisk>true</WillWipeDisk>
                 </Disk>
+                <WillShowUI>OnError</WillShowUI>
             </DiskConfiguration>
             <ImageInstall>
                 <OSImage>

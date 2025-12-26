@@ -1,4 +1,4 @@
-Function Cleanup { 
+Function Cleanup {
 
     Clear-Host
 

@@ -9,6 +9,8 @@ param(
 
     [string]$Version = "",
 
+    [string]$Type = "",
+
     [ValidateSet("vmware-iso", "virtualbox-iso", "hyperv-iso", "qemu")]
     [string]$Provider = ""
 )
@@ -39,6 +41,14 @@ if ($Provider -eq "") {
 # Define other variables
 $var_file = "./variables/$Template/$Template-$Version.pkrvars.hcl"
 $template_file = "./templates/$Template/$Template.pkr.hcl"
+
+# If Type is specified, adjust var_file path
+if ($Type -ne "") {
+  $var_file = "./variables/$Template/$Template-$Version-$Type.pkrvars.hcl"
+}
+else {
+  $var_file = "./variables/$Template/$Template-$Version.pkrvars.hcl"
+}
 
 # Get Start Time
 $startDTM = (Get-Date)

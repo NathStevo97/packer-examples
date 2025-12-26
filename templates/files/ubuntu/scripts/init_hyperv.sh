@@ -39,6 +39,3 @@ apt-get -y install linux-image-virtual linux-tools-virtual linux-cloud-tools-vir
 systemctl enable hv-fcopy-daemon
 systemctl enable hv-kvp-daemon
 systemctl enable hv-vss-daemon
-
-
-

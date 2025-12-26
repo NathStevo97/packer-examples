@@ -19,4 +19,3 @@ netsh advfirewall firewall add rule name="Windows Remote Managment (HTTP-In)" di
 sc.exe config winrm start= auto
 
 exit 0
-

@@ -45,7 +45,7 @@
 
 | OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu | Avg Build Time | Date Last Reviewed |
 |-----------|--------------------|---------------|------------|------|----------------|--------------------|
-| Fedora 42 | Working            | Failing       | Failing    | TBD  | 10-30 mins     | 27/7/25            |
+| Fedora 42 | Working            | Failing       | Failing    | TBD  | 10-30 mins     | 27/7/2025          |
 
 ```powershell
 .\build.ps1 -Action build -Version 42 -Template fedora -Provider virtualbox-iso
@@ -89,7 +89,7 @@
 
 | OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
 |-----------|--------------------|---------------|------------|---------|----------------|--------------------|
-| RHEL 8.10 | Working            | TBD           | Working    | Working | 45 mins        |                    |
+| RHEL 8.10 | Working            | TBD           | Working    | Working | 45 mins        | 22/08/2025         |
 | RHEL 9.6  | TBD                | TBD           | TBD        | TBD     | 45 mins        |                    |
 | RHEL 10.0 | TBD                | TBD           | TBD        | TBD     | 45 mins        |                    |
 
@@ -100,11 +100,6 @@
 ```powershell
 .\build.ps1 -Action build -Version 8 -Template rhel -Provider virtualbox-iso
 ```
-
-### RHEL ToDos
-
-- RHEL 7 and RHEL 8 Needs ISO predownloaded - want to see if I can do something with the boot iso rather than full dvd(?)
-- Add note about downloading ISOs from RHEL
 
 ---
 
@@ -132,8 +127,8 @@
 
 | OS           | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
 |--------------|---------------|------------|---------|----------------|--------------------|
-| Ubuntu 22.04 | Working       | Working    | Working | 20 mins        |                    |
-| Ubuntu 24.04 | Working       | Working    | Working | 20 mins        |                    |
+| Ubuntu 22.04 | Testing       | Testing    | Testing | 20 mins        |                    |
+| Ubuntu 24.04 | Testing       | Testing    | Testing | 20 mins        |                    |
 
 ```powershell
 .\build.ps1 -Action build -Version 22 -Template ubuntu -Provider hyperv-iso
@@ -153,12 +148,12 @@
 
 | OS                      | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Avg Build Time | Date Last Reviewed |
 |-------------------------|--------------------|---------------|------------|----------------|--------------------|
-| Windows 10              | Working            | Working       | Working    | 45mins - 1hr   |                    |
-| Windows 11              | Working            | Working       | Working    | 12 - 45 mins   |                    |
-| Windows 2022 Standard   | Working            | Working       | Working    | 10 - 20 mins   |                    |
-| Windows 2022 Datacenter | Working            | Working       | Working    | 10 - 20 mins   |                    |
-| Windows 2019 Standard   | Working            | Working       | Working    | 10 - 20 mins   |                    |
-| Windows 2019 Datacenter | Working            | Working       | Working    | 10 - 20 mins   |                    |
+| Windows 10              | Testing            | Working       | Testing    | 45mins - 1hr   | 26/12/2025         |
+| Windows 11              | Testing            | Working       | Testing    | 12 - 45 mins   |                    |
+| Windows 2022 Standard   | Testing            | Working       | Testing    | 10 - 20 mins   |                    |
+| Windows 2022 Datacenter | Testing            | Working       | Testing    | 10 - 20 mins   |                    |
+| Windows 2019 Standard   | Testing            | Working       | Testing    | 10 - 20 mins   |                    |
+| Windows 2019 Datacenter | Testing            | Working       | Testing    | 10 - 20 mins   |                    |
 
 ```powershell
 .\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider vmware-iso

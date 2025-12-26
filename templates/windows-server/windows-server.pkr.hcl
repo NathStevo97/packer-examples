@@ -41,11 +41,6 @@ variable "headless" {
   default = false
 }
 
-variable "http_directory" {
-  type    = string
-  default = ""
-}
-
 variable "iso_checksum" {
   type    = string
   default = ""
@@ -128,7 +123,6 @@ source "vmware-iso" "windows-server" {
   floppy_files     = "${var.floppy_files}"
   guest_os_type    = "${var.guest_os_type_vmware}"
   headless         = var.headless
-  http_directory   = "${var.http_directory}"
   iso_checksum     = "${var.iso_checksum}"
   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
   memory           = "${var.memsize}"
@@ -147,7 +141,7 @@ source "vmware-iso" "windows-server" {
 #################################################################
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
-source "hyperv-iso" "hv2-windows-server" {
+source "hyperv-iso" "windows-server" {
   boot_command          = "${var.boot_command}"
   boot_wait             = "${var.boot_wait_hyperv}"
   communicator          = "winrm"
@@ -158,7 +152,6 @@ source "hyperv-iso" "hv2-windows-server" {
   generation            = 2
   guest_additions_mode  = "disable"
   headless              = var.headless
-  http_directory        = "${var.http_directory}"
   iso_checksum          = "${var.iso_checksum}"
   iso_urls              = ["${var.iso_path}", "${var.iso_url}"]
   memory                = "${var.memsize}"
@@ -188,7 +181,6 @@ source "virtualbox-iso" "windows-server" {
   guest_os_type        = "${var.guest_os_type_virtualbox}"
   hard_drive_interface = "sata"
   headless             = var.headless
-  http_directory       = "${var.http_directory}"
   iso_checksum         = "${var.iso_checksum}"
   iso_interface        = "sata"
   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
@@ -211,7 +203,7 @@ source "virtualbox-iso" "windows-server" {
 #################################################################
 
 build {
-  sources = ["source.vmware-iso.windows-server", "source.hyperv-iso.hv2-windows-server", "source.virtualbox-iso.windows-server"]
+  sources = ["source.vmware-iso.windows-server", "source.hyperv-iso.windows-server", "source.virtualbox-iso.windows-server"]
 
   /*
   provisioner "powershell" {
@@ -229,8 +221,8 @@ build {
 
   provisioner "windows-restart" {
     restart_timeout = "30m"
-  }*/
-  /*
+  }
+
   provisioner "powershell" {
     elevated_password = "packer"
     elevated_user     = "Administrator"
@@ -247,39 +239,9 @@ build {
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
+
   provisioner "powershell" {
-    elevated_password = "packer"
-    elevated_user     = "Administrator"
-    scripts           = ["./Files/scripts/illumio_install.ps1"]
+    scripts = ["scripts/cleanup.ps1"]
   }
-  provisioner "powershell" {
-    elevated_password = "packer"
-    elevated_user     = "Administrator"
-    scripts           = ["./Files/scripts/qualys_install.ps1"]
-  }
-  provisioner "powershell" {
-    elevated_password = "packer"
-    elevated_user     = "Administrator"
-    scripts           = ["./Files/scripts/mcafee_install.ps1"]
-  }
-  provisioner "windows-restart" {
-    restart_timeout = "30m"
-  }
-  provisioner "powershell" {
-    elevated_password = "packer"
-    elevated_user     = "Administrator"
-    scripts           = ["./Files/scripts/sccm_setup.ps1"]
-  }
-  provisioner "windows-restart" {
-    restart_timeout = "30m"
-  }
-  provisioner "powershell" {
-    elevated_password = "packer"
-    elevated_user     = "Administrator"
-    scripts           = ["./Files/scripts/sec_hardening_setup.ps1"]
-  }
-  #provisioner "powershell" {
-  #  scripts = ["scripts/cleanup.ps1"]
-  #}
   */
 }

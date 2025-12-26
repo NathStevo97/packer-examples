@@ -125,7 +125,7 @@ source "virtualbox-iso" "windows" {
   guest_os_type        = var.guest_os_type_virtualbox
   headless             = var.headless
   iso_checksum         = var.iso_checksum
-  iso_urls             = [var.iso_url, var.iso_path]
+  iso_urls         = [var.iso_path, var.iso_url]
   output_directory     = "${var.output_directory}-vbox"
   shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout     = "30m"
@@ -153,7 +153,7 @@ source "vmware-iso" "windows" {
   guest_os_type    = var.guest_os_type_vmware
   headless         = var.headless
   iso_checksum     = var.iso_checksum
-  iso_urls         = [var.iso_url, var.iso_path]
+  iso_urls         = [var.iso_path, var.iso_url]
   memory           = var.memsize
   output_directory = "${var.output_directory}-vmware"
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
@@ -167,7 +167,7 @@ source "vmware-iso" "windows" {
   winrm_username   = var.winrm_username
 }
 
-source "hyperv-iso" "hv-windows" {
+source "hyperv-iso" "windows" {
   boot_command          = var.boot_command
   boot_wait             = var.boot_wait_hyperv
   communicator          = "winrm"
@@ -179,15 +179,15 @@ source "hyperv-iso" "hv-windows" {
   guest_additions_mode  = "disable"
   headless              = var.headless
   iso_checksum          = var.iso_checksum
-  iso_urls              = [var.iso_url, var.iso_path]
+  iso_urls         = [var.iso_path, var.iso_url]
   memory                = var.memsize
-  output_directory      = "${var.output_directory}-hv2"
+  output_directory      = "${var.output_directory}-hv"
   secondary_iso_images  = [var.secondary_iso_images]
   shutdown_timeout      = "2h"
   skip_export           = true
   switch_name           = "Default Switch"
   temp_path             = "."
-  vm_name               = "${var.vm_name}-hv2"
+  vm_name               = "${var.vm_name}-hv"
   winrm_insecure        = true
   winrm_password        = var.winrm_password
   winrm_timeout         = var.winrm_timeout
@@ -196,7 +196,7 @@ source "hyperv-iso" "hv-windows" {
 }
 
 build {
-  sources = ["source.virtualbox-iso.windows", "source.vmware-iso.windows", "source.hyperv-iso.hv2-windows"]
+  sources = ["source.virtualbox-iso.windows", "source.vmware-iso.windows", "source.hyperv-iso.windows"]
 
   /* provisioner "powershell" {
     only         = ["vmware-iso"]
@@ -237,6 +237,8 @@ build {
   provisioner "powershell" {
     pause_before = "1m0s"
     scripts      = ["scripts/cleanup.ps1"]
-  } */
+  }
+
+  */
 
 }

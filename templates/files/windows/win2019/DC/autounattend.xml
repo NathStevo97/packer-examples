@@ -38,7 +38,7 @@
                         </ModifyPartition>
                         <ModifyPartition wcm:action="add">
                             <Format>NTFS</Format>
-                            <Label>Windows 2022</Label>
+                            <Label>Windows 2019</Label>
                             <Letter>C</Letter>
                             <Order>2</Order>
                             <PartitionID>2</PartitionID>
@@ -55,7 +55,7 @@
                     <!-- Get-WindowsImage -ImagePath D:\sources\install.wim -->
                         <MetaData wcm:action="add">
                             <Key>/IMAGE/INDEX </Key>
-                            <Value>2</Value>
+                            <Value>4</Value>
                         </MetaData>
                     </InstallFrom>
                     <InstallTo>
@@ -89,7 +89,7 @@
         </component>
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
         <!-- https://docs.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/microsoft-windows-shell-setup -->
-            <ComputerName>packer-win2022</ComputerName>
+            <ComputerName>packer-win2019</ComputerName>
             <TimeZone>Romance Standard Time</TimeZone>
         </component>
         <component xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Microsoft-Windows-ServerManager-SvrMgrNc" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
