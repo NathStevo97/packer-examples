@@ -148,12 +148,12 @@
 
 | OS                      | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Avg Build Time | Date Last Reviewed |
 |-------------------------|--------------------|---------------|------------|----------------|--------------------|
-| Windows 10              | Testing            | Working       | Testing    | 45mins - 1hr   | 26/12/2025         |
-| Windows 11              | Testing            | Working       | Testing    | 12 - 45 mins   |                    |
-| Windows 2022 Standard   | Testing            | Working       | Testing    | 10 - 20 mins   |                    |
-| Windows 2022 Datacenter | Testing            | Working       | Testing    | 10 - 20 mins   |                    |
-| Windows 2019 Standard   | Testing            | Working       | Testing    | 10 - 20 mins   |                    |
-| Windows 2019 Datacenter | Testing            | Working       | Testing    | 10 - 20 mins   |                    |
+| Windows 10              | Failing            | Working       | Failing    | 45mins - 1hr   | 26/12/2025         |
+| Windows 11              | Failing            | Working       | Failing    | 12 - 45 mins   | 26/12/2025         |
+| Windows 2022 Standard   | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
+| Windows 2022 Datacenter | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
+| Windows 2019 Standard   | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
+| Windows 2019 Datacenter | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
 
 ```powershell
 .\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider vmware-iso
@@ -170,3 +170,7 @@
 ```powershell
 .\build.ps1 -Action build -Version 11 -Template windows -Provider hyperv-iso -Generation 2
 ```
+
+## Windows Notes
+
+- Windows 10 and 11 failing on VMware (Server builds incl.) and Virtualbox due to DiskConfiguration in autounattend, need to investigate

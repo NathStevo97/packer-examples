@@ -120,6 +120,7 @@ source "vmware-iso" "windows-server" {
   cpus             = "${var.numvcpus}"
   disk_size        = "${var.disk_size}"
   disk_type_id     = "0"
+  firmware         = "efi"
   floppy_files     = "${var.floppy_files}"
   guest_os_type    = "${var.guest_os_type_vmware}"
   headless         = var.headless
