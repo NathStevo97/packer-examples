@@ -16,6 +16,11 @@ variable "boot_wait_hyperv" {
   default = ""
 }
 
+variable "cd_files" {
+  type    = list(string)
+  default = []
+}
+
 variable "disk_size" {
   type    = string
   default = ""
@@ -118,6 +123,7 @@ variable "winrm_username" {
 
 source "virtualbox-iso" "windows" {
   boot_wait            = var.boot_wait
+  cd_files             = var.cd_files
   communicator         = "winrm"
   disk_size            = var.disk_size
   floppy_files         = var.floppy_files
@@ -125,7 +131,7 @@ source "virtualbox-iso" "windows" {
   guest_os_type        = var.guest_os_type_virtualbox
   headless             = var.headless
   iso_checksum         = var.iso_checksum
-  iso_urls         = [var.iso_path, var.iso_url]
+  iso_urls             = [var.iso_path, var.iso_url]
   output_directory     = "${var.output_directory}-vbox"
   shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout     = "30m"
@@ -145,6 +151,7 @@ source "virtualbox-iso" "windows" {
 
 source "vmware-iso" "windows" {
   boot_wait        = var.boot_wait
+  cd_files         = var.cd_files
   communicator     = "winrm"
   cpus             = var.numvcpus
   disk_size        = var.disk_size
@@ -170,6 +177,7 @@ source "vmware-iso" "windows" {
 source "hyperv-iso" "windows" {
   boot_command          = var.boot_command
   boot_wait             = var.boot_wait_hyperv
+  cd_files              = var.cd_files
   communicator          = "winrm"
   cpus                  = var.numvcpus
   disk_size             = var.disk_size
@@ -179,7 +187,7 @@ source "hyperv-iso" "windows" {
   guest_additions_mode  = "disable"
   headless              = var.headless
   iso_checksum          = var.iso_checksum
-  iso_urls         = [var.iso_path, var.iso_url]
+  iso_urls              = [var.iso_path, var.iso_url]
   memory                = var.memsize
   output_directory      = "${var.output_directory}-hv"
   secondary_iso_images  = [var.secondary_iso_images]

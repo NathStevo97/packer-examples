@@ -179,10 +179,10 @@ source "qemu" "almalinux" {
   memory           = "${var.ram}"
   output_directory = "./builds/${var.name}-qemu"
   qemuargs = [
-    [ "-cpu", "Nehalem" ], # set to "host" for linux-based packer execution
-    [ "-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
-    [ "-device", "virtio-net,netdev=forward,id=net0"]
-]
+    ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
+    ["-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
+    ["-device", "virtio-net,netdev=forward,id=net0"]
+  ]
   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22

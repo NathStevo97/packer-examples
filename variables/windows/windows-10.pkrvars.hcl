@@ -1,8 +1,9 @@
 boot_command             = ["<tab><wait><enter><wait>", "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
 boot_wait                = "10s"
 boot_wait_hyperv         = "2m"
+cd_files                 = ["./templates/files/windows/bios/win10/uefi/autounattend.xml"]
 disk_size                = "61440"
-floppy_files             = ["./templates/files/windows/bios/win10/uefi/autounattend.xml"]
+floppy_files             = []
 guest_os_type_virtualbox = "Windows10_64"
 guest_os_type_vmware     = "windows9-64"
 headless                 = false

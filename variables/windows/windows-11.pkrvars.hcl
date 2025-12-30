@@ -1,8 +1,9 @@
 boot_command             = ["<tab><wait><enter><wait>", "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
 boot_wait                = "2m"
 boot_wait_hyperv         = "120s"
+cd_files                 = ["./templates/files/windows/bios/win11/uefi/autounattend.xml", "./templates/files/windows/scripts/configure-winrm.ps1"]
 disk_size                = "61440"
-floppy_files             = ["./templates/files/windows/bios/win11/uefi/autounattend.xml", "./templates/files/windows/scripts/configure-winrm.ps1"]
+floppy_files             = []
 guest_os_type_virtualbox = "Windows11_64"
 guest_os_type_vmware     = "windows9-64"
 headless                 = false

@@ -16,6 +16,11 @@ variable "boot_wait_hyperv" {
   default = ""
 }
 
+variable "cd_files" {
+  type    = list(string)
+  default = []
+}
+
 variable "disk_size" {
   type    = string
   default = ""
@@ -175,6 +180,8 @@ source "hyperv-iso" "windows-server" {
 
 source "virtualbox-iso" "windows-server" {
   communicator         = "winrm"
+  cd_files             = "${var.cd_files}"
+  cd_label             = "cidata"
   disk_size            = "${var.disk_size}"
   floppy_files         = "${var.floppy_files}"
   guest_additions_mode = "disable"

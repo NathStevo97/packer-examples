@@ -4,7 +4,7 @@ boot_command = [
 boot_command_hyperv = [
   "e<down><down><end><bs><bs><bs><bs><bs>inst.text rd.live.check=0 inst.repo=https://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/ inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/ks-9-stream.cfg<leftCtrlOn>x<leftCtrlOff>"
 ]
-boot_command_qemu    = ["<tab> inst.text rd.live.check=0 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/ks-9-stream.cfg<enter>"]
+boot_command_qemu        = ["<tab> inst.text rd.live.check=0 inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/centos/ks-9-stream.cfg<enter>"]
 boot_wait                = "5s"
 disk_size                = "40960"
 guest_os_type_virtualbox = "RedHat_64"
