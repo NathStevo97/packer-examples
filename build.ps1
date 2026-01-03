@@ -11,6 +11,8 @@ param(
 
     [string]$Type = "",
 
+    [string]$firmware = "",
+
     [ValidateSet("vmware-iso", "virtualbox-iso", "hyperv-iso", "qemu")]
     [string]$Provider = ""
 )
@@ -34,6 +36,10 @@ if ($Version -eq "") {
     $Version = "9"
 }
 
+if ($firmware -eq "") {
+    $firmware = "uefi"
+}
+
 if ($Provider -eq "") {
     $Provider = "virtualbox-iso"
 }
@@ -42,12 +48,20 @@ if ($Provider -eq "") {
 $var_file = "./variables/$Template/$Template-$Version.pkrvars.hcl"
 $template_file = "./templates/$Template/$Template.pkr.hcl"
 
-# If Type is specified, adjust var_file path
-if ($Type -ne "") {
-  $var_file = "./variables/$Template/$Template-$Version-$Type.pkrvars.hcl"
+# If Template is Windows - Adjust Var File for Firmware and Type
+if ($Template -eq "windows") {
+    $var_file = "./variables/$Template/$Template-$Version-$firmware.pkrvars.hcl"
+    if ($Type -ne "") {
+        $var_file = "./variables/$Template/$Template-$Version-$Type-$firmware.pkrvars.hcl"
+    }
 }
-else {
-  $var_file = "./variables/$Template/$Template-$Version.pkrvars.hcl"
+
+# If Template is Windows-Server - Adjust Var File for Type
+if ($Template -eq "windows-server") {
+    $var_file = "./variables/$Template/$Template-$Version-$firmware.pkrvars.hcl"
+    if ($Type -ne "") {
+        $var_file = "./variables/$Template/$Template-$Version-$Type-$firmware.pkrvars.hcl"
+    }
 }
 
 # Get Start Time
