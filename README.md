@@ -148,11 +148,11 @@
 
 | OS                      | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Avg Build Time | Date Last Reviewed |
 |-------------------------|--------------------|---------------|------------|----------------|--------------------|
-| Windows 10              | Failing            | Working       | Failing    | 45mins - 1hr   | 26/12/2025         |
+| Windows 10              | Working            | Working       | Working    | 45mins - 1hr   | 10/01/2026         |
 | Windows 11              | Failing            | Working       | Failing    | 12 - 45 mins   | 26/12/2025         |
 | Windows 2022 Standard   | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
 | Windows 2022 Datacenter | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
-| Windows 2019 Standard   | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
+| Windows 2019 Standard   | Working            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
 | Windows 2019 Datacenter | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
 
 ```powershell

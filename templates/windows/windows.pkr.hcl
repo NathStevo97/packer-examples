@@ -26,6 +26,11 @@ variable "disk_size" {
   default = ""
 }
 
+variable "firmware" {
+  type    = string
+  default = ""
+}
+
 variable "floppy_files" {
   type    = list(string)
   default = []
@@ -126,11 +131,14 @@ source "virtualbox-iso" "windows" {
   cd_files             = var.cd_files
   communicator         = "winrm"
   disk_size            = var.disk_size
+  firmware             = var.firmware
   floppy_files         = var.floppy_files
   guest_additions_mode = "disable"
   guest_os_type        = var.guest_os_type_virtualbox
-  headless             = var.headless
+  hard_drive_interface = "sata"
+  headless             = true # always run headless for ease
   iso_checksum         = var.iso_checksum
+  iso_interface        = "sata"
   iso_urls             = [var.iso_path, var.iso_url]
   output_directory     = "${var.output_directory}-vbox"
   shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
@@ -145,33 +153,34 @@ source "virtualbox-iso" "windows" {
   winrm_insecure = true
   winrm_password = var.winrm_password
   winrm_timeout  = var.winrm_timeout
-  winrm_use_ssl  = true
+  winrm_use_ssl  = false
   winrm_username = var.winrm_username
 }
 
 source "vmware-iso" "windows" {
-  boot_wait        = var.boot_wait
-  cd_files         = var.cd_files
-  communicator     = "winrm"
-  cpus             = var.numvcpus
-  disk_size        = var.disk_size
-  disk_type_id     = "0"
-  floppy_files     = var.floppy_files
-  guest_os_type    = var.guest_os_type_vmware
-  headless         = var.headless
-  iso_checksum     = var.iso_checksum
-  iso_urls         = [var.iso_path, var.iso_url]
-  memory           = var.memsize
-  output_directory = "${var.output_directory}-vmware"
-  shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
-  shutdown_timeout = "30m"
-  skip_compaction  = false
-  vm_name          = "${var.vm_name}-vmware"
-  winrm_insecure   = true
-  winrm_password   = var.winrm_password
-  winrm_timeout    = var.winrm_timeout
-  winrm_use_ssl    = true
-  winrm_username   = var.winrm_username
+  boot_wait         = var.boot_wait
+  cd_files          = var.cd_files
+  communicator      = "winrm"
+  cpus              = var.numvcpus
+  disk_adapter_type = "sata"
+  disk_size         = var.disk_size
+  firmware          = var.firmware
+  floppy_files      = var.floppy_files
+  guest_os_type     = var.guest_os_type_vmware
+  headless          = var.headless
+  iso_checksum      = var.iso_checksum
+  iso_urls          = [var.iso_path, var.iso_url]
+  memory            = var.memsize
+  output_directory  = "${var.output_directory}-vmware"
+  shutdown_command  = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
+  shutdown_timeout  = "30m"
+  skip_compaction   = false
+  vm_name           = "${var.vm_name}-vmware"
+  winrm_insecure    = true
+  winrm_password    = var.winrm_password
+  winrm_timeout     = var.winrm_timeout
+  winrm_use_ssl     = false
+  winrm_username    = var.winrm_username
 }
 
 source "hyperv-iso" "windows" {

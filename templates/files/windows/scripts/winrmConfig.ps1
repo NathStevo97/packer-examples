@@ -6,7 +6,9 @@ Set-ExecutionPolicy Unrestricted -Scope LocalMachine -Force -ErrorAction Ignore
 $ErrorActionPreference = "stop"
 
 # Remove HTTP listener
-Remove-Item -Path WSMan:\Localhost\listener\listener* -Recurse
+Get-ChildItem WSMan:\LocalHost\Listener |
+  Where-Object { $_.Keys -like "*Transport=HTTP*" } |
+  Remove-Item -Recurse -Force
 
 # Create a self-signed certificate to let ssl work
 $Cert = New-SelfSignedCertificate -CertstoreLocation Cert:\LocalMachine\My -DnsName "packer"
