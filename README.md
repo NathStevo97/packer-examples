@@ -146,22 +146,12 @@
 
 ## Windows Builds
 
-| OS                      | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Avg Build Time | Date Last Reviewed |
-|-------------------------|--------------------|---------------|------------|----------------|--------------------|
-| Windows 10              | Working            | Working       | Working    | 45mins - 1hr   | 10/01/2026         |
-| Windows 11              | Failing            | Working       | Failing    | 12 - 45 mins   | 26/12/2025         |
-| Windows 2022 Standard   | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
-| Windows 2022 Datacenter | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
-| Windows 2019 Standard   | Working            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
-| Windows 2019 Datacenter | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
-
-```powershell
-.\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider vmware-iso
-```
-
-```powershell
-.\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider hyperv-iso -Generation 2
-```
+| OS                      | Firmware Type | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Avg Build Time | Date Last Reviewed |
+|-------------------------|---------------|--------------------|---------------|------------|----------------|--------------------|
+| Windows 11              | UEFI          | Failing            | Working       | Failing    | 12 - 45 mins   | 26/12/2025         |
+| Windows 11              | BIOS          | Failing            | Working       | Failing    | 12 - 45 mins   | 26/12/2025         |
+| Windows 10              | UEFI          | Working            | Working       | Working    | 45mins - 1hr   | 10/01/2026         |
+| Windows 10              | BIOS          | Working            | Working       | Working    | 45mins - 1hr   | 10/01/2026         |
 
 ```powershell
 .\build.ps1 -Action build -Version 11 -Template windows -Provider vmware-iso
@@ -174,3 +164,20 @@
 ## Windows Notes
 
 - Windows 10 and 11 failing on VMware (Server builds incl.) and Virtualbox due to DiskConfiguration in autounattend, need to investigate
+
+## Windows-Server Builds
+
+| OS                      | Firmware Type | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Avg Build Time | Date Last Reviewed |
+|-------------------------|---------------|--------------------|---------------|------------|----------------|--------------------|
+| Windows 2022 Standard   | UEFI          | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
+| Windows 2022 Datacenter | UEFI          | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
+| Windows 2019 Standard   | BIOS          | Working            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
+| Windows 2019 Datacenter | BIOS          | Failing            | Working       | Working    | 10 - 20 mins   | 26/12/2025         |
+
+```powershell
+.\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider vmware-iso
+```
+
+```powershell
+.\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider hyperv-iso -Generation 2
+```

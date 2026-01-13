@@ -11,12 +11,10 @@ firmware="${firmware:-uefi}"
 log="${log:-0}"
 provider="${provider:-vmware-iso}"
 template="${template:-almalinux}"
-type="${type}"
+type="${type:-}"
 version="${version:-9}"
 
 ## General Vars
-
-allowed_providers="vmware-iso virtualbox-iso hyperv-iso qemu"
 
 ## Logging
 logs_path="./logs"
@@ -36,7 +34,7 @@ case "$provider" in
         printf "%b\n" "Valid provider: ${provider}"
         ;;
     *)
-        printf "Invalid provider: ${provider}"
+        printf "%b\n" "Invalid provider: ${provider}"
         exit 1
         ;;
 esac
@@ -111,6 +109,6 @@ packer build -var-file="${var_file}" -only="${provider}.${template}" --force "${
 
 end_time=$(date -u +%s.%N)
 
-elapsed_time=$(echo "$end_time - start_time" | bc -l)
+elapsed_time=$(echo "$end_time - $start_time" | bc -l)
 
 printf "%b\n" "Elapsed Time: ${elapsed_time} seconds"
