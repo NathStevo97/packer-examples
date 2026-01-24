@@ -119,6 +119,7 @@ variable "winrm_username" {
 #################################################################
 #                           VMware-ISO Builder                  #
 #################################################################
+
 source "vmware-iso" "windows-server" {
   boot_wait         = "${var.boot_wait}"
   communicator      = "winrm"
@@ -147,6 +148,7 @@ source "vmware-iso" "windows-server" {
 #################################################################
 #                        Gen-2 Hyper-V Builder                  #
 #################################################################
+
 source "hyperv-iso" "windows-server" {
   boot_command          = "${var.boot_command}"
   boot_wait             = "${var.boot_wait_hyperv}"

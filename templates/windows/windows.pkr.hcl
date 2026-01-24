@@ -16,11 +16,6 @@ variable "boot_wait_hyperv" {
   default = ""
 }
 
-variable "cd_files" {
-  type    = list(string)
-  default = []
-}
-
 variable "disk_size" {
   type    = string
   default = ""
@@ -126,9 +121,12 @@ variable "winrm_username" {
   default = ""
 }
 
+#################################################################
+#                    Virtualbox-ISO Builder                     #
+#################################################################
+
 source "virtualbox-iso" "windows" {
   boot_wait            = var.boot_wait
-  cd_files             = var.cd_files
   communicator         = "winrm"
   disk_size            = var.disk_size
   firmware             = var.firmware
@@ -157,9 +155,13 @@ source "virtualbox-iso" "windows" {
   winrm_username = var.winrm_username
 }
 
+#################################################################
+#                           VMware-ISO Builder                  #
+#################################################################
+
 source "vmware-iso" "windows" {
+  boot_command      = var.boot_command
   boot_wait         = var.boot_wait
-  cd_files          = var.cd_files
   communicator      = "winrm"
   cpus              = var.numvcpus
   disk_adapter_type = "sata"
@@ -183,10 +185,13 @@ source "vmware-iso" "windows" {
   winrm_username    = var.winrm_username
 }
 
+#################################################################
+#                        Gen-2 Hyper-V Builder                  #
+#################################################################
+
 source "hyperv-iso" "windows" {
   boot_command          = var.boot_command
   boot_wait             = var.boot_wait_hyperv
-  cd_files              = var.cd_files
   communicator          = "winrm"
   cpus                  = var.numvcpus
   disk_size             = var.disk_size
@@ -208,7 +213,7 @@ source "hyperv-iso" "windows" {
   winrm_insecure        = true
   winrm_password        = var.winrm_password
   winrm_timeout         = var.winrm_timeout
-  winrm_use_ssl         = true
+  winrm_use_ssl         = false
   winrm_username        = var.winrm_username
 }
 
