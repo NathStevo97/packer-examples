@@ -48,6 +48,16 @@ variable "http_directory" {
   default = ""
 }
 
+variable "http_port_min" {
+  type    = string
+  default = ""
+}
+
+variable "http_port_max" {
+  type    = string
+  default = ""
+}
+
 variable "iso_checksum" {
   type    = string
   default = "sha256:f501de55f92e59a3fcf4ad252fdfc4e02ee2ad013d2e1ec818bb38052bcb3c32"
@@ -103,6 +113,8 @@ source "vmware-iso" "almalinux" {
   guest_os_type    = "${var.guest_os_type_vmware}"
   headless         = var.headless
   http_directory   = "${var.http_directory}"
+  http_port_min    = "${var.http_port_min}"
+  http_port_max    = "${var.http_port_max}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   memory           = "${var.ram}"
