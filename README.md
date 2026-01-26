@@ -2,14 +2,14 @@
 
 ## Alma Linux Builds
 
-| OS   | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
-|------|--------------------|---------------|------------|---------|----------------|--------------------|
-| 10.1 | Pending            | Pending       | Pending    | Pending | N/A            | N/A                |
-| 9.7  | Working            | Working       | Working    | Working | 15 - 30 mins   | 08/06/2025         |
-| 8.10 | Working            | Working       | Working    | Working | 15 - 30 mins   | 08/06/2025         |
+| OS   | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
+|------|--------------------|---------|----------------|--------------------|
+| 10.1 | Pending            | Pending | N/A            | N/A                |
+| 9.7  | Working            | Working | 15 - 30 mins   | 08/06/2025         |
+| 8.10 | Working            | Working | 15 - 30 mins   | 08/06/2025         |
 
 ```powershell
-.\build.ps1 -Action build -Version 9 -Template almalinux -Provider virtualbox-iso
+action=build provider=qemu template=almalinux version=9 bash build.sh
 ```
 
 ```powershell
@@ -192,3 +192,9 @@
 ```powershell
 .\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider hyperv-iso -Generation 2
 ```
+
+## Notes
+
+- Virtualbox and Hyper-V sources are available in this repository, but have been commented out/deprecated due to:
+  - VirtualBox - conflicts with KVM on Linux (and worse performance compared to QEMU)
+  - Hyper-V - Only Available on Windows (I now run Linux Mint instead of Windows 11)

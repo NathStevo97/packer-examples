@@ -9,7 +9,7 @@
 action="${action:-build}"
 firmware="${firmware:-uefi}"
 log="${log:-0}"
-provider="${provider:-vmware-iso}"
+provider="${provider:-qemu}"
 template="${template:-almalinux}"
 type="${type:-}"
 version="${version:-9}"

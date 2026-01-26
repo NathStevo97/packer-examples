@@ -127,71 +127,21 @@ source "vmware-iso" "almalinux" {
   vm_name          = "${var.name}-vmware"
 }
 
-source "virtualbox-iso" "almalinux" {
-  boot_command     = "${var.boot_command}"
-  boot_wait        = "${var.boot_wait}"
-  disk_size        = "${var.disk_size}"
-  guest_os_type    = "${var.guest_os_type_vbox}"
-  headless         = var.headless
-  http_directory   = "${var.http_directory}"
-  iso_checksum     = "${var.iso_checksum}"
-  iso_interface    = "sata"
-  iso_url          = "${var.iso_url}"
-  output_directory = "./builds/${var.name}-vbox"
-  shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
-  ssh_password     = "${var.ssh_password}"
-  ssh_port         = 22
-  ssh_timeout      = "30m"
-  ssh_username     = "${var.ssh_username}"
-  vboxmanage = [
-    ["modifyvm", "{{ .Name }}", "--memory", "${var.ram}"],
-    ["modifyvm", "{{ .Name }}", "--cpus", "${var.cpu}"],
-    ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
-    ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
-  ]
-  vm_name = "${var.name}-virtualbox"
-}
-
-source "hyperv-iso" "almalinux" {
-  boot_command          = "${var.boot_command_hyperv}"
-  boot_wait             = "${var.boot_wait}"
-  communicator          = "ssh"
-  cpus                  = "${var.cpu}"
-  disk_block_size       = "1"
-  disk_size             = "${var.disk_size}"
-  enable_dynamic_memory = "true"
-  enable_secure_boot    = false
-  generation            = 2
-  guest_additions_mode  = "disable"
-  headless              = var.headless
-  http_directory        = "${var.http_directory}"
-  iso_checksum          = "${var.iso_checksum}"
-  iso_url               = "${var.iso_url}"
-  memory                = "${var.ram}"
-  output_directory      = "./builds/${var.name}-hyperv"
-  shutdown_command      = "echo 'vagrant' | sudo -S shutdown -P now"
-  shutdown_timeout      = "30m"
-  ssh_password          = "${var.ssh_password}"
-  ssh_timeout           = "4h"
-  ssh_username          = "${var.ssh_username}"
-  switch_name           = "${var.switch_name}"
-  temp_path             = "."
-  vlan_id               = "${var.vlan_id}"
-  vm_name               = "${var.name}"
-}
-
 source "qemu" "almalinux" {
   boot_command     = "${var.boot_command_qemu}"
   boot_wait        = "${var.boot_wait}"
   disk_size        = "${var.disk_size}"
   headless         = var.headless
   http_directory   = "${var.http_directory}"
+  http_port_min    = "${var.http_port_min}"
+  http_port_max    = "${var.http_port_max}"
   iso_checksum     = "${var.iso_checksum}"
   iso_url          = "${var.iso_url}"
   memory           = "${var.ram}"
   output_directory = "./builds/${var.name}-qemu"
   qemuargs = [
-    ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
+    # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
+    ["-cpu", "host"], # set to "Nehalem" for windows-based packer execution
     ["-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
     ["-device", "virtio-net,netdev=forward,id=net0"]
   ]
@@ -203,6 +153,67 @@ source "qemu" "almalinux" {
   vm_name          = "${var.name}-qemu"
 }
 
+/*
+Deprecated Sources
+*/
+
+# DEPRECATED: VirtualBox - conflicts with KVM on Linux
+# source "virtualbox-iso" "almalinux" {
+#   boot_command     = "${var.boot_command}"
+#   boot_wait        = "${var.boot_wait}"
+#   disk_size        = "${var.disk_size}"
+#   guest_os_type    = "${var.guest_os_type_vbox}"
+#   headless         = var.headless
+#   http_directory   = "${var.http_directory}"
+#   http_port_min    = "${var.http_port_min}"
+#   http_port_max    = "${var.http_port_max}"
+#   iso_checksum     = "${var.iso_checksum}"
+#   iso_interface    = "sata"
+#   iso_url          = "${var.iso_url}"
+#   output_directory = "./builds/${var.name}-vbox"
+#   shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
+#   ssh_password     = "${var.ssh_password}"
+#   ssh_port         = 22
+#   ssh_timeout      = "30m"
+#   ssh_username     = "${var.ssh_username}"
+#   vboxmanage = [
+#     ["modifyvm", "{{ .Name }}", "--memory", "${var.ram}"],
+#     ["modifyvm", "{{ .Name }}", "--cpus", "${var.cpu}"],
+#     ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
+#     ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
+#   ]
+#   vm_name = "${var.name}-virtualbox"
+# }
+
+# DEPRECATED: Hyper-V - Windows only
+# source "hyperv-iso" "almalinux" {
+#   boot_command          = "${var.boot_command_hyperv}"
+#   boot_wait             = "${var.boot_wait}"
+#   communicator          = "ssh"
+#   cpus                  = "${var.cpu}"
+#   disk_block_size       = "1"
+#   disk_size             = "${var.disk_size}"
+#   enable_dynamic_memory = "true"
+#   enable_secure_boot    = false
+#   generation            = 2
+#   guest_additions_mode  = "disable"
+#   headless              = var.headless
+#   http_directory        = "${var.http_directory}"
+#   iso_checksum          = "${var.iso_checksum}"
+#   iso_url               = "${var.iso_url}"
+#   memory                = "${var.ram}"
+#   output_directory      = "./builds/${var.name}-hyperv"
+#   shutdown_command      = "echo 'vagrant' | sudo -S shutdown -P now"
+#   shutdown_timeout      = "30m"
+#   ssh_password          = "${var.ssh_password}"
+#   ssh_timeout           = "4h"
+#   ssh_username          = "${var.ssh_username}"
+#   switch_name           = "${var.switch_name}"
+#   temp_path             = "."
+#   vlan_id               = "${var.vlan_id}"
+#   vm_name               = "${var.name}"
+# }
+
 build {
-  sources = ["source.vmware-iso.almalinux", "source.virtualbox-iso.almalinux", "source.hyperv-iso.almalinux", "source.qemu.almalinux"]
+  sources = ["source.vmware-iso.almalinux", "source.qemu.almalinux"]
 }
