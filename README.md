@@ -4,9 +4,9 @@
 
 | OS   | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 |------|--------------------|---------|----------------|--------------------|
-| 10.1 | Pending            | Pending | N/A            | N/A                |
-| 9.7  | Working            | Working | 15 - 30 mins   | 08/06/2025         |
-| 8.10 | Working            | Working | 15 - 30 mins   | 08/06/2025         |
+| 10.1 | Working            | Working | 5-6 mins       | 27/01/2026         |
+| 9.7  | Working            | Working | 5-6 mins       | 27/01/2026         |
+| 8.10 | Working            | Working | 5-6 mins       | 27/01/2026         |
 
 ```powershell
 action=build provider=qemu template=almalinux version=9 bash build.sh

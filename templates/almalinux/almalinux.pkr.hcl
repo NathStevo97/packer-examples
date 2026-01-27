@@ -119,7 +119,7 @@ source "vmware-iso" "almalinux" {
   iso_url          = "${var.iso_url}"
   memory           = "${var.ram}"
   output_directory = "./builds/${var.name}-vmware"
-  shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
+  shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "30m"
@@ -145,7 +145,7 @@ source "qemu" "almalinux" {
     ["-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
     ["-device", "virtio-net,netdev=forward,id=net0"]
   ]
-  shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
+  shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
   ssh_password     = "${var.ssh_password}"
   ssh_port         = 22
   ssh_timeout      = "6h"
