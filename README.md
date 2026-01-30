@@ -8,8 +8,8 @@
 | 9.7  | Working            | Working | 5-6 mins       | 27/01/2026         |
 | 8.10 | Working            | Working | 5-6 mins       | 27/01/2026         |
 
-```powershell
-action=build provider=qemu template=almalinux version=9 bash build.sh
+```shell
+action=build provider=vmware-iso template=almalinux version=9 bash build.sh
 ```
 
 ```powershell
@@ -20,13 +20,17 @@ action=build provider=qemu template=almalinux version=9 bash build.sh
 
 ## CentOS Builds
 
-| OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
-|-----------|--------------------|---------------|------------|---------|----------------|--------------------|
-| Stream 10 | Pending            | Pending       | Pending    | Pending | N/A            | N/A                |
-| Stream 9  | Working            | Working       | Working    | Working | 10 - 15 mins   | 17/05/2025         |
+| OS        | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
+|-----------|--------------------|---------|----------------|--------------------|
+| Stream 10 | Pending            | Pending | N/A            | N/A                |
+| Stream 9  | Working            | Working | 10 - 15 mins   | 30/01/2026         |
 
 ```powershell
-.\build.ps1 -Action build -Version 9 -Template centos -Provider virtualbox-iso
+.\build.ps1 -Action build -Version 9 -Template centos -Provider vmware-iso
+```
+
+```shell
+action=build provider=qemu template=centos version=9 bash build.sh
 ```
 
 ---
