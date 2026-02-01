@@ -1,6 +1,6 @@
 # Packer Examples
 
-## Alma Linux Builds
+## Alma Linux
 
 | OS   | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 |------|--------------------|---------|----------------|--------------------|
@@ -18,7 +18,7 @@ action=build provider=vmware-iso template=almalinux version=9 bash build.sh
 
 ---
 
-## CentOS Builds
+## CentOS
 
 | OS        | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 |-----------|--------------------|---------|----------------|--------------------|
@@ -35,35 +35,43 @@ action=build provider=qemu template=centos version=9 bash build.sh
 
 ---
 
-## Debian Builds
+## Debian
 
-| OS | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
-|----|--------------------|---------------|------------|---------|----------------|--------------------|
-| 13 | Pending            | Pending       | Pending    | Pending | N/A            | N/A                |
-| 12 | Working            | Working       | Working    | Working | 15-30 mins     | 05/07/2025         |
+| OS | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
+|----|--------------------|---------|----------------|--------------------|
+| 13 | Pending            | Pending | N/A            | N/A                |
+| 12 | Working            | Working | 15-30 mins     | 05/07/2025         |
 
 ```powershell
 .\build.ps1 -Action build -Version 12 -Template debian -Provider virtualbox-iso
 ```
 
+```shell
+action=build provider=vmware-iso template=debian version=12 bash build.sh
+```
+
 ---
 
-## Fedora Builds
+## Fedora
 
-| OS | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
-|----|--------------------|---------------|------------|---------|----------------|--------------------|
-| 43 | Pending            | Pending       | Pending    | Pending | N/A            | N/A                |
-| 42 | Working            | Failing       | Failing    | TBD     | 10-30 mins     | 27/7/2025          |
+| OS | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
+|----|--------------------|---------|----------------|--------------------|
+| 43 | Pending            | Pending | N/A            | N/A                |
+| 42 | Working            | TBD     | 10-30 mins     | 27/7/2025          |
 
 ```powershell
 .\build.ps1 -Action build -Version 42 -Template fedora -Provider virtualbox-iso
+```
+
+```shell
+action=build provider=vmware-iso template=fedora version=42 bash build.sh
 ```
 
 - Need to update boot_command for hyper-v and virtualbox boot command usage
 
 ---
 
-## OpenSUSE Builds
+## OpenSUSE
 
 | OS      | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
 |---------|--------------------|---------------|------------|---------|----------------|--------------------|
@@ -76,7 +84,7 @@ action=build provider=qemu template=centos version=9 bash build.sh
 
 ---
 
-## Oracle Builds
+## Oracle
 
 | OS  | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
 |-----|--------------------|---------------|------------|---------|----------------|--------------------|
@@ -95,7 +103,7 @@ action=build provider=qemu template=centos version=9 bash build.sh
 
 ---
 
-## RHEL Builds
+## RHEL
 
 | OS        | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
 |-----------|--------------------|---------------|------------|---------|----------------|--------------------|
@@ -113,7 +121,7 @@ action=build provider=qemu template=centos version=9 bash build.sh
 
 ---
 
-## RockyLinux Builds
+## RockyLinux
 
 | OS  | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
 |-----|--------------------|---------------|------------|---------|----------------|--------------------|
@@ -135,7 +143,7 @@ action=build provider=qemu template=centos version=9 bash build.sh
 
 ---
 
-## Ubuntu Builds
+## Ubuntu
 
 | OS           | Hyper-V Gen 2 | VirtualBox | Qemu    | Avg Build Time | Date Last Reviewed |
 |--------------|---------------|------------|---------|----------------|--------------------|
@@ -156,7 +164,7 @@ action=build provider=qemu template=centos version=9 bash build.sh
 
 ---
 
-## Windows Builds
+## Windows
 
 | OS | Firmware Type | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Avg Build Time | Date Last Reviewed |
 |----|---------------|--------------------|---------------|------------|----------------|--------------------|
@@ -172,11 +180,7 @@ action=build provider=qemu template=centos version=9 bash build.sh
 .\build.ps1 -Action build -Version 11 -Template windows -Provider hyperv-iso -Generation 2
 ```
 
-## Windows Notes
-
-- Windows 10 and 11 failing on VMware (Server builds incl.) and Virtualbox due to DiskConfiguration in autounattend, need to investigate
-
-## Windows-Server Builds
+## Windows-Server
 
 | OS              | Firmware Type | VMWare Workstation | Hyper-V Gen 2 | VirtualBox | Avg Build Time | Date Last Reviewed |
 |-----------------|---------------|--------------------|---------------|------------|----------------|--------------------|
