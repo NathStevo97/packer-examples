@@ -68,51 +68,56 @@ variable "ssh_username" {
   default = "vagrant"
 }
 
-source "virtualbox-iso" "opensuse" {
-  boot_command           = "${var.boot_command}"
-  boot_wait              = "${var.boot_wait}"
-  cpus                   = "${var.cpu}"
-  disk_size              = "${var.disk_size}"
-  guest_os_type          = "${var.guest_os_type_vbox}"
-  headless               = var.headless
-  http_directory         = "${var.http_directory}"
-  iso_checksum           = "${var.iso_checksum}"
-  iso_url                = "${var.iso_url}"
-  memory                 = "${var.ram}"
-  output_directory       = "./builds/${var.name}-vbox"
-  shutdown_command       = "sudo shutdown -h now"
-  ssh_password           = "${var.ssh_password}"
-  ssh_port               = 22
-  ssh_read_write_timeout = "600s"
-  ssh_timeout            = "120m"
-  ssh_username           = "${var.ssh_username}"
-  vboxmanage             = [["modifyvm", "{{ .Name }}", "--cpu-profile", "host"], ["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"]]
-  vm_name                = "${var.name}-virtualbox"
-  vrdp_bind_address      = "0.0.0.0"
-  vrdp_port_max          = 6000
-  vrdp_port_min          = 5900
-}
-
 source "vmware-iso" "opensuse" {
-  boot_command     = "${var.boot_command}"
-  boot_wait        = "${var.boot_wait}"
-  cpus             = "${var.cpu}"
-  disk_size        = "${var.disk_size}"
-  guest_os_type    = "${var.guest_os_type_vmware}"
+  boot_command     = var.boot_command
+  boot_wait        = var.boot_wait
+  cpus             = var.cpu
+  disk_size        = var.disk_size
+  guest_os_type    = var.guest_os_type_vmware
   headless         = var.headless
-  http_directory   = "${var.http_directory}"
-  iso_checksum     = "${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
-  memory           = "${var.ram}"
+  http_directory   = var.http_directory
+  iso_checksum     = var.iso_checksum
+  iso_url          = var.iso_url
+  memory           = var.ram
   output_directory = "./builds/${var.name}-vmware"
   shutdown_command = "echo '${var.ssh_password}' |sudo -S /sbin/halt -h -p"
-  ssh_password     = "${var.ssh_password}"
+  ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = "6h"
-  ssh_username     = "${var.ssh_username}"
-  vm_name          = "${var.name}"
+  ssh_username     = var.ssh_username
+  vm_name          = "${var.name}-vmware"
 }
 
+/*
+Deprecated Sources
+*/
+
+# DEPRECATED: VirtualBox - conflicts with KVM on Linux
+# source "virtualbox-iso" "opensuse" {
+#   boot_command           = var.boot_command
+#   boot_wait              = var.boot_wait
+#   cpus                   = var.cpu
+#   disk_size              = var.disk_size
+#   guest_os_type          = var.guest_os_type_vbox
+#   headless               = var.headless
+#   http_directory         = var.http_directory
+#   iso_checksum           = var.iso_checksum
+#   iso_url                = var.iso_url
+#   memory                 = var.ram
+#   output_directory       = "./builds/${var.name}-vbox"
+#   shutdown_command       = "sudo shutdown -h now"
+#   ssh_password           = var.ssh_password
+#   ssh_port               = 22
+#   ssh_read_write_timeout = "600s"
+#   ssh_timeout            = "120m"
+#   ssh_username           = var.ssh_username
+#   vboxmanage             = [["modifyvm", "{{ .Name }}", "--cpu-profile", "host"], ["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"]]
+#   vm_name                = "${var.name}-virtualbox"
+#   vrdp_bind_address      = "0.0.0.0"
+#   vrdp_port_max          = 6000
+#   vrdp_port_min          = 5900
+# }
+
 build {
-  sources = ["source.virtualbox-iso.opensuse", "source.vmware-iso.opensuse"]
+  sources = ["source.vmware-iso.opensuse"]
 }

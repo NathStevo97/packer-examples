@@ -104,40 +104,40 @@ variable "version" {
 }
 
 source "vmware-iso" "almalinux" {
-  boot_command     = "${var.boot_command}"
-  boot_wait        = "${var.boot_wait}"
-  cpus             = "${var.cpu}"
-  disk_size        = "${var.disk_size}"
+  boot_command     = var.boot_command
+  boot_wait        = var.boot_wait
+  cpus             = var.cpu
+  disk_size        = var.disk_size
   disk_type_id     = "0"
   firmware         = "efi"
-  guest_os_type    = "${var.guest_os_type_vmware}"
+  guest_os_type    = var.guest_os_type_vmware
   headless         = var.headless
-  http_directory   = "${var.http_directory}"
-  http_port_min    = "${var.http_port_min}"
-  http_port_max    = "${var.http_port_max}"
-  iso_checksum     = "${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
-  memory           = "${var.ram}"
+  http_directory   = var.http_directory
+  http_port_min    = var.http_port_min
+  http_port_max    = var.http_port_max
+  iso_checksum     = var.iso_checksum
+  iso_url          = var.iso_url
+  memory           = var.ram
   output_directory = "./builds/${var.name}-vmware"
   shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
-  ssh_password     = "${var.ssh_password}"
+  ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = "30m"
-  ssh_username     = "${var.ssh_username}"
+  ssh_username     = var.ssh_username
   vm_name          = "${var.name}-vmware"
 }
 
 source "qemu" "almalinux" {
-  boot_command     = "${var.boot_command_qemu}"
-  boot_wait        = "${var.boot_wait}"
-  disk_size        = "${var.disk_size}"
+  boot_command     = var.boot_command_qemu
+  boot_wait        = var.boot_wait
+  disk_size        = var.disk_size
   headless         = var.headless
-  http_directory   = "${var.http_directory}"
-  http_port_min    = "${var.http_port_min}"
-  http_port_max    = "${var.http_port_max}"
-  iso_checksum     = "${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
-  memory           = "${var.ram}"
+  http_directory   = var.http_directory
+  http_port_min    = var.http_port_min
+  http_port_max    = var.http_port_max
+  iso_checksum     = var.iso_checksum
+  iso_url          = var.iso_url
+  memory           = var.ram
   output_directory = "./builds/${var.name}-qemu"
   qemuargs = [
     # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
@@ -146,10 +146,10 @@ source "qemu" "almalinux" {
     ["-device", "virtio-net,netdev=forward,id=net0"]
   ]
   shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
-  ssh_password     = "${var.ssh_password}"
+  ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = "6h"
-  ssh_username     = "${var.ssh_username}"
+  ssh_username     = var.ssh_username
   vm_name          = "${var.name}-qemu"
 }
 

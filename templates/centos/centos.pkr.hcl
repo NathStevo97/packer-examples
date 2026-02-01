@@ -121,7 +121,7 @@ source "vmware-iso" "centos" {
   http_port_min    = var.http_port_min
   http_port_max    = var.http_port_max
   iso_checksum     = var.iso_checksum
-  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+  iso_urls         = [var.iso_path, var.iso_url]
   memory           = var.memsize
   output_directory = "./builds/${var.vm_name}"
   shutdown_command = "echo '${var.ssh_password}' | sudo -S /sbin/shutdown -P now"
@@ -155,9 +155,40 @@ source "qemu" "centos" {
   ssh_port         = 22
   ssh_timeout      = "6h"
   ssh_username     = var.ssh_username
-  vm_name          = var.vm_name
+  vm_name          = "${var.vm_name}-qemu"
 }
 
+/*
+Deprecated Sources
+*/
+
+# DEPRECATED: VirtualBox - conflicts with KVM on Linux
+# source "virtualbox-iso" "centos" {
+#   boot_command     = "${var.boot_command}"
+#   boot_wait        = "15s"
+#   disk_size        = "${var.disk_size}"
+#   guest_os_type    = "${var.guest_os_type_virtualbox}"
+#   headless         = var.headless
+#   http_directory   = "${var.http_directory}"
+#   iso_checksum     = "${var.iso_checksum}"
+#   iso_interface    = "sata"
+#   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
+#   output_directory = "./builds/${var.vm_name}"
+#   shutdown_command = "echo 'vagrant' | sudo -S /sbin/shutdown -P now"
+#   ssh_password     = "${var.ssh_password}"
+#   ssh_port         = 22
+#   ssh_timeout      = "${var.ssh_timeout}"
+#   ssh_username     = "${var.ssh_username}"
+#   vboxmanage = [
+#     ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
+#     ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
+#     ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
+#     ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
+#   ]
+#   vm_name = "${var.vm_name}"
+# }
+
+# DEPRECATED: Hyper-V - Windows only
 # source "hyperv-iso" "centos" {
 #   boot_command          = "${var.boot_command_hyperv}"
 #   boot_wait             = "${var.boot_wait}"
@@ -184,31 +215,6 @@ source "qemu" "centos" {
 #   temp_path             = "."
 #   vlan_id               = "${var.vlan_id}"
 #   vm_name               = "${var.vm_name}"
-# }
-
-# source "virtualbox-iso" "centos" {
-#   boot_command     = "${var.boot_command}"
-#   boot_wait        = "15s"
-#   disk_size        = "${var.disk_size}"
-#   guest_os_type    = "${var.guest_os_type_virtualbox}"
-#   headless         = var.headless
-#   http_directory   = "${var.http_directory}"
-#   iso_checksum     = "${var.iso_checksum}"
-#   iso_interface    = "sata"
-#   iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
-#   output_directory = "./builds/${var.vm_name}"
-#   shutdown_command = "echo 'vagrant' | sudo -S /sbin/shutdown -P now"
-#   ssh_password     = "${var.ssh_password}"
-#   ssh_port         = 22
-#   ssh_timeout      = "${var.ssh_timeout}"
-#   ssh_username     = "${var.ssh_username}"
-#   vboxmanage = [
-#     ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
-#     ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
-#     ["modifyvm", "{{ .Name }}", "--firmware", "EFI"],
-#     ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
-#   ]
-#   vm_name = "${var.vm_name}"
 # }
 
 build {

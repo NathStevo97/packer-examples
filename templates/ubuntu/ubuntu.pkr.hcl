@@ -93,94 +93,6 @@ variable "vm_name" {
   default = ""
 }
 
-#locals { timestamp = regex_rveplace(timestamp(), "[- TZ:]", "") }
-
-#locals {
-#  #osdetails    = "ubuntu-${local.vboxversion}-amd64"
-#  version = "${local.timestamp}"
-#version_desc = "Latest kernel build of Ubuntu Vagrant images based on Ubuntu Server ${local.vboxversion} LTS (Jammy Jellyfish)"
-#}
-
-# could not parse template for following block: "template: hcl2_upgrade:2: bad character U+0060 '`'"
-
-source "virtualbox-iso" "ubuntu" {
-  # boot_command = [
-  #   "<wait>c<wait>set gfxpayload=keep<enter><wait>linux /casper/vmlinuz quiet autoinstall ds=nocloud-net\\;s=http://{{.HTTPIP}}:{{.HTTPPort}}/ ---<enter><wait>initrd /casper/initrd<wait><enter><wait>boot<enter><wait>"
-  # ]
-
-  boot_command = "${var.boot_command}"
-
-  # boot_command = [
-  #   "<wait>c<wait>",
-  #   "set gfxpayload=keep<enter><wait>",
-  #   "linux /casper/vmlinuz <wait>",
-  #   "autoinstall quiet fsck.mode=skip <wait>",
-  #   "ipv6.disable=1 net.ifnames=0 biosdevname=0 systemd.unified_cgroup_hierarchy=0 ds='nocloud-net;s=http://{{.HTTPIP}}:{{.HTTPPort}}/' ---<enter><wait>",
-  #   "initrd /casper/initrd<wait><enter><wait>",
-  #   "boot<enter><wait>"
-  # ]
-
-  # boot_command = [
-  #   "<wait>c<wait>",
-  #   "set gfxpayload=keep<enter><wait>",
-  #   "linux /casper/vmlinuz --- autoinstall ds='nocloud-net;seedfrom=http://{{.HTTPIP}}:{{.HTTPPort}}/'<enter><wait>",
-  #   "initrd /casper/initrd<wait><enter><wait>",
-  #   "boot<enter>",
-  #   "<enter><f10><wait>"
-  # ]
-  boot_wait              = "${var.boot_wait}"
-  http_directory         = "${var.http_directory}"
-  guest_additions_path   = "VBoxGuestAdditions_{{.Version}}.iso"
-  guest_os_type          = "${var.guest_os_type_vbox}"
-  headless               = var.headless
-  iso_checksum           = "${var.iso_checksum}"
-  iso_url                = "${var.iso_url}"
-  memory                 = "${var.memory}"
-  disk_size              = "${var.disk_size}"
-  output_directory       = "./builds/${var.vm_name}-vbox"
-  shutdown_command       = "echo '${var.ssh_password}'|sudo -S shutdown -P now"
-  ssh_handshake_attempts = "1000"
-  ssh_password           = "${var.ssh_password}"
-  ssh_timeout            = "6h"
-  ssh_username           = "${var.ssh_username}"
-  ssh_wait_timeout       = "6h"
-  vboxmanage = [
-    ["modifyvm", "{{.Name}}", "--memory", "${var.memory}"],
-    ["modifyvm", "{{.Name}}", "--cpus", "${var.cpu}"],
-    ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"],
-  ]
-  virtualbox_version_file = ".vbox_version"
-  vm_name                 = "${var.vm_name}-vbox"
-}
-
-source "hyperv-iso" "ubuntu" {
-  boot_command          = "${var.boot_command}"
-  boot_wait             = "${var.boot_wait}"
-  communicator          = "ssh"
-  cpus                  = "${var.cpu}"
-  disk_block_size       = "1"
-  disk_size             = "${var.disk_size}"
-  enable_dynamic_memory = "true"
-  enable_secure_boot    = false
-  generation            = 2
-  guest_additions_mode  = "disable"
-  headless              = var.headless
-  http_directory        = "${var.http_directory}"
-  iso_checksum          = "sha256:${var.iso_checksum}"
-  iso_url               = "${var.iso_url}"
-  memory                = "${var.memory}"
-  output_directory      = "./builds/${var.vm_name}-hyperv"
-  shutdown_command      = "echo 'password' | sudo -S shutdown -P now"
-  shutdown_timeout      = "30m"
-  ssh_password          = "${var.ssh_password}"
-  ssh_timeout           = "4h"
-  ssh_username          = "${var.ssh_username}"
-  switch_name           = "${var.switch_name}"
-  temp_path             = "."
-  vlan_id               = "${var.vlan_id}"
-  vm_name               = "${var.vm_name}"
-}
-
 #################################################################
 #                    QEMU-ISO Builder                     #
 #################################################################
@@ -206,27 +118,88 @@ source "qemu" "ubuntu" {
 }
 
 source "vmware-iso" "ubuntu" {
-  boot_command     = "${var.boot_command}"
-  boot_wait        = "${var.boot_wait}"
-  cpus             = "${var.cpu}"
-  disk_size        = "${var.disk_size}"
-  guest_os_type    = "${var.guest_os_type_vmware}"
+  boot_command     = var.boot_command
+  boot_wait        = var.boot_wait
+  cpus             = var.cpu
+  disk_size        = var.disk_size
+  guest_os_type    = var.guest_os_type_vmware
   headless         = var.headless
-  http_directory   = "${var.http_directory}"
-  iso_checksum     = "${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
-  memory           = "${var.memory}"
+  http_directory   = var.http_directory
+  iso_checksum     = var.iso_checksum
+  iso_url          = var.iso_url
+  memory           = var.memory
   output_directory = "./builds/${var.vm_name}-vmware"
   shutdown_command = "echo '${var.ssh_password}' |sudo -S /sbin/halt -h -p"
-  ssh_password     = "${var.ssh_password}"
+  ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = "6h"
-  ssh_username     = "${var.ssh_username}"
-  vm_name          = "${var.vm_name}"
+  ssh_username     = var.ssh_username
+  vm_name          = "${var.vm_name}-vmware"
 }
 
+/*
+Deprecated Sources
+*/
+
+# DEPRECATED: VirtualBox - conflicts with KVM on Linux
+# source "virtualbox-iso" "ubuntu" {
+#   boot_command = "${var.boot_command}"
+#   boot_wait              = "${var.boot_wait}"
+#   http_directory         = "${var.http_directory}"
+#   guest_additions_path   = "VBoxGuestAdditions_{{.Version}}.iso"
+#   guest_os_type          = "${var.guest_os_type_vbox}"
+#   headless               = var.headless
+#   iso_checksum           = "${var.iso_checksum}"
+#   iso_url                = "${var.iso_url}"
+#   memory                 = "${var.memory}"
+#   disk_size              = "${var.disk_size}"
+#   output_directory       = "./builds/${var.vm_name}-vbox"
+#   shutdown_command       = "echo '${var.ssh_password}'|sudo -S shutdown -P now"
+#   ssh_handshake_attempts = "1000"
+#   ssh_password           = "${var.ssh_password}"
+#   ssh_timeout            = "6h"
+#   ssh_username           = "${var.ssh_username}"
+#   ssh_wait_timeout       = "6h"
+#   vboxmanage = [
+#     ["modifyvm", "{{.Name}}", "--memory", "${var.memory}"],
+#     ["modifyvm", "{{.Name}}", "--cpus", "${var.cpu}"],
+#     ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"],
+#   ]
+#   virtualbox_version_file = ".vbox_version"
+#   vm_name                 = "${var.vm_name}-vbox"
+# }
+
+# DEPRECATED: Hyper-V - Windows only
+# source "hyperv-iso" "ubuntu" {
+#   boot_command          = "${var.boot_command}"
+#   boot_wait             = "${var.boot_wait}"
+#   communicator          = "ssh"
+#   cpus                  = "${var.cpu}"
+#   disk_block_size       = "1"
+#   disk_size             = "${var.disk_size}"
+#   enable_dynamic_memory = "true"
+#   enable_secure_boot    = false
+#   generation            = 2
+#   guest_additions_mode  = "disable"
+#   headless              = var.headless
+#   http_directory        = "${var.http_directory}"
+#   iso_checksum          = "sha256:${var.iso_checksum}"
+#   iso_url               = "${var.iso_url}"
+#   memory                = "${var.memory}"
+#   output_directory      = "./builds/${var.vm_name}-hyperv"
+#   shutdown_command      = "echo 'password' | sudo -S shutdown -P now"
+#   shutdown_timeout      = "30m"
+#   ssh_password          = "${var.ssh_password}"
+#   ssh_timeout           = "4h"
+#   ssh_username          = "${var.ssh_username}"
+#   switch_name           = "${var.switch_name}"
+#   temp_path             = "."
+#   vlan_id               = "${var.vlan_id}"
+#   vm_name               = "${var.vm_name}"
+# }
+
 build {
-  sources = ["source.virtualbox-iso.ubuntu", "source.hyperv-iso.ubuntu", "source.qemu.ubuntu", "source.vmware-iso.ubuntu"]
+  sources = ["source.qemu.ubuntu", "source.vmware-iso.ubuntu"]
 
   /*  provisioner "shell" {
     only              = ["hyperv-iso.ubuntu"]

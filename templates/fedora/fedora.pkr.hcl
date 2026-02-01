@@ -121,6 +121,11 @@ source "vmware-iso" "fedora" {
   vm_name          = "${var.name}-vmware"
 }
 
+/*
+Deprecated Sources
+*/
+
+# DEPRECATED: VirtualBox - conflicts with KVM on Linux
 # source "virtualbox-iso" "fedora" {
 #   boot_command     = var.boot_command
 #   boot_wait        = var.boot_wait
@@ -148,6 +153,7 @@ source "vmware-iso" "fedora" {
 #   vm_name = "${var.name}-virtualbox"
 # }
 
+# DEPRECATED: Hyper-V - Windows only
 # source "hyperv-iso" "fedora" {
 #   boot_command                     = "${var.boot_command_hyperv}"
 #   boot_wait                        = "${var.boot_wait}"

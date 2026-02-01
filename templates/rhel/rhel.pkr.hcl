@@ -104,49 +104,23 @@ variable "vm_name" {
 }
 
 source "vmware-iso" "rhel" {
-  boot_command     = "${var.boot_command}"
-  boot_wait        = "${var.boot_wait}"
-  cpus             = "${var.numvcpus}"
-  disk_size        = "${var.disk_size}"
-  guest_os_type    = "${var.guest_os_type_vmware}"
+  boot_command     = var.boot_command
+  boot_wait        = var.boot_wait
+  cpus             = var.numvcpus
+  disk_size        = var.disk_size
+  guest_os_type    = var.guest_os_type_vmware
   headless         = var.headless
-  http_directory   = "${var.http_directory}"
-  iso_checksum     = "${var.iso_checksum}"
-  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
-  memory           = "${var.memsize}"
+  http_directory   = var.http_directory
+  iso_checksum     = var.iso_checksum
+  iso_urls         = [var.iso_path, var.iso_url]
+  memory           = var.memsize
   output_directory = "${var.build_directory}/${var.vm_name}-vmware"
-  shutdown_command = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
-  ssh_password     = "${var.ssh_password}"
+  shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
+  ssh_password     = var.ssh_password
   ssh_port         = 22
-  ssh_timeout      = "${var.ssh_timeout}"
-  ssh_username     = "${var.ssh_username}"
-  vm_name          = "${var.vm_name}"
-}
-
-#################################################################
-#                    Virtualbox-ISO Builder                     #
-#################################################################
-
-source "virtualbox-iso" "rhel" {
-  boot_command         = "${var.boot_command}"
-  boot_wait            = "${var.boot_wait_virtualbox}"
-  disk_size            = "${var.disk_size}"
-  guest_additions_mode = "disable"
-  #guest_additions_path = "c:/Windows/Temp/windows.iso"
-  guest_os_type        = "${var.guest_os_type_virtualbox}"
-  hard_drive_interface = "sata"
-  headless             = true
-  http_directory       = "${var.http_directory}"
-  iso_checksum         = "${var.iso_checksum}"
-  iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
-  iso_interface        = "sata"
-  output_directory     = "${var.build_directory}/${var.vm_name}-vbox"
-  shutdown_command     = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
-  ssh_password         = "${var.ssh_password}"
-  ssh_port             = 22
-  ssh_timeout          = "${var.ssh_timeout}"
-  ssh_username         = "${var.ssh_username}"
-  vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"], ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]]
+  ssh_timeout      = var.ssh_timeout
+  ssh_username     = var.ssh_username
+  vm_name          = "${var.vm_name}-vmware"
 }
 
 #################################################################
@@ -155,25 +129,53 @@ source "virtualbox-iso" "rhel" {
 
 source "qemu" "rhel" {
   headless         = var.headless
-  boot_command     = "${var.boot_command}"
-  http_directory   = "${var.http_directory}"
-  iso_checksum     = "${var.iso_checksum}"
-  iso_urls         = ["${var.iso_path}", "${var.iso_url}"]
-  output_directory = "./builds/${var.vm_name}-qemu"
-  shutdown_command = "echo 'vagrant'|sudo -S shutdown -P now"
-  ssh_password     = "${var.ssh_password}"
-  ssh_port         = 22
-  ssh_timeout      = "${var.ssh_timeout}"
-  ssh_username     = "${var.ssh_username}"
-  disk_size        = "${var.disk_size}"
-  disk_interface   = "virtio-scsi"
-  memory           = "${var.memsize}"
-  cpus             = "${var.numvcpus}"
+  boot_command     = var.boot_command
   boot_wait        = "5s"
+  cpus             = var.numvcpus
+  disk_size        = var.disk_size
+  disk_interface   = "virtio-scsi"
+  http_directory   = var.http_directory
+  iso_checksum     = var.iso_checksum
+  iso_urls         = [var.iso_path, var.iso_url]
+  memory           = var.memsize
+  output_directory = "./builds/${var.vm_name}-qemu"
+  ssh_password     = var.ssh_password
+  ssh_port         = 22
+  ssh_timeout      = var.ssh_timeout
+  ssh_username     = var.ssh_username
+  shutdown_command = "echo '${var.ssh_password}'|sudo -S shutdown -P now"
+  vm_name          = "${var.vm_name}-qemu"
 }
 
+/*
+Deprecated Sources
+*/
+
+# DEPRECATED: VirtualBox - conflicts with KVM on Linux
+# source "virtualbox-iso" "rhel" {
+#   boot_command         = "${var.boot_command}"
+#   boot_wait            = "${var.boot_wait_virtualbox}"
+#   disk_size            = "${var.disk_size}"
+#   guest_additions_mode = "disable"
+#   #guest_additions_path = "c:/Windows/Temp/windows.iso"
+#   guest_os_type        = "${var.guest_os_type_virtualbox}"
+#   hard_drive_interface = "sata"
+#   headless             = true
+#   http_directory       = "${var.http_directory}"
+#   iso_checksum         = "${var.iso_checksum}"
+#   iso_urls             = ["${var.iso_path}", "${var.iso_url}"]
+#   iso_interface        = "sata"
+#   output_directory     = "${var.build_directory}/${var.vm_name}-vbox"
+#   shutdown_command     = "echo 'vagrant'|sudo -S /sbin/halt -h -p"
+#   ssh_password         = "${var.ssh_password}"
+#   ssh_port             = 22
+#   ssh_timeout          = "${var.ssh_timeout}"
+#   ssh_username         = "${var.ssh_username}"
+#   vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"], ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"], ["modifyvm", "{{ .Name }}", "--vram", "32"], ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]]
+# }
+
 build {
-  sources = ["source.vmware-iso.rhel", "source.virtualbox-iso.rhel", "source.qemu.rhel"]
+  sources = ["source.vmware-iso.rhel", "source.qemu.rhel"]
 
   provisioner "shell" {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"

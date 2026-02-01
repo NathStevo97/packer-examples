@@ -145,6 +145,11 @@ source "qemu" "debian" {
   vm_name          = var.name
 }
 
+/*
+Deprecated Sources
+*/
+
+# DEPRECATED: VirtualBox - conflicts with KVM on Linux
 # source "virtualbox-iso" "debian" {
 #   boot_command     = "${var.boot_command}"
 #   boot_wait        = "${var.boot_wait}"
@@ -172,6 +177,7 @@ source "qemu" "debian" {
 #   vm_name = "${var.name}-virtualbox"
 # }
 
+# DEPRECATED: Hyper-V - Windows only
 # source "hyperv-iso" "debian" {
 #   boot_command          = "${var.boot_command_hyperv}"
 #   boot_wait             = "${var.boot_wait}"

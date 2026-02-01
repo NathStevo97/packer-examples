@@ -122,40 +122,6 @@ variable "winrm_username" {
 }
 
 #################################################################
-#                    Virtualbox-ISO Builder                     #
-#################################################################
-
-source "virtualbox-iso" "windows" {
-  boot_wait            = var.boot_wait
-  communicator         = "winrm"
-  disk_size            = var.disk_size
-  firmware             = var.firmware
-  floppy_files         = var.floppy_files
-  guest_additions_mode = "disable"
-  guest_os_type        = var.guest_os_type_virtualbox
-  hard_drive_interface = "sata"
-  headless             = true # always run headless for ease
-  iso_checksum         = var.iso_checksum
-  iso_interface        = "sata"
-  iso_urls             = [var.iso_path, var.iso_url]
-  output_directory     = "${var.output_directory}-vbox"
-  shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
-  shutdown_timeout     = "30m"
-  vboxmanage = [
-    ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
-    ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
-    ["modifyvm", "{{ .Name }}", "--vram", "32"],
-    ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
-  ]
-  vm_name        = var.vm_name
-  winrm_insecure = true
-  winrm_password = var.winrm_password
-  winrm_timeout  = var.winrm_timeout
-  winrm_use_ssl  = false
-  winrm_username = var.winrm_username
-}
-
-#################################################################
 #                           VMware-ISO Builder                  #
 #################################################################
 
@@ -185,40 +151,72 @@ source "vmware-iso" "windows" {
   winrm_username    = var.winrm_username
 }
 
-#################################################################
-#                        Gen-2 Hyper-V Builder                  #
-#################################################################
+/*
+Deprecated Sources
+*/
 
-source "hyperv-iso" "windows" {
-  boot_command          = var.boot_command
-  boot_wait             = var.boot_wait_hyperv
-  communicator          = "winrm"
-  cpus                  = var.numvcpus
-  disk_size             = var.disk_size
-  enable_dynamic_memory = "true"
-  enable_secure_boot    = false
-  generation            = 2
-  guest_additions_mode  = "disable"
-  headless              = var.headless
-  iso_checksum          = var.iso_checksum
-  iso_urls              = [var.iso_path, var.iso_url]
-  memory                = var.memsize
-  output_directory      = "${var.output_directory}-hv"
-  secondary_iso_images  = [var.secondary_iso_images]
-  shutdown_timeout      = "2h"
-  skip_export           = true
-  switch_name           = "Default Switch"
-  temp_path             = "."
-  vm_name               = "${var.vm_name}-hv"
-  winrm_insecure        = true
-  winrm_password        = var.winrm_password
-  winrm_timeout         = var.winrm_timeout
-  winrm_use_ssl         = false
-  winrm_username        = var.winrm_username
-}
+# DEPRECATED: VirtualBox - conflicts with KVM on Linux
+# source "virtualbox-iso" "windows" {
+#   boot_wait            = var.boot_wait
+#   communicator         = "winrm"
+#   disk_size            = var.disk_size
+#   firmware             = var.firmware
+#   floppy_files         = var.floppy_files
+#   guest_additions_mode = "disable"
+#   guest_os_type        = var.guest_os_type_virtualbox
+#   hard_drive_interface = "sata"
+#   headless             = true # always run headless for ease
+#   iso_checksum         = var.iso_checksum
+#   iso_interface        = "sata"
+#   iso_urls             = [var.iso_path, var.iso_url]
+#   output_directory     = "${var.output_directory}-vbox"
+#   shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
+#   shutdown_timeout     = "30m"
+#   vboxmanage = [
+#     ["modifyvm", "{{ .Name }}", "--memory", "${var.memsize}"],
+#     ["modifyvm", "{{ .Name }}", "--cpus", "${var.numvcpus}"],
+#     ["modifyvm", "{{ .Name }}", "--vram", "32"],
+#     ["modifyvm", "{{.Name}}", "--nat-localhostreachable1", "on"]
+#   ]
+#   vm_name        = var.vm_name
+#   winrm_insecure = true
+#   winrm_password = var.winrm_password
+#   winrm_timeout  = var.winrm_timeout
+#   winrm_use_ssl  = false
+#   winrm_username = var.winrm_username
+# }
+
+# DEPRECATED: Hyper-V - Windows only
+# source "hyperv-iso" "windows" {
+#   boot_command          = var.boot_command
+#   boot_wait             = var.boot_wait_hyperv
+#   communicator          = "winrm"
+#   cpus                  = var.numvcpus
+#   disk_size             = var.disk_size
+#   enable_dynamic_memory = "true"
+#   enable_secure_boot    = false
+#   generation            = 2
+#   guest_additions_mode  = "disable"
+#   headless              = var.headless
+#   iso_checksum          = var.iso_checksum
+#   iso_urls              = [var.iso_path, var.iso_url]
+#   memory                = var.memsize
+#   output_directory      = "${var.output_directory}-hv"
+#   secondary_iso_images  = [var.secondary_iso_images]
+#   shutdown_timeout      = "2h"
+#   skip_export           = true
+#   switch_name           = "Default Switch"
+#   temp_path             = "."
+#   vm_name               = "${var.vm_name}-hv"
+#   winrm_insecure        = true
+#   winrm_password        = var.winrm_password
+#   winrm_timeout         = var.winrm_timeout
+#   winrm_use_ssl         = false
+#   winrm_username        = var.winrm_username
+# }
 
 build {
-  sources = ["source.virtualbox-iso.windows", "source.vmware-iso.windows", "source.hyperv-iso.windows"]
+  sources = ["source.vmware-iso.windows"]
 
   /* provisioner "powershell" {
     only         = ["vmware-iso"]
