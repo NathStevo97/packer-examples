@@ -8,7 +8,7 @@
 
 action="${action:-build}"
 firmware="${firmware:-uefi}"
-log="${log:-0}"
+log="${log:-1}"
 provider="${provider:-qemu}"
 template="${template:-almalinux}"
 type="${type:-}"
