@@ -22,7 +22,7 @@ action=build provider=vmware-iso template=almalinux version=9 bash build.sh
 
 | OS        | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 |-----------|--------------------|---------|----------------|--------------------|
-| Stream 10 | Working            | Failing  | N/A            | N/A                |
+| Stream 10 | Working            | Working | 5-10 mins      | 07/02/2026         |
 | Stream 9  | Working            | Working | 10 - 15 mins   | 30/01/2026         |
 
 ```powershell
@@ -32,10 +32,6 @@ action=build provider=vmware-iso template=almalinux version=9 bash build.sh
 ```shell
 action=build provider=qemu template=centos version=9 bash build.sh
 ```
-
-### CentOS Notes
-
-- Stream 10 failing on QEMU due to Kernel Panic - Investigations Pending
 
 ---
 

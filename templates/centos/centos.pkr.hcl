@@ -15,12 +15,12 @@ variable "boot_command_qemu" {
 
 variable "boot_wait" {
   type    = string
-  default = ""
+  default = "5s"
 }
 
 variable "disk_size" {
   type    = string
-  default = ""
+  default = "40960"
 }
 
 variable "guest_os_type_virtualbox" {
@@ -55,7 +55,7 @@ variable "http_port_max" {
 
 variable "iso_checksum" {
   type    = string
-  default = ""
+  default = "a57fbc243d543003c090534e5011fd62a1bdabf9c1db70cf3b5941a30d5b0b84"
 }
 
 variable "iso_path" {
@@ -65,17 +65,17 @@ variable "iso_path" {
 
 variable "iso_url" {
   type    = string
-  default = ""
+  default = "https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/CentOS-Stream-10-20260202.0-x86_64-boot.iso"
 }
 
 variable "memsize" {
   type    = string
-  default = ""
+  default = "2048"
 }
 
 variable "numvcpus" {
   type    = string
-  default = ""
+  default = "2"
 }
 
 variable "ssh_password" {
@@ -85,12 +85,12 @@ variable "ssh_password" {
 
 variable "ssh_timeout" {
   type    = string
-  default = ""
+  default = "2h"
 }
 
 variable "ssh_username" {
   type    = string
-  default = ""
+  default = "vagrant"
 }
 
 variable "switch_name" {
@@ -105,7 +105,7 @@ variable "vlan_id" {
 
 variable "vm_name" {
   type    = string
-  default = ""
+  default = "centos"
 }
 
 source "vmware-iso" "centos" {
@@ -146,7 +146,7 @@ source "qemu" "centos" {
   memory           = var.memsize
   output_directory = "./builds/${var.vm_name}-qemu"
   qemuargs = [
-    ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
+    ["-cpu", "host,+nx"], # set to "host" for linux-based packer execution
     ["-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
     ["-device", "virtio-net,netdev=forward,id=net0"]
   ]
