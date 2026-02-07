@@ -16,8 +16,6 @@ action=build provider=vmware-iso template=almalinux version=9 bash build.sh
 .\build.ps1 -Action build -Version 9 -Template almalinux -Provider vmware-iso
 ```
 
----
-
 ## CentOS
 
 | OS        | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
@@ -33,8 +31,6 @@ action=build provider=vmware-iso template=almalinux version=9 bash build.sh
 action=build provider=qemu template=centos version=9 bash build.sh
 ```
 
----
-
 ## Debian
 
 | OS | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
@@ -49,8 +45,6 @@ action=build provider=qemu template=centos version=9 bash build.sh
 ```shell
 action=build provider=vmware-iso template=debian version=12 bash build.sh
 ```
-
----
 
 ## Fedora
 
@@ -69,8 +63,6 @@ action=build provider=vmware-iso template=fedora version=42 bash build.sh
 
 - Need to update boot_command for hyper-v and virtualbox boot command usage
 
----
-
 ## OpenSUSE
 
 | OS      | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
@@ -81,8 +73,6 @@ action=build provider=vmware-iso template=fedora version=42 bash build.sh
 ```powershell
 .\build.ps1 -Action build -Version 15 -Template opensuse -Provider virtualbox-iso
 ```
-
----
 
 ## Oracle
 
@@ -101,8 +91,6 @@ action=build provider=vmware-iso template=fedora version=42 bash build.sh
 - Oracle 9.4 failing on QEMU due to known lack of support - [GH Issue](https://github.com/hashicorp/packer-plugin-qemu/issues/76)
 - Boot command needs updating for Oracle 9
 
----
-
 ## RHEL
 
 | OS        | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
@@ -118,8 +106,6 @@ action=build provider=vmware-iso template=fedora version=42 bash build.sh
 ```powershell
 .\build.ps1 -Action build -Version 8 -Template rhel -Provider virtualbox-iso
 ```
-
----
 
 ## RockyLinux
 
@@ -141,8 +127,6 @@ action=build provider=vmware-iso template=fedora version=42 bash build.sh
 .\build.ps1 -Action build -Version 8 -Template rockylinux -Provider virtualbox-iso
 ```
 
----
-
 ## Ubuntu
 
 | OS           | Qemu    | Avg Build Time | Date Last Reviewed |
@@ -161,8 +145,6 @@ action=build provider=vmware-iso template=fedora version=42 bash build.sh
 ```powershell
 .\build.ps1 -Action build -Version 22 -Template ubuntu -Provider qemu
 ```
-
----
 
 ## Windows
 
