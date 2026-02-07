@@ -82,6 +82,10 @@ action=build provider=vmware-iso template=fedora version=42 bash build.sh
 | 9.4 | Working            | Failing | 20 mins        | 06/08/2025         |
 | 8.6 | Working            | Working |                | 27/07/2025         |
 
+```shell
+action=build provider=vmware-iso template=oracle version=9 bash build.sh
+```
+
 ```powershell
 .\build.ps1 -Action build -Version 8 -Template oracle -Provider vmware-iso
 ```

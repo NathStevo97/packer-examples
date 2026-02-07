@@ -146,7 +146,8 @@ source "qemu" "centos" {
   memory           = var.memsize
   output_directory = "./builds/${var.vm_name}-qemu"
   qemuargs = [
-    ["-cpu", "host,+nx"], # set to "host" for linux-based packer execution
+    # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
+    ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
     ["-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
     ["-device", "virtio-net,netdev=forward,id=net0"]
   ]
