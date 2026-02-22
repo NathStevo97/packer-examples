@@ -10,7 +10,7 @@ variable "boot_command_hv" {
 
 variable "boot_wait" {
   type    = string
-  default = ""
+  default = "5s"
 }
 
 variable "box_basename" {
@@ -25,12 +25,12 @@ variable "build_directory" {
 
 variable "cpus" {
   type    = string
-  default = ""
+  default = "2"
 }
 
 variable "disk_size" {
   type    = string
-  default = ""
+  default = "65536"
 }
 
 variable "git_revision" {
@@ -75,17 +75,17 @@ variable "hyperv_switch" {
 
 variable "iso_checksum" {
   type    = string
-  default = ""
+  default = "8b756a95da40d70fabb784fb7d5484494720e97cccf9b5bdc51aed184bedc099"
 }
 
 variable "iso_path" {
   type    = string
-  default = ""
+  default = "https://yum.oracle.com/ISOS/OracleLinux/OL9/u7/x86_64/OracleLinux-R9-U7-x86_64-boot.iso"
 }
 
 variable "iso_url" {
   type    = string
-  default = ""
+  default = "https://yum.oracle.com/ISOS/OracleLinux/OL9/u7/x86_64/OracleLinux-R9-U7-x86_64-boot.iso"
 }
 
 variable "ks_path" {
@@ -95,7 +95,7 @@ variable "ks_path" {
 
 variable "memory" {
   type    = string
-  default = ""
+  default = "2048"
 }
 
 variable "name" {
@@ -115,17 +115,17 @@ variable "ssh_password" {
 
 variable "ssh_timeout" {
   type    = string
-  default = ""
+  default = "2h"
 }
 
 variable "ssh_username" {
   type    = string
-  default = ""
+  default = "vagrant"
 }
 
 variable "template" {
   type    = string
-  default = ""
+  default = "oraclelinux"
 }
 
 variable "switch_name" {
@@ -164,6 +164,7 @@ source "vmware-iso" "oracle" {
   ssh_port                       = 22
   ssh_timeout                    = var.ssh_timeout
   ssh_username                   = var.ssh_username
+  tools_upload_flavor            = ""
   version                        = 19
   vm_name                        = "${var.template}-vmware"
   vmx_remove_ethernet_interfaces = true
@@ -182,6 +183,12 @@ source "qemu" "oracle" {
   iso_urls         = [var.iso_path, var.iso_url]
   memory           = var.memory
   output_directory = "./builds/${var.template}-qemu"
+  qemuargs = [
+    # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
+    ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
+    ["-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
+    ["-device", "virtio-net,netdev=forward,id=net0"]
+  ]
   shutdown_command = "echo '${var.ssh_password}'|sudo -S shutdown -P now"
   ssh_password     = var.ssh_password
   ssh_port         = 22

@@ -68,19 +68,23 @@ action=build provider=vmware-iso template=fedora version=42 bash build.sh
 | OS      | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 |---------|--------------------|---------|----------------|--------------------|
 | Leap 16 | Pending            | Pending | N/A            | N/A                |
-| Leap 15 | Working            | TBD     | 17 mins        | 27/07/2025         |
+| Leap 15 | Working            | Working | 17 mins        | 27/07/2025         |
 
 ```powershell
 .\build.ps1 -Action build -Version 15 -Template opensuse -Provider virtualbox-iso
 ```
 
+```shell
+action=build provider=vmware-iso template=opensuse version=15 bash build.sh
+```
+
 ## Oracle
 
-| OS  | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-|-----|--------------------|---------|----------------|--------------------|
-| 10  | Pending            | Pending | N/A            | N/A                |
-| 9.4 | Working            | Failing | 20 mins        | 06/08/2025         |
-| 8.6 | Working            | Working |                | 27/07/2025         |
+| OS   | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
+|------|--------------------|---------|----------------|--------------------|
+| 10.1 | Pending            | Pending | N/A            | N/A                |
+| 9.7  | Working            | Failing | 20 mins        | 06/08/2025         |
+| 8.10 | Working            | Working |                | 27/07/2025         |
 
 ```shell
 action=build provider=vmware-iso template=oracle version=9 bash build.sh

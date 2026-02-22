@@ -38,14 +38,24 @@ variable "http_directory" {
   default = ""
 }
 
+variable "http_port_min" {
+  type    = string
+  default = "9000"
+}
+
+variable "http_port_max" {
+  type    = string
+  default = "9000"
+}
+
 variable "iso_checksum" {
   type    = string
-  default = ""
+  default = "4683345f242397c7fd7d89a50731a120ffd60a24460e21d2634e783b3c169695"
 }
 
 variable "iso_url" {
   type    = string
-  default = ""
+  default = "http://downloadcontent.opensuse.org/distribution/leap/15.4/iso/openSUSE-Leap-15.4-DVD-x86_64-Build243.2-Media.iso"
 }
 
 variable "name" {
@@ -76,6 +86,8 @@ source "vmware-iso" "opensuse" {
   guest_os_type    = var.guest_os_type_vmware
   headless         = var.headless
   http_directory   = var.http_directory
+  http_port_min    = var.http_port_min
+  http_port_max    = var.http_port_max
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
   memory           = var.ram
@@ -86,6 +98,34 @@ source "vmware-iso" "opensuse" {
   ssh_timeout      = "6h"
   ssh_username     = var.ssh_username
   vm_name          = "${var.name}-vmware"
+}
+
+source "qemu" "opensuse" {
+  boot_command     = var.boot_command
+  boot_wait        = "5s"
+  cpus             = var.cpu
+  disk_size        = var.disk_size
+  disk_interface   = "virtio" # use virtio as virtio-scsi is not supported by opensuse with qemu
+  headless         = var.headless
+  http_directory   = var.http_directory
+  http_port_min    = var.http_port_min
+  http_port_max    = var.http_port_max
+  iso_checksum     = var.iso_checksum
+  iso_url          = var.iso_url
+  memory           = var.ram
+  output_directory = "./builds/${var.name}-qemu"
+  qemuargs = [
+    # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
+    ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
+    ["-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
+    ["-device", "virtio-net,netdev=forward,id=net0"]
+  ]
+  shutdown_command = "echo '${var.ssh_password}'|sudo -S shutdown -P now"
+  ssh_password     = var.ssh_password
+  ssh_port         = 22
+  ssh_timeout      = "6h"
+  ssh_username     = var.ssh_username
+  vm_name          = "${var.name}-qemu"
 }
 
 /*
@@ -119,5 +159,5 @@ Deprecated Sources
 # }
 
 build {
-  sources = ["source.vmware-iso.opensuse"]
+  sources = ["source.vmware-iso.opensuse", "source.qemu.opensuse"]
 }
