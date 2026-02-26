@@ -38,6 +38,11 @@ variable "git_revision" {
   default = "__unknown_git_revision__"
 }
 
+variable "guest_os_type_vmware" {
+  type    = string
+  default = "oraclelinux-64"
+}
+
 variable "guest_additions_url" {
   type    = string
   default = ""
@@ -51,6 +56,16 @@ variable "headless" {
 variable "http_directory" {
   type    = string
   default = ""
+}
+
+variable "http_port_min" {
+  type    = string
+  default = "9000"
+}
+
+variable "http_port_max" {
+  type    = string
+  default = "9000"
 }
 
 variable "http_proxy" {
@@ -148,30 +163,28 @@ locals {
 }
 
 source "vmware-iso" "oracle" {
-  boot_command                   = var.boot_command
-  boot_wait                      = var.boot_wait
-  cpus                           = var.cpus
-  disk_size                      = var.disk_size
-  guest_os_type                  = "oraclelinux-64"
-  headless                       = var.headless
-  http_directory                 = var.http_directory
-  iso_checksum                   = var.iso_checksum
-  iso_urls                       = [var.iso_path, var.iso_url]
-  memory                         = var.memory
-  output_directory               = "${var.build_directory}/packer-${var.template}-vmware"
-  shutdown_command               = "echo '${var.ssh_password}' | sudo -S /sbin/halt -h -p"
-  ssh_password                   = var.ssh_password
-  ssh_port                       = 22
-  ssh_timeout                    = var.ssh_timeout
-  ssh_username                   = var.ssh_username
-  tools_upload_flavor            = ""
-  version                        = 19
-  vm_name                        = "${var.template}-vmware"
-  vmx_remove_ethernet_interfaces = true
+  boot_command     = var.boot_command
+  boot_wait        = var.boot_wait
+  cpus             = var.cpus
+  disk_size        = var.disk_size
+  guest_os_type    = var.guest_os_type_vmware
+  headless         = var.headless
+  http_directory   = var.http_directory
+  http_port_min    = var.http_port_min
+  http_port_max    = var.http_port_max
+  iso_checksum     = var.iso_checksum
+  iso_urls         = [var.iso_path, var.iso_url]
+  memory           = var.memory
+  output_directory = "${var.build_directory}/packer-${var.template}-vmware"
+  shutdown_command = "echo '${var.ssh_password}' | sudo -S /sbin/halt -h -p"
+  ssh_password     = var.ssh_password
+  ssh_port         = 22
+  ssh_timeout      = var.ssh_timeout
+  ssh_username     = var.ssh_username
+  vm_name          = "${var.template}-vmware"
 }
 
 source "qemu" "oracle" {
-
   boot_command     = var.boot_command
   boot_wait        = "5s"
   cpus             = var.cpus
@@ -179,6 +192,8 @@ source "qemu" "oracle" {
   disk_interface   = "virtio-scsi"
   headless         = var.headless
   http_directory   = var.http_directory
+  http_port_min    = var.http_port_min
+  http_port_max    = var.http_port_max
   iso_checksum     = var.iso_checksum
   iso_urls         = [var.iso_path, var.iso_url]
   memory           = var.memory

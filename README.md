@@ -121,18 +121,14 @@ action=build provider=vmware-iso template=oracle version=9 bash build.sh
 |-----|--------------------|---------|----------------|--------------------|
 | 10  | Pending            | Pending | N/A            | N/A                |
 | 9   | Pending            | Pending | N/A            | N/A                |
-| 8.8 | Working            | TBD     | 15-25 mins     | 17/08/2025         |
+| 8.8 | Working            | TBD     | 15-25 mins     | 27/02/2026         |
+
+```shell
+action=build provider=vmware-iso template=rockylinux version=8 bash build.sh
+```
 
 ```powershell
 .\build.ps1 -Action build -Version 8 -Template rockylinux -Provider vmware-iso
-```
-
-```powershell
-.\build.ps1 -Action build -Version 8 -Template rockylinux -Provider hyperv-iso
-```
-
-```powershell
-.\build.ps1 -Action build -Version 8 -Template rockylinux -Provider virtualbox-iso
 ```
 
 ## Ubuntu

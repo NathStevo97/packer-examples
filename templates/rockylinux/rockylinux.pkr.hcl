@@ -43,6 +43,16 @@ variable "http_directory" {
   default = ""
 }
 
+variable "http_port_min" {
+  type    = string
+  default = "9000"
+}
+
+variable "http_port_max" {
+  type    = string
+  default = "9000"
+}
+
 variable "iso_checksum" {
   type    = string
   default = "96c9d96c33ebacc8e909dcf8abf067b6bb30588c0c940a9c21bb9b83f3c99868"
@@ -98,6 +108,8 @@ source "vmware-iso" "rockylinux" {
   guest_os_type    = var.guest_os_type_vmware
   headless         = var.headless
   http_directory   = var.http_directory
+  http_port_min    = var.http_port_min
+  http_port_max    = var.http_port_max
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
   memory           = var.memsize
