@@ -1,14 +1,13 @@
+#
+# Variables
+#
+
 variable "boot_wait" {
   type    = string
   default = "10s"
 }
 
 variable "boot_command" {
-  type    = list(string)
-  default = []
-}
-
-variable "boot_command_hyperv" {
   type    = list(string)
   default = []
 }
@@ -28,11 +27,6 @@ variable "disk_size" {
   default = "70000"
 }
 
-variable "guest_os_type_vbox" {
-  type    = string
-  default = ""
-}
-
 variable "guest_os_type_vmware" {
   type    = string
   default = ""
@@ -50,12 +44,12 @@ variable "http_directory" {
 
 variable "http_port_min" {
   type    = string
-  default = ""
+  default = "9000"
 }
 
 variable "http_port_max" {
   type    = string
-  default = ""
+  default = "9000"
 }
 
 variable "iso_checksum" {
@@ -85,23 +79,41 @@ variable "ssh_password" {
 
 variable "ssh_username" {
   type    = string
-  default = ""
-}
-
-variable "switch_name" {
-  type    = string
-  default = ""
-}
-
-variable "vlan_id" {
-  type    = string
-  default = ""
+  default = "vagrant"
 }
 
 variable "version" {
   type    = string
   default = "9"
 }
+
+#
+# Deprecated Vars
+#
+
+# variable "boot_command_hyperv" {
+#   type    = list(string)
+#   default = []
+# }
+
+# variable "guest_os_type_vbox" {
+#   type    = string
+#   default = ""
+# }
+
+# variable "switch_name" {
+#   type    = string
+#   default = ""
+# }
+
+# variable "vlan_id" {
+#   type    = string
+#   default = ""
+# }
+
+#
+# Builders
+#
 
 source "vmware-iso" "almalinux" {
   boot_command     = var.boot_command
@@ -141,7 +153,7 @@ source "qemu" "almalinux" {
   output_directory = "./builds/${var.name}-qemu"
   qemuargs = [
     # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
-    ["-cpu", "host"], # set to "Nehalem" for windows-based packer execution
+    ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
     ["-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
     ["-device", "virtio-net,netdev=forward,id=net0"]
   ]
@@ -153,9 +165,9 @@ source "qemu" "almalinux" {
   vm_name          = "${var.name}-qemu"
 }
 
-/*
-Deprecated Sources
-*/
+#
+# Deprecated Sources
+#
 
 # DEPRECATED: VirtualBox - conflicts with KVM on Linux
 # source "virtualbox-iso" "almalinux" {

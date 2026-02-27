@@ -1,9 +1,8 @@
-variable "boot_command" {
-  type    = list(string)
-  default = []
-}
+#
+# Variables
+#
 
-variable "boot_command_hyperv" {
+variable "boot_command" {
   type    = list(string)
   default = []
 }
@@ -21,11 +20,6 @@ variable "boot_wait" {
 variable "disk_size" {
   type    = string
   default = "40960"
-}
-
-variable "guest_os_type_virtualbox" {
-  type    = string
-  default = ""
 }
 
 variable "guest_os_type_vmware" {
@@ -93,20 +87,34 @@ variable "ssh_username" {
   default = "vagrant"
 }
 
-variable "switch_name" {
-  type    = string
-  default = ""
-}
-
-variable "vlan_id" {
-  type    = string
-  default = ""
-}
-
 variable "vm_name" {
   type    = string
   default = "centos"
 }
+
+#
+# Deprecated Vars
+#
+
+# variable "boot_command_hyperv" {
+#   type    = list(string)
+#   default = []
+# }
+
+# variable "guest_os_type_virtualbox" {
+#   type    = string
+#   default = ""
+# }
+
+# variable "switch_name" {
+#   type    = string
+#   default = ""
+# }
+
+# variable "vlan_id" {
+#   type    = string
+#   default = ""
+# }
 
 source "vmware-iso" "centos" {
   boot_command     = var.boot_command
@@ -159,9 +167,9 @@ source "qemu" "centos" {
   vm_name          = "${var.vm_name}-qemu"
 }
 
-/*
-Deprecated Sources
-*/
+#
+# Deprecated Sources
+#
 
 # DEPRECATED: VirtualBox - conflicts with KVM on Linux
 # source "virtualbox-iso" "centos" {

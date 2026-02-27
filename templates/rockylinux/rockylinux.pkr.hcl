@@ -8,6 +8,11 @@ variable "boot_command_hyperv" {
   default = []
 }
 
+variable "boot_command_qemu" {
+  type    = list(string)
+  default = []
+}
+
 variable "boot_wait" {
   type    = string
   default = "5s"
@@ -75,12 +80,12 @@ variable "numvcpus" {
 
 variable "ssh_password" {
   type    = string
-  default = "packer"
+  default = ""
 }
 
 variable "ssh_username" {
   type    = string
-  default = "packer"
+  default = "vagrant"
 }
 
 variable "switch_name" {
@@ -120,6 +125,32 @@ source "vmware-iso" "rockylinux" {
   ssh_timeout      = "30m"
   ssh_username     = var.ssh_username
   vm_name          = "${var.vm_name}-vmware"
+}
+
+source "qemu" "rockylinux" {
+  boot_command     = var.boot_command_qemu
+  boot_wait        = var.boot_wait
+  disk_size        = var.disk_size
+  headless         = var.headless
+  http_directory   = var.http_directory
+  http_port_min    = var.http_port_min
+  http_port_max    = var.http_port_max
+  iso_checksum     = var.iso_checksum
+  iso_url          = var.iso_url
+  memory           = var.memsize
+  output_directory = "./builds/${var.vm_name}-qemu"
+  qemuargs = [
+    # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
+    ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
+    ["-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
+    ["-device", "virtio-net,netdev=forward,id=net0"]
+  ]
+  shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
+  ssh_password     = var.ssh_password
+  ssh_port         = 22
+  ssh_timeout      = "6h"
+  ssh_username     = var.ssh_username
+  vm_name          = "${var.vm_name}-qemu"
 }
 
 /*
@@ -182,7 +213,7 @@ Deprecated Sources
 # }
 
 build {
-  sources = ["source.vmware-iso.rockylinux"]
+  sources = ["source.vmware-iso.rockylinux", "source.qemu.rockylinux"]
 
   provisioner "shell" {
     execute_command = "echo 'packer'|{{ .Vars }} sudo -S -E bash '{{ .Path }}'"

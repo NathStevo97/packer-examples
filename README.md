@@ -115,13 +115,13 @@ action=build provider=vmware-iso template=oracle version=9 bash build.sh
 .\build.ps1 -Action build -Version 8 -Template rhel -Provider virtualbox-iso
 ```
 
-## RockyLinux
+## Rocky Linux
 
 | OS  | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 |-----|--------------------|---------|----------------|--------------------|
 | 10  | Pending            | Pending | N/A            | N/A                |
 | 9   | Pending            | Pending | N/A            | N/A                |
-| 8.8 | Working            | TBD     | 15-25 mins     | 27/02/2026         |
+| 8.8 | Working            | Working | 15-25 mins     | 27/02/2026         |
 
 ```shell
 action=build provider=vmware-iso template=rockylinux version=8 bash build.sh
