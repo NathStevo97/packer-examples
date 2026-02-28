@@ -43,14 +43,24 @@ variable "http_directory" {
   default = ""
 }
 
+variable "http_port_min" {
+  type    = string
+  default = "9000"
+}
+
+variable "http_port_max" {
+  type    = string
+  default = "9000"
+}
+
 variable "iso_checksum" {
   type    = string
-  default = ""
+  default = "9bc6028870aef3f74f4e16b900008179e78b130e6b0b9a140635434a46aa98b0"
 }
 
 variable "iso_url" {
   type    = string
-  default = ""
+  default = "https://releases.ubuntu.com/jammy/ubuntu-22.04.5-live-server-amd64.iso"
 }
 
 variable "headless" {
@@ -98,23 +108,33 @@ variable "vm_name" {
 #################################################################
 
 source "qemu" "ubuntu" {
-  boot_wait        = "${var.boot_wait}"
-  headless         = var.headless
-  boot_command     = "${var.boot_command}"
-  http_directory   = "${var.http_directory}"
-  iso_checksum     = "${var.iso_checksum}"
-  iso_url          = "${var.iso_url}"
+  boot_command     = var.boot_command
+  boot_wait        = var.boot_wait
+  cpus             = var.cpu
+  disk_cache       = "none"
+  disk_discard     = "unmap"
+  disk_interface   = "virtio"
+  disk_size        = var.disk_size
   format           = "qcow2"
+  headless         = var.headless
+  http_directory   = var.http_directory
+  http_port_min    = var.http_port_min
+  http_port_max    = var.http_port_max
+  iso_checksum     = var.iso_checksum
+  iso_url          = var.iso_url
+  memory           = var.memory
   output_directory = "./builds/${var.vm_name}-qemu"
+  qemuargs = [
+    # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
+    ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
+    ["-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
+    ["-device", "virtio-net,netdev=forward,id=net0"]
+  ]
   shutdown_command = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
-  ssh_password     = "${var.ssh_password}"
+  ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = "6h"
-  ssh_username     = "${var.ssh_username}"
-  disk_size        = "${var.disk_size}"
-  disk_interface   = "virtio-scsi"
-  memory           = "${var.memory}"
-  cpus             = "${var.cpu}"
+  ssh_username     = var.ssh_username
 }
 
 source "vmware-iso" "ubuntu" {
@@ -122,9 +142,12 @@ source "vmware-iso" "ubuntu" {
   boot_wait        = var.boot_wait
   cpus             = var.cpu
   disk_size        = var.disk_size
+  firmware         = "efi"
   guest_os_type    = var.guest_os_type_vmware
   headless         = var.headless
   http_directory   = var.http_directory
+  http_port_min    = var.http_port_min
+  http_port_max    = var.http_port_max
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
   memory           = var.memory

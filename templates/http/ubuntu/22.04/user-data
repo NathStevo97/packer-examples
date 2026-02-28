@@ -1,44 +1,36 @@
 #cloud-config
-
 autoinstall:
   version: 1
   identity:
-    hostname: ubuntu2204
-    password: $6$B1yxqMfR$gj5FAxkfd16958twhq6w/IQ14GuTPucLDArz6o/VZftkT41PQi7.hoxpDMonWQdVBbyV/RlpxytLKXnc8MfXG/
-    username: root
-  early-commands:
-    - systemctl stop ssh # otherwise packer tries to connect and exceed max attempts
-  apt:
-    geoip: true
-    preserve_sources_list: false
-    primary:
-      - arches: [amd64]
-        uri: "http://archive.ubuntu.com/ubuntu/"
+    hostname: ubuntu2404
+    username: ubuntu
+    password: $6$rounds=4096$mB3ZauOM8/HIycgS$LwQeKlz2pQQvNtzOwSgLQG5kx3givTh2qzopLTD/svBPIRRKFi8u72Hi0yXIOD7lbVPOkMq0jGttggkUrntyB0
+  user-data:
+    disable_root: false
+  keyboard:
+    layout: us
+  locale: en_US
+  network:
+    ethernets:
+      eth0:
+        dhcp4: true
+        dhcp-identifier: mac
+    version: 2
+  ssh:
+    allow-pw: true
+    install-server: true
+  storage:
+    layout:
+      name: lvm
+  late-commands:
+    - sed -i -e 's/^#\?PasswordAuthentication.*/PasswordAuthentication yes/g' /target/etc/ssh/sshd_config
+    - sed -i -e 's/^#\?PermitRootLogin.*/PermitRootLogin yes/g' /target/etc/ssh/sshd_config
+    - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
+    - sed -ie 's/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="net.ifnames=0 ipv6.disable=1 biosdevname=0"/' /target/etc/default/grub
+    - curtin in-target --target /target update-grub2
   packages:
-    - mc
+    - bc
     - curl
     - wget
-    - sudo
-    - tar
-    - bzip2
-    - build-essential
-    - linux-image-virtual
-    - linux-tools-virtual
-#    - linux-cloud-tools-virtual
-    - net-tools
-    - qemu-guest-agent
-  locale: en_US.UTF-8
-  timezone: Europe/Copenhagen
-  ssh:
-    install-server: true
-    allow-pw: true
-  late-commands:
-    #- echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
-    - sed -ie 's/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX="net.ifnames=0 ipv6.disable=1 biosdevname=0 elevator=noop"/' /target/etc/default/grub
-    - sed -ie 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /target/etc/ssh/sshd_config
-    - sed -ie 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /target/etc/ssh/sshd_config
-    - sed -ie 's/#AllowAgentForwarding yes/AllowAgentForwarding yes/' /target/etc/ssh/sshd_config
-    - curtin in-target -- update-grub2
-    # virtual package is required for some cloud images. Lack of it causes failure in communication.
-    - curtin in-target -- apt-get -y install linux-cloud-tools-virtual||true
-    - curtin in-target -- systemctl enable qemu-guest-agent
+    - openssh-server
+#    - qemu-guest-agent
