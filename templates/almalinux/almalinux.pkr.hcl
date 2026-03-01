@@ -17,7 +17,7 @@ variable "boot_command_qemu" {
   default = []
 }
 
-variable "cpu" {
+variable "cpus" {
   type    = string
   default = "2"
 }
@@ -62,12 +62,7 @@ variable "iso_url" {
   default = "https://repo.almalinux.org/almalinux/9.2/isos/x86_64/AlmaLinux-9.2-x86_64-boot.iso"
 }
 
-variable "name" {
-  type    = string
-  default = "almalinux"
-}
-
-variable "ram" {
+variable "memory" {
   type    = string
   default = "2048"
 }
@@ -85,6 +80,11 @@ variable "ssh_username" {
 variable "version" {
   type    = string
   default = "9"
+}
+
+variable "vm_name" {
+  type    = string
+  default = "almalinux"
 }
 
 #
@@ -118,7 +118,7 @@ variable "version" {
 source "vmware-iso" "almalinux" {
   boot_command     = var.boot_command
   boot_wait        = var.boot_wait
-  cpus             = var.cpu
+  cpus             = var.cpus
   disk_size        = var.disk_size
   disk_type_id     = "0"
   firmware         = "efi"
@@ -129,19 +129,20 @@ source "vmware-iso" "almalinux" {
   http_port_max    = var.http_port_max
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
-  memory           = var.ram
-  output_directory = "./builds/${var.name}-vmware"
+  memory           = var.memory
+  output_directory = "./builds/${var.vm_name}-vmware"
   shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
   ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = "30m"
   ssh_username     = var.ssh_username
-  vm_name          = "${var.name}-vmware"
+  vm_name          = "${var.vm_name}-vmware"
 }
 
 source "qemu" "almalinux" {
   boot_command     = var.boot_command_qemu
   boot_wait        = var.boot_wait
+  cpus             = var.cpus
   disk_size        = var.disk_size
   headless         = var.headless
   http_directory   = var.http_directory
@@ -149,8 +150,8 @@ source "qemu" "almalinux" {
   http_port_max    = var.http_port_max
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
-  memory           = var.ram
-  output_directory = "./builds/${var.name}-qemu"
+  memory           = var.memory
+  output_directory = "./builds/${var.vm_name}-qemu"
   qemuargs = [
     # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
     ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
@@ -162,7 +163,7 @@ source "qemu" "almalinux" {
   ssh_port         = 22
   ssh_timeout      = "6h"
   ssh_username     = var.ssh_username
-  vm_name          = "${var.name}-qemu"
+  vm_name          = "${var.vm_name}-qemu"
 }
 
 #

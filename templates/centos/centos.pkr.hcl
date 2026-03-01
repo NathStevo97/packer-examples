@@ -17,6 +17,11 @@ variable "boot_wait" {
   default = "5s"
 }
 
+variable "cpus" {
+  type    = string
+  default = "2"
+}
+
 variable "disk_size" {
   type    = string
   default = "40960"
@@ -62,14 +67,9 @@ variable "iso_url" {
   default = "https://mirror.stream.centos.org/10-stream/BaseOS/x86_64/iso/CentOS-Stream-10-20260202.0-x86_64-boot.iso"
 }
 
-variable "memsize" {
+variable "memory" {
   type    = string
   default = "2048"
-}
-
-variable "numvcpus" {
-  type    = string
-  default = "2"
 }
 
 variable "ssh_password" {
@@ -119,7 +119,7 @@ variable "vm_name" {
 source "vmware-iso" "centos" {
   boot_command     = var.boot_command
   boot_wait        = var.boot_wait
-  cpus             = var.numvcpus
+  cpus             = var.cpus
   disk_size        = var.disk_size
   disk_type_id     = "0"
   firmware         = "efi"
@@ -130,7 +130,7 @@ source "vmware-iso" "centos" {
   http_port_max    = var.http_port_max
   iso_checksum     = var.iso_checksum
   iso_urls         = [var.iso_path, var.iso_url]
-  memory           = var.memsize
+  memory           = var.memory
   output_directory = "./builds/${var.vm_name}"
   shutdown_command = "echo '${var.ssh_password}' | sudo -S /sbin/shutdown -P now"
   shutdown_timeout = "1h"
@@ -144,6 +144,7 @@ source "vmware-iso" "centos" {
 source "qemu" "centos" {
   boot_command     = var.boot_command_qemu
   boot_wait        = var.boot_wait
+  cpus             = var.cpus
   disk_size        = var.disk_size
   headless         = var.headless
   http_directory   = var.http_directory
@@ -151,7 +152,7 @@ source "qemu" "centos" {
   http_port_max    = var.http_port_max
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
-  memory           = var.memsize
+  memory           = var.memory
   output_directory = "./builds/${var.vm_name}-qemu"
   qemuargs = [
     # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
