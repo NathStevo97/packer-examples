@@ -8,7 +8,7 @@ variable "boot_wait" {
   default = "10s"
 }
 
-variable "cpu" {
+variable "cpus" {
   type    = string
   default = "2"
 }
@@ -58,12 +58,7 @@ variable "iso_url" {
   default = "http://downloadcontent.opensuse.org/distribution/leap/15.4/iso/openSUSE-Leap-15.4-DVD-x86_64-Build243.2-Media.iso"
 }
 
-variable "name" {
-  type    = string
-  default = "opensuse-15"
-}
-
-variable "ram" {
+variable "memory" {
   type    = string
   default = "4096"
 }
@@ -78,10 +73,15 @@ variable "ssh_username" {
   default = "vagrant"
 }
 
+variable "vm_name" {
+  type    = string
+  default = "opensuse-15"
+}
+
 source "vmware-iso" "opensuse" {
   boot_command     = var.boot_command
   boot_wait        = var.boot_wait
-  cpus             = var.cpu
+  cpus             = var.cpus
   disk_size        = var.disk_size
   guest_os_type    = var.guest_os_type_vmware
   headless         = var.headless
@@ -90,20 +90,20 @@ source "vmware-iso" "opensuse" {
   http_port_max    = var.http_port_max
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
-  memory           = var.ram
-  output_directory = "./builds/${var.name}-vmware"
+  memory           = var.memory
+  output_directory = "./builds/${var.vm_name}-vmware"
   shutdown_command = "echo '${var.ssh_password}' |sudo -S /sbin/halt -h -p"
   ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = "6h"
   ssh_username     = var.ssh_username
-  vm_name          = "${var.name}-vmware"
+  vm_name          = "${var.vm_name}-vmware"
 }
 
 source "qemu" "opensuse" {
   boot_command     = var.boot_command
   boot_wait        = "5s"
-  cpus             = var.cpu
+  cpus             = var.cpus
   disk_size        = var.disk_size
   disk_interface   = "virtio" # use virtio as virtio-scsi is not supported by opensuse with qemu
   headless         = var.headless
@@ -112,8 +112,8 @@ source "qemu" "opensuse" {
   http_port_max    = var.http_port_max
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
-  memory           = var.ram
-  output_directory = "./builds/${var.name}-qemu"
+  memory           = var.memory
+  output_directory = "./builds/${var.vm_name}-qemu"
   qemuargs = [
     # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
     ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
@@ -125,7 +125,7 @@ source "qemu" "opensuse" {
   ssh_port         = 22
   ssh_timeout      = "6h"
   ssh_username     = var.ssh_username
-  vm_name          = "${var.name}-qemu"
+  vm_name          = "${var.vm_name}-qemu"
 }
 
 /*
