@@ -143,14 +143,6 @@ action=build provider=vmware-iso template=ubuntu version=22 bash build.sh
 ```
 
 ```powershell
-.\build.ps1 -Action build -Version 22 -Template ubuntu -Provider hyperv-iso
-```
-
-```powershell
-.\build.ps1 -Action build -Version 22 -Template ubuntu -Provider virtualbox-iso
-```
-
-```powershell
 .\build.ps1 -Action build -Version 22 -Template ubuntu -Provider qemu
 ```
 
@@ -162,12 +154,12 @@ action=build provider=vmware-iso template=ubuntu version=22 bash build.sh
 | 10 | UEFI          | Working            | 45mins - 1hr   | 10/01/2026         |
 | 10 | BIOS          | Working            | 45mins - 1hr   | 17/01/2026         |
 
-```powershell
-.\build.ps1 -Action build -Version 11 -Template windows -Provider vmware-iso
+```shell
+action=build provider=vmware-iso template=windows version=11 firmware=uefi bash build.sh
 ```
 
 ```powershell
-.\build.ps1 -Action build -Version 11 -Template windows -Provider hyperv-iso -Generation 2
+.\build.ps1 -Action build -Version 11 -Template windows -Provider vmware-iso
 ```
 
 ## Windows-Server
@@ -183,12 +175,12 @@ action=build provider=vmware-iso template=ubuntu version=22 bash build.sh
 | 2019 Standard   | BIOS          | Working            | 10 - 20 mins   | 26/12/2025         |
 | 2019 Datacenter | BIOS          | Testing            | 10 - 20 mins   | 26/12/2025         |
 
-```powershell
-.\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider vmware-iso
+```shell
+action=build provider=vmware-iso template=windows-server version=2022 firmware=uefi bash build.sh
 ```
 
 ```powershell
-.\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider hyperv-iso -Generation 2
+.\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider vmware-iso
 ```
 
 ## Notes
