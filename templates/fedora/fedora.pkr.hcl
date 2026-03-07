@@ -55,11 +55,13 @@ variable "http_port_max" {
 }
 
 variable "iso_checksum" {
-  type = string
+  type    = string
+  default = "file:https://download.fedoraproject.org/pub/fedora/linux/releases/42/Server/x86_64/iso/Fedora-Server-42-1.1-x86_64-CHECKSUM"
 }
 
 variable "iso_url" {
-  type = string
+  type    = string
+  default = "https://download.fedoraproject.org/pub/fedora/linux/releases/42/Server/x86_64/iso/Fedora-Server-dvd-x86_64-42-1.1.iso"
 }
 
 variable "name" {
@@ -74,12 +76,12 @@ variable "ram" {
 
 variable "ssh_password" {
   type    = string
-  default = ""
+  default = "vagrant"
 }
 
 variable "ssh_username" {
   type    = string
-  default = ""
+  default = "vagrant"
 }
 
 variable "switch_name" {
@@ -119,6 +121,33 @@ source "vmware-iso" "fedora" {
   ssh_timeout      = "2h"
   ssh_username     = var.ssh_username
   vm_name          = "${var.name}-vmware"
+}
+
+source "qemu" "fedora" {
+  boot_command     = var.boot_command
+  boot_wait        = var.boot_wait
+  cpus             = var.cpu
+  disk_size        = var.disk_size
+  headless         = var.headless
+  http_directory   = var.http_directory
+  http_port_min    = var.http_port_min
+  http_port_max    = var.http_port_max
+  iso_checksum     = var.iso_checksum
+  iso_url          = var.iso_url
+  memory           = var.ram
+  output_directory = "./builds/${var.name}-qemu"
+  qemuargs = [
+    # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
+    ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
+    ["-netdev", "user,hostfwd=tcp::{{ .SSHHostPort }}-:22,id=forward"],
+    ["-device", "virtio-net,netdev=forward,id=net0"]
+  ]
+  shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
+  ssh_password     = var.ssh_password
+  ssh_port         = 22
+  ssh_timeout      = "6h"
+  ssh_username     = var.ssh_username
+  vm_name          = "${var.name}-qemu"
 }
 
 /*
@@ -184,5 +213,5 @@ Deprecated Sources
 # }
 
 build {
-  sources = ["source.vmware-iso.fedora"]
+  sources = ["source.vmware-iso.fedora", "source.qemu.fedora"]
 }

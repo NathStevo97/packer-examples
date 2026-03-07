@@ -51,7 +51,7 @@ action=build provider=vmware-iso template=debian version=12 bash build.sh
 | OS | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 |----|--------------------|---------|----------------|--------------------|
 | 43 | Pending            | Pending | N/A            | N/A                |
-| 42 | Working            | TBD     | 10-30 mins     | 27/7/2025          |
+| 42 | Working            | Working | 10-30 mins     | 07/03/2026         |
 
 ```powershell
 .\build.ps1 -Action build -Version 42 -Template fedora -Provider virtualbox-iso
@@ -60,8 +60,6 @@ action=build provider=vmware-iso template=debian version=12 bash build.sh
 ```shell
 action=build provider=vmware-iso template=fedora version=42 bash build.sh
 ```
-
-- Need to update boot_command for hyper-v and virtualbox boot command usage
 
 ## OpenSUSE
 
