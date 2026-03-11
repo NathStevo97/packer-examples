@@ -82,7 +82,7 @@ action=build provider=vmware-iso template=opensuse version=15 bash build.sh
 |------|--------------------|---------|----------------|--------------------|
 | 10.1 | Pending            | Pending | N/A            | N/A                |
 | 9.7  | Working            | Failing | 20 mins        | 06/08/2025         |
-| 8.10 | Working            | Working |                | 27/07/2025         |
+| 8.10 | Working            | Working |                | 11/03/2026         |
 
 ```shell
 action=build provider=vmware-iso template=oracle version=9 bash build.sh
