@@ -189,7 +189,7 @@ source "qemu" "oracle" {
   boot_wait        = "5s"
   cpus             = var.cpus
   disk_size        = var.disk_size
-  disk_interface   = "virtio-scsi"
+  disk_interface   = "virtio"
   headless         = var.headless
   http_directory   = var.http_directory
   http_port_min    = var.http_port_min
