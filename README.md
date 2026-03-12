@@ -81,7 +81,7 @@ action=build provider=vmware-iso template=opensuse version=15 bash build.sh
 | OS   | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 |------|--------------------|---------|----------------|--------------------|
 | 10.1 | Pending            | Pending | N/A            | N/A                |
-| 9.7  | Working            | Failing | 20 mins        | 06/08/2025         |
+| 9.7  | Working            | Woring  | 20 mins        | 12/03/2026         |
 | 8.10 | Working            | Working |                | 11/03/2026         |
 
 ```shell
