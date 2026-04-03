@@ -148,7 +148,7 @@ action=build provider=vmware-iso template=ubuntu version=22 bash build.sh
 
 | OS | Firmware Type | VMWare Workstation | Avg Build Time | Date Last Reviewed |
 |----|---------------|--------------------|----------------|--------------------|
-| 11 | UEFI          | Failing            | 12 - 45 mins   | 26/12/2025         |
+| 11 | UEFI          | Working            | 12 - 45 mins   | 03/04/2026         |
 | 10 | UEFI          | Working            | 45mins - 1hr   | 10/01/2026         |
 | 10 | BIOS          | Working            | 45mins - 1hr   | 17/01/2026         |
 
@@ -166,15 +166,15 @@ action=build provider=vmware-iso template=windows version=11 firmware=uefi bash 
 |-----------------|---------------|--------------------|----------------|--------------------|
 | 2025 Standard   | UEFI          | Pending            | N/A            | N/A                |
 | 2025 Datacenter | UEFI          | Pending            | N/A            | N/A                |
-| 2022 Standard   | UEFI          | Testing            | 10 - 20 mins   | 26/12/2025         |
-| 2022 Datacenter | UEFI          | Testing            | 10 - 20 mins   | 26/12/2025         |
-| 2019 Standard   | UEFI          | Testing            | 10 - 20 mins   | 26/12/2025         |
-| 2019 Datacenter | UEFI          | Testing            | 10 - 20 mins   | 26/12/2025         |
+| 2022 Standard   | UEFI          | Working            | 10 - 20 mins   | 03/04/2026         |
+| 2022 Datacenter | UEFI          | Working            | 10 - 20 mins   | 03/04/2026         |
+| 2019 Standard   | UEFI          | Working            | 10 - 20 mins   | 26/12/2025         |
+| 2019 Datacenter | UEFI          | Working            | 10 - 20 mins   | 26/12/2025         |
 | 2019 Standard   | BIOS          | Working            | 10 - 20 mins   | 26/12/2025         |
-| 2019 Datacenter | BIOS          | Testing            | 10 - 20 mins   | 26/12/2025         |
+| 2019 Datacenter | BIOS          | Working            | 10 - 20 mins   | 26/12/2025         |
 
 ```shell
-action=build provider=vmware-iso template=windows-server version=2022 firmware=uefi bash build.sh
+action=build provider=vmware-iso template=windows-server version=2022 type=std firmware=uefi bash build.sh
 ```
 
 ```powershell

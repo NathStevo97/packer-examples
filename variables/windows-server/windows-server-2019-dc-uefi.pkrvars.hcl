@@ -1,9 +1,9 @@
 boot_command             = ["<tab><wait><enter><wait>", "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
 boot_wait                = "5s"
 boot_wait_hyperv         = "120s"
-cd_files                 = ["./templates/files/windows/win2019/dc/autounattend.xml", "./templates/files/scripts/winrmConfig.ps1"]
 disk_size                = "40960"
-floppy_files             = []
+firmware                 = "efi"
+floppy_files             = ["./templates/files/windows/server-2019/dc/uefi/autounattend.xml", "./templates/files/scripts/winrmConfig.ps1"]
 guest_os_type_virtualbox = "Windows2019_64"
 guest_os_type_vmware     = "windows9srv-64"
 headless                 = false

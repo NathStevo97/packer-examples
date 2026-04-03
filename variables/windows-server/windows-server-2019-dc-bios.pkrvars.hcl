@@ -1,9 +1,8 @@
 boot_command             = ["<tab><wait><enter><wait>", "a<wait>a<wait>a<wait>a<wait>a<wait>a<wait>"]
 boot_wait                = "5s"
 boot_wait_hyperv         = "120s"
-cd_files                 = ["./templates/files/windows/server-2019/dc/bios/Autounattend.xml"]
 disk_size                = "40960"
-floppy_files             = []
+floppy_files             = ["./templates/files/windows/server-2019/dc/bios/Autounattend.xml"]
 guest_os_type_virtualbox = "Windows2019_64"
 guest_os_type_vmware     = "windows9srv-64"
 headless                 = false

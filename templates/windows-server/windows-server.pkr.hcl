@@ -8,7 +8,7 @@ variable "boot_command" {
 
 variable "boot_wait" {
   type    = string
-  default = ""
+  default = "5s"
 }
 
 variable "boot_wait_hyperv" {
@@ -18,12 +18,12 @@ variable "boot_wait_hyperv" {
 
 variable "disk_size" {
   type    = string
-  default = ""
+  default = "65536"
 }
 
 variable "firmware" {
   type    = string
-  default = ""
+  default = "efi"
 }
 
 variable "floppy_files" {
@@ -48,7 +48,7 @@ variable "headless" {
 
 variable "iso_checksum" {
   type    = string
-  default = ""
+  default = "4f1457c4fe14ce48c9b2324924f33ca4f0470475e6da851b39ccbf98f44e7852"
 }
 
 variable "iso_path" {
@@ -63,12 +63,12 @@ variable "iso_url" {
 
 variable "memsize" {
   type    = string
-  default = ""
+  default = "4098"
 }
 
 variable "numvcpus" {
   type    = string
-  default = ""
+  default = "2"
 }
 
 variable "output_directory" {
@@ -108,12 +108,12 @@ variable "winrm_password" {
 
 variable "winrm_timeout" {
   type    = string
-  default = ""
+  default = "2h"
 }
 
 variable "winrm_username" {
   type    = string
-  default = ""
+  default = "vagrant"
 }
 
 #################################################################
