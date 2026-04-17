@@ -131,13 +131,13 @@ action=build provider=vmware-iso template=rockylinux version=8 bash build.sh
 
 ## Ubuntu
 
-| OS           | VMWare WOrkstation | Qemu    | Avg Build Time | Date Last Reviewed |
+| OS           | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 |--------------|--------------------|---------|----------------|--------------------|
 | Ubuntu 24.04 | Testing            | Working | 20 mins        | 28/02/2026         |
 | Ubuntu 22.04 | Working            | Working | 20 mins        | 28/02/2026         |
 
 ```shell
-action=build provider=vmware-iso template=ubuntu version=22 bash build.sh
+action=build provider=vmware-iso template=ubuntu version=24 bash build.sh
 ```
 
 ```powershell
