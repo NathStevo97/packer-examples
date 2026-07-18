@@ -121,6 +121,13 @@ variable "winrm_username" {
   default = "vagrant"
 }
 
+# Locals
+
+locals {
+  # Returns: "2026-07-18T12:00:00Z"
+  current_time = timestamp()
+}
+
 #################################################################
 #                           VMware-ISO Builder                  #
 #################################################################
@@ -143,7 +150,7 @@ source "vmware-iso" "windows" {
   shutdown_command  = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout  = "30m"
   skip_compaction   = false
-  vm_name           = "${var.vm_name}-vmware"
+  vm_name           = "${var.vm_name}-vmware-${local.current_time}"
   winrm_insecure    = true
   winrm_password    = var.winrm_password
   winrm_timeout     = var.winrm_timeout
