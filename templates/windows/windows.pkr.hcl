@@ -145,6 +145,7 @@ source "vmware-iso" "windows" {
   headless          = var.headless
   iso_checksum      = var.iso_checksum
   iso_urls          = [var.iso_path, var.iso_url]
+  network_adapter_type = "e1000e"
   memory            = var.memsize
   output_directory  = "${var.output_directory}-vmware-${local.current_time}"
   shutdown_command  = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
