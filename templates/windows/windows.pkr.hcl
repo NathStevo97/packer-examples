@@ -146,7 +146,7 @@ source "vmware-iso" "windows" {
   iso_checksum      = var.iso_checksum
   iso_urls          = [var.iso_path, var.iso_url]
   memory            = var.memsize
-  output_directory  = "${var.output_directory}-vmware"
+  output_directory  = "${var.output_directory}-vmware-${local.current_time}"
   shutdown_command  = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout  = "30m"
   skip_compaction   = false
@@ -176,7 +176,7 @@ Deprecated Sources
 #   iso_checksum         = var.iso_checksum
 #   iso_interface        = "sata"
 #   iso_urls             = [var.iso_path, var.iso_url]
-#   output_directory     = "${var.output_directory}-vbox"
+#   output_directory     = "${var.output_directory}-vbox-${local.current_time}"
 #   shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
 #   shutdown_timeout     = "30m"
 #   vboxmanage = [
