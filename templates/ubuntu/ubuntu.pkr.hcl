@@ -107,6 +107,10 @@ variable "vm_name" {
 #                    QEMU-ISO Builder                     #
 #################################################################
 
+locals {
+  base = formatdate("DD-MM-YY", timestamp())
+}
+
 source "qemu" "ubuntu" {
   boot_command     = var.boot_command
   boot_wait        = var.boot_wait
@@ -123,7 +127,7 @@ source "qemu" "ubuntu" {
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
   memory           = var.memory
-  output_directory = "./builds/${var.vm_name}-qemu"
+  output_directory = "./builds/${var.vm_name}-qemu-${local.base}"
   qemuargs = [
     # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
     ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
@@ -133,6 +137,7 @@ source "qemu" "ubuntu" {
   shutdown_command = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
   ssh_password     = var.ssh_password
   ssh_port         = 22
+  vm_name          = "${var.vm_name}-qemu-${local.base}"
   ssh_timeout      = "6h"
   ssh_username     = var.ssh_username
 }
@@ -151,13 +156,13 @@ source "vmware-iso" "ubuntu" {
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
   memory           = var.memory
-  output_directory = "./builds/${var.vm_name}-vmware"
+  output_directory = "./builds/${var.vm_name}-vmware-${local.base}"
   shutdown_command = "echo '${var.ssh_password}' |sudo -S /sbin/halt -h -p"
   ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = "6h"
   ssh_username     = var.ssh_username
-  vm_name          = "${var.vm_name}-vmware"
+  vm_name          = "${var.vm_name}-vmware-${local.base}"
 }
 
 /*

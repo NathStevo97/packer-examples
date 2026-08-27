@@ -103,6 +103,10 @@ variable "vm_name" {
   default = ""
 }
 
+locals {
+  base = formatdate("DD-MM-YY", timestamp())
+}
+
 source "vmware-iso" "rhel" {
   boot_command     = var.boot_command
   boot_wait        = var.boot_wait
@@ -114,13 +118,13 @@ source "vmware-iso" "rhel" {
   iso_checksum     = var.iso_checksum
   iso_urls         = [var.iso_path, var.iso_url]
   memory           = var.memsize
-  output_directory = "${var.build_directory}/${var.vm_name}-vmware"
+  output_directory = "${var.build_directory}/${var.vm_name}-vmware-${local.base}"
   shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
   ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = var.ssh_timeout
   ssh_username     = var.ssh_username
-  vm_name          = "${var.vm_name}-vmware"
+  vm_name          = "${var.vm_name}-vmware-${local.base}"
 }
 
 #################################################################
@@ -138,13 +142,13 @@ source "qemu" "rhel" {
   iso_checksum     = var.iso_checksum
   iso_urls         = [var.iso_path, var.iso_url]
   memory           = var.memsize
-  output_directory = "./builds/${var.vm_name}-qemu"
+  output_directory = "./builds/${var.vm_name}-qemu-${local.base}"
   ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = var.ssh_timeout
   ssh_username     = var.ssh_username
   shutdown_command = "echo '${var.ssh_password}'|sudo -S shutdown -P now"
-  vm_name          = "${var.vm_name}-qemu"
+  vm_name          = "${var.vm_name}-qemu-${local.base}"
 }
 
 /*

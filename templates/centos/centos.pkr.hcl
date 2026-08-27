@@ -116,6 +116,10 @@ variable "vm_name" {
 #   default = ""
 # }
 
+locals {
+  base = formatdate("DD-MM-YY", timestamp())
+}
+
 source "vmware-iso" "centos" {
   boot_command     = var.boot_command
   boot_wait        = var.boot_wait
@@ -131,14 +135,14 @@ source "vmware-iso" "centos" {
   iso_checksum     = var.iso_checksum
   iso_urls         = [var.iso_path, var.iso_url]
   memory           = var.memory
-  output_directory = "./builds/${var.vm_name}"
+  output_directory = "./builds/${var.vm_name}-${local.base}"
   shutdown_command = "echo '${var.ssh_password}' | sudo -S /sbin/shutdown -P now"
   shutdown_timeout = "1h"
   ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = var.ssh_timeout
   ssh_username     = var.ssh_username
-  vm_name          = var.vm_name
+  vm_name          = "${var.vm_name}-${local.base}"
 }
 
 source "qemu" "centos" {
@@ -153,7 +157,7 @@ source "qemu" "centos" {
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
   memory           = var.memory
-  output_directory = "./builds/${var.vm_name}-qemu"
+  output_directory = "./builds/${var.vm_name}-qemu-${local.base}"
   qemuargs = [
     # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
     ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
@@ -165,7 +169,7 @@ source "qemu" "centos" {
   ssh_port         = 22
   ssh_timeout      = "6h"
   ssh_username     = var.ssh_username
-  vm_name          = "${var.vm_name}-qemu"
+  vm_name          = "${var.vm_name}-qemu-${local.base}"
 }
 
 #

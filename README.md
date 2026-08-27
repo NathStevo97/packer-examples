@@ -3,7 +3,7 @@
 ## Alma Linux
 
 | OS   | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-|------|--------------------|---------|----------------|--------------------|
+| ---- | ------------------ | ------- | -------------- | ------------------ |
 | 10.1 | Working            | Working | 5-6 mins       | 27/01/2026         |
 | 9.7  | Working            | Working | 5-6 mins       | 27/01/2026         |
 | 8.10 | Working            | Working | 5-6 mins       | 27/01/2026         |
@@ -19,7 +19,7 @@ action=build provider=vmware-iso template=almalinux version=9 bash build.sh
 ## CentOS
 
 | OS        | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-|-----------|--------------------|---------|----------------|--------------------|
+| --------- | ------------------ | ------- | -------------- | ------------------ |
 | Stream 10 | Working            | Working | 5-10 mins      | 07/02/2026         |
 | Stream 9  | Working            | Working | 10 - 15 mins   | 30/01/2026         |
 
@@ -33,10 +33,10 @@ action=build provider=qemu template=centos version=9 bash build.sh
 
 ## Debian
 
-| OS | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-|----|--------------------|---------|----------------|--------------------|
-| 13 | Pending            | Pending | N/A            | N/A                |
-| 12 | Working            | Working | 15-30 mins     | 05/07/2025         |
+| OS  | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
+| --- | ------------------ | ------- | -------------- | ------------------ |
+| 13  | Pending            | Pending | N/A            | N/A                |
+| 12  | Working            | Working | 15-30 mins     | 05/07/2025         |
 
 ```powershell
 .\build.ps1 -Action build -Version 12 -Template debian -Provider virtualbox-iso
@@ -48,10 +48,10 @@ action=build provider=vmware-iso template=debian version=12 bash build.sh
 
 ## Fedora
 
-| OS | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-|----|--------------------|---------|----------------|--------------------|
-| 43 | Pending            | Pending | N/A            | N/A                |
-| 42 | Working            | Working | 10-30 mins     | 07/03/2026         |
+| OS  | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
+| --- | ------------------ | ------- | -------------- | ------------------ |
+| 43  | Pending            | Pending | N/A            | N/A                |
+| 42  | Working            | Working | 10-30 mins     | 07/03/2026         |
 
 ```powershell
 .\build.ps1 -Action build -Version 42 -Template fedora -Provider virtualbox-iso
@@ -64,7 +64,7 @@ action=build provider=vmware-iso template=fedora version=42 bash build.sh
 ## OpenSUSE
 
 | OS      | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-|---------|--------------------|---------|----------------|--------------------|
+| ------- | ------------------ | ------- | -------------- | ------------------ |
 | Leap 16 | Pending            | Pending | N/A            | N/A                |
 | Leap 15 | Working            | Working | 17 mins        | 27/07/2025         |
 
@@ -79,7 +79,7 @@ action=build provider=vmware-iso template=opensuse version=15 bash build.sh
 ## Oracle
 
 | OS   | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-|------|--------------------|---------|----------------|--------------------|
+| ---- | ------------------ | ------- | -------------- | ------------------ |
 | 10.1 | Pending            | Pending | N/A            | N/A                |
 | 9.7  | Working            | Woring  | 20 mins        | 12/03/2026         |
 | 8.10 | Working            | Working |                | 11/03/2026         |
@@ -100,7 +100,7 @@ action=build provider=vmware-iso template=oracle version=9 bash build.sh
 ## RHEL
 
 | OS        | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-|-----------|--------------------|---------|----------------|--------------------|
+| --------- | ------------------ | ------- | -------------- | ------------------ |
 | RHEL 10.0 | TBD                | TBD     | 45 mins        |                    |
 | RHEL 9.6  | TBD                | TBD     | 45 mins        |                    |
 | RHEL 8.10 | Working            | Working | 45 mins        | 22/08/2025         |
@@ -116,7 +116,7 @@ action=build provider=vmware-iso template=oracle version=9 bash build.sh
 ## Rocky Linux
 
 | OS  | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-|-----|--------------------|---------|----------------|--------------------|
+| --- | ------------------ | ------- | -------------- | ------------------ |
 | 10  | Pending            | Pending | N/A            | N/A                |
 | 9   | Pending            | Pending | N/A            | N/A                |
 | 8.8 | Working            | Working | 15-25 mins     | 27/02/2026         |
@@ -132,7 +132,7 @@ action=build provider=vmware-iso template=rockylinux version=8 bash build.sh
 ## Ubuntu
 
 | OS           | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-|--------------|--------------------|---------|----------------|--------------------|
+| ------------ | ------------------ | ------- | -------------- | ------------------ |
 | Ubuntu 24.04 | Testing            | Working | 20 mins        | 28/02/2026         |
 | Ubuntu 22.04 | Working            | Working | 20 mins        | 28/02/2026         |
 
@@ -146,11 +146,11 @@ action=build provider=vmware-iso template=ubuntu version=24 bash build.sh
 
 ## Windows
 
-| OS | Firmware Type | VMWare Workstation | Avg Build Time | Date Last Reviewed |
-|----|---------------|--------------------|----------------|--------------------|
-| 11 | UEFI          | Working            | 12 - 45 mins   | 03/04/2026         |
-| 10 | UEFI          | Working            | 45mins - 1hr   | 10/01/2026         |
-| 10 | BIOS          | Working            | 45mins - 1hr   | 17/01/2026         |
+| OS  | Firmware Type | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
+| --- | ------------- | ------------------ | ------- | -------------- |
+| 11  | UEFI          | Working            | TBC     | 12 - 45 mins   | 03/04/2026         |
+| 10  | UEFI          | Working            | Working | 45mins - 1hr   | 10/01/2026         |
+| 10  | BIOS          | Working            | TBC     | 45mins - 1hr   | 17/01/2026         |
 
 ```shell
 action=build provider=vmware-iso template=windows version=11 firmware=uefi bash build.sh
@@ -163,7 +163,7 @@ action=build provider=vmware-iso template=windows version=11 firmware=uefi bash 
 ## Windows-Server
 
 | OS              | Firmware Type | VMWare Workstation | Avg Build Time | Date Last Reviewed |
-|-----------------|---------------|--------------------|----------------|--------------------|
+| --------------- | ------------- | ------------------ | -------------- | ------------------ |
 | 2025 Standard   | UEFI          | Pending            | N/A            | N/A                |
 | 2025 Datacenter | UEFI          | Pending            | N/A            | N/A                |
 | 2022 Standard   | UEFI          | Working            | 10 - 20 mins   | 03/04/2026         |

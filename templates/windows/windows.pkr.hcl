@@ -124,8 +124,43 @@ variable "winrm_username" {
 # Locals
 
 locals {
-  # Returns: "2026-07-18T12:00:00Z"
-  current_time = timestamp()
+  base = formatdate("DD-MM-YY", timestamp())
+}
+
+#################################################################
+#                           QEMU Builder                        #
+#################################################################
+
+source "qemu" "windows" {
+  boot_command      = var.boot_command
+  boot_wait         = var.boot_wait
+  communicator      = "winrm"
+  cpus              = var.numvcpus
+  disk_interface    = "ide"
+  disk_size         = var.disk_size
+  efi_boot          = var.firmware == "efi"
+  efi_firmware_code = "/usr/share/OVMF/OVMF_CODE_4M.fd"
+  efi_firmware_vars = "/usr/share/OVMF/OVMF_VARS_4M.fd"
+  floppy_files      = var.floppy_files
+  headless          = var.headless
+  iso_checksum      = var.iso_checksum
+  iso_url           = var.iso_path != "" ? var.iso_path : var.iso_url
+  memory            = var.memsize
+  net_device        = "e1000e"
+  output_directory  = "${var.output_directory}-qemu-${local.base}"
+  qemuargs = [
+    ["-cpu", "host,+nx"],
+    ["-netdev", "user,hostfwd=tcp::5985-:5985,id=user.0"]
+  ]
+  shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
+  skip_nat_mapping = true
+  vm_name          = "${var.vm_name}-qemu-${local.base}"
+  winrm_insecure   = true
+  winrm_password   = var.winrm_password
+  winrm_port       = 5985
+  winrm_timeout    = var.winrm_timeout
+  winrm_use_ssl    = false
+  winrm_username   = var.winrm_username
 }
 
 #################################################################
@@ -133,30 +168,30 @@ locals {
 #################################################################
 
 source "vmware-iso" "windows" {
-  boot_command      = var.boot_command
-  boot_wait         = var.boot_wait
-  communicator      = "winrm"
-  cpus              = var.numvcpus
-  disk_adapter_type = "sata"
-  disk_size         = var.disk_size
-  firmware          = var.firmware
-  floppy_files      = var.floppy_files
-  guest_os_type     = var.guest_os_type_vmware
-  headless          = var.headless
-  iso_checksum      = var.iso_checksum
-  iso_urls          = [var.iso_path, var.iso_url]
+  boot_command         = var.boot_command
+  boot_wait            = var.boot_wait
+  communicator         = "winrm"
+  cpus                 = var.numvcpus
+  disk_adapter_type    = "sata"
+  disk_size            = var.disk_size
+  firmware             = var.firmware
+  floppy_files         = var.floppy_files
+  guest_os_type        = var.guest_os_type_vmware
+  headless             = var.headless
+  iso_checksum         = var.iso_checksum
+  iso_urls             = [var.iso_path, var.iso_url]
   network_adapter_type = "e1000e"
-  memory            = var.memsize
-  output_directory  = "${var.output_directory}-vmware-${local.current_time}"
-  shutdown_command  = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
-  shutdown_timeout  = "30m"
-  skip_compaction   = false
-  vm_name           = "${var.vm_name}-vmware-${local.current_time}"
-  winrm_insecure    = true
-  winrm_password    = var.winrm_password
-  winrm_timeout     = var.winrm_timeout
-  winrm_use_ssl     = false
-  winrm_username    = var.winrm_username
+  memory               = var.memsize
+  output_directory     = "${var.output_directory}-vmware-${local.base}"
+  shutdown_command     = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
+  shutdown_timeout     = "30m"
+  skip_compaction      = false
+  vm_name              = "${var.vm_name}-vmware-${local.base}"
+  winrm_insecure       = true
+  winrm_password       = var.winrm_password
+  winrm_timeout        = var.winrm_timeout
+  winrm_use_ssl        = false
+  winrm_username       = var.winrm_username
 }
 
 /*
@@ -224,7 +259,7 @@ Deprecated Sources
 # }
 
 build {
-  sources = ["source.vmware-iso.windows"]
+  sources = ["source.qemu.windows", "source.vmware-iso.windows"]
 
   /* provisioner "powershell" {
     only         = ["vmware-iso"]

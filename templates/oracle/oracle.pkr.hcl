@@ -159,6 +159,7 @@ variable "vlan_id" {
 }
 
 locals {
+  base            = formatdate("DD-MM-YY", timestamp())
   build_timestamp = "${legacy_isotime("2019102650405")}"
 }
 
@@ -175,13 +176,13 @@ source "vmware-iso" "oracle" {
   iso_checksum     = var.iso_checksum
   iso_urls         = [var.iso_path, var.iso_url]
   memory           = var.memory
-  output_directory = "${var.build_directory}/packer-${var.template}-vmware"
+  output_directory = "${var.build_directory}/packer-${var.template}-vmware-${local.base}"
   shutdown_command = "echo '${var.ssh_password}' | sudo -S /sbin/halt -h -p"
   ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = var.ssh_timeout
   ssh_username     = var.ssh_username
-  vm_name          = "${var.template}-vmware"
+  vm_name          = "${var.template}-vmware-${local.base}"
 }
 
 source "qemu" "oracle" {
@@ -197,7 +198,7 @@ source "qemu" "oracle" {
   iso_checksum     = var.iso_checksum
   iso_urls         = [var.iso_path, var.iso_url]
   memory           = var.memory
-  output_directory = "./builds/${var.template}-qemu"
+  output_directory = "./builds/${var.template}-qemu-${local.base}"
   qemuargs = [
     # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
     ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
@@ -209,7 +210,7 @@ source "qemu" "oracle" {
   ssh_port         = 22
   ssh_timeout      = var.ssh_timeout
   ssh_username     = var.ssh_username
-  vm_name          = "${var.template}-qemu"
+  vm_name          = "${var.template}-qemu-${local.base}"
 }
 
 /*

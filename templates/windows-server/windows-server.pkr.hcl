@@ -120,6 +120,10 @@ variable "winrm_username" {
 #                           VMware-ISO Builder                  #
 #################################################################
 
+locals {
+  base = formatdate("DD-MM-YY", timestamp())
+}
+
 source "vmware-iso" "windows-server" {
   boot_wait         = var.boot_wait
   communicator      = "winrm"
@@ -133,11 +137,11 @@ source "vmware-iso" "windows-server" {
   iso_checksum      = var.iso_checksum
   iso_urls          = [var.iso_path, var.iso_url]
   memory            = var.memsize
-  output_directory  = "${var.output_directory}-vmware"
+  output_directory  = "${var.output_directory}-vmware-${local.base}"
   shutdown_command  = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   shutdown_timeout  = "30m"
   skip_compaction   = false
-  vm_name           = "${var.vm_name}-vmware"
+  vm_name           = "${var.vm_name}-vmware-${local.base}"
   winrm_insecure    = true
   winrm_password    = var.winrm_password
   winrm_timeout     = var.winrm_timeout

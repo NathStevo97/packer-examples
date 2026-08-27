@@ -115,6 +115,10 @@ variable "vm_name" {
 # Builders
 #
 
+locals {
+  base = formatdate("DD-MM-YY", timestamp())
+}
+
 source "vmware-iso" "almalinux" {
   boot_command     = var.boot_command
   boot_wait        = var.boot_wait
@@ -130,13 +134,13 @@ source "vmware-iso" "almalinux" {
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
   memory           = var.memory
-  output_directory = "./builds/${var.vm_name}-vmware"
+  output_directory = "./builds/${var.vm_name}-vmware-${local.base}"
   shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
   ssh_password     = var.ssh_password
   ssh_port         = 22
   ssh_timeout      = "30m"
   ssh_username     = var.ssh_username
-  vm_name          = "${var.vm_name}-vmware"
+  vm_name          = "${var.vm_name}-vmware-${local.base}"
 }
 
 source "qemu" "almalinux" {
@@ -151,7 +155,7 @@ source "qemu" "almalinux" {
   iso_checksum     = var.iso_checksum
   iso_url          = var.iso_url
   memory           = var.memory
-  output_directory = "./builds/${var.vm_name}-qemu"
+  output_directory = "./builds/${var.vm_name}-qemu-${local.base}"
   qemuargs = [
     # ["-cpu", "Nehalem"], # set to "host" for linux-based packer execution
     ["-cpu", "host,+nx"], # set to "Nehalem" for windows-based packer execution
@@ -163,7 +167,7 @@ source "qemu" "almalinux" {
   ssh_port         = 22
   ssh_timeout      = "6h"
   ssh_username     = var.ssh_username
-  vm_name          = "${var.vm_name}-qemu"
+  vm_name          = "${var.vm_name}-qemu-${local.base}"
 }
 
 #
