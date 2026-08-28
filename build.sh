@@ -90,7 +90,7 @@ printf "%b\n" "Version: ${version}"
 # Initialize Logging
 mkdir -p "${logs_path}"
 
-packer_log_path="${logs_path}/packerlog-${template}-${version}.txt"
+packer_log_path="${logs_path}/packerlog-${template}-${version}-${provider}.txt"
 
 export PACKER_LOG_PATH="${packer_log_path}"
 

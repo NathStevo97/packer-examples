@@ -21,6 +21,16 @@ variable "disk_size" {
   default = "65536"
 }
 
+variable "efi_firmware_code" {
+  type    = string
+  default = "/usr/share/OVMF/OVMF_CODE_4M.fd"
+}
+
+variable "efi_firmware_vars" {
+  type    = string
+  default = "/usr/share/OVMF/OVMF_VARS_4M.fd"
+}
+
 variable "firmware" {
   type    = string
   default = "efi"
@@ -139,8 +149,8 @@ source "qemu" "windows" {
   disk_interface    = "ide"
   disk_size         = var.disk_size
   efi_boot          = var.firmware == "efi"
-  efi_firmware_code = "/usr/share/OVMF/OVMF_CODE_4M.fd"
-  efi_firmware_vars = "/usr/share/OVMF/OVMF_VARS_4M.fd"
+  efi_firmware_code = var.efi_firmware_code
+  efi_firmware_vars = var.efi_firmware_vars
   floppy_files      = var.floppy_files
   headless          = var.headless
   iso_checksum      = var.iso_checksum

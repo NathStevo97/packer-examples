@@ -150,7 +150,7 @@ action=build provider=vmware-iso template=ubuntu version=24 bash build.sh
 | --- | ------------- | ------------------ | ------- | -------------- |
 | 11  | UEFI          | Working            | TBC     | 12 - 45 mins   | 03/04/2026         |
 | 10  | UEFI          | Working            | Working | 45mins - 1hr   | 10/01/2026         |
-| 10  | BIOS          | Working            | TBC     | 45mins - 1hr   | 17/01/2026         |
+| 10  | BIOS          | Working            | Working | 45mins - 1hr   | 17/01/2026         |
 
 ```shell
 action=build provider=vmware-iso template=windows version=11 firmware=uefi bash build.sh
