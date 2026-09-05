@@ -21,7 +21,3 @@ repos:
   rev: v0.3.1
   hooks:
     - id: packer_fmt
--   repo: https://github.com/koalaman/shellcheck-precommit
-    rev: v0.11.0
-    hooks:
-    -   id: shellcheck
