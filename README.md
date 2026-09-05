@@ -148,9 +148,9 @@ action=build provider=vmware-iso template=ubuntu version=24 bash build.sh
 
 | OS  | Firmware Type | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 | --- | ------------- | ------------------ | ------- | -------------- |
-| 11  | UEFI          | Working            | TBC     | 12 - 45 mins   | 03/04/2026         |
-| 10  | UEFI          | Working            | Working | 45mins - 1hr   | 10/01/2026         |
-| 10  | BIOS          | Working            | Working | 45mins - 1hr   | 17/01/2026         |
+| 11  | UEFI          | Working            | Working | 12 - 45 mins   | 30/08/2026         |
+| 10  | UEFI          | Working            | Working | 45mins - 1hr   | 30/08/2026         |
+| 10  | BIOS          | Working            | Working | 45mins - 1hr   | 30/08/2026         |
 
 ```shell
 action=build provider=vmware-iso template=windows version=11 firmware=uefi bash build.sh
@@ -162,16 +162,16 @@ action=build provider=vmware-iso template=windows version=11 firmware=uefi bash 
 
 ## Windows-Server
 
-| OS              | Firmware Type | VMWare Workstation | Avg Build Time | Date Last Reviewed |
-| --------------- | ------------- | ------------------ | -------------- | ------------------ |
-| 2025 Standard   | UEFI          | Pending            | N/A            | N/A                |
-| 2025 Datacenter | UEFI          | Pending            | N/A            | N/A                |
-| 2022 Standard   | UEFI          | Working            | 10 - 20 mins   | 03/04/2026         |
-| 2022 Datacenter | UEFI          | Working            | 10 - 20 mins   | 03/04/2026         |
-| 2019 Standard   | UEFI          | Working            | 10 - 20 mins   | 26/12/2025         |
-| 2019 Datacenter | UEFI          | Working            | 10 - 20 mins   | 26/12/2025         |
-| 2019 Standard   | BIOS          | Working            | 10 - 20 mins   | 26/12/2025         |
-| 2019 Datacenter | BIOS          | Working            | 10 - 20 mins   | 26/12/2025         |
+| OS              | Firmware | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
+| --------------- | -------- | ------------------ | ------- | -------------- | ------------------ |
+| 2025 Standard   | UEFI     | Pending            | Pending | N/A            | N/A                |
+| 2025 Datacenter | UEFI     | Pending            | Pending | N/A            | N/A                |
+| 2022 Standard   | UEFI     | Working            | Working | 10 - 20 mins   | 03/04/2026         |
+| 2022 Datacenter | UEFI     | Working            | Working     | 10 - 20 mins   | 03/04/2026         |
+| 2019 Standard   | UEFI     | Working            | TBC     | 10 - 20 mins   | 26/12/2025         |
+| 2019 Datacenter | UEFI     | Working            | TBC     | 10 - 20 mins   | 26/12/2025         |
+| 2019 Standard   | BIOS     | Working            | Working     | 10 - 20 mins   | 26/12/2025         |
+| 2019 Datacenter | BIOS     | Working            | Working     | 10 - 20 mins   | 26/12/2025         |
 
 ```shell
 action=build provider=vmware-iso template=windows-server version=2022 type=std firmware=uefi bash build.sh
