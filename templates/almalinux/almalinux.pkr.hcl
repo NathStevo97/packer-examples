@@ -120,27 +120,28 @@ locals {
 }
 
 source "vmware-iso" "almalinux" {
-  boot_command     = var.boot_command
-  boot_wait        = var.boot_wait
-  cpus             = var.cpus
-  disk_size        = var.disk_size
-  disk_type_id     = "0"
-  firmware         = "efi"
-  guest_os_type    = var.guest_os_type_vmware
-  headless         = var.headless
-  http_directory   = var.http_directory
-  http_port_min    = var.http_port_min
-  http_port_max    = var.http_port_max
-  iso_checksum     = var.iso_checksum
-  iso_url          = var.iso_url
-  memory           = var.memory
-  output_directory = "./builds/${var.vm_name}-vmware-${local.base}"
-  shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
-  ssh_password     = var.ssh_password
-  ssh_port         = 22
-  ssh_timeout      = "30m"
-  ssh_username     = var.ssh_username
-  vm_name          = "${var.vm_name}-vmware-${local.base}"
+  boot_command         = var.boot_command
+  boot_wait            = var.boot_wait
+  cpus                 = var.cpus
+  disk_size            = var.disk_size
+  disk_type_id         = "0"
+  firmware             = "efi"
+  guest_os_type        = var.guest_os_type_vmware
+  headless             = var.headless
+  http_directory       = var.http_directory
+  http_port_min        = var.http_port_min
+  http_port_max        = var.http_port_max
+  iso_checksum         = var.iso_checksum
+  iso_url              = var.iso_url
+  memory               = var.memory
+  network_adapter_type = "e1000e"
+  output_directory     = "./builds/${var.vm_name}-vmware-${local.base}"
+  shutdown_command     = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
+  ssh_password         = var.ssh_password
+  ssh_port             = 22
+  ssh_timeout          = "30m"
+  ssh_username         = var.ssh_username
+  vm_name              = "${var.vm_name}-vmware-${local.base}"
 }
 
 source "qemu" "almalinux" {

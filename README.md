@@ -4,8 +4,8 @@
 
 | OS   | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 | ---- | ------------------ | ------- | -------------- | ------------------ |
-| 10.1 | Working            | Working | 5-6 mins       | 27/01/2026         |
-| 9.7  | Working            | Working | 5-6 mins       | 27/01/2026         |
+| 10.2 | Testing            | Testing | 5-6 mins       | 27/01/2026         |
+| 9.8  | Working            | Working | 5-6 mins       | 05/09/2026         |
 | 8.10 | Working            | Working | 5-6 mins       | 27/01/2026         |
 
 ```shell

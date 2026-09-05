@@ -112,3 +112,21 @@ end_time=$(date -u +%s.%N)
 elapsed_time=$(echo "$end_time - $start_time" | bc -l)
 
 printf "%b\n" "Elapsed Time: ${elapsed_time} seconds"
+
+# Clean Up Cache Dir - Using Packer Cache Dir Var if set, otherwise use default
+
+if [[ -n "${PACKER_CACHE_DIR}" ]]; then
+    cache_dir="${PACKER_CACHE_DIR}"
+else
+    cache_dir="${HOME}/.cache/packer"
+fi
+
+printf "%b\n" "Cache Dir: ${cache_dir}"
+
+# Get Disk Usage of Cache Dir Before Deletion
+if [[ -d "${cache_dir}" ]]; then
+    du -sh "${cache_dir}"
+fi
+
+printf "%b\n" "Deleting Cache Dir: ${cache_dir}"
+rm -rf "${cache_dir}"
