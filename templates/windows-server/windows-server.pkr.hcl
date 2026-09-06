@@ -182,7 +182,7 @@ source "qemu" "windows-server" {
   floppy_files      = var.floppy_files
   headless          = var.headless
   iso_checksum      = var.iso_checksum
-  iso_url           = var.iso_path != "" ? var.iso_path : var.iso_url
+  iso_urls          = [var.iso_path, var.iso_url]
   memory            = var.memsize
   net_device        = "e1000e"
   output_directory  = "${var.output_directory}-qemu-${local.base}"

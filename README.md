@@ -9,11 +9,11 @@
 | 8.10 | Working            | Working | 5-6 mins       | 27/01/2026         |
 
 ```shell
-action=build provider=vmware-iso template=almalinux version=9 bash build.sh
+action=build provider=qemutemplate=almalinux version=9 bash build.sh
 ```
 
 ```powershell
-.\build.ps1 -Action build -Version 9 -Template almalinux -Provider vmware-iso
+.\build.ps1 -Action build -Version 9 -Template almalinux -Provider qemu
 ```
 
 ## CentOS
@@ -24,7 +24,7 @@ action=build provider=vmware-iso template=almalinux version=9 bash build.sh
 | Stream 9  | Working            | Working | 10 - 15 mins   | 30/01/2026         |
 
 ```powershell
-.\build.ps1 -Action build -Version 9 -Template centos -Provider vmware-iso
+.\build.ps1 -Action build -Version 9 -Template centos -Provider qemu
 ```
 
 ```shell
@@ -43,7 +43,7 @@ action=build provider=qemu template=centos version=9 bash build.sh
 ```
 
 ```shell
-action=build provider=vmware-iso template=debian version=12 bash build.sh
+action=build provider=qemutemplate=debian version=12 bash build.sh
 ```
 
 ## Fedora
@@ -58,7 +58,7 @@ action=build provider=vmware-iso template=debian version=12 bash build.sh
 ```
 
 ```shell
-action=build provider=vmware-iso template=fedora version=42 bash build.sh
+action=build provider=qemutemplate=fedora version=42 bash build.sh
 ```
 
 ## OpenSUSE
@@ -73,7 +73,7 @@ action=build provider=vmware-iso template=fedora version=42 bash build.sh
 ```
 
 ```shell
-action=build provider=vmware-iso template=opensuse version=15 bash build.sh
+action=build provider=qemutemplate=opensuse version=15 bash build.sh
 ```
 
 ## Oracle
@@ -85,11 +85,11 @@ action=build provider=vmware-iso template=opensuse version=15 bash build.sh
 | 8.10 | Working            | Working |                | 11/03/2026         |
 
 ```shell
-action=build provider=vmware-iso template=oracle version=9 bash build.sh
+action=build provider=qemutemplate=oracle version=9 bash build.sh
 ```
 
 ```powershell
-.\build.ps1 -Action build -Version 8 -Template oracle -Provider vmware-iso
+.\build.ps1 -Action build -Version 8 -Template oracle -Provider qemu
 ```
 
 ### Oracle Notes
@@ -106,7 +106,7 @@ action=build provider=vmware-iso template=oracle version=9 bash build.sh
 | RHEL 8.10 | Working            | Working | 45 mins        | 22/08/2025         |
 
 ```powershell
-.\build.ps1 -Action build -Version 8 -Template rhel -Provider vmware-iso
+.\build.ps1 -Action build -Version 8 -Template rhel -Provider qemu
 ```
 
 ```powershell
@@ -122,11 +122,11 @@ action=build provider=vmware-iso template=oracle version=9 bash build.sh
 | 8.8 | Working            | Working | 15-25 mins     | 27/02/2026         |
 
 ```shell
-action=build provider=vmware-iso template=rockylinux version=8 bash build.sh
+action=build provider=qemutemplate=rockylinux version=8 bash build.sh
 ```
 
 ```powershell
-.\build.ps1 -Action build -Version 8 -Template rockylinux -Provider vmware-iso
+.\build.ps1 -Action build -Version 8 -Template rockylinux -Provider qemu
 ```
 
 ## Ubuntu
@@ -137,7 +137,7 @@ action=build provider=vmware-iso template=rockylinux version=8 bash build.sh
 | Ubuntu 22.04 | Working            | Working | 20 mins        | 28/02/2026         |
 
 ```shell
-action=build provider=vmware-iso template=ubuntu version=24 bash build.sh
+action=build provider=qemutemplate=ubuntu version=24 bash build.sh
 ```
 
 ```powershell
@@ -153,32 +153,32 @@ action=build provider=vmware-iso template=ubuntu version=24 bash build.sh
 | 10  | BIOS          | Working            | Working | 45mins - 1hr   | 30/08/2026         |
 
 ```shell
-action=build provider=vmware-iso template=windows version=11 firmware=uefi bash build.sh
+action=build provider=qemutemplate=windows version=11 firmware=uefi bash build.sh
 ```
 
 ```powershell
-.\build.ps1 -Action build -Version 11 -Template windows -Provider vmware-iso
+.\build.ps1 -Action build -Version 11 -Template windows -Provider qemu
 ```
 
 ## Windows-Server
 
 | OS              | Firmware | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
 | --------------- | -------- | ------------------ | ------- | -------------- | ------------------ |
-| 2025 Standard   | UEFI     | Pending            | Pending | N/A            | N/A                |
-| 2025 Datacenter | UEFI     | Pending            | Pending | N/A            | N/A                |
-| 2022 Standard   | UEFI     | Working            | Working | 10 - 20 mins   | 03/04/2026         |
-| 2022 Datacenter | UEFI     | Working            | Working     | 10 - 20 mins   | 03/04/2026         |
-| 2019 Standard   | UEFI     | Working            | TBC     | 10 - 20 mins   | 26/12/2025         |
-| 2019 Datacenter | UEFI     | Working            | TBC     | 10 - 20 mins   | 26/12/2025         |
-| 2019 Standard   | BIOS     | Working            | Working     | 10 - 20 mins   | 26/12/2025         |
-| 2019 Datacenter | BIOS     | Working            | Working     | 10 - 20 mins   | 26/12/2025         |
+| 2025 Standard   | UEFI     | Failing            | Working | N/A            | N/A                |
+| 2025 Datacenter | UEFI     | Failing            | Working | N/A            | N/A                |
+| 2022 Standard   | UEFI     | Testing            | Working | 10 - 20 mins   | 03/04/2026         |
+| 2022 Datacenter | UEFI     | Testing            | Working | 10 - 20 mins   | 03/04/2026         |
+| 2019 Standard   | UEFI     | Testing            | Working | 10 - 20 mins   | 26/12/2025         |
+| 2019 Datacenter | UEFI     | Testing            | Working | 10 - 20 mins   | 26/12/2025         |
+| 2019 Standard   | BIOS     | Testing            | Working | 10 - 20 mins   | 26/12/2025         |
+| 2019 Datacenter | BIOS     | Testing            | Working | 10 - 20 mins   | 26/12/2025         |
 
 ```shell
-action=build provider=vmware-iso template=windows-server version=2022 type=std firmware=uefi bash build.sh
+action=build provider=qemutemplate=windows-server version=2022 type=std firmware=uefi bash build.sh
 ```
 
 ```powershell
-.\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider vmware-iso
+.\build.ps1 -Action build -Version 2022 -Type std -Template windows-server -Provider qemu
 ```
 
 ## Notes
@@ -186,3 +186,4 @@ action=build provider=vmware-iso template=windows-server version=2022 type=std f
 - Virtualbox and Hyper-V sources are available in this repository, but have been commented out/deprecated due to:
   - VirtualBox - conflicts with KVM on Linux (and worse performance compared to QEMU)
   - Hyper-V - Only Available on Windows (I now run Linux Mint instead of Windows 11)
+- Windows Server 2025 VMware builds failing with AppLoader `libaio`-related issue, not sure if compatability issue or something deeper
