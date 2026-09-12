@@ -9,7 +9,7 @@
 | 8.10 | Working            | Working | 5-6 mins       | 27/01/2026         |
 
 ```shell
-action=build provider=qemutemplate=almalinux version=9 bash build.sh
+action=build provider=qemu template=almalinux version=9 bash build.sh
 ```
 
 ```powershell
@@ -43,7 +43,7 @@ action=build provider=qemu template=centos version=9 bash build.sh
 ```
 
 ```shell
-action=build provider=qemutemplate=debian version=12 bash build.sh
+action=build provider=qemu template=debian version=12 bash build.sh
 ```
 
 ## Fedora
@@ -58,7 +58,7 @@ action=build provider=qemutemplate=debian version=12 bash build.sh
 ```
 
 ```shell
-action=build provider=qemutemplate=fedora version=42 bash build.sh
+action=build provider=qemu template=fedora version=42 bash build.sh
 ```
 
 ## OpenSUSE
@@ -73,7 +73,7 @@ action=build provider=qemutemplate=fedora version=42 bash build.sh
 ```
 
 ```shell
-action=build provider=qemutemplate=opensuse version=15 bash build.sh
+action=build provider=qemu template=opensuse version=15 bash build.sh
 ```
 
 ## Oracle
@@ -85,7 +85,7 @@ action=build provider=qemutemplate=opensuse version=15 bash build.sh
 | 8.10 | Working            | Working |                | 11/03/2026         |
 
 ```shell
-action=build provider=qemutemplate=oracle version=9 bash build.sh
+action=build provider=qemu template=oracle version=9 bash build.sh
 ```
 
 ```powershell
@@ -122,7 +122,7 @@ action=build provider=qemutemplate=oracle version=9 bash build.sh
 | 8.8 | Working            | Working | 15-25 mins     | 27/02/2026         |
 
 ```shell
-action=build provider=qemutemplate=rockylinux version=8 bash build.sh
+action=build provider=qemu template=rockylinux version=8 bash build.sh
 ```
 
 ```powershell
@@ -137,7 +137,7 @@ action=build provider=qemutemplate=rockylinux version=8 bash build.sh
 | Ubuntu 22.04 | Working            | Working | 20 mins        | 28/02/2026         |
 
 ```shell
-action=build provider=qemutemplate=ubuntu version=24 bash build.sh
+action=build provider=qemu template=ubuntu version=24 bash build.sh
 ```
 
 ```powershell
@@ -153,7 +153,7 @@ action=build provider=qemutemplate=ubuntu version=24 bash build.sh
 | 10  | BIOS          | Working            | Working | 45mins - 1hr   | 30/08/2026         |
 
 ```shell
-action=build provider=qemutemplate=windows version=11 firmware=uefi bash build.sh
+action=build provider=qemu template=windows version=11 firmware=uefi bash build.sh
 ```
 
 ```powershell
@@ -170,11 +170,11 @@ action=build provider=qemutemplate=windows version=11 firmware=uefi bash build.s
 | 2022 Datacenter | UEFI     | Testing            | Working | 10 - 20 mins   | 03/04/2026         |
 | 2019 Standard   | UEFI     | Testing            | Working | 10 - 20 mins   | 26/12/2025         |
 | 2019 Datacenter | UEFI     | Testing            | Working | 10 - 20 mins   | 26/12/2025         |
-| 2019 Standard   | BIOS     | Testing            | Working | 10 - 20 mins   | 26/12/2025         |
-| 2019 Datacenter | BIOS     | Testing            | Working | 10 - 20 mins   | 26/12/2025         |
+| 2019 Standard   | BIOS     | Working            | Working | 10 - 20 mins   | 26/12/2025         |
+| 2019 Datacenter | BIOS     | Working            | Working | 10 - 20 mins   | 26/12/2025         |
 
 ```shell
-action=build provider=qemutemplate=windows-server version=2022 type=std firmware=uefi bash build.sh
+action=build provider=qemu template=windows-server version=2022 type=std firmware=uefi bash build.sh
 ```
 
 ```powershell

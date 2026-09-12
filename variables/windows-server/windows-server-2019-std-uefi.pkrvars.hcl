@@ -1,5 +1,5 @@
 boot_command             = ["<spacebar><wait>"]
-boot_wait                = "2s"
+boot_wait                = "1s"
 boot_wait_hyperv         = "120s"
 disk_size                = "40960"
 efi_boot                 = true

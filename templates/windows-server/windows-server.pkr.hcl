@@ -140,6 +140,7 @@ locals {
 }
 
 source "vmware-iso" "windows-server" {
+  boot_command         = var.boot_command
   boot_wait            = var.boot_wait
   communicator         = "winrm"
   cpus                 = var.numvcpus
