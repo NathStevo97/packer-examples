@@ -33,10 +33,9 @@ action=build provider=qemu template=centos version=9 bash build.sh
 
 ## Debian
 
-| OS  | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-| --- | ------------------ | ------- | -------------- | ------------------ |
-| 13  | Pending            | Pending | N/A            | N/A                |
-| 12  | Working            | Working | 15-30 mins     | 05/07/2025         |
+| OS  | VMWare Workstation | Qemu   | Avg Build Time | Date Last Reviewed |
+| --- | ------------------ | ------ | -------------- | ------------------ |
+| 13  | Working            | Woring | N/A            | N/A                |
 
 ```powershell
 .\build.ps1 -Action build -Version 12 -Template debian -Provider virtualbox-iso
