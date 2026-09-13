@@ -16,6 +16,15 @@ version="${version:-9}"
 
 ## General Vars
 
+## Cache Dir - Using Packer Cache Dir Var if set, otherwise use default
+if [[ -n "${PACKER_CACHE_DIR}" ]]; then
+    cache_dir="${PACKER_CACHE_DIR}"
+else
+    cache_dir="${HOME}/.cache/packer"
+fi
+
+printf "%b\n" "Cache Dir: ${cache_dir}"
+
 ## Logging
 logs_path="./logs"
 
@@ -43,15 +52,7 @@ esac
 # Packer Cache Maintenance
 #
 
-# Clean Up Cache Dir - Using Packer Cache Dir Var if set, otherwise use default
-
-if [[ -n "${PACKER_CACHE_DIR}" ]]; then
-    cache_dir="${PACKER_CACHE_DIR}"
-else
-    cache_dir="${HOME}/.cache/packer"
-fi
-
-printf "%b\n" "Cache Dir: ${cache_dir}"
+# Clean Up Cache Dir
 
 # Get Disk Usage of Cache Dir - If Above 10Gb, Delete Cache Dir for Maintenance
 cache_disk_usage=$(du -s "${cache_dir}" | awk '{print $1}')

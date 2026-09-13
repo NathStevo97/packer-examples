@@ -166,10 +166,10 @@ action=build provider=qemu template=windows version=11 firmware=uefi bash build.
 | --------------- | -------- | ------------------ | ------- | -------------- | ------------------ |
 | 2025 Standard   | UEFI     | Failing            | Working | N/A            | N/A                |
 | 2025 Datacenter | UEFI     | Failing            | Working | N/A            | N/A                |
-| 2022 Standard   | UEFI     | Testing            | Working | 10 - 20 mins   | 03/04/2026         |
-| 2022 Datacenter | UEFI     | Testing            | Working | 10 - 20 mins   | 03/04/2026         |
-| 2019 Standard   | UEFI     | Testing            | Working | 10 - 20 mins   | 26/12/2025         |
-| 2019 Datacenter | UEFI     | Testing            | Working | 10 - 20 mins   | 26/12/2025         |
+| 2022 Standard   | UEFI     | Working            | Working | 10 - 20 mins   | 03/04/2026         |
+| 2022 Datacenter | UEFI     | Working            | Working | 10 - 20 mins   | 03/04/2026         |
+| 2019 Standard   | UEFI     | Working            | Working | 10 - 20 mins   | 26/12/2025         |
+| 2019 Datacenter | UEFI     | Working            | Working | 10 - 20 mins   | 26/12/2025         |
 | 2019 Standard   | BIOS     | Working            | Working | 10 - 20 mins   | 26/12/2025         |
 | 2019 Datacenter | BIOS     | Working            | Working | 10 - 20 mins   | 26/12/2025         |
 
