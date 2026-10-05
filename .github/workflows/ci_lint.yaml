@@ -1,0 +1,72 @@
+name: CI Code Quality
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  packer:
+    name: Packer validate and format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: hashicorp/setup-packer@ce93c3c08a6c2ff2275bf4b54ff0d9a75f6c9789 # v3.4.0
+        with:
+          version: 1.11.0
+      - name: Check formatting
+        run: packer fmt -check -recursive .
+      - name: Validate templates
+        shell: bash
+        run: |
+          while IFS= read -r -d '' dir; do
+            packer init "$dir"
+            packer validate "$dir"
+          done < <(find . -type f -name '*.pkr.hcl' -printf '%h\0' | sort -zu)
+
+  python:
+    name: Python lint (Ruff)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/ruff-action@278981a28ce3188b1e39527901f38254bf3aac89 # v4.1.0
+
+  shellcheck:
+    name: Shell lint (ShellCheck)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ludeeus/action-shellcheck@00cae500b08a931fb5698e11e79bfbd38e612a38 # v2.0.0
+
+  powershell:
+    name: PowerShell lint (PSScriptAnalyzer)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install PSScriptAnalyzer
+        shell: pwsh
+        run: Install-Module PSScriptAnalyzer -Force -Scope CurrentUser
+      - name: Analyze PowerShell files
+        shell: pwsh
+        run: |
+          $files = Get-ChildItem -Path . -Recurse -File -Include *.ps1, *.psm1, *.psd1
+          if ($files) {
+            Invoke-ScriptAnalyzer -Path . -Recurse -EnableExit
+          }
+
+  ansible:
+    name: Ansible lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.x'
+      - name: Install ansible-lint
+        run: pip install ansible-lint
+      - name: Lint playbooks
+        shell: bash
+        run: |
+          mapfile -d '' playbooks < <(grep -rlZ --include='*.yml' --include='*.yaml' -E '^[[:space:]]*hosts:' . || true)
+          if ((${#playbooks[@]})); then
+            ansible-lint "${playbooks[@]}"
+          fi
