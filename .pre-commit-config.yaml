@@ -1,23 +1,23 @@
-
-
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v6.0.0
+  rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # v6.0.0
   hooks:
   - id: trailing-whitespace
   - id: end-of-file-fixer
   - id: check-yaml
   - id: check-added-large-files
-- repo: https://github.com/psf/black
-  rev: 22.3.0
+- repo: https://github.com/astral-sh/ruff-pre-commit
+  rev: v0.17.1 # immutable
   hooks:
-  - id: black
-    name: black
+    # Run the linter.
+    - id: ruff-check
+      args: [ --fix ]
+    - id: ruff-format
 -   repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: v0.11.0.1
+    rev: a6564f5d57444e123433a5c9af733e3975c77229 # v0.11.0.1-1
     hooks:
     -   id: shellcheck
 - repo: https://github.com/cisagov/pre-commit-packer
-  rev: v0.3.1
+  rev: b212e93f5388ced226da194ba862ddd5000e4b94 # v0.3.1
   hooks:
     - id: packer_fmt
