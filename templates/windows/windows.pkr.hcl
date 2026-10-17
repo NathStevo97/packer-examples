@@ -271,47 +271,44 @@ Deprecated Sources
 build {
   sources = ["source.qemu.windows", "source.vmware-iso.windows"]
 
-  /* provisioner "powershell" {
-    only         = ["vmware-iso"]
-    pause_before = "1m0s"
-    scripts      = ["scripts/vmware-tools.ps1"]
-  }
+  # provisioner "powershell" {
+  #   only         = ["vmware-iso"]
+  #   pause_before = "1m0s"
+  #   scripts      = ["scripts/vmware-tools.ps1"]
+  # }
 
-  provisioner "powershell" {
-    only         = ["virtualbox-iso"]
-    pause_before = "1m0s"
-    scripts      = ["scripts/virtualbox-guest-additions.ps1"]
-  }
+  # provisioner "powershell" {
+  #   only         = ["virtualbox-iso"]
+  #   pause_before = "1m0s"
+  #   scripts      = ["scripts/virtualbox-guest-additions.ps1"]
+  # }
 
-  provisioner "powershell" {
-    scripts = ["scripts/setup.ps1"]
-  }
+  # provisioner "powershell" {
+  #   scripts = ["scripts/setup.ps1"]
+  # }
 
-  provisioner "windows-restart" {
-    restart_timeout = "30m"
-  }
+  # provisioner "windows-restart" {
+  #   restart_timeout = "30m"
+  # }
 
-  provisioner "powershell" {
-    scripts = ["scripts/win-update.ps1"]
-  }
+  # provisioner "powershell" {
+  #   scripts = ["scripts/win-update.ps1"]
+  # }
 
-  provisioner "windows-restart" {
-    restart_timeout = "30m"
-  }
+  # provisioner "windows-restart" {
+  #   restart_timeout = "30m"
+  # }
 
-  provisioner "powershell" {
-    scripts = ["scripts/win-update.ps1"]
-  }
+  # provisioner "powershell" {
+  #   scripts = ["scripts/win-update.ps1"]
+  # }
 
-  provisioner "windows-restart" {
-    restart_timeout = "30m"
-  }
+  # provisioner "windows-restart" {
+  #   restart_timeout = "30m"
+  # }
 
-  provisioner "powershell" {
-    pause_before = "1m0s"
-    scripts      = ["scripts/cleanup.ps1"]
-  }
-
-  */
-
+  # provisioner "powershell" {
+  #   pause_before = "1m0s"
+  #   scripts      = ["scripts/cleanup.ps1"]
+  # }
 }
