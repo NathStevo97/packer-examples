@@ -116,6 +116,11 @@ variable "vm_name" {
   default = ""
 }
 
+variable "virtio_iso_path" {
+  type    = string
+  default = "../ISOs/virtio-win-0.1.229.iso"
+}
+
 variable "winrm_password" {
   type    = string
   default = ""
@@ -142,25 +147,29 @@ locals {
 #################################################################
 
 source "qemu" "windows" {
+  accelerator       = "kvm"
   boot_command      = var.boot_command
   boot_wait         = var.boot_wait
   communicator      = "winrm"
   cpus              = var.numvcpus
-  disk_interface    = "ide"
+  disk_interface    = "virtio"
   disk_size         = var.disk_size
   efi_boot          = var.firmware == "efi"
   efi_firmware_code = var.efi_firmware_code
   efi_firmware_vars = var.efi_firmware_vars
+  format            = "qcow2"
   floppy_files      = var.floppy_files
   headless          = var.headless
   iso_checksum      = var.iso_checksum
   iso_url           = var.iso_path != "" ? var.iso_path : var.iso_url
+  machine_type      = "q35"
   memory            = var.memsize
   net_device        = "e1000e"
   output_directory  = "${var.output_directory}-qemu-${local.base}"
   qemuargs = [
     ["-cpu", "host,+nx"],
-    ["-netdev", "user,hostfwd=tcp::5985-:5985,id=user.0"]
+    ["-netdev", "user,hostfwd=tcp::5985-:5985,id=user.0"],
+    ["-cdrom", var.virtio_iso_path]
   ]
   shutdown_command = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
   skip_nat_mapping = true
@@ -311,4 +320,9 @@ build {
   #   pause_before = "1m0s"
   #   scripts      = ["scripts/cleanup.ps1"]
   # }
+
+  provisioner "powershell" {
+    pause_before = "1m0s"
+    scripts      = ["templates/files/windows/scripts/download_skygo.ps1"]
+  }
 }
