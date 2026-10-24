@@ -19,7 +19,7 @@ jobs:
         shell: bash
         run: |
           while IFS= read -r -d '' dir; do
-            packer init "$dir"
+            packer init ../required_plugins.pkr.hcl"
             packer validate "$dir"
           done < <(find templates -type f -name '*.pkr.hcl' -printf '%h\0' | sort -zu)
 
