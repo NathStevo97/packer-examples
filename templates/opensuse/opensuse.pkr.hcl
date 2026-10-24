@@ -101,6 +101,7 @@ source "vmware-iso" "opensuse" {
   ssh_port         = 22
   ssh_timeout      = "6h"
   ssh_username     = var.ssh_username
+  sound            = true
   vm_name          = "${var.vm_name}-vmware-${local.base}"
 }
 

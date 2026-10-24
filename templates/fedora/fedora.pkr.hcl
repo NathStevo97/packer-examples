@@ -124,6 +124,7 @@ source "vmware-iso" "fedora" {
   ssh_port         = 22
   ssh_timeout      = "2h"
   ssh_username     = var.ssh_username
+  sound            = true
   vm_name          = "${var.name}-vmware-${local.base}"
 }
 

@@ -182,6 +182,7 @@ source "vmware-iso" "oracle" {
   ssh_port         = 22
   ssh_timeout      = var.ssh_timeout
   ssh_username     = var.ssh_username
+  sound            = true
   vm_name          = "${var.template}-vmware-${local.base}"
 }
 

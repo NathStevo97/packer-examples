@@ -134,6 +134,7 @@ source "vmware-iso" "debian" {
   ssh_port             = 22
   ssh_timeout          = "1h"
   ssh_username         = var.ssh_username
+  sound                = true
   vm_name              = "${var.name}-vmware-${local.base}"
 }
 
