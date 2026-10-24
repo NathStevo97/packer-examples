@@ -5,8 +5,8 @@ on:
     branches: [main]
 
 jobs:
-  packer:
-    name: Packer validate and format
+  packer-format:
+    name: Packer format
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -15,13 +15,34 @@ jobs:
           version: 1.16.1
       - name: Check formatting
         run: packer fmt -check -recursive .
-      - name: Validate templates configurations
-        shell: bash
-        run: |
-          packer init required_plugins.pkr.hcl
-          while IFS= read -r -d '' dir; do
-            packer validate "$dir"
-          done < <(find templates -type f -name '*.pkr.hcl' -printf '%h\0' | sort -zu)
+
+  packer-validate:
+    name: Packer validate (${{ matrix.directory }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        directory:
+          - almalinux
+          - centos
+          - debian
+          - fedora
+          - opensuse
+          - oracle
+          - rhel
+          - rockylinux
+          - ubuntu
+          - windows
+          - windows-server
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: hashicorp/setup-packer@ce93c3c08a6c2ff2275bf4b54ff0d9a75f6c9789 # v3.4.0
+        with:
+          version: 1.16.1
+      - name: Initialize required plugins
+        run: packer init required_plugins.pkr.hcl
+      - name: Validate templates
+        run: packer validate "templates/${{ matrix.directory }}"
 
   python:
     name: Python lint (Ruff)

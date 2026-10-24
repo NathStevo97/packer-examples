@@ -121,29 +121,30 @@ locals {
 }
 
 source "vmware-iso" "centos" {
-  boot_command     = var.boot_command
-  boot_wait        = var.boot_wait
-  cpus             = var.cpus
-  disk_size        = var.disk_size
-  disk_type_id     = "0"
-  firmware         = "efi"
-  guest_os_type    = var.guest_os_type_vmware
-  headless         = var.headless
-  http_directory   = var.http_directory
-  http_port_min    = var.http_port_min
-  http_port_max    = var.http_port_max
-  iso_checksum     = var.iso_checksum
-  iso_urls         = [var.iso_path, var.iso_url]
-  memory           = var.memory
-  output_directory = "./builds/${var.vm_name}-${local.base}"
-  shutdown_command = "echo '${var.ssh_password}' | sudo -S /sbin/shutdown -P now"
-  shutdown_timeout = "1h"
-  ssh_password     = var.ssh_password
-  ssh_port         = 22
-  ssh_timeout      = var.ssh_timeout
-  ssh_username     = var.ssh_username
-  sound            = true
-  vm_name          = "${var.vm_name}-${local.base}"
+  boot_command         = var.boot_command
+  boot_wait            = var.boot_wait
+  cpus                 = var.cpus
+  disk_size            = var.disk_size
+  disk_type_id         = "0"
+  firmware             = "efi"
+  guest_os_type        = var.guest_os_type_vmware
+  headless             = var.headless
+  http_directory       = var.http_directory
+  http_port_min        = var.http_port_min
+  http_port_max        = var.http_port_max
+  iso_checksum         = var.iso_checksum
+  iso_urls             = [var.iso_path, var.iso_url]
+  memory               = var.memory
+  network_adapter_type = "e1000e"
+  output_directory     = "./builds/${var.vm_name}-${local.base}"
+  shutdown_command     = "echo '${var.ssh_password}' | sudo -S /sbin/shutdown -P now"
+  shutdown_timeout     = "1h"
+  ssh_password         = var.ssh_password
+  ssh_port             = 22
+  ssh_timeout          = var.ssh_timeout
+  ssh_username         = var.ssh_username
+  sound                = true
+  vm_name              = "${var.vm_name}-${local.base}"
 }
 
 source "qemu" "centos" {

@@ -143,27 +143,28 @@ source "qemu" "ubuntu" {
 }
 
 source "vmware-iso" "ubuntu" {
-  boot_command     = var.boot_command
-  boot_wait        = var.boot_wait
-  cpus             = var.cpu
-  disk_size        = var.disk_size
-  firmware         = "efi"
-  guest_os_type    = var.guest_os_type_vmware
-  headless         = var.headless
-  http_directory   = var.http_directory
-  http_port_min    = var.http_port_min
-  http_port_max    = var.http_port_max
-  iso_checksum     = var.iso_checksum
-  iso_url          = var.iso_url
-  memory           = var.memory
-  output_directory = "./builds/${var.vm_name}-vmware-${local.base}"
-  shutdown_command = "echo '${var.ssh_password}' |sudo -S /sbin/halt -h -p"
-  ssh_password     = var.ssh_password
-  ssh_port         = 22
-  ssh_timeout      = "6h"
-  ssh_username     = var.ssh_username
-  sound            = true
-  vm_name          = "${var.vm_name}-vmware-${local.base}"
+  boot_command         = var.boot_command
+  boot_wait            = var.boot_wait
+  cpus                 = var.cpu
+  disk_size            = var.disk_size
+  firmware             = "efi"
+  guest_os_type        = var.guest_os_type_vmware
+  headless             = var.headless
+  http_directory       = var.http_directory
+  http_port_min        = var.http_port_min
+  http_port_max        = var.http_port_max
+  iso_checksum         = var.iso_checksum
+  iso_url              = var.iso_url
+  memory               = var.memory
+  network_adapter_type = "e1000e"
+  output_directory     = "./builds/${var.vm_name}-vmware-${local.base}"
+  shutdown_command     = "echo '${var.ssh_password}' |sudo -S /sbin/halt -h -p"
+  ssh_password         = var.ssh_password
+  ssh_port             = 22
+  ssh_timeout          = "6h"
+  ssh_username         = var.ssh_username
+  sound                = true
+  vm_name              = "${var.vm_name}-vmware-${local.base}"
 }
 
 /*
