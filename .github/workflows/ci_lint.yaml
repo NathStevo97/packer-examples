@@ -15,13 +15,13 @@ jobs:
           version: 1.16.1
       - name: Check formatting
         run: packer fmt -check -recursive .
-      - name: Validate templates
+      - name: Validate templates and cloud configurations
         shell: bash
         run: |
           while IFS= read -r -d '' dir; do
             packer init "$dir"
             packer validate "$dir"
-          done < <(find . -type f -name '*.pkr.hcl' -printf '%h\0' | sort -zu)
+          done < <(find templates cloud -type f -name '*.pkr.hcl' -printf '%h\0' | sort -zu)
 
   python:
     name: Python lint (Ruff)
