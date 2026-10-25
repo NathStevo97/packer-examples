@@ -95,7 +95,7 @@ variable "ssh_password" {
 
 variable "ssh_username" {
   type    = string
-  default = ""
+  default = "vagrant"
 }
 
 variable "switch_name" {
@@ -159,9 +159,9 @@ source "qemu" "debian" {
   ]
   shutdown_command = "echo '${var.ssh_password}'|sudo -S /sbin/halt -h -p"
   ssh_password     = var.ssh_password
+  ssh_username     = var.ssh_username
   ssh_port         = 22
   ssh_timeout      = "6h"
-  ssh_username     = var.ssh_username
   vm_name          = "${var.name}-qemu-${local.base}"
 }
 

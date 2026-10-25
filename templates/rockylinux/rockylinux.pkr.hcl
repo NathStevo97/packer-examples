@@ -70,7 +70,7 @@ variable "iso_url" {
 
 variable "memsize" {
   type    = string
-  default = "2048"
+  default = "4098"
 }
 
 variable "numvcpus" {

@@ -78,7 +78,7 @@ packer init "required_plugins.pkr.hcl"
 
 $machine="$Template - $Version"
 
-Write-Host "Start Time: = $startDTM" -ForegroundColor Yellow
+Write-Information "Start Time: = $startDTM" -ForegroundColor Yellow
 
 if ((Test-Path -Path "$Template_file")) {
   Write-Output "Template file found"
@@ -107,4 +107,4 @@ else {
 }
 
 $endDTM = (Get-Date)
-Write-Host "[INFO]  - Elapsed Time: $(($endDTM-$startDTM).totalseconds) seconds" -ForegroundColor Yellow
+Write-Information "[INFO]  - Elapsed Time: $(($endDTM-$startDTM).totalseconds) seconds" -ForegroundColor Yellow

@@ -113,7 +113,7 @@ variable "vlan_id" {
 
 variable "vm_name" {
   type    = string
-  default = ""
+  default = "windows"
 }
 
 variable "virtio_iso_path" {

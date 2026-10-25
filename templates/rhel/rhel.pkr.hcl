@@ -75,12 +75,12 @@ variable "iso_url" {
 
 variable "memsize" {
   type    = string
-  default = ""
+  default = "4098"
 }
 
 variable "numvcpus" {
   type    = string
-  default = ""
+  default = "2"
 }
 
 variable "ssh_password" {
@@ -95,12 +95,12 @@ variable "ssh_timeout" {
 
 variable "ssh_username" {
   type    = string
-  default = ""
+  default = "vagrant"
 }
 
 variable "vm_name" {
   type    = string
-  default = ""
+  default = "rhel"
 }
 
 locals {
