@@ -146,7 +146,7 @@ action=build provider=qemu template=ubuntu version=24 bash build.sh
 ## Windows
 
 | OS  | Firmware Type | VMWare Workstation | Qemu    | Avg Build Time | Date Last Reviewed |
-| --- | ------------- | ------------------ | ------- | -------------- |
+| --- | ------------- | ------------------ | ------- | -------------- | ------------------ |
 | 11  | UEFI          | Working            | Working | 12 - 45 mins   | 30/08/2026         |
 | 10  | UEFI          | Working            | Working | 45mins - 1hr   | 30/08/2026         |
 | 10  | BIOS          | Working            | Working | 45mins - 1hr   | 30/08/2026         |

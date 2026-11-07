@@ -7,17 +7,17 @@ repos:
   - id: check-yaml
   - id: check-added-large-files
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: v0.17.1 # immutable
+  rev: v0.17.4 # immutable
   hooks:
     # Run the linter.
     - id: ruff-check
       args: [ --fix ]
     - id: ruff-format
 -   repo: https://github.com/shellcheck-py/shellcheck-py
-    rev: a6564f5d57444e123433a5c9af733e3975c77229 # v0.11.0.1-1
+    rev: v0.11.0.1-1
     hooks:
     -   id: shellcheck
 - repo: https://github.com/cisagov/pre-commit-packer
-  rev: b212e93f5388ced226da194ba862ddd5000e4b94 # v0.3.1
+  rev: v0.3.1
   hooks:
     - id: packer_fmt
